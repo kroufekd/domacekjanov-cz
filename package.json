@@ -1,0 +1,25 @@
+{
+  "name": "domecek-janov-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "web",
+    "studio"
+  ],
+  "overrides": {
+    "css-tree": "3.1.0",
+    "framer-motion": "12.23.24",
+    "motion-dom": "12.23.23",
+    "motion-utils": "12.23.6"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace web",
+    "dev:web": "npm run dev --workspace web",
+    "dev:studio": "npm run dev --workspace studio",
+    "build": "npm run build --workspace web && npm run build --workspace studio",
+    "build:web": "npm run build --workspace web",
+    "build:studio": "npm run build --workspace studio",
+    "lint": "npm run lint --workspace web",
+    "typecheck": "npm run typecheck --workspace web"
+  }
+}

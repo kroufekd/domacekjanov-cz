@@ -1,0 +1,11 @@
+.git
+.context
+node_modules
+**/node_modules
+**/.next
+**/dist
+**/.sanity
+**/test-results
+**/playwright-report
+.env
+**/.env.local
