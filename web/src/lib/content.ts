@@ -49,9 +49,9 @@ const fallbackSettings: SiteSettings = {
   email: "majitel@akcenaseveru.cz",
   address: "Janov 167, 405 02 Janov",
   heroEyebrow: "Českosaské Švýcarsko · Janov u Hřenska",
-  heroTitle: "Všichni spolu. A přesto s místem pro sebe.",
+  heroTitle: "Celý dům jen pro vaši partu.",
   heroDescription:
-    "Celý domeček až pro 17 hostů, s velikou zahradou, vířivým sudem a výlety začínajícími hned za brankou.",
+    "Šest ložnic pro až 17 hostů, 4 000 m² oplocené zahrady a vířivý sud. Soutěsky ve Hřensku jsou dva kilometry od domu.",
   heroImage: image(
     "hero-aerial",
     "/images/hero-aerial.jpg",
@@ -68,10 +68,10 @@ const fallbackSettings: SiteSettings = {
 };
 
 const fallbackAccommodation: Accommodation = {
-  introTitle: "Dům, který počítá s tím, že přijedete všichni.",
+  introTitle: "Jeden velký dům pro tři až čtyři rodiny.",
   introText: [
-    "Domeček stojí v klidné části Janova nad Hřenskem. Když zavřete branku, máte pro sebe celý dům, rozlehlou oplocenou zahradu a dost prostoru na společnou snídani i večer u kamen.",
-    "Nejlépe se u nás cítí tři až čtyři rodiny, parta přátel, sportovní tým nebo kolegové na neformálním teambuildingu. Děti mají kde běhat a dospělí kde na chvíli vypnout.",
+    "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý — šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+    "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok.",
   ],
   capacity: 17,
   bedrooms: 6,
@@ -80,29 +80,29 @@ const fallbackAccommodation: Accommodation = {
     { value: "17", label: "hostů" },
     { value: "6", label: "ložnic" },
     { value: "4 000 m²", label: "oplocené zahrady" },
-    { value: "celý rok", label: "pro vás otevřeno" },
+    { value: "celý rok", label: "v provozu" },
   ],
   rooms: [
     {
-      title: "Pokoj 1",
-      description: "Dvě palandy pro čtyři. Dětská základna pro společné večery.",
+      title: "Pokoj s palandami",
+      description: "Dvě patrové postele pro čtyři. Horní lůžka unesou do 80 kg.",
     },
     {
-      title: "Pokoj 2",
-      description: "Tři samostatná lůžka, ideální pro děti nebo kamarády.",
+      title: "Třílůžkový pokoj",
+      description: "Tři samostatná jednolůžka.",
     },
     {
-      title: "Pokoje 3–5",
-      description: "Tři klidné ložnice s manželskou postelí.",
+      title: "Tři dvoulůžkové pokoje",
+      description: "Manželská postel v každém z nich, všechny v patře.",
     },
     {
-      title: "Pokoj 6",
+      title: "Přízemní dvoulůžkový pokoj",
       description:
         "Manželská postel v přízemí a bezbariérový přístup dveřmi širokými 80 cm.",
     },
     {
       title: "Obývací pokoj",
-      description: "Dvě kvalitní rozkládací pohovky jako další lůžka.",
+      description: "Dvě rozkládací pohovky doplňují kapacitu na 17 míst.",
     },
   ],
   amenities: [
@@ -111,8 +111,8 @@ const fallbackAccommodation: Accommodation = {
       items: [
         "velká vybavená kuchyň",
         "dvě lednice s mrazákem",
-        "myčka, mikrovlnka a kávovary",
-        "krbová kamna a podlahové topení",
+        "myčka, mikrovlnka, kávovar na kapsle i překapávač",
+        "krbová kamna, v přízemí podlahové topení",
         "Wi‑Fi a televize se sportovními programy",
       ],
     },
@@ -177,7 +177,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "zahrada",
-    "Místo pro dlouhé letní večeře",
+    "Jídelní stůl na terase",
   ),
   image(
     "hot-tub",
@@ -186,7 +186,7 @@ const fallbackGallery: MediaImage[] = [
     1280,
     960,
     "zahrada",
-    "Teplá voda i chladné večery",
+    "Vyhřívaný koupací sud",
   ),
   image(
     "kitchen-dining",
@@ -195,7 +195,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "spolecne",
-    "Společný stůl pro celou partu",
+    "Kuchyň s jídelnou a kamny",
     true,
   ),
   image(
@@ -205,7 +205,7 @@ const fallbackGallery: MediaImage[] = [
     1280,
     965,
     "spolecne",
-    "Obývák, kde se vejdete všichni",
+    "Obývací pokoj s rozkládacími pohovkami",
   ),
   image(
     "kitchen",
@@ -223,7 +223,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1066,
     "spolecne",
-    "Prostor na společné vaření",
+    "Kuchyňský ostrůvek",
   ),
   image(
     "kitchen-detail",
@@ -232,7 +232,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1066,
     "spolecne",
-    "Všechno důležité je po ruce",
+    "Vybavení kuchyně",
   ),
   image(
     "bedroom-double",
@@ -241,7 +241,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "pokoje",
-    "Čtyři ložnice pro rodiče",
+    "Čtyři pokoje s manželskou postelí",
     true,
   ),
   image(
@@ -251,7 +251,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1067,
     "pokoje",
-    "Klidné pokoje v patře",
+    "Ložnice v patře",
   ),
   image(
     "bedroom-bunk-red",
@@ -260,7 +260,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1600,
     "pokoje",
-    "Dětské pokoje, které drží partu pohromadě",
+    "Pokoj s palandami",
   ),
   image(
     "bedroom-bunk",
@@ -269,7 +269,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "pokoje",
-    "Pohodlné spaní až pro čtyři",
+    "Palandy až pro čtyři",
   ),
   image(
     "bedroom-twin",
@@ -278,7 +278,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "pokoje",
-    "Každý má svůj kousek klidu",
+    "Pokoj v podkroví",
   ),
   image(
     "bathroom",
@@ -296,7 +296,7 @@ const fallbackGallery: MediaImage[] = [
     1600,
     1200,
     "pokoje",
-    "Šest různých ložnic",
+    "Šest samostatných ložnic",
   ),
   image(
     "stairs",
@@ -340,7 +340,7 @@ const fallbackTripTips: TripTip[] = [
     title: "Janovská rozhledna",
     distance: "pěšky z domu",
     description:
-      "Rychlý výlet na první nebo poslední den. Nahoře se vám otevře krajina Labských pískovců.",
+      "Rozhledna stojí přímo v obci. Krátká procházka s výhledem na Labské pískovce.",
     href: "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna",
   },
   {
@@ -348,7 +348,7 @@ const fallbackTripTips: TripTip[] = [
     title: "Soutěsky Hřensko",
     distance: "2 km",
     description:
-      "Skalní kaňon, pěší stezky a plavba na pramicích patří k zážitkům, kvůli kterým se sem vrací.",
+      "Plavba na pramicích kaňonem říčky Kamenice. V sezoně vyrazte brzy ráno, odpoledne bývá plno.",
     href: "https://www.hrensko.cz/inpage/soutesky/",
   },
   {
@@ -356,7 +356,7 @@ const fallbackTripTips: TripTip[] = [
     title: "Pravčická brána",
     distance: "krátký přejezd",
     description:
-      "Nejznámější symbol Českého Švýcarska a výlet, který by měl alespoň jednou zažít každý.",
+      "Největší pískovcová skalní brána v Evropě. Autem do Hřenska nebo na Mezní Louku, dál pěšky.",
     href: "https://www.pbrana.cz/",
   },
   {
@@ -364,7 +364,7 @@ const fallbackTripTips: TripTip[] = [
     title: "Jetřichovické vyhlídky",
     distance: "na celý den",
     description:
-      "Pískovcové skály, lesní cesty a výhledy, které stojí za každé vystoupané schodiště.",
+      "Okruh přes Mariinu, Vilemíninu a Rudolfovu vyhlídku. Počítejte se třemi až čtyřmi hodinami chůze.",
     href: "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky",
   },
 ];

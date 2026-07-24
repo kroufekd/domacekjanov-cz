@@ -20,20 +20,20 @@ const photos = [
   ["exterior-garden.jpg", "exterier", "Celý dům a zahrada jen pro vás", true],
   ["exterior-wide.jpg", "exterier", "4 000 m² oplocené zahrady", false],
   ["terrace-hot-tub.jpg", "zahrada", "Terasa, gril a vyhřívaný sud", true],
-  ["terrace-table.jpg", "zahrada", "Místo pro dlouhé letní večeře", false],
-  ["hot-tub.jpg", "zahrada", "Teplá voda i chladné večery", false],
-  ["kitchen-dining.jpg", "spolecne", "Společný stůl pro celou partu", true],
-  ["living-room.jpg", "spolecne", "Obývák, kde se vejdete všichni", false],
+  ["terrace-table.jpg", "zahrada", "Jídelní stůl na terase", false],
+  ["hot-tub.jpg", "zahrada", "Vyhřívaný koupací sud", false],
+  ["kitchen-dining.jpg", "spolecne", "Kuchyň s jídelnou a kamny", true],
+  ["living-room.jpg", "spolecne", "Obývací pokoj s rozkládacími pohovkami", false],
   ["kitchen.jpg", "spolecne", "Plně vybavená kuchyň", false],
-  ["kitchen-island.jpg", "spolecne", "Prostor na společné vaření", false],
-  ["kitchen-detail.jpg", "spolecne", "Všechno důležité je po ruce", false],
-  ["bedroom-double.jpg", "pokoje", "Klidné ložnice pro rodiče", true],
-  ["bedroom-double-window.jpg", "pokoje", "Světlé pokoje v patře", false],
-  ["bedroom-bunk-red.jpg", "pokoje", "Dětský pokoj pro společné večery", false],
-  ["bedroom-bunk.jpg", "pokoje", "Pohodlné spaní až pro čtyři", false],
-  ["bedroom-twin.jpg", "pokoje", "Každý má svůj kousek klidu", false],
+  ["kitchen-island.jpg", "spolecne", "Kuchyňský ostrůvek", false],
+  ["kitchen-detail.jpg", "spolecne", "Vybavení kuchyně", false],
+  ["bedroom-double.jpg", "pokoje", "Čtyři pokoje s manželskou postelí", true],
+  ["bedroom-double-window.jpg", "pokoje", "Ložnice v patře", false],
+  ["bedroom-bunk-red.jpg", "pokoje", "Pokoj s palandami", false],
+  ["bedroom-bunk.jpg", "pokoje", "Palandy až pro čtyři", false],
+  ["bedroom-twin.jpg", "pokoje", "Pokoj v podkroví", false],
   ["bathroom.jpg", "pokoje", "Dvě koupelny v přízemí", false],
-  ["bedroom-single.jpg", "pokoje", "Šest různých ložnic", false],
+  ["bedroom-single.jpg", "pokoje", "Šest samostatných ložnic", false],
   ["stairs.jpg", "pokoje", "Dům má dvě podlaží", false],
 ];
 
@@ -80,9 +80,9 @@ const settings = {
   email: "majitel@akcenaseveru.cz",
   address: "Janov 167, 405 02 Janov",
   heroEyebrow: "Českosaské Švýcarsko · Janov u Hřenska",
-  heroTitle: "Všichni spolu. A přesto s místem pro sebe.",
+  heroTitle: "Celý dům jen pro vaši partu.",
   heroDescription:
-    "Celý domeček až pro 17 hostů, s velikou zahradou, vířivým sudem a výlety začínajícími hned za brankou.",
+    "Šest ložnic pro až 17 hostů, 4 000 m² oplocené zahrady a vířivý sud. Soutěsky ve Hřensku jsou dva kilometry od domu.",
   heroImage: {
     _type: "image",
     asset: { _type: "reference", _ref: assetIds.get("hero-aerial.jpg") },
@@ -97,10 +97,10 @@ const settings = {
 const accommodation = {
   _id: "accommodation-main",
   _type: "accommodation",
-  introTitle: "Dům, který počítá s tím, že přijedete všichni.",
+  introTitle: "Jeden velký dům pro tři až čtyři rodiny.",
   introText: [
-    "Domeček stojí v klidné části Janova nad Hřenskem. Když zavřete branku, máte pro sebe celý dům, rozlehlou oplocenou zahradu a dost prostoru na společnou snídani i večer u kamen.",
-    "Nejlépe se u nás cítí tři až čtyři rodiny, parta přátel, sportovní tým nebo kolegové na neformálním teambuildingu.",
+    "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý — šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+    "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok.",
   ],
   capacity: 17,
   bedrooms: 6,
@@ -109,14 +109,14 @@ const accommodation = {
     { ...key("hostu"), _type: "object", value: "17", label: "hostů" },
     { ...key("loznic"), _type: "object", value: "6", label: "ložnic" },
     { ...key("zahrada"), _type: "object", value: "4 000 m²", label: "oplocené zahrady" },
-    { ...key("rok"), _type: "object", value: "celý rok", label: "pro vás otevřeno" },
+    { ...key("rok"), _type: "object", value: "celý rok", label: "v provozu" },
   ],
   rooms: [
-    ["Pokoj 1", "Dvě palandy pro čtyři. Dětská základna pro společné večery."],
-    ["Pokoj 2", "Tři samostatná lůžka, ideální pro děti nebo kamarády."],
-    ["Pokoje 3–5", "Tři klidné ložnice s manželskou postelí."],
-    ["Pokoj 6", "Manželská postel v přízemí a bezbariérový přístup."],
-    ["Obývací pokoj", "Dvě kvalitní rozkládací pohovky jako další lůžka."],
+    ["Pokoj s palandami", "Dvě patrové postele pro čtyři. Horní lůžka unesou do 80 kg."],
+    ["Třílůžkový pokoj", "Tři samostatná jednolůžka."],
+    ["Tři dvoulůžkové pokoje", "Manželská postel v každém z nich, všechny v patře."],
+    ["Přízemní dvoulůžkový pokoj", "Manželská postel v přízemí a bezbariérový přístup."],
+    ["Obývací pokoj", "Dvě rozkládací pohovky doplňují kapacitu na 17 míst."],
   ].map(([title, description]) => ({
     ...key(title),
     _type: "object",
@@ -124,7 +124,7 @@ const accommodation = {
     description,
   })),
   amenities: [
-    ["Uvnitř", ["velká vybavená kuchyň", "dvě lednice s mrazákem", "myčka, mikrovlnka a kávovary", "krbová kamna a podlahové topení", "Wi‑Fi a televize"]],
+    ["Uvnitř", ["velká vybavená kuchyň", "dvě lednice s mrazákem", "myčka, mikrovlnka, kávovar na kapsle i překapávač", "krbová kamna, v přízemí podlahové topení", "Wi‑Fi a televize"]],
     ["Venku", ["vyhřívaný vířivý sud", "jižní terasa s plynovým grilem", "trampolína, houpačka a dětský domeček", "oplocená travnatá zahrada", "parkování u domu"]],
     ["Prakticky", ["povlečení a malé ručníky v ceně", "dvě koupelny v přízemí", "další WC v patře", "bezbariérový pokoj", "nekuřácký objekt bez zvířat"]],
   ].map(([title, items]) => ({
@@ -152,10 +152,10 @@ const rates = [
 }));
 
 const tips = [
-  ["janov", "Janovská rozhledna", "pěšky z domu", "Rychlý výlet s výhledem na Labské pískovce.", "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna"],
-  ["hrensko", "Soutěsky Hřensko", "2 km", "Skalní kaňon, pěší stezky a plavba na pramicích.", "https://www.hrensko.cz/inpage/soutesky/"],
-  ["pravcicka", "Pravčická brána", "krátký přejezd", "Nejznámější symbol Českého Švýcarska.", "https://www.pbrana.cz/"],
-  ["jetrichovice", "Jetřichovické vyhlídky", "na celý den", "Pískovcové skály, lesní cesty a nádherné výhledy.", "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky"],
+  ["janov", "Janovská rozhledna", "pěšky z domu", "Rozhledna stojí přímo v obci. Krátká procházka s výhledem na Labské pískovce.", "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna"],
+  ["hrensko", "Soutěsky Hřensko", "2 km", "Plavba na pramicích kaňonem říčky Kamenice.", "https://www.hrensko.cz/inpage/soutesky/"],
+  ["pravcicka", "Pravčická brána", "krátký přejezd", "Největší pískovcová skalní brána v Evropě.", "https://www.pbrana.cz/"],
+  ["jetrichovice", "Jetřichovické vyhlídky", "na celý den", "Okruh přes Mariinu, Vilemíninu a Rudolfovu vyhlídku.", "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky"],
 ].map(([id, title, distance, description, href], order) => ({
   _id: `trip-${id}`,
   _type: "tripTip",

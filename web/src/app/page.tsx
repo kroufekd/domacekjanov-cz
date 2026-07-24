@@ -121,7 +121,7 @@ export default async function HomePage() {
           <div className="page-shell story-layout">
             <div className="story-copy">
               <SectionHeading
-                eyebrow="Jeden dům. Spousta společných chvil."
+                eyebrow="O domečku"
                 title={accommodation.introTitle}
               />
               <div className="story-copy__text">
@@ -163,15 +163,15 @@ export default async function HomePage() {
           <div className="page-shell">
             <div className="garden-heading-row">
               <SectionHeading
-                eyebrow="Venku to nekončí"
+                eyebrow="Zahrada a terasa"
                 title={
                   <>
                     Čtyři tisíce metrů
                     <br />
-                    <em>pro volné dny.</em>
+                    <em>oplocené zahrady.</em>
                   </>
                 }
-                description="Ráno káva na jižní terase, odpoledne děti v zahradě a večer horká voda pod hvězdami. Zahrada je oplocená, a tak můžete opravdu vypnout."
+                description="Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček — a protože je pozemek celý oplocený, děti klidně pustíte z dohledu."
               />
               <div className="garden-stamp" aria-hidden="true">
                 <Trees />
@@ -192,8 +192,8 @@ export default async function HomePage() {
                 <Waves aria-hidden="true" />
                 <h3>Vířivý sud</h3>
                 <p>
-                  Horká voda, vzduch z lesa a čas, který nikam nepospíchá.
-                  Sud připravíme na celý pobyt.
+                  Vyhřívaný koupací sud na terase. Když ho budete chtít,
+                  připravíme ho na celý pobyt.
                 </p>
                 <span>2 000 Kč / pobyt</span>
               </div>
@@ -207,12 +207,12 @@ export default async function HomePage() {
               eyebrow="Spaní & vybavení"
               title={
                 <>
-                  Každý má svůj klid.
+                  Patnáct lůžek
                   <br />
-                  <em>Spolu jste za pár kroků.</em>
+                  <em>v šesti ložnicích.</em>
                 </>
               }
-              description="Šest samostatných pokojů, velký společný prostor a praktické zázemí pro dlouhý víkend i celý týden."
+              description="Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě rozkládací pohovky v obýváku — dohromady až 17 míst na spaní."
             />
 
             <div className="rooms-showcase">
@@ -225,13 +225,10 @@ export default async function HomePage() {
                 />
               </figure>
               <div className="rooms-list">
-                {accommodation.rooms.map((room, index) => (
+                {accommodation.rooms.map((room) => (
                   <article key={room.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <div>
-                      <h3>{room.title}</h3>
-                      <p>{room.description}</p>
-                    </div>
+                    <h3>{room.title}</h3>
+                    <p>{room.description}</p>
                   </article>
                 ))}
               </div>
@@ -290,12 +287,12 @@ export default async function HomePage() {
               eyebrow="Galerie"
               title={
                 <>
-                  Prohlédněte si místa,
+                  Podívejte se,
                   <br />
-                  <em>kde budete spolu.</em>
+                  <em>jak to tu vypadá.</em>
                 </>
               }
-              description="Žádné katalogové kulisy. Opravdový dům, jeho pokoje, zahrada i malé detaily, které dělají pobyt příjemný."
+              description="Aktuální fotky domu — pokoje, kuchyň, zahrada i terasa."
             />
             <Gallery images={gallery} />
           </div>
@@ -323,7 +320,7 @@ export default async function HomePage() {
           <div className="page-shell">
             <div className="trips-intro">
               <SectionHeading
-                eyebrow="České Švýcarsko za dveřmi"
+                eyebrow="Výlety po okolí"
                 title={
                   <>
                     Každý den
@@ -331,7 +328,7 @@ export default async function HomePage() {
                     <em>jiným směrem.</em>
                   </>
                 }
-                description="Ráno vyjdete z branky a večer se vrátíte ke kamnům. Janov je klidná základna pro soutěsky, skalní vyhlídky i krátké procházky."
+                description="Janov leží na okraji národního parku České Švýcarsko, dva kilometry nad Hřenskem. Soutěsky, skalní vyhlídky i Pravčická brána jsou na dosah pěšky nebo pár minut autem."
               />
               <a
                 className="button button--outline"
@@ -344,7 +341,7 @@ export default async function HomePage() {
               </a>
             </div>
             <div className="trips-grid">
-              {tripTips.map((tip, index) => (
+              {tripTips.map((tip) => (
                 <a
                   key={tip.id}
                   href={tip.href || settings.mapUrl}
@@ -352,9 +349,6 @@ export default async function HomePage() {
                   rel="noreferrer"
                   className="trip-card"
                 >
-                  <span className="trip-card__number">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <div>
                     <small>{tip.distance}</small>
                     <h3>{tip.title}</h3>
@@ -424,15 +418,15 @@ export default async function HomePage() {
           </div>
           <div className="page-shell contact-layout">
             <div>
-              <p className="eyebrow">Tak kdy přijedete?</p>
+              <p className="eyebrow">Rezervace a dotazy</p>
               <h2>
                 Těšíme se
                 <br />
                 <em>na vaši partu.</em>
               </h2>
               <p>
-                Ozvěte se přímo majiteli. Řekneme si, kdo přijede, co plánujete
-                a jestli je Domeček pro váš pobyt ten pravý.
+                Rezervace jde přímo přes majitele, bez agentur a prostředníků.
+                Zavolejte nebo napište, domluvíme termín i detaily.
               </p>
             </div>
             <div className="contact-card">

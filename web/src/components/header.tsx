@@ -31,11 +31,18 @@ export function Header({ phone }: HeaderProps) {
 
   useEffect(() => {
     if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
+
     window.addEventListener("keydown", onEscape);
-    return () => window.removeEventListener("keydown", onEscape);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onEscape);
+    };
   }, [open]);
 
   return (
@@ -71,15 +78,17 @@ export function Header({ phone }: HeaderProps) {
         </button>
       </div>
 
-      <div className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}>
+      <div
+        className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}
+        aria-hidden={!open}
+      >
         <nav aria-label="Mobilní navigace">
-          {navigation.map((item, index) => (
+          {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
             >
-              <span>0{index + 1}</span>
               {item.label}
             </a>
           ))}

@@ -1,14 +1,8 @@
 "use client";
 
 import { ArrowDown, ArrowUpRight, CalendarDays, Phone } from "lucide-react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import type { Accommodation, SiteSettings } from "@/types/content";
 
@@ -19,29 +13,95 @@ type HeroProps = {
 
 export function Hero({ settings, accommodation }: HeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const contentY = useTransform(scrollYProgress, [0, 0.75], [0, 100]);
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.55, 0.9],
-    [1, 0.86, 0],
-  );
-  const scrollOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  useEffect(() => {
+    let animationFrame = 0;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    );
+
+    const updateProgress = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(() => {
+        const hero = heroRef.current;
+        if (!hero) return;
+
+        const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
+        const rawProgress = (window.scrollY - hero.offsetTop) / travel;
+        const progress = reducedMotion.matches
+          ? 0
+          : Math.min(1, Math.max(0, rawProgress));
+        const windowProgress = Math.min(1, progress / 0.92);
+        const contentProgress = Math.min(1, progress / 0.72);
+        const contentOpacity =
+          progress < 0.38
+            ? 1 - (progress / 0.38) * 0.08
+            : Math.max(0, 0.92 * (1 - (progress - 0.38) / 0.34));
+        const badgeOpacity =
+          progress < 0.28
+            ? 1 - (progress / 0.28) * 0.2
+            : Math.max(0, 0.8 * (1 - (progress - 0.28) / 0.28));
+
+        hero.style.setProperty(
+          "--hero-window-scale",
+          (1 - windowProgress * 0.14).toString(),
+        );
+        hero.style.setProperty(
+          "--hero-window-y",
+          `${windowProgress * 28}px`,
+        );
+        hero.style.setProperty(
+          "--hero-window-radius",
+          `${windowProgress * 76}px`,
+        );
+        hero.style.setProperty("--hero-image-y", `${progress * -34}px`);
+        hero.style.setProperty(
+          "--hero-content-y",
+          `${contentProgress * -58}px`,
+        );
+        hero.style.setProperty(
+          "--hero-content-opacity",
+          contentOpacity.toString(),
+        );
+        hero.style.setProperty(
+          "--hero-scroll-opacity",
+          Math.max(0, 1 - progress / 0.2).toString(),
+        );
+        hero.style.setProperty(
+          "--hero-badge-opacity",
+          badgeOpacity.toString(),
+        );
+        hero.style.setProperty(
+          "--hero-underlay-opacity",
+          Math.min(1, Math.max(0, (progress - 0.36) / 0.36)).toString(),
+        );
+      });
+    };
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    reducedMotion.addEventListener("change", updateProgress);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+      reducedMotion.removeEventListener("change", updateProgress);
+    };
+  }, []);
 
   return (
     <section id="nahoru" ref={heroRef} className="hero">
       <div className="hero__sticky">
+        <div className="hero__underlay page-shell" aria-hidden="true">
+          <span>Velký dům · klidné místo</span>
+          <strong>Janov</strong>
+          <span>50° 51′ N · 14° 16′ E</span>
+        </div>
+
         <div className="hero__image-window">
-          <motion.div
-            className="hero__image"
-            style={{ scale: prefersReducedMotion ? 1 : imageScale }}
-          >
+          <div className="hero__image">
             <Image
               src={settings.heroImage.src}
               alt={settings.heroImage.alt}
@@ -50,17 +110,11 @@ export function Hero({ settings, accommodation }: HeroProps) {
               quality={88}
               sizes="100vw"
             />
-          </motion.div>
+          </div>
           <div className="hero__veil" />
         </div>
 
-        <motion.div
-          className="hero__content page-shell"
-          style={{
-            y: prefersReducedMotion ? 0 : contentY,
-            opacity: prefersReducedMotion ? 1 : contentOpacity,
-          }}
-        >
+        <div className="hero__content page-shell">
           <p className="hero__eyebrow">{settings.heroEyebrow}</p>
           <h1>{settings.heroTitle}</h1>
           <div className="hero__bottom">
@@ -76,16 +130,12 @@ export function Hero({ settings, accommodation }: HeroProps) {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.a
-          className="hero__scroll"
-          href="#rychla-fakta"
-          style={{ opacity: prefersReducedMotion ? 1 : scrollOpacity }}
-        >
-          <span>Objevit domeček</span>
+        <a className="hero__scroll" href="#rychla-fakta">
+          <span>Prohlédnout dům</span>
           <ArrowDown aria-hidden="true" />
-        </motion.a>
+        </a>
 
         <div className="hero__badge">
           <span>Až</span>
