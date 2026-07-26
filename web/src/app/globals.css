@@ -115,7 +115,7 @@ em {
   outline-offset: 3px;
 }
 
-/* Fine letterpress hatching — the shared paper of the hero and the light sections. */
+/* Fine letterpress hatching - the shared paper of the hero and the light sections. */
 .paper-texture {
   background-color: var(--cream);
   background-image: repeating-linear-gradient(
@@ -382,7 +382,7 @@ em {
 
 /* Hero */
 .hero {
-  /* Reveal geometry — hero.tsx reads these, so JS and CSS cannot drift apart. */
+  /* Reveal geometry - hero.tsx reads these, so JS and CSS cannot drift apart. */
   --hero-shrink: 0.24;
   --hero-lift: 44px;
   --hero-radius: 64px;
@@ -1413,7 +1413,7 @@ em {
   background: var(--cream);
 }
 
-/* No lift — the cards share one baseline; colour and shadow carry the emphasis. */
+/* No lift - the cards share one baseline; colour and shadow carry the emphasis. */
 .rate-card--featured {
   border-color: var(--forest);
   background: var(--forest);
@@ -1831,7 +1831,7 @@ em {
     min-height: 920px;
   }
 
-  /* Too narrow to sit beside the name — the name carries the reveal alone. */
+  /* Too narrow to sit beside the name - the name carries the reveal alone. */
   .hero__underlay-meta {
     display: none;
   }

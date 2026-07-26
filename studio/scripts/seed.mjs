@@ -99,7 +99,7 @@ const accommodation = {
   _type: "accommodation",
   introTitle: "Jeden velký dům pro tři až čtyři rodiny.",
   introText: [
-    "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý — šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+    "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
     "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok.",
   ],
   capacity: 17,
