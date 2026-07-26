@@ -406,8 +406,8 @@ export default async function HomePage() {
               </p>
             </div>
             <div className="pricing-action">
-              <Availability calendarUrl={settings.calendarUrl} />
-              <p>Kalendář se otevře bez opuštění stránky.</p>
+              <Availability listingUrl={settings.listingUrl} />
+              <p>Kalendář obsazenosti najdete na e‑chalupy.cz.</p>
             </div>
           </div>
         </section>

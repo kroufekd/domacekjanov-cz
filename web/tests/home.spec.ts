@@ -40,16 +40,15 @@ test("starts Matterport only after user interaction", async ({ page }) => {
   await expect(page.locator('iframe[title="3D prohlídka Domečku Janov"]')).toHaveCount(1);
 });
 
-test("opens the availability calendar modal", async ({ page }) => {
+test("links availability to the e-chalupy listing", async ({ page }) => {
   await page.goto("/#cenik");
   await page.waitForTimeout(300);
-  await page.getByRole("button", { name: "Zkontrolovat obsazenost" }).click();
-  await expect(page.getByRole("dialog", { name: "Volné termíny" })).toBeVisible();
-  await expect(
-    page.locator('iframe[title="Kalendář obsazenosti Domečku Janov"]'),
-  ).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog", { name: "Volné termíny" })).toBeHidden();
+  const link = page.getByRole("link", { name: "Zkontrolovat obsazenost" });
+  await expect(link).toHaveAttribute(
+    "href",
+    "https://www.e-chalupy.cz/domecek-janov-ubytovani-o17320",
+  );
+  await expect(link).toHaveAttribute("target", "_blank");
 });
 
 test("supports reduced motion", async ({ browser }) => {
