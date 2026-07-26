@@ -46,22 +46,6 @@ Build context je kořen repozitáře a Dockerfile je `./Dockerfile`. Sanity Stud
 nasadit samostatně příkazem `npm run build:studio` nebo provozovat přes Sanity
 hosting příkazem `npm run deploy --workspace studio`.
 
-## Statická ukázka na GitHub Pages
-
-Workflow `.github/workflows/pages.yml` sestaví čistě statickou verzi z lokálního
-počátečního obsahu a fotografií. Při tomto buildu se Sanity nepoužívá. Náhled je
-publikovaný na:
-
-```text
-https://kroufekd.github.io/domacekjanov-cz/
-```
-
-Stejný export lze lokálně ověřit příkazem:
-
-```bash
-STATIC_EXPORT=true NEXT_PUBLIC_BASE_PATH=/domacekjanov-cz npm run build:web
-```
-
 ## Ověření
 
 ```bash

@@ -15,7 +15,6 @@ import {
   siteSettingsQuery,
   tripTipsQuery,
 } from "@/sanity/queries";
-import { localAsset } from "@/lib/paths";
 
 const calendarUrl =
   "https://obsazenost.e-chalupy.cz/kalendar.php?id=17320&pocetMesicu=12&velikost=3&legenda=ano&naStred=ano&ctvrtleti=ne&stin=ne&jazyk=cz&jednotky=ano&pozadi=f6f1e7&kalendarText=1f332c&kalendarPozadi=f6f1e7&ramecek=d8d0c1&mesicText=ffffff&mesicPozadi=315e50&dnyText=315e50&dnyPozadia=ffffff&obsazenoText=ffffff&obsazenoPozadi=c45d4a&volnoText=173d31&volnoPozadi=a9c5ac&neaktivniDnyText=999999&neaktivniDnyPozadi=eee9df&legendaText=1f332c&fontFamily=Arial";
@@ -31,7 +30,7 @@ const image = (
   featured?: boolean,
 ): MediaImage => ({
   id,
-  src: src.startsWith("/") ? localAsset(src) : src,
+  src,
   alt,
   width,
   height,
@@ -381,7 +380,7 @@ const isPopulatedArray = <T>(value: T[] | null | undefined): value is T[] =>
   Array.isArray(value) && value.length > 0;
 
 export async function getSiteContent(): Promise<SiteContent> {
-  if (process.env.STATIC_EXPORT === "true" || !hasSanityConfig) {
+  if (!hasSanityConfig) {
     return fallbackContent;
   }
 
