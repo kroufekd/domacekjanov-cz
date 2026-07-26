@@ -15,7 +15,7 @@ export function MatterportTour({ url }: MatterportTourProps) {
   const embedUrl = `${url}${url.includes("?") ? "&" : "?"}play=1&qs=1`;
 
   return (
-    <div className="tour-frame">
+    <div className={started ? "tour-frame tour-frame--live" : "tour-frame"}>
       {started ? (
         <>
           <iframe
