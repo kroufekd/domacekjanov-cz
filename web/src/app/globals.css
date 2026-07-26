@@ -115,12 +115,14 @@ em {
   outline-offset: 3px;
 }
 
+/* Fine letterpress hatching — the shared paper of the hero and the light sections. */
 .paper-texture {
   background-color: var(--cream);
-  background-image:
-    radial-gradient(circle at 18% 32%, rgba(23, 61, 49, 0.045) 0 1px, transparent 1.5px),
-    radial-gradient(circle at 76% 65%, rgba(196, 93, 74, 0.045) 0 1px, transparent 1.5px);
-  background-size: 19px 19px, 27px 27px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(23, 61, 49, 0.055) 0 1px,
+    transparent 1px 3px
+  );
 }
 
 .topo-texture {
@@ -143,7 +145,8 @@ em {
 }
 
 .section-heading {
-  max-width: 820px;
+  /* Wide enough that the hard breaks still hold at the largest font size. */
+  max-width: 920px;
 }
 
 .section-heading h2,
@@ -374,10 +377,28 @@ em {
 
 /* Hero */
 .hero {
+  /* Reveal geometry — hero.tsx reads these, so JS and CSS cannot drift apart. */
+  --hero-shrink: 0.24;
+  --hero-lift: 44px;
+  --hero-radius: 64px;
+  --hero-blur: 3px;
+  --hero-veil-floor: 0.1;
+
+  /* Bands uncovered around the shrunken photo. hero.tsx measures the height. */
+  --hero-sticky-height: max(100vh, 650px);
+  --hero-bottom-inset: 0px; /* space taken by the fixed mobile contact bar */
+  --hero-word-max: 6.6vw; /* keeps the name clear of the meta at both ends */
+  --hero-band: calc(var(--hero-shrink) * var(--hero-sticky-height) / 2);
+  --hero-band-top: calc(var(--hero-band) - var(--hero-lift));
+  --hero-band-bottom: calc(var(--hero-band) + var(--hero-lift));
+
+  /* Driven by scroll */
   --hero-window-scale: 1;
   --hero-window-y: 0px;
   --hero-window-radius: 0px;
   --hero-image-y: 0px;
+  --hero-image-blur: var(--hero-blur);
+  --hero-veil-opacity: 1;
   --hero-content-y: 0px;
   --hero-content-opacity: 1;
   --hero-scroll-opacity: 1;
@@ -395,7 +416,6 @@ em {
   height: 100vh;
   min-height: 650px;
   overflow: hidden;
-  background: var(--cream);
 }
 
 .hero__image-window {
@@ -415,43 +435,58 @@ em {
   position: absolute;
   z-index: 0;
   inset: 0;
-  display: flex;
-  height: 100%;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding-top: 108px;
   color: var(--forest);
   opacity: var(--hero-underlay-opacity);
   pointer-events: none;
 }
 
-.hero__underlay > span {
+/* Caption row uncovered below the photo: meta at the card corners, name centred. */
+.hero__underlay-meta,
+.hero__underlay-word {
+  position: absolute;
+  right: 0;
+  bottom: var(--hero-bottom-inset);
+  left: 0;
+  display: flex;
+  height: calc(var(--hero-band-bottom) - var(--hero-bottom-inset));
+  align-items: center;
+}
+
+.hero__underlay-meta {
+  justify-content: space-between;
+  gap: 24px;
+  padding-inline: calc(var(--hero-shrink) * 50%);
+}
+
+.hero__underlay-meta span {
   font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.hero__underlay > strong {
-  position: absolute;
-  right: 0;
-  bottom: -44px;
-  left: 0;
-  color: rgba(23, 61, 49, 0.12);
+/* Sized from the band it lives in, so the photo never clips it. */
+.hero__underlay-word {
+  justify-content: center;
+  color: rgba(23, 61, 49, 0.3);
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(9rem, 22vw, 20rem);
+  font-size: min(
+    calc((var(--hero-band-bottom) - var(--hero-bottom-inset)) * 0.82),
+    var(--hero-word-max),
+    7rem
+  );
   font-weight: 500;
-  letter-spacing: -0.08em;
-  line-height: 0.72;
-  text-align: center;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
 .hero__image {
   position: absolute;
-  inset: -7% -2%;
+  inset: -7% -3%;
   transform: translateY(var(--hero-image-y));
   transform-origin: center;
-  will-change: transform;
+  filter: blur(var(--hero-image-blur));
+  will-change: transform, filter;
 }
 
 .hero__image img {
@@ -462,8 +497,9 @@ em {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(12, 31, 24, 0.76), rgba(12, 31, 24, 0.17) 65%),
-    linear-gradient(0deg, rgba(12, 31, 24, 0.5), transparent 48%);
+    linear-gradient(90deg, rgba(12, 31, 24, 0.8), rgba(12, 31, 24, 0.18) 68%),
+    linear-gradient(0deg, rgba(12, 31, 24, 0.55), transparent 50%);
+  opacity: var(--hero-veil-opacity);
 }
 
 .hero__content {
@@ -597,14 +633,16 @@ em {
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Fixed rows keep icons and labels aligned even when a value wraps. */
 .facts-grid article {
   display: grid;
   min-height: 250px;
-  place-items: center;
-  align-content: center;
-  padding: 44px 30px;
+  align-content: stretch;
+  justify-items: start;
+  padding: 36px 30px 40px;
   border-right: 1px solid var(--line);
-  text-align: center;
+  grid-template-rows: auto 1fr auto;
+  text-align: left;
 }
 
 .facts-grid article:first-child {
@@ -614,21 +652,22 @@ em {
 .facts-grid svg {
   width: 23px;
   height: 23px;
-  margin-bottom: 18px;
   color: var(--terracotta);
   stroke-width: 1.6px;
 }
 
 .facts-grid strong {
+  align-self: end;
   font-family: var(--font-fraunces), Georgia, serif;
-  font-size: clamp(2.5rem, 4vw, 4.6rem);
+  font-size: clamp(2.3rem, 3.5vw, 4rem);
   font-weight: 500;
   letter-spacing: -0.05em;
-  line-height: 1;
+  line-height: 1.05;
+  text-wrap: balance;
 }
 
 .facts-grid span {
-  margin-top: 9px;
+  margin-top: 11px;
   color: #666b66;
   font-size: 0.75rem;
   font-weight: 700;
@@ -644,13 +683,14 @@ em {
 
 .story-layout {
   display: grid;
-  grid-template-columns: 0.78fr 1.22fr;
+  grid-template-columns: 0.88fr 1.12fr;
   align-items: center;
-  gap: clamp(60px, 9vw, 140px);
+  gap: clamp(60px, 9vw, 120px);
 }
 
+/* The copy column is capped by the page shell, so the heading is capped too. */
 .story-copy .section-heading h2 {
-  font-size: clamp(3.2rem, 5vw, 5.4rem);
+  font-size: clamp(2.9rem, 4.3vw, 4.5rem);
 }
 
 .story-copy__text {
@@ -979,11 +1019,18 @@ em {
 }
 
 .gallery-grid {
+  /* Two tiers only: a soft radius on every card, the big one on the four
+     outer corners of the block. The container clips those four, so it wins
+     over the card radius wherever a card sits in a corner. */
+  --gallery-radius: 72px;
+  --gallery-radius-card: 24px;
   display: grid;
   grid-auto-flow: dense;
   grid-auto-rows: 290px;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  overflow: hidden;
+  border-radius: var(--gallery-radius);
 }
 
 .gallery-card {
@@ -991,17 +1038,20 @@ em {
   overflow: hidden;
   padding: 0;
   border: 0;
-  border-radius: 26px 70px 26px 70px;
+  border-radius: var(--gallery-radius-card);
   background: var(--cream-deep);
   cursor: zoom-in;
 }
 
-.gallery-card:nth-child(3n + 2) {
-  border-radius: 80px 24px 70px 24px;
+/* A filter can leave the last row short; close the block on the trailing card.
+   When the row is full this corner is already clipped round, so it is a no-op. */
+.gallery-card:last-child {
+  border-bottom-right-radius: var(--gallery-radius);
 }
 
-.gallery-card:nth-child(4n + 3) {
-  border-radius: 24px 90px 24px 32px;
+/* The container clips at its bounds, so keep the focus ring inside the card. */
+.gallery-card:focus-visible {
+  outline-offset: -5px;
 }
 
 .gallery-card--wide {
@@ -1343,26 +1393,28 @@ em {
 }
 
 .rate-card {
+  --rate-card-gutter: 36px;
   position: relative;
   min-height: 340px;
-  padding: 42px 36px;
+  padding: 42px var(--rate-card-gutter);
   border: 1px solid var(--line);
   border-radius: 24px 72px 24px 72px;
   background: var(--cream);
 }
 
+/* No lift — the cards share one baseline; colour and shadow carry the emphasis. */
 .rate-card--featured {
-  transform: translateY(-14px);
   border-color: var(--forest);
   background: var(--forest);
   color: var(--white);
   box-shadow: var(--shadow);
 }
 
+/* Out of flow and above the title, so every card keeps the same content rhythm. */
 .rate-card__tag {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: var(--rate-card-gutter);
   padding: 6px 10px;
   border-radius: 999px;
   background: var(--terracotta);
@@ -1760,8 +1812,17 @@ em {
   }
 
   .hero {
+    --hero-shrink: 0.2;
+    --hero-lift: 36px;
+    --hero-radius: 48px;
+    --hero-word-max: 9vw;
     height: 138vh;
     min-height: 920px;
+  }
+
+  /* Too narrow to sit beside the name — the name carries the reveal alone. */
+  .hero__underlay-meta {
+    display: none;
   }
 
   .hero__content {
@@ -1881,9 +1942,14 @@ em {
     padding: 82px 0;
   }
 
+  /* Hard breaks are tuned for wide columns; here they cost a third line. */
+  .heading-break {
+    display: none;
+  }
+
   .section-heading h2,
   .contact-layout h2 {
-    font-size: clamp(2.65rem, 13vw, 4rem);
+    font-size: clamp(1.95rem, 9.4vw, 2.9rem);
   }
 
   .section-heading__description {
@@ -1909,6 +1975,12 @@ em {
   }
 
   .hero {
+    --hero-shrink: 0.24;
+    --hero-lift: 30px;
+    --hero-radius: 34px;
+    --hero-blur: 2.5px;
+    --hero-bottom-inset: 62px;
+    --hero-word-max: 11.5vw;
     height: 124vh;
     min-height: 820px;
   }
@@ -1921,28 +1993,10 @@ em {
     object-position: 57% 50%;
   }
 
-  .hero__underlay {
-    padding-top: 82px;
-  }
-
-  .hero__underlay > span {
-    max-width: 125px;
-    font-size: 0.53rem;
-  }
-
-  .hero__underlay > span:last-child {
-    text-align: right;
-  }
-
-  .hero__underlay > strong {
-    bottom: -10px;
-    font-size: 8.5rem;
-  }
-
   .hero__veil {
     background:
-      linear-gradient(0deg, rgba(10, 28, 21, 0.84), rgba(10, 28, 21, 0.08) 80%),
-      linear-gradient(90deg, rgba(10, 28, 21, 0.36), transparent);
+      linear-gradient(0deg, rgba(10, 28, 21, 0.86), rgba(10, 28, 21, 0.1) 80%),
+      linear-gradient(90deg, rgba(10, 28, 21, 0.38), transparent);
   }
 
   .hero__content {
@@ -1957,8 +2011,8 @@ em {
 
   .hero h1 {
     width: 100%;
-    max-width: 8.5ch;
-    font-size: clamp(3.55rem, 17vw, 5.5rem);
+    max-width: none;
+    font-size: clamp(2.6rem, 12.8vw, 3.6rem);
   }
 
   .hero__bottom {
@@ -2143,6 +2197,8 @@ em {
   }
 
   .gallery-grid {
+    --gallery-radius: 40px;
+    --gallery-radius-card: 20px;
     grid-auto-rows: 270px;
     grid-template-columns: 1fr;
   }
@@ -2150,10 +2206,6 @@ em {
   .gallery-card,
   .gallery-card--wide {
     grid-column: span 1;
-  }
-
-  .gallery-card:nth-child(n) {
-    border-radius: 24px 76px 24px 70px;
   }
 
   .lightbox {
@@ -2240,10 +2292,6 @@ em {
 
   .rate-card {
     min-height: 290px;
-  }
-
-  .rate-card--featured {
-    transform: none;
   }
 
   .pricing-notes {
@@ -2366,6 +2414,7 @@ em {
   }
 
   .hero {
+    --hero-blur: 0px;
     height: 100vh;
     min-height: 650px;
   }
