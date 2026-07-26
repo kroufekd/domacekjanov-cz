@@ -167,7 +167,8 @@ export default async function HomePage() {
                 title={
                   <>
                     Čtyři tisíce metrů
-                    <br />
+                    {" "}
+                    <br className="heading-break" />
                     <em>oplocené zahrady.</em>
                   </>
                 }
@@ -208,7 +209,8 @@ export default async function HomePage() {
               title={
                 <>
                   Patnáct lůžek
-                  <br />
+                  {" "}
+                  <br className="heading-break" />
                   <em>v šesti ložnicích.</em>
                 </>
               }
@@ -288,7 +290,8 @@ export default async function HomePage() {
               title={
                 <>
                   Podívejte se,
-                  <br />
+                  {" "}
+                  <br className="heading-break" />
                   <em>jak to tu vypadá.</em>
                 </>
               }
@@ -305,7 +308,8 @@ export default async function HomePage() {
               title={
                 <>
                   Projděte si Domeček
-                  <br />
+                  {" "}
+                  <br className="heading-break" />
                   <em>pokoj po pokoji.</em>
                 </>
               }
@@ -324,7 +328,8 @@ export default async function HomePage() {
                 title={
                   <>
                     Každý den
-                    <br />
+                    {" "}
+                    <br className="heading-break" />
                     <em>jiným směrem.</em>
                   </>
                 }
@@ -368,7 +373,8 @@ export default async function HomePage() {
               title={
                 <>
                   Celý dům.
-                  <br />
+                  {" "}
+                  <br className="heading-break" />
                   <em>Žádní cizí hosté.</em>
                 </>
               }
@@ -421,7 +427,8 @@ export default async function HomePage() {
               <p className="eyebrow">Rezervace a dotazy</p>
               <h2>
                 Těšíme se
-                <br />
+                {" "}
+                <br className="heading-break" />
                 <em>na vaši partu.</em>
               </h2>
               <p>
