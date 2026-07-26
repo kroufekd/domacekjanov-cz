@@ -26,6 +26,7 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   },
   matterportUrl,
   calendarUrl,
+  listingUrl,
   mapUrl,
   facebookUrl,
   instagramUrl

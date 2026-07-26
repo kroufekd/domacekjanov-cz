@@ -90,6 +90,11 @@ export const siteSettingsType = defineType({
       title: "Kalendář obsazenosti",
       type: "url",
     }),
+    defineField({
+      name: "listingUrl",
+      title: "Karta objektu na e-chalupy.cz",
+      type: "url",
+    }),
     defineField({ name: "mapUrl", title: "Odkaz na mapu", type: "url" }),
     defineField({ name: "facebookUrl", title: "Facebook", type: "url" }),
     defineField({ name: "instagramUrl", title: "Instagram", type: "url" }),

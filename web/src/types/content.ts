@@ -31,6 +31,7 @@ export type SiteSettings = {
   heroImage: MediaImage;
   matterportUrl: string;
   calendarUrl: string;
+  listingUrl: string;
   mapUrl: string;
   facebookUrl?: string;
   instagramUrl?: string;

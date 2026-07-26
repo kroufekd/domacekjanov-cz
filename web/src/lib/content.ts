@@ -20,6 +20,8 @@ import { localAsset } from "@/lib/paths";
 const calendarUrl =
   "https://obsazenost.e-chalupy.cz/kalendar.php?id=17320&pocetMesicu=12&velikost=3&legenda=ano&naStred=ano&ctvrtleti=ne&stin=ne&jazyk=cz&jednotky=ano&pozadi=f6f1e7&kalendarText=1f332c&kalendarPozadi=f6f1e7&ramecek=d8d0c1&mesicText=ffffff&mesicPozadi=315e50&dnyText=315e50&dnyPozadia=ffffff&obsazenoText=ffffff&obsazenoPozadi=c45d4a&volnoText=173d31&volnoPozadi=a9c5ac&neaktivniDnyText=999999&neaktivniDnyPozadi=eee9df&legendaText=1f332c&fontFamily=Arial";
 
+const listingUrl = "https://www.e-chalupy.cz/domecek-janov-ubytovani-o17320";
+
 const image = (
   id: string,
   src: string,
@@ -64,6 +66,7 @@ const fallbackSettings: SiteSettings = {
   ),
   matterportUrl: "https://my.matterport.com/show/?m=QgBtFa22zu6",
   calendarUrl,
+  listingUrl,
   mapUrl: "https://mapy.com/cs/?q=50.85606N%2C%2014.26754E&z=16",
 };
 
