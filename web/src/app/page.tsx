@@ -29,7 +29,6 @@ import { Hero } from "@/components/hero";
 import { MatterportTour } from "@/components/matterport-tour";
 import { SectionHeading } from "@/components/section-heading";
 import { getSiteContent } from "@/lib/content";
-import { localAsset } from "@/lib/paths";
 
 const featureIcons = [UsersRound, BedDouble, Trees, Sparkles];
 const amenityIcons = [Flame, Waves, ShieldCheck];
@@ -137,7 +136,7 @@ export default async function HomePage() {
             <div className="story-collage" aria-label="Společné prostory">
               <figure className="story-collage__main">
                 <Image
-                  src={localAsset("/images/kitchen-dining.jpg")}
+                  src={"/images/kitchen-dining.jpg"}
                   alt="Velká kuchyň a jídelna pro celou skupinu"
                   fill
                   sizes="(max-width: 800px) 92vw, 46vw"
@@ -145,7 +144,7 @@ export default async function HomePage() {
               </figure>
               <figure className="story-collage__detail">
                 <Image
-                  src={localAsset("/images/living-room.jpg")}
+                  src={"/images/living-room.jpg"}
                   alt="Obývací pokoj s prostornou pohovkou"
                   fill
                   sizes="(max-width: 800px) 48vw, 22vw"
@@ -183,7 +182,7 @@ export default async function HomePage() {
             <div className="garden-visual">
               <figure className="garden-visual__wide">
                 <Image
-                  src={localAsset("/images/terrace-hot-tub.jpg")}
+                  src={"/images/terrace-hot-tub.jpg"}
                   alt="Terasa s posezením a vyhřívaným vířivým sudem"
                   fill
                   sizes="(max-width: 900px) 94vw, 72vw"
@@ -220,7 +219,7 @@ export default async function HomePage() {
             <div className="rooms-showcase">
               <figure className="rooms-showcase__image">
                 <Image
-                  src={localAsset("/images/bedroom-double.jpg")}
+                  src={"/images/bedroom-double.jpg"}
                   alt="Světlá ložnice s manželskou postelí"
                   fill
                   sizes="(max-width: 900px) 94vw, 52vw"
@@ -415,7 +414,7 @@ export default async function HomePage() {
         <section id="kontakt" className="contact-section">
           <div className="contact-section__photo">
             <Image
-              src={localAsset("/images/exterior-wide.jpg")}
+              src={"/images/exterior-wide.jpg"}
               alt="Domeček Janov a velká zahrada"
               fill
               sizes="100vw"

@@ -4,7 +4,6 @@ import { ArrowUpRight, Box, Play } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-import { localAsset } from "@/lib/paths";
 
 type MatterportTourProps = {
   url: string;
@@ -37,7 +36,7 @@ export function MatterportTour({ url }: MatterportTourProps) {
       ) : (
         <>
           <Image
-            src={localAsset("/images/kitchen-dining.jpg")}
+            src={"/images/kitchen-dining.jpg"}
             alt="Společenská místnost Domečku Janov"
             fill
             sizes="(max-width: 900px) 100vw, 1200px"
