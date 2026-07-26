@@ -292,29 +292,34 @@ em {
   color: var(--white);
 }
 
-.brand__mark {
-  width: 37px;
+.brand__logo {
+  height: 50px;
+  width: auto;
+  overflow: visible;
+}
+
+.brand__logo text {
+  fill: currentColor;
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+.brand__logo-roof {
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.8px;
+  stroke-width: 4px;
 }
 
-.brand__text {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.67rem;
-  line-height: 1.02;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.brand__text strong {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-size: 1.2rem;
+.brand__logo-top {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
+  letter-spacing: 3px;
+}
+
+.brand__logo-name {
+  font-size: 20.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 .site-header__desktop-nav {
@@ -1966,12 +1971,8 @@ em {
     width: calc(100% - 28px);
   }
 
-  .brand__mark {
-    width: 31px;
-  }
-
-  .brand__text strong {
-    font-size: 1.05rem;
+  .brand__logo {
+    height: 42px;
   }
 
   .hero {
