@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { localAsset } from "@/lib/paths";
 
 import "./globals.css";
 
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
       "Velký dům v Českém Švýcarsku pro rodiny, přátele a všechny, kteří chtějí být chvíli spolu.",
     images: [
       {
-        url: "/images/hero-aerial.jpg",
+        url: localAsset("/images/hero-aerial.jpg"),
         width: 1159,
         height: 913,
         alt: "Letecký pohled na Domeček Janov",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Domeček Janov",
     description: "Celý dům až pro 17 hostů v Českém Švýcarsku.",
-    images: ["/images/hero-aerial.jpg"],
+    images: [localAsset("/images/hero-aerial.jpg")],
   },
 };
 
