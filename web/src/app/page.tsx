@@ -172,7 +172,7 @@ export default async function HomePage() {
                     <em>oplocené zahrady.</em>
                   </>
                 }
-                description="Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček — a protože je pozemek celý oplocený, děti klidně pustíte z dohledu."
+                description="Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček - a protože je pozemek celý oplocený, děti klidně pustíte z dohledu."
               />
               <div className="garden-stamp" aria-hidden="true">
                 <Trees />
@@ -214,7 +214,7 @@ export default async function HomePage() {
                   <em>v šesti ložnicích.</em>
                 </>
               }
-              description="Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě rozkládací pohovky v obýváku — dohromady až 17 míst na spaní."
+              description="Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě rozkládací pohovky v obýváku - dohromady až 17 míst na spaní."
             />
 
             <div className="rooms-showcase">
@@ -295,7 +295,7 @@ export default async function HomePage() {
                   <em>jak to tu vypadá.</em>
                 </>
               }
-              description="Aktuální fotky domu — pokoje, kuchyň, zahrada i terasa."
+              description="Aktuální fotky domu - pokoje, kuchyň, zahrada i terasa."
             />
             <Gallery images={gallery} />
           </div>
@@ -378,7 +378,7 @@ export default async function HomePage() {
                   <em>Žádní cizí hosté.</em>
                 </>
               }
-              description="Cena je vždy za celý Domeček. Stačí vybrat termín a zavolat nebo napsat — domluvíte se přímo s majitelem."
+              description="Cena je vždy za celý Domeček. Stačí vybrat termín a zavolat nebo napsat - domluvíte se přímo s majitelem."
               align="center"
             />
             <div className="rates-grid">

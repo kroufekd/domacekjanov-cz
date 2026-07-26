@@ -2,8 +2,8 @@
 
 Prémiový one-page web ubytování v Českém Švýcarsku. Projekt je rozdělený podle nastavení Sanity na:
 
-- `web/` — Next.js 16, React 19, TypeScript a Tailwind CSS
-- `studio/` — samostatné Sanity Studio pro projekt `lli7g5ge`, dataset `production`
+- `web/` - Next.js 16, React 19, TypeScript a Tailwind CSS
+- `studio/` - samostatné Sanity Studio pro projekt `lli7g5ge`, dataset `production`
 
 ## Lokální vývoj
 
