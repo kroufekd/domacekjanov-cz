@@ -1,4 +1,4 @@
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
@@ -13,9 +13,10 @@ import {
 
 import "../globals.css";
 
-const fraunces = Fraunces({
+const display = Playfair_Display({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-fraunces",
+  style: ["normal", "italic"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -59,7 +60,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={localeMeta[locale].htmlLang}
-      className={`${fraunces.variable} ${inter.variable}`}
+      className={`${display.variable} ${inter.variable}`}
     >
       <body>
         <a className="skip-link" href="#hlavni-obsah">
