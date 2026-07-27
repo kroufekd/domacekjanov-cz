@@ -31,6 +31,37 @@ Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu
 letecká fotografie se později vymění v dokumentu **Nastavení webu → Hlavní
 fotografie**.
 
+## Mapa výletů
+
+Sekce **Výlety po okolí** obsahuje interaktivní mapu (Leaflet). Kliknutí na cíl
+vykreslí pěší trasu z výchozího bodu - u části výletů je jím přímo domeček.
+
+Trasy se v prohlížeči **nepočítají**. Jsou předgenerované do
+`web/src/data/trip-routes.json` a web tedy za běhu nevolá žádné routovací API:
+
+```bash
+MAPY_API_KEY=... npm run build:routes --workspace web
+```
+
+Skript použije Mapy.com s profilem `foot_hiking`, který kopíruje značené KČT
+stezky. Bez klíče spadne na BRouter (profil `hiking-beta` nad daty OSM) - trasy
+pak také vedou po značených cestách, ale obcházejí místa s omezeným přístupem
+(například turniket u Pravčické brány), takže bývají delší.
+
+Podklad mapy řídí `NEXT_PUBLIC_MAPY_API_KEY`:
+
+| klíč | podklad |
+| --- | --- |
+| nastaven | turistická mapa Mapy.com (`outdoor`) včetně loga podle licence |
+| chybí | OpenStreetMap + vrstva Waymarked Trails se značenými trasami |
+
+Klíč vytvoříte na [developer.mapy.com](https://developer.mapy.com). V projektu
+musí být povolené funkce **Mapové dlaždice** a **Plánování tras**, jinak API
+vrací `403 Forbidden`. Veřejný klíč omezte na doménu webu.
+
+Zdroj dat o výletech je `web/src/data/trips.ts` - po jeho úpravě je potřeba
+`npm run build:routes` spustit znovu, jinak by se rozešly značky s trasami.
+
 ## Coolify
 
 Nasazení používá kořenový `Dockerfile`, Node 22, port `3000` a healthcheck

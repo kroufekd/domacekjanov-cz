@@ -1,7 +1,6 @@
 import {
   Accessibility,
   ArrowRight,
-  ArrowUpRight,
   Baby,
   Bath,
   BedDouble,
@@ -28,6 +27,7 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { MatterportTour } from "@/components/matterport-tour";
 import { SectionHeading } from "@/components/section-heading";
+import { TripMap } from "@/components/trip-map";
 import { getSiteContent } from "@/lib/content";
 import { localAsset } from "@/lib/paths";
 
@@ -60,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const content = await getSiteContent();
-  const { settings, accommodation, gallery, rates, tripTips } = content;
+  const { settings, accommodation, gallery, rates } = content;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -345,24 +345,7 @@ export default async function HomePage() {
                 Ukázat na mapě
               </a>
             </div>
-            <div className="trips-grid">
-              {tripTips.map((tip) => (
-                <a
-                  key={tip.id}
-                  href={tip.href || settings.mapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="trip-card"
-                >
-                  <div>
-                    <small>{tip.distance}</small>
-                    <h3>{tip.title}</h3>
-                    <p>{tip.description}</p>
-                  </div>
-                  <ArrowUpRight aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <TripMap />
           </div>
         </section>
 
