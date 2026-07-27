@@ -61,9 +61,9 @@ export type GalleryImageDefinition = {
 export const galleryImageDefinitions: GalleryImageDefinition[] = [
   {
     id: "hero-aerial",
-    file: "hero-aerial.jpg",
-    width: 1159,
-    height: 913,
+    file: "hero-aerial-summer.jpg",
+    width: 1024,
+    height: 765,
     category: "exterier",
     featured: true,
   },

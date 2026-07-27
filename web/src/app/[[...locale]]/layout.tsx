@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#173d31",
+  themeColor: "#195d36",
 };
 
 /** Czech renders at `/`, the other languages at `/de` and `/en`. */

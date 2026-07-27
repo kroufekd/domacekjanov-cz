@@ -151,6 +151,20 @@ export type SiteCopy = {
     instagramLink: string;
     facebookLink: string;
   };
+  /** Booking.com guest award. `{year}` and `{score}` are filled per certificate. */
+  award: {
+    /** Sits above the score on the hero plate. */
+    source: string;
+    /** Reads under the score, e.g. "ocenění 2025". */
+    plateLabel: string;
+    /** Headline of the footer card, e.g. "Traveller Review Awards 2025". */
+    cardTitle: string;
+    cardSource: string;
+    scoreSuffix: string;
+    viewerTop: string;
+    viewerCaption: string;
+    viewerHint: string;
+  };
 };
 
 export type SiteContent = {

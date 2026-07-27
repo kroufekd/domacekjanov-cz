@@ -20,6 +20,15 @@ export const en: Dictionary = {
     previous: "Previous photo",
     next: "Next photo",
   },
+  award: {
+    open: "Show the Booking.com Traveller Review Awards {year} certificate",
+    viewer: "Booking.com award",
+    close: "Close the award",
+    previous: "Previous year",
+    next: "Next year",
+    certificateAlt:
+      "Booking.com Traveller Review Awards {year} certificate for Domeček Janov, rated {score} out of 10",
+  },
   tour: {
     iframeTitle: "3D tour of Domeček Janov",
   },

@@ -27,6 +27,15 @@ export type Dictionary = {
     previous: string;
     next: string;
   };
+  /** Booking.com award. `{year}` and `{score}` are filled per certificate. */
+  award: {
+    open: string;
+    viewer: string;
+    close: string;
+    previous: string;
+    next: string;
+    certificateAlt: string;
+  };
   tour: {
     iframeTitle: string;
   };

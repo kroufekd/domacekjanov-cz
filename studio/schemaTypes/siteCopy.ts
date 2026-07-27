@@ -191,6 +191,25 @@ export const siteCopyType = defineType({
         str("facebookLink", "Odkaz na Facebook"),
       ],
     }),
+    defineField({
+      name: "award",
+      title: "Ocenění Booking.com",
+      type: "object",
+      group: "contact",
+      description:
+        "Rok a známka se doplňují automaticky podle certifikátu - napište je jako {year} a {score}.",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        str("source", "Zdroj nad známkou", 'Na desce v úvodu, např. "Booking.com"'),
+        str("plateLabel", "Popisek pod známkou", 'Např. "ocenění {year}"'),
+        str("cardTitle", "Nadpis karty v patičce"),
+        str("cardSource", "Podtitulek karty v patičce"),
+        str("scoreSuffix", "Za známkou na kartě", 'Např. "z 10"'),
+        str("viewerTop", "Záhlaví prohlížeče certifikátu"),
+        txt("viewerCaption", "Popisek pod certifikátem"),
+        str("viewerHint", "Nápověda k listování ročníky"),
+      ],
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Texty webu" }),

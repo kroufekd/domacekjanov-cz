@@ -4,12 +4,15 @@ import { ArrowDown, ArrowUpRight, CalendarDays, Phone } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+import { BookingAward } from "@/components/booking-award";
+import type { Dictionary } from "@/i18n/dictionary";
 import type { Accommodation, SiteCopy, SiteSettings } from "@/types/content";
 
 type HeroProps = {
   settings: SiteSettings;
   accommodation: Accommodation;
   copy: SiteCopy;
+  dictionary: Dictionary;
 };
 
 /**
@@ -74,7 +77,7 @@ const readGeometry = (element: HTMLElement): HeroGeometry => {
   };
 };
 
-export function Hero({ settings, accommodation, copy }: HeroProps) {
+export function Hero({ settings, accommodation, copy, dictionary }: HeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
 
@@ -109,6 +112,7 @@ export function Hero({ settings, accommodation, copy }: HeroProps) {
       const blur = reducedMotion.matches
         ? 0
         : geometry.blur * (1 - veilProgress);
+      const badgeOpacity = fadeOut(progress, TIMING.badgeFade);
 
       apply({
         "--hero-window-scale": (1 - windowProgress * geometry.shrink).toString(),
@@ -125,7 +129,9 @@ export function Hero({ settings, accommodation, copy }: HeroProps) {
           progress,
           TIMING.contentFade,
         ).toString(),
-        "--hero-badge-opacity": fadeOut(progress, TIMING.badgeFade).toString(),
+        "--hero-badge-opacity": badgeOpacity.toString(),
+        // The award plate is a button, so a faded badge has to stop taking clicks.
+        "--hero-badge-events": badgeOpacity < 0.05 ? "none" : "auto",
         "--hero-scroll-opacity": clamp01(
           1 - progress / TIMING.scrollHintEnd,
         ).toString(),
@@ -205,6 +211,12 @@ export function Hero({ settings, accommodation, copy }: HeroProps) {
           <span>{copy.actions.exploreHouse}</span>
           <ArrowDown aria-hidden="true" />
         </a>
+
+        <BookingAward
+          variant="hero"
+          copy={copy.award}
+          dictionary={dictionary.award}
+        />
 
         <div className="hero__badge">
           <span>{copy.hero.badgePrefix}</span>

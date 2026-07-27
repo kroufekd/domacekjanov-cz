@@ -90,7 +90,7 @@
   },
   "gallery": {
     "hero-aerial": {
-      "alt": "Letecký pohled na Domeček Janov a podzimní krajinu",
+      "alt": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
       "caption": "Domeček Janov v srdci Českého Švýcarska"
     },
     "exterior-garden": {
@@ -310,6 +310,16 @@
       "mapLink": "Kde nás najdete",
       "instagramLink": "Instagram",
       "facebookLink": "Facebook"
+    },
+    "award": {
+      "source": "Booking.com",
+      "plateLabel": "ocenění {year}",
+      "cardTitle": "Traveller Review Awards {year}",
+      "cardSource": "Booking.com - hodnocení hostů",
+      "scoreSuffix": "z 10",
+      "viewerTop": "Traveller Review Awards {year}",
+      "viewerCaption": "Booking.com - hodnocení hostů {score} z 10",
+      "viewerHint": "Šipkami přejdete na další ročník."
     }
   }
 }
