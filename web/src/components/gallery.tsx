@@ -1,21 +1,10 @@
 "use client";
 
-import {
-  ChevronLeft,
-  ChevronRight,
-  Expand,
-  Images,
-  X,
-} from "lucide-react";
+import { Expand, Images } from "lucide-react";
 import Image from "next/image";
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
+import { cycleIndex, ImageLightbox } from "@/components/image-lightbox";
 import type { Dictionary } from "@/i18n/dictionary";
 import { formatTemplate } from "@/lib/format";
 import type { GalleryCategory, MediaImage, SiteCopy } from "@/types/content";
@@ -43,8 +32,6 @@ export function Gallery({ images, copy, actions, dictionary }: GalleryProps) {
   const [category, setCategory] = useState<Category>("vse");
   const [expanded, setExpanded] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const touchStart = useRef<number | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
 
   const filteredImages = useMemo(
@@ -65,37 +52,16 @@ export function Gallery({ images, copy, actions, dictionary }: GalleryProps) {
   }, []);
 
   const showPrevious = useCallback(() => {
-    setOpenIndex((current) => {
-      if (current === null) return null;
-      return (current - 1 + filteredImages.length) % filteredImages.length;
-    });
+    setOpenIndex((current) =>
+      current === null ? null : cycleIndex(current, -1, filteredImages.length),
+    );
   }, [filteredImages.length]);
 
   const showNext = useCallback(() => {
-    setOpenIndex((current) => {
-      if (current === null) return null;
-      return (current + 1) % filteredImages.length;
-    });
+    setOpenIndex((current) =>
+      current === null ? null : cycleIndex(current, 1, filteredImages.length),
+    );
   }, [filteredImages.length]);
-
-  useEffect(() => {
-    if (openIndex === null) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close();
-      if (event.key === "ArrowLeft") showPrevious();
-      if (event.key === "ArrowRight") showNext();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [close, openIndex, showNext, showPrevious]);
 
   return (
     <>
@@ -168,52 +134,18 @@ export function Gallery({ images, copy, actions, dictionary }: GalleryProps) {
       ) : null}
 
       {activeImage ? (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={dictionary.viewer}
-          onTouchStart={(event) => {
-            touchStart.current = event.changedTouches[0]?.clientX ?? null;
+        <ImageLightbox
+          label={dictionary.viewer}
+          closeLabel={dictionary.close}
+          top={`${openIndex! + 1} / ${filteredImages.length}`}
+          navigation={{
+            previousLabel: dictionary.previous,
+            nextLabel: dictionary.next,
           }}
-          onTouchEnd={(event) => {
-            const start = touchStart.current;
-            const end = event.changedTouches[0]?.clientX;
-            touchStart.current = null;
-            if (start === null || end === undefined) return;
-            const difference = end - start;
-            if (difference > 55) showPrevious();
-            if (difference < -55) showNext();
-          }}
+          onClose={close}
+          onPrevious={showPrevious}
+          onNext={showNext}
         >
-          <button
-            type="button"
-            className="lightbox__backdrop"
-            aria-label={dictionary.close}
-            onClick={close}
-          />
-          <div className="lightbox__top">
-            <span>
-              {openIndex! + 1} / {filteredImages.length}
-            </span>
-            <button
-              ref={closeButtonRef}
-              type="button"
-              className="icon-button icon-button--light"
-              aria-label={dictionary.close}
-              onClick={close}
-            >
-              <X aria-hidden="true" />
-            </button>
-          </div>
-          <button
-            type="button"
-            className="lightbox__arrow lightbox__arrow--left"
-            aria-label={dictionary.previous}
-            onClick={showPrevious}
-          >
-            <ChevronLeft aria-hidden="true" />
-          </button>
           <figure className="lightbox__figure">
             <div className="lightbox__image">
               <Image
@@ -229,15 +161,7 @@ export function Gallery({ images, copy, actions, dictionary }: GalleryProps) {
               <span>{copy.swipeHint}</span>
             </figcaption>
           </figure>
-          <button
-            type="button"
-            className="lightbox__arrow lightbox__arrow--right"
-            aria-label={dictionary.next}
-            onClick={showNext}
-          >
-            <ChevronRight aria-hidden="true" />
-          </button>
-        </div>
+        </ImageLightbox>
       ) : null}
     </>
   );

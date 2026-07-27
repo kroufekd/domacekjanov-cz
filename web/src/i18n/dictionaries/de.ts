@@ -20,6 +20,15 @@ export const de: Dictionary = {
     previous: "Vorheriges Foto",
     next: "Nächstes Foto",
   },
+  award: {
+    open: "Zertifikat Booking.com Traveller Review Awards {year} anzeigen",
+    viewer: "Auszeichnung von Booking.com",
+    close: "Auszeichnung schließen",
+    previous: "Vorheriger Jahrgang",
+    next: "Nächster Jahrgang",
+    certificateAlt:
+      "Zertifikat Booking.com Traveller Review Awards {year} für Domeček Janov, Bewertung {score} von 10",
+  },
   tour: {
     iframeTitle: "3D-Rundgang durch das Domeček Janov",
   },

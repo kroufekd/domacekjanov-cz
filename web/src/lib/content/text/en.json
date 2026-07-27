@@ -90,7 +90,7 @@
   },
   "gallery": {
     "hero-aerial": {
-      "alt": "Aerial view of Domeček Janov and the autumn landscape",
+      "alt": "Aerial view of Domeček Janov, the terrace and the fenced garden",
       "caption": "Domeček Janov in the heart of Bohemian Switzerland"
     },
     "exterior-garden": {
@@ -310,6 +310,16 @@
       "mapLink": "How to find us",
       "instagramLink": "Instagram",
       "facebookLink": "Facebook"
+    },
+    "award": {
+      "source": "Booking.com",
+      "plateLabel": "award {year}",
+      "cardTitle": "Traveller Review Awards {year}",
+      "cardSource": "Booking.com - guest rating",
+      "scoreSuffix": "out of 10",
+      "viewerTop": "Traveller Review Awards {year}",
+      "viewerCaption": "Booking.com - guest rating {score} out of 10",
+      "viewerHint": "Use the arrow keys for the next year."
     }
   }
 }

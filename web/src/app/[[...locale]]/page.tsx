@@ -23,6 +23,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { Availability } from "@/components/availability";
+import { BookingAward } from "@/components/booking-award";
 import { Brand } from "@/components/brand";
 import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
@@ -136,7 +137,12 @@ export default async function HomePage({ params }: HomePageProps) {
         dictionary={dictionary}
       />
       <main id="hlavni-obsah">
-        <Hero settings={settings} accommodation={accommodation} copy={copy} />
+        <Hero
+          settings={settings}
+          accommodation={accommodation}
+          copy={copy}
+          dictionary={dictionary}
+        />
 
         <section id="rychla-fakta" className="facts-section paper-texture">
           <div className="page-shell facts-grid">
@@ -461,7 +467,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <Brand light label={settings.title} />
           </a>
           <p>{copy.footer.tagline}</p>
-          <div>
+          <div className="site-footer__nav">
             <a href="#cenik">{copy.footer.pricingLink}</a>
             <a href={settings.mapUrl} target="_blank" rel="noreferrer">
               {copy.footer.mapLink}
@@ -477,9 +483,16 @@ export default async function HomePage({ params }: HomePageProps) {
               </a>
             ) : null}
           </div>
-          <small>
-            © {new Date().getFullYear()} {settings.title}
-          </small>
+          <div className="site-footer__bottom">
+            <small>
+              © {new Date().getFullYear()} {settings.title}
+            </small>
+            <BookingAward
+              variant="footer"
+              copy={copy.award}
+              dictionary={dictionary.award}
+            />
+          </div>
         </div>
       </footer>
 

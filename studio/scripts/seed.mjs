@@ -58,6 +58,7 @@ const MULTILINE_COPY_FIELDS = new Set([
   "pricing.description",
   "contact.description",
   "footer.tagline",
+  "award.viewerCaption",
 ]);
 
 /** Mirrors the nested shape of `copy` and localizes every leaf string. */
