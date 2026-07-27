@@ -65,9 +65,98 @@ export type TripTip = {
   href?: string;
 };
 
+/**
+ * Section headings support one hard break: everything after the first `|` is
+ * rendered on its own line in italics. `SectionHeading` does the splitting, so
+ * editors only ever type plain text.
+ */
+export type SectionCopy = {
+  eyebrow: string;
+  title: string;
+  description?: string;
+};
+
+/**
+ * Every visible interface string that is worth editing per language. Sanity
+ * holds the localized values; `fallbackCopy` covers the case where the Studio
+ * has nothing published yet.
+ */
+export type SiteCopy = {
+  nav: {
+    about: string;
+    amenities: string;
+    gallery: string;
+    tour: string;
+    pricing: string;
+    contact: string;
+  };
+  actions: {
+    call: string;
+    callOwner: string;
+    datesAndPrices: string;
+    lookInside: string;
+    showOnMap: string;
+    startTour: string;
+    openSeparately: string;
+    tourIssue: string;
+    checkAvailability: string;
+    exploreHouse: string;
+    showAll: string;
+    showLess: string;
+  };
+  hero: {
+    metaPlace: string;
+    metaCoords: string;
+    badgePrefix: string;
+    badgeSuffix: string;
+  };
+  /** The story heading reuses `accommodation.introTitle`, so it has no title. */
+  story: {
+    eyebrow: string;
+    noteAccent: string;
+    noteRest: string;
+  };
+  garden: SectionCopy & {
+    stampNote: string;
+    cardTitle: string;
+    cardText: string;
+    cardPrice: string;
+  };
+  rooms: SectionCopy & {
+    comfort: string[];
+  };
+  gallery: SectionCopy & {
+    filterLabel: string;
+    categories: Record<"vse" | GalleryCategory, string>;
+    swipeHint: string;
+  };
+  tour: SectionCopy & {
+    teaser: string;
+  };
+  trips: SectionCopy;
+  pricing: SectionCopy & {
+    featuredTag: string;
+    notes: string[];
+    calendarNote: string;
+  };
+  contact: SectionCopy & {
+    phoneLabel: string;
+    emailLabel: string;
+    addressLabel: string;
+  };
+  footer: {
+    tagline: string;
+    pricingLink: string;
+    mapLink: string;
+    instagramLink: string;
+    facebookLink: string;
+  };
+};
+
 export type SiteContent = {
   settings: SiteSettings;
   accommodation: Accommodation;
+  copy: SiteCopy;
   gallery: MediaImage[];
   rates: Rate[];
   tripTips: TripTip[];

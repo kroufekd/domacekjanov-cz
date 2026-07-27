@@ -1,0 +1,315 @@
+{
+  "settings": {
+    "title": "Domeček Janov",
+    "description": "Das ganze Haus für bis zu 17 Gäste, ein großer eingezäunter Garten und die Böhmische Schweiz direkt vor der Tür.",
+    "seoTitle": "Domeček Janov | Ferienhaus in der Böhmischen Schweiz",
+    "seoDescription": "Ganzes Ferienhaus für bis zu 17 Gäste, 6 Schlafzimmer, 4 000 m² eingezäunter Garten und Badezuber in Janov bei Hřensko.",
+    "address": "Janov 167, 405 02 Janov, Tschechien",
+    "heroEyebrow": "Sächsisch-Böhmische Schweiz · Janov bei Hřensko",
+    "heroTitle": "Das ganze Haus nur für eure Gruppe.",
+    "heroDescription": "Sechs Schlafzimmer für bis zu 17 Gäste, 4 000 m² eingezäunter Garten und ein Badezuber. Die Klammen bei Hřensko liegen zwei Kilometer entfernt."
+  },
+  "accommodation": {
+    "introTitle": "Ein großes Haus für drei bis vier Familien.",
+    "introText": [
+      "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten oberhalb von Hřensko. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
+      "Am häufigsten kommen Familien mit Kindern, Freundesgruppen, Sportteams oder kleinere Firmen zum Teambuilding. Das Haus ist das ganze Jahr über geöffnet."
+    ],
+    "facts": [
+      {
+        "value": "17",
+        "label": "Gäste"
+      },
+      {
+        "value": "6",
+        "label": "Schlafzimmer"
+      },
+      {
+        "value": "4 000 m²",
+        "label": "eingezäunter Garten"
+      },
+      {
+        "value": "ganzjährig",
+        "label": "geöffnet"
+      }
+    ],
+    "rooms": [
+      {
+        "title": "Zimmer mit Etagenbetten",
+        "description": "Zwei Etagenbetten für vier Personen. Die oberen Betten tragen bis 80 kg."
+      },
+      {
+        "title": "Dreibettzimmer",
+        "description": "Drei separate Einzelbetten."
+      },
+      {
+        "title": "Drei Doppelzimmer",
+        "description": "Je ein Doppelbett, alle im Obergeschoss."
+      },
+      {
+        "title": "Doppelzimmer im Erdgeschoss",
+        "description": "Doppelbett im Erdgeschoss und barrierefreier Zugang durch eine 80 cm breite Tür."
+      },
+      {
+        "title": "Wohnzimmer",
+        "description": "Zwei Schlafsofas erweitern die Kapazität auf insgesamt 17 Schlafplätze."
+      }
+    ],
+    "amenities": [
+      {
+        "title": "Drinnen",
+        "items": [
+          "große, voll ausgestattete Küche",
+          "zwei Kühlschränke mit Gefrierfach",
+          "Spülmaschine, Mikrowelle, Kapsel- und Filterkaffeemaschine",
+          "Kaminofen, im Erdgeschoss Fußbodenheizung",
+          "WLAN und Fernseher mit Sportprogrammen"
+        ]
+      },
+      {
+        "title": "Draußen",
+        "items": [
+          "beheizter Badezuber",
+          "Südterrasse mit Gasgrill",
+          "Trampolin, Schaukel und Spielhaus",
+          "eingezäunter Rasengarten",
+          "Parkplatz direkt am Haus"
+        ]
+      },
+      {
+        "title": "Praktisches",
+        "items": [
+          "Bettwäsche und kleine Handtücher inklusive",
+          "zwei Bäder im Erdgeschoss",
+          "weiteres WC mit Waschbecken im Obergeschoss",
+          "barrierefreies Zimmer im Erdgeschoss",
+          "Nichtraucherhaus, keine Haustiere"
+        ]
+      }
+    ]
+  },
+  "gallery": {
+    "hero-aerial": {
+      "alt": "Luftaufnahme des Domeček Janov und der herbstlichen Landschaft",
+      "caption": "Domeček Janov im Herzen der Böhmischen Schweiz"
+    },
+    "exterior-garden": {
+      "alt": "Domeček Janov vom Garten aus",
+      "caption": "Das ganze Haus und der Garten nur für euch"
+    },
+    "exterior-wide": {
+      "alt": "Das Haus und der weitläufige Rasengarten",
+      "caption": "4 000 m² eingezäunter Garten"
+    },
+    "terrace-hot-tub": {
+      "alt": "Südterrasse mit Badezuber und Sitzecke",
+      "caption": "Terrasse, Grill und beheizter Zuber"
+    },
+    "terrace-table": {
+      "alt": "Großer Esstisch auf der Terrasse",
+      "caption": "Esstisch auf der Terrasse"
+    },
+    "hot-tub": {
+      "alt": "Gäste im beheizten Badezuber",
+      "caption": "Beheizter Badezuber"
+    },
+    "kitchen-dining": {
+      "alt": "Geräumige Wohnküche mit Kaminofen",
+      "caption": "Wohnküche mit Kaminofen"
+    },
+    "living-room": {
+      "alt": "Wohnzimmer mit großer Ecksofagarnitur",
+      "caption": "Wohnzimmer mit Schlafsofas"
+    },
+    "kitchen": {
+      "alt": "Voll ausgestattete graue Küche",
+      "caption": "Voll ausgestattete Küche"
+    },
+    "kitchen-island": {
+      "alt": "Küche mit großer Arbeitsinsel",
+      "caption": "Kücheninsel"
+    },
+    "kitchen-detail": {
+      "alt": "Küchenausstattung im Domeček Janov",
+      "caption": "Ausstattung der Küche"
+    },
+    "bedroom-double": {
+      "alt": "Schlafzimmer mit Doppelbett",
+      "caption": "Vier Zimmer mit Doppelbett"
+    },
+    "bedroom-double-window": {
+      "alt": "Helles Schlafzimmer mit Doppelbett",
+      "caption": "Schlafzimmer im Obergeschoss"
+    },
+    "bedroom-bunk-red": {
+      "alt": "Zimmer mit Etagenbett und roten Details",
+      "caption": "Zimmer mit Etagenbetten"
+    },
+    "bedroom-bunk": {
+      "alt": "Geräumiges Zimmer mit Etagenbett",
+      "caption": "Etagenbetten für bis zu vier Personen"
+    },
+    "bedroom-twin": {
+      "alt": "Dachzimmer mit zwei Betten",
+      "caption": "Zimmer im Dachgeschoss"
+    },
+    "bathroom": {
+      "alt": "Helles Bad mit Dusche",
+      "caption": "Zwei Bäder im Erdgeschoss"
+    },
+    "bedroom-single": {
+      "alt": "Zimmer mit Einzelbett",
+      "caption": "Sechs separate Schlafzimmer"
+    },
+    "stairs": {
+      "alt": "Treppe ins Obergeschoss des Domeček Janov",
+      "caption": "Das Haus hat zwei Etagen"
+    }
+  },
+  "rates": {
+    "summer": {
+      "title": "Sommer",
+      "unit": "ganzes Haus / Woche",
+      "note": "Im Sommer Aufenthalte von Samstag bis Samstag."
+    },
+    "week": {
+      "title": "Außerhalb des Sommers",
+      "unit": "ganzes Haus / Woche",
+      "note": "Gilt für die Wintersaison und die Nebensaison."
+    },
+    "weekend": {
+      "title": "Wochenende",
+      "unit": "ganzes Haus / Wochenende",
+      "note": "Außerhalb der Sommersaison mindestens zwei Nächte."
+    }
+  },
+  "tripTips": {
+    "janov": {
+      "title": "Aussichtsturm Janov",
+      "distance": "zu Fuß vom Haus",
+      "description": "Der Turm steht direkt im Ort. Ein kurzer Spaziergang mit Blick über das Elbsandsteingebirge."
+    },
+    "hrensko": {
+      "title": "Klammen bei Hřensko",
+      "distance": "2 km",
+      "description": "Kahnfahrt durch die Schlucht der Kamenice. In der Saison früh morgens losfahren, nachmittags ist es voll."
+    },
+    "pravcicka": {
+      "title": "Prebischtor",
+      "distance": "kurze Fahrt",
+      "description": "Das größte Sandsteinfelsentor Europas. Mit dem Auto nach Hřensko oder Mezní Louka, weiter zu Fuß."
+    },
+    "jetrichovice": {
+      "title": "Aussichten von Jetřichovice",
+      "distance": "Tagesausflug",
+      "description": "Rundweg über die Marien-, Wilhelminen- und Rudolfsaussicht. Rechnet mit drei bis vier Stunden Gehzeit."
+    }
+  },
+  "copy": {
+    "nav": {
+      "about": "Das Haus",
+      "amenities": "Ausstattung",
+      "gallery": "Galerie",
+      "tour": "3D-Rundgang",
+      "pricing": "Preise",
+      "contact": "Kontakt"
+    },
+    "actions": {
+      "call": "Anrufen",
+      "callOwner": "Eigentümer anrufen",
+      "datesAndPrices": "Termine und Preise",
+      "lookInside": "Nach drinnen schauen",
+      "showOnMap": "Auf der Karte zeigen",
+      "startTour": "3D-Rundgang starten",
+      "openSeparately": "Separat öffnen",
+      "tourIssue": "Probleme mit dem Rundgang? Separat öffnen",
+      "checkAvailability": "Verfügbarkeit prüfen",
+      "exploreHouse": "Das Haus ansehen",
+      "showAll": "Alle {count} Fotos anzeigen",
+      "showLess": "Weniger anzeigen"
+    },
+    "hero": {
+      "metaPlace": "In der Böhmischen Schweiz",
+      "metaCoords": "50° 51′ N · 14° 16′ O",
+      "badgePrefix": "Bis zu",
+      "badgeSuffix": "Gäste"
+    },
+    "story": {
+      "eyebrow": "Über das Haus",
+      "noteAccent": "für drei bis vier Familien",
+      "noteRest": "und eine Runde guter Freunde"
+    },
+    "garden": {
+      "eyebrow": "Garten und Terrasse",
+      "title": "Viertausend Quadratmeter|eingezäunter Garten.",
+      "description": "Die Terrasse mit Grill liegt nach Süden. Im Garten stehen Trampolin, Schaukel und ein Spielhaus - und weil das Grundstück komplett eingezäunt ist, könnt ihr die Kinder ruhig aus den Augen lassen.",
+      "stampNote": "nur für euch",
+      "cardTitle": "Badezuber",
+      "cardText": "Beheizter Badezuber auf der Terrasse. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
+      "cardPrice": "2 000 CZK / Aufenthalt"
+    },
+    "rooms": {
+      "eyebrow": "Schlafen & Ausstattung",
+      "title": "Fünfzehn Betten|in sechs Schlafzimmern.",
+      "description": "Fünf Zimmer im Obergeschoss, ein barrierefreies im Erdgeschoss und dazu zwei Schlafsofas im Wohnzimmer - zusammen bis zu 17 Schlafplätze.",
+      "comfort": [
+        "barrierefreies Zimmer",
+        "Ausstattung für Kinder",
+        "voll ausgestattete Küche",
+        "WLAN im ganzen Haus",
+        "zwei Bäder"
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Galerie",
+      "title": "Schaut euch an,|wie es hier aussieht.",
+      "description": "Aktuelle Fotos vom Haus - Zimmer, Küche, Garten und Terrasse.",
+      "filterLabel": "Wählt eure Ansicht",
+      "categories": {
+        "vse": "Alles",
+        "exterier": "Außenbereich",
+        "zahrada": "Garten & Wellness",
+        "spolecne": "Gemeinschaftsräume",
+        "pokoje": "Zimmer"
+      },
+      "swipeHint": "Mit Wischen oder den Pfeiltasten zum nächsten Foto."
+    },
+    "tour": {
+      "eyebrow": "Virtueller Besuch",
+      "title": "Geht durch das Domeček|Zimmer für Zimmer.",
+      "description": "Öffnet die Türen, schaut in die Schlafzimmer und prüft den Grundriss schon vor der Anreise.",
+      "teaser": "Geht schon vor der Anreise durch das Haus"
+    },
+    "trips": {
+      "eyebrow": "Ausflüge in der Umgebung",
+      "title": "Jeden Tag|in eine andere Richtung.",
+      "description": "Janov liegt am Rand des Nationalparks Böhmische Schweiz, zwei Kilometer oberhalb von Hřensko. Klammen, Felsaussichten und das Prebischtor sind zu Fuß oder in wenigen Autominuten erreichbar."
+    },
+    "pricing": {
+      "eyebrow": "Preise & freie Termine",
+      "title": "Das ganze Haus.|Keine fremden Gäste.",
+      "description": "Der Preis gilt immer für das gesamte Domeček. Termin aussuchen, anrufen oder schreiben - ihr sprecht direkt mit dem Eigentümer.",
+      "featuredTag": "Am beliebtesten",
+      "notes": [
+        "Kurtaxe an die Gemeinde 20 CZK / Erwachsener / Tag",
+        "Badezuber 2 000 CZK / Aufenthalt"
+      ],
+      "calendarNote": "Den Belegungskalender findet ihr auf e‑chalupy.cz."
+    },
+    "contact": {
+      "eyebrow": "Buchung und Fragen",
+      "title": "Wir freuen uns|auf eure Gruppe.",
+      "description": "Gebucht wird direkt beim Eigentümer, ohne Agenturen und Vermittler. Ruft an oder schreibt, wir stimmen Termin und Details ab.",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E‑Mail",
+      "addressLabel": "Adresse"
+    },
+    "footer": {
+      "tagline": "Unterkunft für Familien, Freunde und Teams in der Böhmischen Schweiz.",
+      "pricingLink": "Preise und Termine",
+      "mapLink": "So findet ihr uns",
+      "instagramLink": "Instagram",
+      "facebookLink": "Facebook"
+    }
+  }
+}

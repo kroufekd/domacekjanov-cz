@@ -4,15 +4,25 @@ import { X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 
+import type { Dictionary } from "@/i18n/dictionary";
+
 type ModalProps = {
   open: boolean;
   title: string;
+  labels: Dictionary["dialog"];
   onClose: () => void;
   children: ReactNode;
   wide?: boolean;
 };
 
-export function Modal({ open, title, onClose, children, wide = false }: ModalProps) {
+export function Modal({
+  open,
+  title,
+  labels,
+  onClose,
+  children,
+  wide = false,
+}: ModalProps) {
   const closeRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -38,7 +48,7 @@ export function Modal({ open, title, onClose, children, wide = false }: ModalPro
       <button
         type="button"
         className="modal-layer__backdrop"
-        aria-label="Zavřít dialog"
+        aria-label={labels.closeDialog}
         onClick={onClose}
       />
       <section
@@ -54,7 +64,7 @@ export function Modal({ open, title, onClose, children, wide = false }: ModalPro
             className="icon-button"
             type="button"
             onClick={onClose}
-            aria-label="Zavřít"
+            aria-label={labels.close}
           >
             <X aria-hidden="true" />
           </button>

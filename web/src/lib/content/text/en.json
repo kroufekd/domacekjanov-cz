@@ -1,0 +1,315 @@
+{
+  "settings": {
+    "title": "Domeček Janov",
+    "description": "The whole house for up to 17 guests, a large fenced garden and Bohemian Switzerland right outside the door.",
+    "seoTitle": "Domeček Janov | Whole holiday house in Bohemian Switzerland",
+    "seoDescription": "An entire holiday house for up to 17 guests, 6 bedrooms, a 4,000 m² fenced garden and a hot tub in Janov near Hřensko.",
+    "address": "Janov 167, 405 02 Janov, Czech Republic",
+    "heroEyebrow": "Bohemian-Saxon Switzerland · Janov near Hřensko",
+    "heroTitle": "The whole house, just for your group.",
+    "heroDescription": "Six bedrooms for up to 17 guests, 4,000 m² of fenced garden and a hot tub. The Hřensko gorges are two kilometres from the house."
+  },
+  "accommodation": {
+    "introTitle": "One big house for three or four families.",
+    "introText": [
+      "Domeček sits in a quiet part of Janov, a few minutes above Hřensko. It is always rented as a whole - six bedrooms, the large kitchen and dining room and the garden are yours alone.",
+      "Most of our guests are families with children, groups of friends, sports teams or small companies on a team-building trip. The house is open all year round."
+    ],
+    "facts": [
+      {
+        "value": "17",
+        "label": "guests"
+      },
+      {
+        "value": "6",
+        "label": "bedrooms"
+      },
+      {
+        "value": "4,000 m²",
+        "label": "of fenced garden"
+      },
+      {
+        "value": "all year",
+        "label": "open"
+      }
+    ],
+    "rooms": [
+      {
+        "title": "Bunk bed room",
+        "description": "Two bunk beds for four people. The upper bunks hold up to 80 kg."
+      },
+      {
+        "title": "Triple room",
+        "description": "Three separate single beds."
+      },
+      {
+        "title": "Three double rooms",
+        "description": "A double bed in each, all upstairs."
+      },
+      {
+        "title": "Ground floor double room",
+        "description": "A double bed downstairs with step-free access through an 80 cm wide door."
+      },
+      {
+        "title": "Living room",
+        "description": "Two sofa beds bring the total capacity to 17 places."
+      }
+    ],
+    "amenities": [
+      {
+        "title": "Inside",
+        "items": [
+          "large fully equipped kitchen",
+          "two fridges with a freezer",
+          "dishwasher, microwave, capsule and filter coffee machines",
+          "wood-burning stove, underfloor heating downstairs",
+          "Wi‑Fi and a TV with sports channels"
+        ]
+      },
+      {
+        "title": "Outside",
+        "items": [
+          "heated hot tub",
+          "south-facing terrace with a gas grill",
+          "trampoline, swing and a playhouse",
+          "fenced lawn garden",
+          "parking right by the house"
+        ]
+      },
+      {
+        "title": "Good to know",
+        "items": [
+          "bed linen and small towels included",
+          "two bathrooms on the ground floor",
+          "another toilet with a basin upstairs",
+          "step-free room on the ground floor",
+          "non-smoking house, no pets"
+        ]
+      }
+    ]
+  },
+  "gallery": {
+    "hero-aerial": {
+      "alt": "Aerial view of Domeček Janov and the autumn landscape",
+      "caption": "Domeček Janov in the heart of Bohemian Switzerland"
+    },
+    "exterior-garden": {
+      "alt": "Domeček Janov seen from the garden",
+      "caption": "The whole house and garden just for you"
+    },
+    "exterior-wide": {
+      "alt": "The house and its wide lawn garden",
+      "caption": "4,000 m² of fenced garden"
+    },
+    "terrace-hot-tub": {
+      "alt": "South-facing terrace with a hot tub and seating",
+      "caption": "Terrace, grill and heated hot tub"
+    },
+    "terrace-table": {
+      "alt": "Large dining table on the terrace",
+      "caption": "Dining table on the terrace"
+    },
+    "hot-tub": {
+      "alt": "Guests in the heated hot tub",
+      "caption": "Heated hot tub"
+    },
+    "kitchen-dining": {
+      "alt": "Spacious kitchen and dining room with a stove",
+      "caption": "Kitchen and dining room with a stove"
+    },
+    "living-room": {
+      "alt": "Living room with a large corner sofa",
+      "caption": "Living room with sofa beds"
+    },
+    "kitchen": {
+      "alt": "Fully equipped grey kitchen",
+      "caption": "Fully equipped kitchen"
+    },
+    "kitchen-island": {
+      "alt": "Kitchen with a large work island",
+      "caption": "Kitchen island"
+    },
+    "kitchen-detail": {
+      "alt": "Kitchen equipment at Domeček Janov",
+      "caption": "Kitchen equipment"
+    },
+    "bedroom-double": {
+      "alt": "Bedroom with a double bed",
+      "caption": "Four rooms with a double bed"
+    },
+    "bedroom-double-window": {
+      "alt": "Bright bedroom with a double bed",
+      "caption": "Bedroom upstairs"
+    },
+    "bedroom-bunk-red": {
+      "alt": "Room with a bunk bed and red details",
+      "caption": "Bunk bed room"
+    },
+    "bedroom-bunk": {
+      "alt": "Spacious room with a bunk bed",
+      "caption": "Bunks for up to four"
+    },
+    "bedroom-twin": {
+      "alt": "Attic room with two beds",
+      "caption": "Room in the attic"
+    },
+    "bathroom": {
+      "alt": "Bright bathroom with a shower",
+      "caption": "Two bathrooms on the ground floor"
+    },
+    "bedroom-single": {
+      "alt": "Room with a single bed",
+      "caption": "Six separate bedrooms"
+    },
+    "stairs": {
+      "alt": "Staircase to the upper floor of Domeček Janov",
+      "caption": "The house has two floors"
+    }
+  },
+  "rates": {
+    "summer": {
+      "title": "Summer",
+      "unit": "whole house / week",
+      "note": "In summer stays run from Saturday to Saturday."
+    },
+    "week": {
+      "title": "Outside summer",
+      "unit": "whole house / week",
+      "note": "Applies to the winter season and the off-season."
+    },
+    "weekend": {
+      "title": "Weekend",
+      "unit": "whole house / weekend",
+      "note": "Outside the summer season, two nights minimum."
+    }
+  },
+  "tripTips": {
+    "janov": {
+      "title": "Janov lookout tower",
+      "distance": "walk from the house",
+      "description": "The tower stands right in the village. A short walk with views over the Elbe Sandstone Mountains."
+    },
+    "hrensko": {
+      "title": "Hřensko gorges",
+      "distance": "2 km",
+      "description": "A punt ride through the canyon of the Kamenice river. In season set off early - afternoons get busy."
+    },
+    "pravcicka": {
+      "title": "Pravčická brána arch",
+      "distance": "short drive",
+      "description": "The largest sandstone arch in Europe. Drive to Hřensko or Mezní Louka, then continue on foot."
+    },
+    "jetrichovice": {
+      "title": "Jetřichovice viewpoints",
+      "distance": "full-day trip",
+      "description": "A loop past the Mariina, Vilemínina and Rudolfova viewpoints. Allow three to four hours of walking."
+    }
+  },
+  "copy": {
+    "nav": {
+      "about": "The house",
+      "amenities": "Amenities",
+      "gallery": "Gallery",
+      "tour": "3D tour",
+      "pricing": "Prices",
+      "contact": "Contact"
+    },
+    "actions": {
+      "call": "Call",
+      "callOwner": "Call the owner",
+      "datesAndPrices": "Dates and prices",
+      "lookInside": "Take a look inside",
+      "showOnMap": "Show on the map",
+      "startTour": "Start the 3D tour",
+      "openSeparately": "Open separately",
+      "tourIssue": "Trouble with the tour? Open it separately",
+      "checkAvailability": "Check availability",
+      "exploreHouse": "Explore the house",
+      "showAll": "Show all {count} photos",
+      "showLess": "Show less"
+    },
+    "hero": {
+      "metaPlace": "In Bohemian Switzerland",
+      "metaCoords": "50° 51′ N · 14° 16′ E",
+      "badgePrefix": "Up to",
+      "badgeSuffix": "guests"
+    },
+    "story": {
+      "eyebrow": "About the house",
+      "noteAccent": "for three or four families",
+      "noteRest": "and a group of good friends"
+    },
+    "garden": {
+      "eyebrow": "Garden and terrace",
+      "title": "Four thousand square metres|of fenced garden.",
+      "description": "The terrace with the grill faces south. The garden has a trampoline, a swing and a playhouse - and because the whole plot is fenced, you can let the children out of sight.",
+      "stampNote": "just for you",
+      "cardTitle": "Hot tub",
+      "cardText": "A heated hot tub on the terrace. If you want it, we will have it ready for your whole stay.",
+      "cardPrice": "CZK 2,000 / stay"
+    },
+    "rooms": {
+      "eyebrow": "Sleeping & amenities",
+      "title": "Fifteen beds|in six bedrooms.",
+      "description": "Five rooms upstairs, one step-free room on the ground floor and two sofa beds in the living room - up to 17 places to sleep in total.",
+      "comfort": [
+        "step-free room",
+        "equipment for children",
+        "fully equipped kitchen",
+        "Wi‑Fi throughout the house",
+        "two bathrooms"
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Gallery",
+      "title": "Take a look|at what it is like here.",
+      "description": "Current photos of the house - rooms, kitchen, garden and terrace.",
+      "filterLabel": "Choose your view",
+      "categories": {
+        "vse": "All",
+        "exterier": "Exterior",
+        "zahrada": "Garden & wellness",
+        "spolecne": "Shared spaces",
+        "pokoje": "Rooms"
+      },
+      "swipeHint": "Swipe or use the arrow keys for the next photo."
+    },
+    "tour": {
+      "eyebrow": "Virtual visit",
+      "title": "Walk through Domeček|room by room.",
+      "description": "Open the doors, look into the bedrooms and check the layout before you arrive.",
+      "teaser": "Walk through the house before you arrive"
+    },
+    "trips": {
+      "eyebrow": "Trips nearby",
+      "title": "A different direction|every day.",
+      "description": "Janov sits on the edge of Bohemian Switzerland National Park, two kilometres above Hřensko. The gorges, rock viewpoints and the Pravčická brána arch are within walking distance or a few minutes by car."
+    },
+    "pricing": {
+      "eyebrow": "Prices & availability",
+      "title": "The whole house.|No strangers.",
+      "description": "The price always covers the entire Domeček. Pick your dates and call or write - you deal directly with the owner.",
+      "featuredTag": "Most popular",
+      "notes": [
+        "municipal tourist fee CZK 20 / adult / day",
+        "hot tub CZK 2,000 / stay"
+      ],
+      "calendarNote": "You will find the availability calendar on e‑chalupy.cz."
+    },
+    "contact": {
+      "eyebrow": "Booking and questions",
+      "title": "We are looking forward|to your group.",
+      "description": "You book directly with the owner, without agencies or middlemen. Call or write and we will agree on the dates and the details.",
+      "phoneLabel": "Phone",
+      "emailLabel": "E‑mail",
+      "addressLabel": "Address"
+    },
+    "footer": {
+      "tagline": "Accommodation for families, friends and teams in Bohemian Switzerland.",
+      "pricingLink": "Prices and dates",
+      "mapLink": "How to find us",
+      "instagramLink": "Instagram",
+      "facebookLink": "Facebook"
+    }
+  }
+}
