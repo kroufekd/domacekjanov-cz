@@ -83,7 +83,7 @@ const localizeCopy = (pick, path = "") => {
 
 /** Photo files with their category and whether the layout should feature them. */
 const photos = [
-  ["hero-aerial.jpg", "hero-aerial", "exterier", true],
+  ["hero-aerial-summer.jpg", "hero-aerial", "exterier", true],
   ["exterior-garden.jpg", "exterior-garden", "exterier", true],
   ["exterior-wide.jpg", "exterior-wide", "exterier", false],
   ["terrace-hot-tub.jpg", "terrace-hot-tub", "zahrada", true],
@@ -153,7 +153,7 @@ const settings = {
   seoTitle: lstr((text) => text.settings.seoTitle),
   seoDescription: ltext((text) => text.settings.seoDescription),
   seoImage: imageField(
-    "hero-aerial.jpg",
+    "hero-aerial-summer.jpg",
     (text) => text.gallery["hero-aerial"].alt,
   ),
   phone: "+420777181920",
@@ -164,7 +164,7 @@ const settings = {
   heroTitle: ltext((text) => text.settings.heroTitle),
   heroDescription: ltext((text) => text.settings.heroDescription),
   heroImage: imageField(
-    "hero-aerial.jpg",
+    "hero-aerial-summer.jpg",
     (text) => text.gallery["hero-aerial"].alt,
   ),
   matterportUrl: "https://my.matterport.com/show/?m=QgBtFa22zu6",
