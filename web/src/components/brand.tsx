@@ -1,13 +1,15 @@
 type BrandProps = {
   light?: boolean;
+  /** Accessible name of the logo. The wordmark itself is language independent. */
+  label?: string;
 };
 
-export function Brand({ light = false }: BrandProps) {
+export function Brand({ light = false, label = "Domeček Janov" }: BrandProps) {
   return (
     <span className={`brand ${light ? "brand--light" : ""}`}>
       <svg
         role="img"
-        aria-label="Domeček Janov"
+        aria-label={label}
         viewBox="0 0 90 64"
         className="brand__logo"
         fill="none"

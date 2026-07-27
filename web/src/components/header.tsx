@@ -1,26 +1,36 @@
 "use client";
 
 import { Menu, Phone, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Brand } from "@/components/brand";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionary";
+import type { SiteCopy } from "@/types/content";
 
 type HeaderProps = {
   phone: string;
+  locale: Locale;
+  copy: SiteCopy;
+  dictionary: Dictionary;
 };
 
-const navigation = [
-  { href: "#o-domecku", label: "O domečku" },
-  { href: "#vybaveni", label: "Vybavení" },
-  { href: "#galerie", label: "Galerie" },
-  { href: "#3d-prohlidka", label: "3D prohlídka" },
-  { href: "#cenik", label: "Ceník" },
-  { href: "#kontakt", label: "Kontakt" },
-];
-
-export function Header({ phone }: HeaderProps) {
+export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const navigation = useMemo(
+    () => [
+      { href: "#o-domecku", label: copy.nav.about },
+      { href: "#vybaveni", label: copy.nav.amenities },
+      { href: "#galerie", label: copy.nav.gallery },
+      { href: "#3d-prohlidka", label: copy.nav.tour },
+      { href: "#cenik", label: copy.nav.pricing },
+      { href: "#kontakt", label: copy.nav.contact },
+    ],
+    [copy.nav],
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -50,11 +60,14 @@ export function Header({ phone }: HeaderProps) {
       className={`site-header ${scrolled || open ? "site-header--scrolled" : ""}`}
     >
       <div className="site-header__inner">
-        <a href="#nahoru" aria-label="Domeček Janov – zpět nahoru">
+        <a href="#nahoru" aria-label={dictionary.backToTop}>
           <Brand light={!scrolled && !open} />
         </a>
 
-        <nav aria-label="Hlavní navigace" className="site-header__desktop-nav">
+        <nav
+          aria-label={dictionary.mainNavigation}
+          className="site-header__desktop-nav"
+        >
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -62,40 +75,49 @@ export function Header({ phone }: HeaderProps) {
           ))}
         </nav>
 
-        <a className="header-call" href={`tel:${phone}`}>
-          <Phone aria-hidden="true" size={17} />
-          Zavolat
-        </a>
+        <div className="site-header__actions">
+          <LanguageSwitcher locale={locale} labels={dictionary.language} />
 
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-label={open ? "Zavřít menu" : "Otevřít menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
+          <a className="header-call" href={`tel:${phone}`}>
+            <Phone aria-hidden="true" size={17} />
+            {copy.actions.call}
+          </a>
+
+          <button
+            className="menu-toggle"
+            type="button"
+            aria-label={open ? dictionary.closeMenu : dictionary.openMenu}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+          </button>
+        </div>
       </div>
 
       <div
         className={`mobile-menu ${open ? "mobile-menu--open" : ""}`}
         aria-hidden={!open}
       >
-        <nav aria-label="Mobilní navigace">
+        <nav aria-label={dictionary.mobileNavigation}>
           {navigation.map((item) => (
             <a
               key={item.href}
               href={item.href}
+              tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
               {item.label}
             </a>
           ))}
         </nav>
-        <a className="button button--primary" href={`tel:${phone}`}>
+        <a
+          className="button button--primary"
+          href={`tel:${phone}`}
+          tabIndex={open ? 0 : -1}
+        >
           <Phone aria-hidden="true" size={18} />
-          Zavolat majiteli
+          {copy.actions.callOwner}
         </a>
       </div>
     </header>

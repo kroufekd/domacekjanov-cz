@@ -5,12 +5,26 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { localAsset } from "@/lib/paths";
+import type { SiteCopy } from "@/types/content";
 
 type MatterportTourProps = {
   url: string;
+  copy: SiteCopy["tour"];
+  actions: Pick<
+    SiteCopy["actions"],
+    "startTour" | "openSeparately" | "tourIssue"
+  >;
+  iframeTitle: string;
+  posterAlt: string;
 };
 
-export function MatterportTour({ url }: MatterportTourProps) {
+export function MatterportTour({
+  url,
+  copy,
+  actions,
+  iframeTitle,
+  posterAlt,
+}: MatterportTourProps) {
   const [started, setStarted] = useState(false);
   const embedUrl = `${url}${url.includes("?") ? "&" : "?"}play=1&qs=1`;
 
@@ -20,7 +34,7 @@ export function MatterportTour({ url }: MatterportTourProps) {
         <>
           <iframe
             src={embedUrl}
-            title="3D prohlídka Domečku Janov"
+            title={iframeTitle}
             allow="fullscreen; xr-spatial-tracking"
             allowFullScreen
           />
@@ -30,7 +44,7 @@ export function MatterportTour({ url }: MatterportTourProps) {
             target="_blank"
             rel="noreferrer"
           >
-            Problém s prohlídkou? Otevřít samostatně
+            {actions.tourIssue}
             <ArrowUpRight aria-hidden="true" size={16} />
           </a>
         </>
@@ -38,14 +52,14 @@ export function MatterportTour({ url }: MatterportTourProps) {
         <>
           <Image
             src={localAsset("/images/kitchen-dining.jpg")}
-            alt="Společenská místnost Domečku Janov"
+            alt={posterAlt}
             fill
             sizes="(max-width: 900px) 100vw, 1200px"
           />
           <div className="tour-frame__overlay">
             <div className="tour-frame__meta">
               <Box aria-hidden="true" />
-              <span>Projděte se domem ještě před příjezdem</span>
+              <span>{copy.teaser}</span>
             </div>
             <button
               className="tour-frame__play"
@@ -55,10 +69,10 @@ export function MatterportTour({ url }: MatterportTourProps) {
               <span>
                 <Play aria-hidden="true" fill="currentColor" />
               </span>
-              Spustit 3D prohlídku
+              {actions.startTour}
             </button>
             <a href={url} target="_blank" rel="noreferrer">
-              Otevřít samostatně
+              {actions.openSeparately}
               <ArrowUpRight aria-hidden="true" size={17} />
             </a>
           </div>

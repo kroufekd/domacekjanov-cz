@@ -15,10 +15,15 @@ export const galleryItemType = defineType({
     defineField({
       name: "alt",
       title: "Alternativní popis",
-      type: "string",
+      type: "localeString",
+      description: "Popis pro čtečky a vyhledávače, ve všech třech jazycích.",
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: "caption", title: "Popisek", type: "string" }),
+    defineField({
+      name: "caption",
+      title: "Popisek",
+      type: "localeString",
+    }),
     defineField({
       name: "category",
       title: "Kategorie",
@@ -49,7 +54,7 @@ export const galleryItemType = defineType({
   ],
   preview: {
     select: {
-      title: "caption",
+      title: "caption.cs",
       subtitle: "category",
       media: "image",
     },

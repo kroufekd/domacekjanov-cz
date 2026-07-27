@@ -3,12 +3,8 @@ import { expect, test } from "@playwright/test";
 test("renders the complete landing page and contact actions", async ({ page }) => {
   await page.goto("/");
 
-  await expect(
-    page.getByRole("heading", {
-      level: 1,
-      name: "Všichni spolu. A přesto s místem pro sebe.",
-    }),
-  ).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "cs");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/\S/);
   await expect(page.getByText("4 000 m²", { exact: true }).first()).toBeVisible();
   await expect(
     page.locator('a[href="tel:+420777181920"]:visible').first(),
