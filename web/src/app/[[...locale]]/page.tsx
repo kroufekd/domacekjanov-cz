@@ -120,7 +120,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const dictionary = getDictionary(locale);
   const content = await getSiteContent(locale);
-  const { settings, accommodation, copy, gallery, rates, tripTips } = content;
+  // `tripTips` ze Sanity už stránka nevypisuje - seznam cílů si drží sama mapa.
+  const { settings, accommodation, copy, gallery, rates } = content;
   const structuredData = buildStructuredData(content, locale, siteUrl);
 
   // Grouping differs per language: 4 000 m² in Czech, 4.000 m² in German.

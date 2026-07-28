@@ -94,6 +94,9 @@ export type MarkerVisual = "active" | "idle" | "dimmed";
  * Značky jsou plné kolečko bez rámečku - na pestrých turistických dlaždicích
  * je odliší sytá výplň, ne obrys. Proto drobné rozměry: v okolí Janova leží
  * několik cílů pár set metrů od sebe a větší pin by je slepil dohromady.
+ *
+ * Barvy kopírují proměnné z `globals.css` (--forest-soft, --terracotta, --sage);
+ * Leaflet skládá značku z HTML řetězce mimo React, takže `var()` tu nepoužijeme.
  */
 const MARKER_STYLE: Readonly<
   Record<MarkerVisual, { size: number; fill: string; ink: string; shadow: string }>
@@ -106,15 +109,15 @@ const MARKER_STYLE: Readonly<
   },
   idle: {
     size: 22,
-    fill: "#2f7a56",
+    fill: "#2f7f50",
     ink: "#fffdf8",
-    shadow: "0 2px 7px rgba(32, 37, 33, 0.34)",
+    shadow: "0 2px 7px rgba(20, 53, 34, 0.34)",
   },
   dimmed: {
     size: 18,
-    fill: "#8aa294",
-    ink: "#f2f6f2",
-    shadow: "0 1px 4px rgba(32, 37, 33, 0.2)",
+    fill: "#8fbb9c",
+    ink: "#f7fbf7",
+    shadow: "0 1px 4px rgba(20, 53, 34, 0.2)",
   },
 };
 
@@ -145,8 +148,8 @@ export function cottageMarkerHtml(): string {
   const icon = svg(ICON_PATHS.house, 18, "#f5f0e6");
   return (
     `<span class="trip-pin trip-pin--cottage" style="width:${COTTAGE_MARKER_SIZE}px;` +
-    `height:${COTTAGE_MARKER_SIZE}px;background:#173d31;` +
-    `box-shadow:0 5px 16px rgba(23, 61, 49, 0.45)">${icon}</span>`
+    `height:${COTTAGE_MARKER_SIZE}px;background:#195d36;` +
+    `box-shadow:0 5px 16px rgba(20, 53, 34, 0.45)">${icon}</span>`
   );
 }
 
