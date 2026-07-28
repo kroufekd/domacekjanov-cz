@@ -1,64 +1,72 @@
+import type { Locale } from "@/i18n/config";
+import { localeMeta } from "@/i18n/config";
+import type { TripsDictionary } from "@/i18n/trips-dictionary";
+import { formatTemplate } from "@/lib/format";
 import type { TrailColour, TripKind } from "@/types/trips";
 
 /** Nezalomitelná mezera - drží číslo a jednotku pohromadě. */
 const NBSP = " ";
 
+/** Míra je jedno slovo: mezery uvnitř nesmí zalomit řádek. */
+const tight = (text: string): string => text.replace(/ /g, NBSP);
+
+/** Desetinná čárka v češtině a němčině, tečka v angličtině. */
+const decimal = (value: number, locale: Locale): string =>
+  new Intl.NumberFormat(localeMeta[locale].htmlLang, {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(value);
+
 /** "2,6 km" pro delší trasy, "850 m" pro ty krátké. */
-export function formatDistance(metres: number): string {
+export function formatDistance(
+  metres: number,
+  locale: Locale,
+  units: TripsDictionary["units"],
+): string {
   if (metres < 1000) {
-    return `${Math.round(metres / 10) * 10}${NBSP}m`;
+    return tight(`${Math.round(metres / 10) * 10} ${units.metre}`);
   }
   const km = metres / 1000;
-  const text = km >= 10 ? km.toFixed(0) : km.toFixed(1).replace(".", ",");
-  return `${text}${NBSP}km`;
+  const text = km >= 10 ? Math.round(km).toString() : decimal(km, locale);
+  return tight(`${text} ${units.kilometre}`);
 }
 
 /** "45 min" nebo "1 h 20 min" - pěší tempo bez zastávek. */
-export function formatDuration(seconds: number): string {
+export function formatDuration(
+  seconds: number,
+  units: TripsDictionary["units"],
+): string {
   const totalMinutes = Math.max(1, Math.round(seconds / 60));
   if (totalMinutes < 60) {
-    return `${totalMinutes}${NBSP}min`;
+    return tight(`${totalMinutes} ${units.minute}`);
   }
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
-  return minutes === 0
-    ? `${hours}${NBSP}h`
-    : `${hours}${NBSP}h${NBSP}${minutes}${NBSP}min`;
+  return tight(
+    minutes === 0
+      ? `${hours} ${units.hour}`
+      : `${hours} ${units.hour} ${minutes} ${units.minute}`,
+  );
 }
 
-export function formatElevation(metres: number): string {
-  return `${metres}${NBSP}m${NBSP}n.${NBSP}m.`;
+export function formatElevation(
+  metres: number,
+  units: TripsDictionary["units"],
+): string {
+  return tight(formatTemplate(units.elevation, { value: metres }));
 }
-
-const TRIP_KIND_LABELS: Readonly<Record<TripKind, string>> = {
-  vyhlidka: "Vyhlídka",
-  skala: "Skály",
-  rozhledna: "Rozhledna",
-  zricenina: "Zřícenina",
-  soutesky: "Soutěsky",
-  udoli: "Údolí",
-  obec: "Obec",
-  technicka: "Technická památka",
-};
 
 /** Štítek kategorie; u neznámé hodnoty raději obecný text než prázdné místo. */
-export const tripKindLabel = (kind: TripKind): string =>
-  TRIP_KIND_LABELS[kind] ?? "Výlet";
+export const tripKindLabel = (
+  kind: TripKind,
+  dictionary: TripsDictionary,
+): string => dictionary.kind[kind] ?? dictionary.kindFilter.all;
 
 /** Množné číslo pro filtrovací tlačítka - "Vyhlídky (4)" čte líp než "Vyhlídka (4)". */
-const TRIP_KIND_PLURALS: Readonly<Record<TripKind, string>> = {
-  vyhlidka: "Vyhlídky",
-  skala: "Skály",
-  rozhledna: "Rozhledny",
-  zricenina: "Zříceniny",
-  soutesky: "Soutěsky",
-  udoli: "Údolí",
-  obec: "Obce",
-  technicka: "Památky",
-};
-
-export const tripKindPlural = (kind: TripKind): string =>
-  TRIP_KIND_PLURALS[kind] ?? "Výlety";
+export const tripKindPlural = (
+  kind: TripKind,
+  dictionary: TripsDictionary,
+): string => dictionary.kindPlural[kind] ?? dictionary.kindFilter.all;
 
 /** Pořadí kategorií ve filtru - od těch, kterých je nejvíc a lidi je hledají první. */
 export const TRIP_KIND_ORDER: readonly TripKind[] = [
@@ -72,17 +80,10 @@ export const TRIP_KIND_ORDER: readonly TripKind[] = [
   "technicka",
 ];
 
-const TRAIL_LABELS: Readonly<Record<TrailColour, string>> = {
-  cervena: "po červené",
-  modra: "po modré",
-  zelena: "po zelené",
-  zluta: "po žluté",
-  naucna: "po naučné stezce",
-  neznaceno: "po lesních cestách",
-};
-
-export const trailLabel = (trail: TrailColour): string =>
-  TRAIL_LABELS[trail] ?? TRAIL_LABELS.neznaceno;
+export const trailLabel = (
+  trail: TrailColour,
+  dictionary: TripsDictionary,
+): string => dictionary.trail[trail] ?? dictionary.trail.neznaceno;
 
 /** Barvy pásových značek KČT - tečka u výletu v seznamu. */
 const TRAIL_COLOURS: Readonly<Record<TrailColour, string>> = {

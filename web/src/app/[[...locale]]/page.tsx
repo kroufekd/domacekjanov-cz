@@ -41,6 +41,7 @@ import {
 } from "@/i18n";
 import { getSiteContent } from "@/lib/content";
 import { localAsset } from "@/lib/paths";
+import { getTrips } from "@/lib/trips";
 import { buildStructuredData } from "@/lib/structured-data";
 
 const featureIcons = [UsersRound, BedDouble, Trees, Sparkles];
@@ -350,7 +351,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 {copy.actions.showOnMap}
               </a>
             </div>
-            <TripMap />
+            <TripMap
+              locale={locale}
+              dictionary={dictionary.trips}
+              trips={getTrips(locale)}
+            />
           </div>
         </section>
 

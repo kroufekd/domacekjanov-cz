@@ -182,3 +182,37 @@ test("keeps trip markers clickable where they sit close to the cottage", async (
 
   await expect(page.locator(".trip-map__detail h3")).toHaveText("Rozhledna Janov");
 });
+
+/**
+ * Mapa se skládá z geometrie a textů zvoleného jazyka. Kdyby se prop s texty
+ * ztratil, host by na /de a /en dostal českou mapu - proto sáhneme na obojí:
+ * na názvy cílů i na okolní ovládání.
+ */
+test("serves the map in German", async ({ page }) => {
+  await page.goto("/de#okoli");
+  await page.locator("#okoli").scrollIntoViewIfNeeded();
+  await page.waitForSelector(".leaflet-container", { timeout: 30_000 });
+
+  await expect(page.getByRole("button", { name: "Alle Ausflüge" })).toBeVisible();
+  await expect(page.locator(".trip-map__item").first()).toContainText("Aussichtsturm Janov");
+  await expect(page.locator(".trip-map__item-meta").first()).toContainText("zu Fuß vom Haus");
+
+  await page.locator(".trip-map__item").filter({ hasText: "Prebischtor" }).first().click();
+  await expect(page.locator(".trip-map__stats dt").first()).toHaveText("Startpunkt");
+  await expect(page.locator(".trip-map__note")).toContainText("Gabrielensteig");
+});
+
+test("serves the map in English", async ({ page }) => {
+  await page.goto("/en#okoli");
+  await page.locator("#okoli").scrollIntoViewIfNeeded();
+  await page.waitForSelector(".leaflet-container", { timeout: 30_000 });
+
+  await expect(page.getByRole("button", { name: "All trips" })).toBeVisible();
+  await expect(page.locator(".trip-map__item").first()).toContainText("Janov Lookout Tower");
+  await expect(page.locator(".trip-map__detail-empty")).toContainText("Pick a trip");
+
+  await page.locator(".trip-map__item").first().click();
+  await expect(page.locator(".trip-map__stats dt").first()).toHaveText("Starting point");
+  // Angličtina píše desetinnou tečku, čeština čárku.
+  await expect(page.locator(".trip-map__item-meta").first()).toContainText(/\d+\.\d\s?km|\d+\s?m/);
+});

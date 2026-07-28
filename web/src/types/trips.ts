@@ -34,16 +34,17 @@ export type GeoPoint = {
 
 /** Výchozí bod výletu - buď přímo domeček, nebo obec / parkoviště. */
 export type TripStart = {
-  readonly name: string;
   readonly point: GeoPoint;
   /** true, když se vyráží pěšky od domečku (bez přejezdu autem). */
   readonly fromCottage: boolean;
 };
 
-/** Jeden výlet: cíl, výchozí bod a text do karty. */
+/**
+ * Jeden výlet bez textů: souřadnice a metadata, která platí ve všech jazycích.
+ * Názvy a popisy žijí odděleně v `TripText`, ať se geometrie nekopíruje třikrát.
+ */
 export type Trip = {
   readonly id: string;
-  readonly title: string;
   readonly kind: TripKind;
   readonly point: GeoPoint;
   /** Nadmořská výška cíle v metrech, pokud ji známe. */
@@ -54,13 +55,23 @@ export type Trip = {
   readonly loop?: boolean;
   /** Průjezdní body pro okruhy a trasy, které by se jinak vedly jinudy. */
   readonly waypoints?: readonly GeoPoint[];
-  /** Jedna až dvě věty do karty a do popupu na mapě. */
-  readonly summary: string;
-  /** Upozornění na uzavírku nebo omezení, které mění reálnou podobu trasy. */
-  readonly note?: string;
   /** Vzdálenost uvedená v podkladech klienta, jen pro kontrolu při generování. */
   readonly statedDistanceKm?: number;
 };
+
+/** Texty jednoho výletu v jednom jazyce. */
+export type TripText = {
+  readonly title: string;
+  /** Jméno výchozího bodu tak, jak ho návštěvník najde na rozcestníku. */
+  readonly startName: string;
+  /** Jedna až dvě věty do karty a do bublinky na mapě. */
+  readonly summary: string;
+  /** Upozornění na uzavírku nebo omezení, které mění reálnou podobu trasy. */
+  readonly note?: string;
+};
+
+/** Výlet i s texty pro zvolený jazyk - to, co dostane komponenta mapy. */
+export type LocalisedTrip = Trip & TripText;
 
 /** Kdo trasu spočítal. Rozhoduje o textu v atribuci pod mapou. */
 export type RouteSource = "mapy" | "brouter";

@@ -6,7 +6,10 @@ import type { LatLngBoundsExpression, Map as LeafletMap, Marker, Polyline } from
 import { Car, ExternalLink, Footprints, TrendingUp, TriangleAlert, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { COTTAGE, TRIPS } from "@/data/trips";
+import { COTTAGE } from "@/data/trips";
+import type { Locale } from "@/i18n/config";
+import type { TripsDictionary } from "@/i18n/trips-dictionary";
+import { formatTemplate } from "@/lib/format";
 import {
   COTTAGE_MARKER_SIZE,
   MARKER_SIZE,
@@ -26,7 +29,7 @@ import {
   tripKindPlural,
 } from "@/lib/trip-format";
 import { parseTripRoutes } from "@/lib/trip-routes";
-import type { TripKind, TripRoute } from "@/types/trips";
+import type { LocalisedTrip, TripKind, TripRoute } from "@/types/trips";
 
 /** Klíč k Mapy.com. Když chybí, mapa spadne na OpenStreetMap s vrstvou značených tras. */
 const MAPY_KEY = process.env.NEXT_PUBLIC_MAPY_API_KEY;
@@ -62,12 +65,15 @@ const prefersReducedMotion = (): boolean =>
 
 type StartFilter = "vse" | "pesky";
 
-const START_FILTERS: ReadonlyArray<{ id: StartFilter; label: string }> = [
-  { id: "vse", label: "Všechny výlety" },
-  { id: "pesky", label: "Pěšky od domečku" },
-];
+type TripMapProps = {
+  /** Rozhoduje o formátu čísel - "2,6 km" v češtině, "2.6 km" v angličtině. */
+  locale: Locale;
+  dictionary: TripsDictionary;
+  /** Výlety už s texty zvoleného jazyka; skládá je `getTrips` na serveru. */
+  trips: readonly LocalisedTrip[];
+};
 
-export function TripMap() {
+export function TripMap({ locale, dictionary, trips }: TripMapProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [startFilter, setStartFilter] = useState<StartFilter>("vse");
   const [kindFilter, setKindFilter] = useState<TripKind | null>(null);
@@ -88,10 +94,19 @@ export function TripMap() {
   const hasFramedRef = useRef(false);
   /** Drží aktuální handler, aby se posluchače značek nemusely přepínat při každém renderu. */
   const selectRef = useRef<(id: string) => void>(() => {});
+  /**
+   * Značky se zakládají jednou při inicializaci mapy. Jazyk se bez nového načtení
+   * stránky nemění, takže si výlety držíme v refu a mapa se kvůli nim nestaví znovu.
+   */
+  const tripsRef = useRef(trips);
+
+  useEffect(() => {
+    tripsRef.current = trips;
+  }, [trips]);
 
   const startFiltered = useMemo(
-    () => (startFilter === "pesky" ? TRIPS.filter((trip) => trip.start.fromCottage) : TRIPS),
-    [startFilter],
+    () => (startFilter === "pesky" ? trips.filter((trip) => trip.start.fromCottage) : trips),
+    [startFilter, trips],
   );
 
   /** Kolik výletů zbývá v každé kategorii po použití filtru výchozího bodu. */
@@ -195,7 +210,7 @@ export function TripMap() {
         L = await import("leaflet");
       } catch {
         if (!cancelled) {
-          setMapError("Mapu se nepodařilo načíst. Zkuste stránku obnovit.");
+          setMapError(dictionary.errors.map);
         }
         return;
       }
@@ -245,7 +260,7 @@ export function TripMap() {
             link.href = "https://mapy.com/";
             link.target = "_blank";
             link.rel = "noreferrer";
-            link.title = "Mapové podklady Mapy.com";
+            link.title = "Mapy.com";
             link.innerHTML =
               '<img src="https://api.mapy.com/img/api/logo.svg" alt="Mapy.com" width="60" height="18" />';
             L.DomEvent.disableClickPropagation(link);
@@ -289,7 +304,7 @@ export function TripMap() {
           offset: [0, -(COTTAGE_MARKER_SIZE / 2 + 2)],
         });
 
-      for (const trip of TRIPS) {
+      for (const trip of tripsRef.current) {
         const marker = L.marker([trip.point.lat, trip.point.lon], {
           icon: L.divIcon({
             html: tripMarkerHtml(trip.kind, "idle"),
@@ -329,7 +344,7 @@ export function TripMap() {
       map?.off("move zoom resize", positionCallout);
       map?.remove();
     };
-  }, [positionCallout]);
+  }, [dictionary.errors.map, positionCallout]);
 
   // Překreslení podle vybraného výletu a filtrů.
   useEffect(() => {
@@ -353,7 +368,7 @@ export function TripMap() {
 
       const visibleIds = new Set(visibleTrips.map((trip) => trip.id));
 
-      for (const trip of TRIPS) {
+      for (const trip of trips) {
         const marker = markersRef.current.get(trip.id);
         if (!marker) {
           continue;
@@ -408,7 +423,7 @@ export function TripMap() {
         return;
       }
 
-      const trip = TRIPS.find((item) => item.id === selectedId);
+      const trip = trips.find((item) => item.id === selectedId);
       if (!trip) {
         return;
       }
@@ -452,14 +467,14 @@ export function TripMap() {
 
     paint().catch(() => {
       if (!cancelled) {
-        setMapError("Trasu se nepodařilo vykreslit. Zkuste stránku obnovit.");
+        setMapError(dictionary.errors.route);
       }
     });
 
     return () => {
       cancelled = true;
     };
-  }, [mapReady, positionCallout, routes, selectedId, visibleTrips]);
+  }, [dictionary.errors.route, mapReady, positionCallout, routes, selectedId, trips, visibleTrips]);
 
   // Bublinka se vykresluje až po nastavení výběru, takže ji musíme doposadit.
   useEffect(() => {
@@ -468,12 +483,28 @@ export function TripMap() {
     }
   }, [positionCallout, selectedId]);
 
+  const { units } = dictionary;
+  const showDistance = (metres: number) => formatDistance(metres, locale, units);
+  const showDuration = (seconds: number) => formatDuration(seconds, units);
+
+  const startFilters: ReadonlyArray<{ id: StartFilter; label: string }> = [
+    { id: "vse", label: dictionary.startFilter.all },
+    { id: "pesky", label: dictionary.startFilter.onFoot },
+  ];
+
   const calloutMeta = activeTrip
     ? [
         activeRoute
-          ? `${activeTrip.start.fromCottage ? "pěšky" : `od ${activeTrip.start.name}`} ${formatDistance(activeRoute.lengthM)} · cca ${formatDuration(activeRoute.durationS)}`
+          ? `${
+              activeTrip.start.fromCottage
+                ? dictionary.meta.onFoot
+                : formatTemplate(dictionary.meta.fromStart, { name: activeTrip.startName })
+            } ${showDistance(activeRoute.lengthM)} · ${formatTemplate(
+              dictionary.meta.approximate,
+              { duration: showDuration(activeRoute.durationS) },
+            )}`
           : null,
-        activeTrip.elevation ? formatElevation(activeTrip.elevation) : null,
+        activeTrip.elevation ? formatElevation(activeTrip.elevation, units) : null,
       ]
         .filter(Boolean)
         .join(" · ")
@@ -487,14 +518,14 @@ export function TripMap() {
             ref={containerRef}
             className="trip-map__leaflet"
             role="application"
-            aria-label="Mapa turistických výletů v okolí Domečku Janov"
+            aria-label={dictionary.mapLabel}
           />
         </div>
 
         {mapError ? <p className="trip-map__error">{mapError}</p> : null}
 
-        <div className="trip-map__filters" role="group" aria-label="Filtr výchozího bodu">
-          {START_FILTERS.map((option) => (
+        <div className="trip-map__filters" role="group" aria-label={dictionary.startFilter.group}>
+          {startFilters.map((option) => (
             <button
               key={option.id}
               type="button"
@@ -518,12 +549,12 @@ export function TripMap() {
               <button
                 type="button"
                 className="trip-map__callout-close"
-                aria-label="Zavřít detail výletu"
+                aria-label={dictionary.callout.close}
                 onClick={() => setActiveId(null)}
               >
                 <X aria-hidden="true" size={15} />
               </button>
-              <p className="trip-map__item-kind">{tripKindLabel(activeTrip.kind)}</p>
+              <p className="trip-map__item-kind">{tripKindLabel(activeTrip.kind, dictionary)}</p>
               <h4 className="trip-map__callout-title">{activeTrip.title}</h4>
               {calloutMeta ? <p className="trip-map__callout-meta">{calloutMeta}</p> : null}
               {activeTrip.note ? (
@@ -535,7 +566,7 @@ export function TripMap() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Trasa v Mapy.com
+                {dictionary.callout.route}
               </a>
             </div>
           </div>
@@ -543,14 +574,14 @@ export function TripMap() {
       </div>
 
       <div className="trip-map__panel">
-        <div className="trip-map__kinds" role="group" aria-label="Filtr typu výletu">
+        <div className="trip-map__kinds" role="group" aria-label={dictionary.kindFilter.group}>
           <button
             type="button"
             className="trip-map__kind-chip"
             aria-pressed={kindFilter === null}
             onClick={() => setKindFilter(null)}
           >
-            Vše
+            {dictionary.kindFilter.all}
             <span>{startFiltered.length}</span>
           </button>
           {TRIP_KIND_ORDER.filter((kind) => (kindCounts.get(kind) ?? 0) > 0).map((kind) => (
@@ -561,16 +592,14 @@ export function TripMap() {
               aria-pressed={kindFilter === kind}
               onClick={() => setKindFilter((current) => (current === kind ? null : kind))}
             >
-              {tripKindPlural(kind)}
+              {tripKindPlural(kind, dictionary)}
               <span>{kindCounts.get(kind)}</span>
             </button>
           ))}
         </div>
 
         <p className="trip-map__hint">
-          {activeTrip
-            ? "Klikněte znovu pro zrušení výběru."
-            : "Vyberte cíl a mapa dokreslí cestu z výchozího bodu."}
+          {activeTrip ? dictionary.hint.selected : dictionary.hint.idle}
         </p>
 
         <ul className="trip-map__list">
@@ -591,12 +620,16 @@ export function TripMap() {
                     aria-hidden="true"
                   />
                   <span className="trip-map__item-body">
-                    <span className="trip-map__item-kind">{tripKindLabel(trip.kind)}</span>
+                    <span className="trip-map__item-kind">
+                      {tripKindLabel(trip.kind, dictionary)}
+                    </span>
                     <span className="trip-map__item-title">{trip.title}</span>
                     <span className="trip-map__item-meta">
-                      {trip.start.fromCottage ? "pěšky od domečku" : `start ${trip.start.name}`}
-                      {route ? ` · ${formatDistance(route.lengthM)}` : ""}
-                      {route ? ` · ${formatDuration(route.durationS)}` : ""}
+                      {trip.start.fromCottage
+                        ? dictionary.meta.onFootFromCottage
+                        : formatTemplate(dictionary.meta.startAt, { name: trip.startName })}
+                      {route ? ` · ${showDistance(route.lengthM)}` : ""}
+                      {route ? ` · ${showDuration(route.durationS)}` : ""}
                     </span>
                   </span>
                 </button>
@@ -610,7 +643,7 @@ export function TripMap() {
         {activeTrip ? (
           <>
             <div className="trip-map__detail-head">
-              <p className="trip-map__item-kind">{tripKindLabel(activeTrip.kind)}</p>
+              <p className="trip-map__item-kind">{tripKindLabel(activeTrip.kind, dictionary)}</p>
               <h3>{activeTrip.title}</h3>
             </div>
             <p className="trip-map__detail-text">{activeTrip.summary}</p>
@@ -622,48 +655,48 @@ export function TripMap() {
             ) : null}
             <dl className="trip-map__stats">
               <div>
-                <dt>Výchozí bod</dt>
-                <dd>{activeTrip.start.name}</dd>
+                <dt>{dictionary.stats.start}</dt>
+                <dd>{activeTrip.startName}</dd>
               </div>
               {activeRoute ? (
                 <div>
-                  <dt>Délka trasy</dt>
+                  <dt>{dictionary.stats.length}</dt>
                   <dd>
-                    {formatDistance(activeRoute.lengthM)}
-                    {activeTrip.loop ? " (okruh)" : ""}
+                    {showDistance(activeRoute.lengthM)}
+                    {activeTrip.loop ? dictionary.stats.loopSuffix : ""}
                   </dd>
                 </div>
               ) : null}
               {activeRoute ? (
                 <div>
-                  <dt>Čas chůze</dt>
-                  <dd>{formatDuration(activeRoute.durationS)}</dd>
+                  <dt>{dictionary.stats.duration}</dt>
+                  <dd>{showDuration(activeRoute.durationS)}</dd>
                 </div>
               ) : null}
               {activeRoute?.ascentM ? (
                 <div>
-                  <dt>Stoupání</dt>
+                  <dt>{dictionary.stats.ascent}</dt>
                   <dd>
                     <TrendingUp aria-hidden="true" size={14} />
-                    {activeRoute.ascentM} m
+                    {activeRoute.ascentM} {units.metre}
                   </dd>
                 </div>
               ) : null}
               <div>
-                <dt>Značení</dt>
+                <dt>{dictionary.stats.trail}</dt>
                 <dd>
                   <span
                     className="trip-map__trail trip-map__trail--inline"
                     style={{ background: trailColourHex(activeTrip.trail) }}
                     aria-hidden="true"
                   />
-                  {trailLabel(activeTrip.trail)}
+                  {trailLabel(activeTrip.trail, dictionary)}
                 </dd>
               </div>
               {activeTrip.elevation ? (
                 <div>
-                  <dt>Nadmořská výška</dt>
-                  <dd>{formatElevation(activeTrip.elevation)}</dd>
+                  <dt>{dictionary.stats.elevation}</dt>
+                  <dd>{formatElevation(activeTrip.elevation, units)}</dd>
                 </div>
               ) : null}
             </dl>
@@ -673,21 +706,17 @@ export function TripMap() {
               target="_blank"
               rel="noreferrer"
             >
-              Otevřít trasu v Mapy.com
+              {dictionary.detail.route}
               <ExternalLink aria-hidden="true" size={16} />
             </a>
           </>
         ) : (
-          <p className="trip-map__detail-empty">
-            Vyberte výlet v mapě nebo v seznamu. Ukážeme vám, kudy se jde a jak dlouho to trvá.
-          </p>
+          <p className="trip-map__detail-empty">{dictionary.detailEmpty}</p>
         )}
       </div>
 
       <p className="trip-map__credit">
-        {MAPY_KEY
-          ? "Mapové podklady a trasy Mapy.com, profil pěší turistika."
-          : "Mapové podklady OpenStreetMap a Waymarked Trails, trasy počítané po značených stezkách."}
+        {MAPY_KEY ? dictionary.credit.mapy : dictionary.credit.osm}
       </p>
     </div>
   );
