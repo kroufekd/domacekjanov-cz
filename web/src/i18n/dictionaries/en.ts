@@ -1,3 +1,4 @@
+import { tripsEn } from "@/i18n/dictionaries/trips/en";
 import type { Dictionary } from "@/i18n/dictionary";
 
 export const en: Dictionary = {
@@ -32,6 +33,7 @@ export const en: Dictionary = {
   tour: {
     iframeTitle: "3D tour of Domeček Janov",
   },
+  trips: tripsEn,
   dialog: {
     close: "Close",
     closeDialog: "Close dialog",

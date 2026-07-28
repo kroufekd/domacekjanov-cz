@@ -1,7 +1,6 @@
 import {
   Accessibility,
   ArrowRight,
-  ArrowUpRight,
   Baby,
   Bath,
   BedDouble,
@@ -30,6 +29,7 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { MatterportTour } from "@/components/matterport-tour";
 import { HeadingText, SectionHeading } from "@/components/section-heading";
+import { TripMap } from "@/components/trip-map";
 import {
   defaultLocale,
   getDictionary,
@@ -41,6 +41,7 @@ import {
 } from "@/i18n";
 import { getSiteContent } from "@/lib/content";
 import { localAsset } from "@/lib/paths";
+import { getTrips } from "@/lib/trips";
 import { buildStructuredData } from "@/lib/structured-data";
 
 const featureIcons = [UsersRound, BedDouble, Trees, Sparkles];
@@ -120,7 +121,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   const dictionary = getDictionary(locale);
   const content = await getSiteContent(locale);
-  const { settings, accommodation, copy, gallery, rates, tripTips } = content;
+  // `tripTips` ze Sanity už stránka nevypisuje - seznam cílů si drží sama mapa.
+  const { settings, accommodation, copy, gallery, rates } = content;
   const structuredData = buildStructuredData(content, locale, siteUrl);
 
   // Grouping differs per language: 4 000 m² in Czech, 4.000 m² in German.
@@ -349,24 +351,11 @@ export default async function HomePage({ params }: HomePageProps) {
                 {copy.actions.showOnMap}
               </a>
             </div>
-            <div className="trips-grid">
-              {tripTips.map((tip) => (
-                <a
-                  key={tip.id}
-                  href={tip.href || settings.mapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="trip-card"
-                >
-                  <div>
-                    <small>{tip.distance}</small>
-                    <h3>{tip.title}</h3>
-                    <p>{tip.description}</p>
-                  </div>
-                  <ArrowUpRight aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <TripMap
+              locale={locale}
+              dictionary={dictionary.trips}
+              trips={getTrips(locale)}
+            />
           </div>
         </section>
 

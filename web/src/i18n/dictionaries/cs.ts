@@ -1,3 +1,4 @@
+import { tripsCs } from "@/i18n/dictionaries/trips/cs";
 import type { Dictionary } from "@/i18n/dictionary";
 
 export const cs: Dictionary = {
@@ -32,6 +33,7 @@ export const cs: Dictionary = {
   tour: {
     iframeTitle: "3D prohlídka Domečku Janov",
   },
+  trips: tripsCs,
   dialog: {
     close: "Zavřít",
     closeDialog: "Zavřít dialog",

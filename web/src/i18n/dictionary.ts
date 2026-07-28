@@ -1,3 +1,5 @@
+import type { TripsDictionary } from "@/i18n/trips-dictionary";
+
 /**
  * Interface strings that never leave the codebase: accessibility labels, image
  * alternative texts and the few micro-copy bits nobody needs to edit in Sanity.
@@ -39,6 +41,8 @@ export type Dictionary = {
   tour: {
     iframeTitle: string;
   };
+  /** Trip map - its own module, the block would otherwise dwarf the rest. */
+  trips: TripsDictionary;
   dialog: {
     close: string;
     closeDialog: string;

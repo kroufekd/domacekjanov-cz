@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:routes": "node --experimental-strip-types --no-warnings scripts/build-trip-routes.ts",
     "start": "next start",
     "lint": "eslint .",
     "test:e2e": "playwright test",
@@ -13,6 +14,7 @@
   },
   "dependencies": {
     "@sanity/client": "6.29.1",
+    "leaflet": "1.9.4",
     "lucide-react": "1.26.0",
     "next": "16.2.11",
     "react": "19.2.8",
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@playwright/test": "1.61.1",
     "@tailwindcss/postcss": "4.3.3",
+    "@types/leaflet": "1.9.20",
     "@types/node": "22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
