@@ -1725,17 +1725,18 @@ em {
   height: 100%;
   align-items: center;
   justify-content: center;
-  border-style: solid;
-  border-width: 2px;
+  border: 0;
   border-radius: 50%;
   transition:
     width 160ms ease,
-    height 160ms ease;
+    height 160ms ease,
+    background-color 160ms ease;
 }
 
+/* Bez rámečku nese celý stav výplň, takže hover mění rovnou ji. */
 .trip-pin-wrapper:hover .trip-pin--idle,
 .trip-pin-wrapper:hover .trip-pin--dimmed {
-  border-color: var(--terracotta);
+  background: var(--terracotta) !important;
 }
 
 .leaflet-container {

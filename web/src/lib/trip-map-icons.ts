@@ -91,44 +91,32 @@ function svg(paths: IconPaths, size: number, colour: string): string {
 export type MarkerVisual = "active" | "idle" | "dimmed";
 
 /**
- * `halo` je světlý prstenec, kterým značku odlepíme od podkladu - turistické
- * dlaždice Mapy.com jsou pestré a samotný pin v nich zaniká.
+ * Značky jsou plné kolečko bez rámečku - na pestrých turistických dlaždicích
+ * je odliší sytá výplň, ne obrys. Proto drobné rozměry: v okolí Janova leží
+ * několik cílů pár set metrů od sebe a větší pin by je slepil dohromady.
  */
 const MARKER_STYLE: Readonly<
-  Record<
-    MarkerVisual,
-    { size: number; fill: string; border: string; ink: string; halo: string; shadow: string }
-  >
+  Record<MarkerVisual, { size: number; fill: string; ink: string; shadow: string }>
 > = {
   active: {
-    size: 34,
+    size: 26,
     fill: "#c45d4a",
-    border: "#fffdf8",
     ink: "#fffdf8",
-    halo: "0 0 0 4px rgba(255, 253, 248, 0.92), 0 0 0 6px rgba(196, 93, 74, 0.3), 0 0 14px 3px rgba(255, 253, 248, 0.55)",
-    shadow: "0 6px 18px rgba(32, 37, 33, 0.32)",
+    shadow: "0 4px 12px rgba(32, 37, 33, 0.38)",
   },
   idle: {
-    size: 28,
-    fill: "#fffdf8",
-    border: "#315e50",
-    ink: "#173d31",
-    halo: "0 0 0 4px rgba(255, 253, 248, 0.88), 0 0 0 5px rgba(23, 61, 49, 0.2), 0 0 12px 3px rgba(255, 253, 248, 0.5)",
-    shadow: "0 3px 10px rgba(32, 37, 33, 0.28)",
+    size: 22,
+    fill: "#2f7a56",
+    ink: "#fffdf8",
+    shadow: "0 2px 7px rgba(32, 37, 33, 0.34)",
   },
   dimmed: {
-    size: 24,
-    fill: "#f2ede2",
-    border: "#b6b0a1",
-    ink: "#9d968a",
-    halo: "0 0 0 3px rgba(255, 253, 248, 0.7)",
-    shadow: "none",
+    size: 18,
+    fill: "#8aa294",
+    ink: "#f2f6f2",
+    shadow: "0 1px 4px rgba(32, 37, 33, 0.2)",
   },
 };
-
-/** Skládá `box-shadow`; `none` je platná jen samostatně, ne v seznamu stínů. */
-const boxShadow = (...layers: readonly string[]): string =>
-  layers.filter((layer) => layer !== "none").join(", ") || "none";
 
 /**
  * HTML jedné značky cíle - Leaflet ho vloží do `L.divIcon`.
@@ -141,24 +129,24 @@ export function tripMarkerHtml(kind: TripKind, visual: MarkerVisual): string {
   const style = MARKER_STYLE[visual];
   const icon = svg(
     ICON_PATHS[KIND_ICON[kind] ?? "landmark"],
-    Math.round(style.size * 0.52),
+    Math.round(style.size * 0.62),
     style.ink,
   );
   return (
     `<span class="trip-pin trip-pin--${visual}" style="width:${style.size}px;height:${style.size}px;` +
-    `background:${style.fill};border-color:${style.border};` +
-    `box-shadow:${boxShadow(style.halo, style.shadow)}">${icon}</span>`
+    `background:${style.fill};box-shadow:${style.shadow}">${icon}</span>`
   );
 }
 
+export const COTTAGE_MARKER_SIZE = 30;
+
 /** Značka domečku - vždy tmavě zelená, ať je jasné, odkud se vyráží. */
 export function cottageMarkerHtml(): string {
-  const icon = svg(ICON_PATHS.house, 19, "#f5f0e6");
+  const icon = svg(ICON_PATHS.house, 18, "#f5f0e6");
   return (
-    `<span class="trip-pin trip-pin--cottage" style="width:38px;height:38px;` +
-    `background:#173d31;border-color:#fffdf8;box-shadow:0 0 0 4px rgba(255, 253, 248, 0.92),` +
-    ` 0 0 0 6px rgba(23, 61, 49, 0.28), 0 0 16px 3px rgba(255, 253, 248, 0.5),` +
-    ` 0 8px 22px rgba(23, 61, 49, 0.4)">${icon}</span>`
+    `<span class="trip-pin trip-pin--cottage" style="width:${COTTAGE_MARKER_SIZE}px;` +
+    `height:${COTTAGE_MARKER_SIZE}px;background:#173d31;` +
+    `box-shadow:0 5px 16px rgba(23, 61, 49, 0.45)">${icon}</span>`
   );
 }
 
@@ -167,5 +155,3 @@ export const MARKER_SIZE: Readonly<Record<MarkerVisual, number>> = {
   idle: MARKER_STYLE.idle.size,
   dimmed: MARKER_STYLE.dimmed.size,
 };
-
-export const COTTAGE_MARKER_SIZE = 38;

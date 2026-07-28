@@ -284,7 +284,10 @@ export function TripMap() {
         zIndexOffset: -200,
       })
         .addTo(map)
-        .bindTooltip("Domeček Janov", { direction: "top", offset: [0, -20] });
+        .bindTooltip("Domeček Janov", {
+          direction: "top",
+          offset: [0, -(COTTAGE_MARKER_SIZE / 2 + 2)],
+        });
 
       for (const trip of TRIPS) {
         const marker = L.marker([trip.point.lat, trip.point.lon], {
