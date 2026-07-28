@@ -1,0 +1,325 @@
+{
+  "settings": {
+    "title": "Domeček Janov",
+    "description": "Celý dům pro až 17 hostů, velká oplocená zahrada a České Švýcarsko hned za dveřmi.",
+    "seoTitle": "Domeček Janov | Celá chalupa v Českém Švýcarsku",
+    "seoDescription": "Celý dům až pro 17 hostů, 6 ložnic, oplocená zahrada 4 000 m² a vířivý sud v Janově u Hřenska.",
+    "address": "Janov 167, 405 02 Janov",
+    "heroEyebrow": "Českosaské Švýcarsko · Janov u Hřenska",
+    "heroTitle": "Celý dům jen pro vaši partu.",
+    "heroDescription": "Šest ložnic pro až 17 hostů, 4 000 m² oplocené zahrady a vířivý sud. Soutěsky ve Hřensku jsou dva kilometry od domu."
+  },
+  "accommodation": {
+    "introTitle": "Jeden velký dům pro tři až čtyři rodiny.",
+    "introText": [
+      "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+      "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok."
+    ],
+    "facts": [
+      {
+        "value": "17",
+        "label": "hostů"
+      },
+      {
+        "value": "6",
+        "label": "ložnic"
+      },
+      {
+        "value": "4 000 m²",
+        "label": "oplocené zahrady"
+      },
+      {
+        "value": "celý rok",
+        "label": "v provozu"
+      }
+    ],
+    "rooms": [
+      {
+        "title": "Pokoj s palandami",
+        "description": "Dvě patrové postele pro čtyři. Horní lůžka unesou do 80 kg."
+      },
+      {
+        "title": "Třílůžkový pokoj",
+        "description": "Tři samostatná jednolůžka."
+      },
+      {
+        "title": "Tři dvoulůžkové pokoje",
+        "description": "Manželská postel v každém z nich, všechny v patře."
+      },
+      {
+        "title": "Přízemní dvoulůžkový pokoj",
+        "description": "Manželská postel v přízemí a bezbariérový přístup dveřmi širokými 80 cm."
+      },
+      {
+        "title": "Obývací pokoj",
+        "description": "Dvě rozkládací pohovky doplňují kapacitu na 17 míst."
+      }
+    ],
+    "amenities": [
+      {
+        "title": "Uvnitř",
+        "items": [
+          "velká vybavená kuchyň",
+          "dvě lednice s mrazákem",
+          "myčka, mikrovlnka, kávovar na kapsle i překapávač",
+          "krbová kamna, v přízemí podlahové topení",
+          "Wi‑Fi a televize se sportovními programy"
+        ]
+      },
+      {
+        "title": "Venku",
+        "items": [
+          "vyhřívaný vířivý sud",
+          "jižní terasa s plynovým grilem",
+          "trampolína, houpačka a dětský domeček",
+          "oplocená travnatá zahrada",
+          "parkování přímo u domu"
+        ]
+      },
+      {
+        "title": "Prakticky",
+        "items": [
+          "povlečení a malé ručníky v ceně",
+          "dvě koupelny v přízemí",
+          "další WC s umyvadlem v patře",
+          "bezbariérový pokoj v přízemí",
+          "nekuřácký objekt bez domácích mazlíčků"
+        ]
+      }
+    ]
+  },
+  "gallery": {
+    "hero-aerial": {
+      "alt": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
+      "caption": "Domeček Janov v srdci Českého Švýcarska"
+    },
+    "exterior-garden": {
+      "alt": "Domeček Janov ze zahrady",
+      "caption": "Celý dům a zahrada jen pro vás"
+    },
+    "exterior-wide": {
+      "alt": "Domeček a rozlehlá travnatá zahrada",
+      "caption": "4 000 m² oplocené zahrady"
+    },
+    "terrace-hot-tub": {
+      "alt": "Jižní terasa s vířivým sudem a posezením",
+      "caption": "Terasa, gril a vyhřívaný sud"
+    },
+    "terrace-table": {
+      "alt": "Velký jídelní stůl na terase",
+      "caption": "Jídelní stůl na terase"
+    },
+    "hot-tub": {
+      "alt": "Hosté ve vyhřívaném vířivém sudu",
+      "caption": "Vyhřívaný koupací sud"
+    },
+    "kitchen-dining": {
+      "alt": "Prostorná kuchyň s jídelnou a kamny",
+      "caption": "Kuchyň s jídelnou a kamny"
+    },
+    "living-room": {
+      "alt": "Obývací pokoj s velkou rohovou pohovkou",
+      "caption": "Obývací pokoj s rozkládacími pohovkami"
+    },
+    "kitchen": {
+      "alt": "Plně vybavená šedá kuchyň",
+      "caption": "Plně vybavená kuchyň"
+    },
+    "kitchen-island": {
+      "alt": "Kuchyň s velkým pracovním ostrůvkem",
+      "caption": "Kuchyňský ostrůvek"
+    },
+    "kitchen-detail": {
+      "alt": "Kuchyňské vybavení v Domečku Janov",
+      "caption": "Vybavení kuchyně"
+    },
+    "bedroom-double": {
+      "alt": "Ložnice s manželskou postelí",
+      "caption": "Čtyři pokoje s manželskou postelí"
+    },
+    "bedroom-double-window": {
+      "alt": "Světlá ložnice s manželskou postelí",
+      "caption": "Ložnice v patře"
+    },
+    "bedroom-bunk-red": {
+      "alt": "Pokoj s palandou a červenými detaily",
+      "caption": "Pokoj s palandami"
+    },
+    "bedroom-bunk": {
+      "alt": "Prostorný pokoj s palandou",
+      "caption": "Palandy až pro čtyři"
+    },
+    "bedroom-twin": {
+      "alt": "Podkrovní pokoj se dvěma lůžky",
+      "caption": "Pokoj v podkroví"
+    },
+    "bathroom": {
+      "alt": "Světlá koupelna se sprchovým koutem",
+      "caption": "Dvě koupelny v přízemí"
+    },
+    "bedroom-single": {
+      "alt": "Pokoj s jednolůžkem",
+      "caption": "Šest samostatných ložnic"
+    },
+    "stairs": {
+      "alt": "Schodiště do patra Domečku Janov",
+      "caption": "Dům má dvě podlaží"
+    }
+  },
+  "rates": {
+    "summer": {
+      "title": "Léto",
+      "unit": "celý dům / týden",
+      "note": "V létě pobyty od soboty do soboty."
+    },
+    "week": {
+      "title": "Mimo léto",
+      "unit": "celý dům / týden",
+      "note": "Platí pro zimní sezonu i mimosezonu."
+    },
+    "weekend": {
+      "title": "Víkend",
+      "unit": "celý dům / víkend",
+      "note": "Mimo letní sezonu minimálně dvě noci."
+    }
+  },
+  "tripTips": {
+    "janov": {
+      "title": "Janovská rozhledna",
+      "distance": "pěšky z domu",
+      "description": "Rozhledna stojí přímo v obci. Krátká procházka s výhledem na Labské pískovce."
+    },
+    "hrensko": {
+      "title": "Soutěsky Hřensko",
+      "distance": "2 km",
+      "description": "Plavba na pramicích kaňonem říčky Kamenice. V sezoně vyrazte brzy ráno, odpoledne bývá plno."
+    },
+    "pravcicka": {
+      "title": "Pravčická brána",
+      "distance": "krátký přejezd",
+      "description": "Největší pískovcová skalní brána v Evropě. Autem do Hřenska nebo na Mezní Louku, dál pěšky."
+    },
+    "jetrichovice": {
+      "title": "Jetřichovické vyhlídky",
+      "distance": "na celý den",
+      "description": "Okruh přes Mariinu, Vilemíninu a Rudolfovu vyhlídku. Počítejte se třemi až čtyřmi hodinami chůze."
+    }
+  },
+  "copy": {
+    "nav": {
+      "about": "O domečku",
+      "amenities": "Vybavení",
+      "gallery": "Galerie",
+      "tour": "3D prohlídka",
+      "pricing": "Ceník",
+      "contact": "Kontakt"
+    },
+    "actions": {
+      "call": "Zavolat",
+      "callOwner": "Zavolat majiteli",
+      "datesAndPrices": "Termíny a ceny",
+      "lookInside": "Podívat se dovnitř",
+      "showOnMap": "Ukázat na mapě",
+      "startTour": "Spustit 3D prohlídku",
+      "openSeparately": "Otevřít samostatně",
+      "tourIssue": "Problém s prohlídkou? Otevřít samostatně",
+      "checkAvailability": "Zkontrolovat obsazenost",
+      "exploreHouse": "Prohlédnout dům",
+      "showAll": "Zobrazit všech {count} fotek",
+      "showLess": "Zobrazit méně"
+    },
+    "hero": {
+      "metaPlace": "V Českém Švýcarsku",
+      "metaCoords": "50° 51′ N · 14° 16′ E",
+      "badgePrefix": "Až",
+      "badgeSuffix": "hostů"
+    },
+    "story": {
+      "eyebrow": "O domečku",
+      "noteAccent": "pro tři až čtyři rodiny",
+      "noteRest": "i partu dobrých přátel"
+    },
+    "garden": {
+      "eyebrow": "Zahrada a terasa",
+      "title": "Čtyři tisíce metrů|oplocené zahrady.",
+      "description": "Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček - a protože je pozemek celý oplocený, děti klidně pustíte z dohledu.",
+      "stampNote": "jen pro vás",
+      "cardTitle": "Vířivý sud",
+      "cardText": "Vyhřívaný koupací sud na terase. Když ho budete chtít, připravíme ho na celý pobyt.",
+      "cardPrice": "2 000 Kč / pobyt"
+    },
+    "rooms": {
+      "eyebrow": "Spaní & vybavení",
+      "title": "Patnáct lůžek|v šesti ložnicích.",
+      "description": "Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě rozkládací pohovky v obýváku - dohromady až 17 míst na spaní.",
+      "comfort": [
+        "bezbariérový pokoj",
+        "vybavení pro děti",
+        "plně vybavená kuchyň",
+        "Wi‑Fi v celém domě",
+        "dvě koupelny"
+      ]
+    },
+    "gallery": {
+      "eyebrow": "Galerie",
+      "title": "Podívejte se,|jak to tu vypadá.",
+      "description": "Aktuální fotky domu - pokoje, kuchyň, zahrada i terasa.",
+      "filterLabel": "Vyberte si pohled",
+      "categories": {
+        "vse": "Vše",
+        "exterier": "Exteriér",
+        "zahrada": "Zahrada & wellness",
+        "spolecne": "Společné prostory",
+        "pokoje": "Pokoje"
+      },
+      "swipeHint": "Tažením nebo šipkami přejdete na další fotografii."
+    },
+    "tour": {
+      "eyebrow": "Virtuální návštěva",
+      "title": "Projděte si Domeček|pokoj po pokoji.",
+      "description": "Otevřete dveře, nahlédněte do ložnic a ověřte si dispozici ještě před příjezdem.",
+      "teaser": "Projděte se domem ještě před příjezdem"
+    },
+    "trips": {
+      "eyebrow": "Výlety po okolí",
+      "title": "Každý den|jiným směrem.",
+      "description": "Janov leží na okraji národního parku České Švýcarsko, dva kilometry nad Hřenskem. Soutěsky, skalní vyhlídky i Pravčická brána jsou na dosah pěšky nebo pár minut autem."
+    },
+    "pricing": {
+      "eyebrow": "Ceny & volné termíny",
+      "title": "Celý dům.|Žádní cizí hosté.",
+      "description": "Cena je vždy za celý Domeček. Stačí vybrat termín a zavolat nebo napsat - domluvíte se přímo s majitelem.",
+      "featuredTag": "Nejoblíbenější",
+      "notes": [
+        "rekreační poplatek obci 20 Kč / dospělý / den",
+        "vířivý sud 2 000 Kč / pobyt"
+      ],
+      "calendarNote": "Kalendář obsazenosti najdete na e‑chalupy.cz."
+    },
+    "contact": {
+      "eyebrow": "Rezervace a dotazy",
+      "title": "Těšíme se|na vaši partu.",
+      "description": "Rezervace jde přímo přes majitele, bez agentur a prostředníků. Zavolejte nebo napište, domluvíme termín i detaily.",
+      "phoneLabel": "Telefon",
+      "emailLabel": "E‑mail",
+      "addressLabel": "Adresa"
+    },
+    "footer": {
+      "tagline": "Ubytování pro rodiny, přátele a týmy v Českém Švýcarsku.",
+      "pricingLink": "Ceny a termíny",
+      "mapLink": "Kde nás najdete",
+      "instagramLink": "Instagram",
+      "facebookLink": "Facebook"
+    },
+    "award": {
+      "source": "Booking.com",
+      "plateLabel": "ocenění {year}",
+      "cardTitle": "Traveller Review Awards {year}",
+      "cardSource": "Booking.com - hodnocení hostů",
+      "scoreSuffix": "z 10",
+      "viewerTop": "Traveller Review Awards {year}",
+      "viewerCaption": "Booking.com - hodnocení hostů {score} z 10",
+      "viewerHint": "Šipkami přejdete na další ročník."
+    }
+  }
+}

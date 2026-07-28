@@ -2,9 +2,10 @@ import { ArrowUpRight, CalendarDays } from "lucide-react";
 
 type AvailabilityProps = {
   listingUrl: string;
+  label: string;
 };
 
-export function Availability({ listingUrl }: AvailabilityProps) {
+export function Availability({ listingUrl, label }: AvailabilityProps) {
   return (
     <a
       className="button button--primary"
@@ -13,7 +14,7 @@ export function Availability({ listingUrl }: AvailabilityProps) {
       rel="noreferrer"
     >
       <CalendarDays aria-hidden="true" size={18} />
-      Zkontrolovat obsazenost
+      {label}
       <ArrowUpRight aria-hidden="true" size={17} />
     </a>
   );

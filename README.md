@@ -17,6 +17,37 @@ Web poběží na `http://localhost:3000`, Studio standardně na `http://localhos
 Pokud zatím v Sanity není publikovaný obsah, web bezpečně použije lokální počáteční
 obsah a fotografie.
 
+## Jazykové verze
+
+Web běží ve třech jazycích. Čeština zůstává na kořenové adrese, ostatní jazyky
+mají vlastní prefix:
+
+```text
+/      čeština
+/de    němčina
+/en    angličtina
+```
+
+Nepoužívá se middleware ani přesměrování, takže stejné routování funguje i pro
+statický export. Přepínač jazyků je v hlavičce a při přepnutí si drží aktuální
+kotvu na stránce, takže čtenář zůstane ve stejné sekci.
+
+Texty mají dvě vrstvy:
+
+- `web/src/lib/content/text/{cs,de,en}.json` - veškerý obsah webu ve třech
+  jazycích. Slouží jako výchozí obsah i jako zdroj dat pro seed do Sanity.
+- `web/src/i18n/dictionaries/*` - jen přístupnostní popisky a alternativní texty
+  obrázků, tedy věci, které se v CMS needitují.
+
+Ceny, telefony, odkazy a rozměry fotografií jsou v
+`web/src/lib/content/shared.ts` jen jednou, aby se částky mezi jazyky nikdy
+nerozešly.
+
+Překlad z Sanity se čte striktně: pokud v daném jazyce chybí, použije se
+vestavěné znění pro tentýž jazyk - nikdy se nemíchá čeština do německé stránky.
+Položka seznamu (fotka, cena, tip na výlet) bez překladu se v daném jazyce
+nezobrazí; když takto vypadne celý seznam, nastoupí vestavěný.
+
 ## Sanity
 
 Zkopírujte `studio/.env.example` do `studio/.env.local`. Pro jednorázové nahrání
@@ -27,9 +58,31 @@ nastavte `SANITY_API_WRITE_TOKEN` a spusťte:
 npm run seed --workspace studio
 ```
 
-Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu. Nová
-letecká fotografie se později vymění v dokumentu **Nastavení webu → Hlavní
-fotografie**.
+Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu. Nahraje
+všechny tři jazyky přímo z `web/src/lib/content/text/*.json`, takže Studio od
+začátku obsahuje kompletní překlady. Nová letecká fotografie se později vymění
+v dokumentu **Nastavení webu → Hlavní fotografie**.
+
+### Struktura Studia
+
+V levém sloupci jsou tři samostatné dokumenty a tři seznamy:
+
+| Položka | Co obsahuje |
+| --- | --- |
+| Nastavení webu | název, kontakty, odkazy, úvodní obrazovka, SEO |
+| Texty webu | všechny popisky rozhraní - menu, tlačítka, nadpisy sekcí, patička |
+| Domeček a vybavení | úvodní odstavce, čísla, pokoje, skupiny vybavení |
+| Fotografie / Ceny / Tipy na výlet | běžné seznamy dokumentů |
+
+Každé přeložitelné pole je typu `localeString` nebo `localeText` a vykresluje se
+jako tři sloupce vedle sebe - 🇨🇿 čeština, 🇩🇪 němčina, 🇬🇧 angličtina. Jedno pole
+tedy vždy ukazuje všechny své varianty pohromadě.
+
+Dvě konvence, které se hodí znát:
+
+- V titulcích sekcí zalomí svislítko `|` řádek a text za ním se vysází kurzívou,
+  například `Celý dům.|Žádní cizí hosté.`
+- V textu „Zobrazit všech {count} fotek“ se `{count}` nahradí počtem fotografií.
 
 ## Mapa výletů
 
@@ -100,4 +153,11 @@ npm run typecheck
 npm run lint
 npm run build
 npm run test:e2e --workspace web
+```
+
+E2E testy si samy sestaví a spustí web na portu `3100`. Pokud je port obsazený,
+předejte jiný přes `E2E_PORT`:
+
+```bash
+E2E_PORT=3187 npm run test:e2e --workspace web
 ```

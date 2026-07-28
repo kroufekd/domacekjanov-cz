@@ -4,11 +4,15 @@ import { ArrowDown, ArrowUpRight, CalendarDays, Phone } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-import type { Accommodation, SiteSettings } from "@/types/content";
+import { BookingAward } from "@/components/booking-award";
+import type { Dictionary } from "@/i18n/dictionary";
+import type { Accommodation, SiteCopy, SiteSettings } from "@/types/content";
 
 type HeroProps = {
   settings: SiteSettings;
   accommodation: Accommodation;
+  copy: SiteCopy;
+  dictionary: Dictionary;
 };
 
 /**
@@ -73,7 +77,7 @@ const readGeometry = (element: HTMLElement): HeroGeometry => {
   };
 };
 
-export function Hero({ settings, accommodation }: HeroProps) {
+export function Hero({ settings, accommodation, copy, dictionary }: HeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
   const stickyRef = useRef<HTMLDivElement | null>(null);
 
@@ -108,6 +112,7 @@ export function Hero({ settings, accommodation }: HeroProps) {
       const blur = reducedMotion.matches
         ? 0
         : geometry.blur * (1 - veilProgress);
+      const badgeOpacity = fadeOut(progress, TIMING.badgeFade);
 
       apply({
         "--hero-window-scale": (1 - windowProgress * geometry.shrink).toString(),
@@ -124,7 +129,9 @@ export function Hero({ settings, accommodation }: HeroProps) {
           progress,
           TIMING.contentFade,
         ).toString(),
-        "--hero-badge-opacity": fadeOut(progress, TIMING.badgeFade).toString(),
+        "--hero-badge-opacity": badgeOpacity.toString(),
+        // The award plate is a button, so a faded badge has to stop taking clicks.
+        "--hero-badge-events": badgeOpacity < 0.05 ? "none" : "auto",
         "--hero-scroll-opacity": clamp01(
           1 - progress / TIMING.scrollHintEnd,
         ).toString(),
@@ -162,10 +169,10 @@ export function Hero({ settings, accommodation }: HeroProps) {
       <div className="hero__sticky paper-texture" ref={stickyRef}>
         <div className="hero__underlay" aria-hidden="true">
           <div className="hero__underlay-meta">
-            <span>V Českém Švýcarsku</span>
-            <span>50° 51′ N · 14° 16′ E</span>
+            <span>{copy.hero.metaPlace}</span>
+            <span>{copy.hero.metaCoords}</span>
           </div>
-          <strong className="hero__underlay-word">Domeček Janov</strong>
+          <strong className="hero__underlay-word">{settings.title}</strong>
         </div>
 
         <div className="hero__image-window">
@@ -190,25 +197,31 @@ export function Hero({ settings, accommodation }: HeroProps) {
             <div className="hero__actions">
               <a className="button button--light" href={`tel:${settings.phone}`}>
                 <Phone aria-hidden="true" size={18} />
-                Zavolat
+                {copy.actions.call}
               </a>
               <a className="button button--glass" href="#cenik">
                 <CalendarDays aria-hidden="true" size={18} />
-                Termíny a ceny
+                {copy.actions.datesAndPrices}
               </a>
             </div>
           </div>
         </div>
 
         <a className="hero__scroll" href="#rychla-fakta">
-          <span>Prohlédnout dům</span>
+          <span>{copy.actions.exploreHouse}</span>
           <ArrowDown aria-hidden="true" />
         </a>
 
+        <BookingAward
+          variant="hero"
+          copy={copy.award}
+          dictionary={dictionary.award}
+        />
+
         <div className="hero__badge">
-          <span>Až</span>
+          <span>{copy.hero.badgePrefix}</span>
           <strong>{accommodation.capacity}</strong>
-          <span>hostů</span>
+          <span>{copy.hero.badgeSuffix}</span>
           <ArrowUpRight aria-hidden="true" size={16} />
         </div>
       </div>

@@ -8,23 +8,20 @@ export const rateType = defineType({
     defineField({
       name: "title",
       title: "Název období",
-      type: "string",
+      type: "localeString",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "price",
       title: "Cena",
       type: "string",
+      description:
+        "Stejná ve všech jazycích, aby se částky nikdy nerozešly. Například „55 000 Kč“.",
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: "unit", title: "Jednotka", type: "string" }),
-    defineField({ name: "dateRange", title: "Termín", type: "string" }),
-    defineField({
-      name: "note",
-      title: "Poznámka",
-      type: "text",
-      rows: 2,
-    }),
+    defineField({ name: "unit", title: "Jednotka", type: "localeString" }),
+    defineField({ name: "dateRange", title: "Termín", type: "localeString" }),
+    defineField({ name: "note", title: "Poznámka", type: "localeText" }),
     defineField({
       name: "featured",
       title: "Zvýraznit",
@@ -45,6 +42,6 @@ export const rateType = defineType({
     }),
   ],
   preview: {
-    select: { title: "title", subtitle: "price" },
+    select: { title: "title.cs", subtitle: "price" },
   },
 });

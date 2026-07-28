@@ -8,15 +8,18 @@ export const tripTipType = defineType({
     defineField({
       name: "title",
       title: "Název",
-      type: "string",
+      type: "localeString",
       validation: (rule) => rule.required(),
     }),
-    defineField({ name: "distance", title: "Vzdálenost", type: "string" }),
+    defineField({
+      name: "distance",
+      title: "Vzdálenost",
+      type: "localeString",
+    }),
     defineField({
       name: "description",
       title: "Popis",
-      type: "text",
-      rows: 3,
+      type: "localeText",
     }),
     defineField({ name: "href", title: "Odkaz", type: "url" }),
     defineField({
@@ -27,6 +30,6 @@ export const tripTipType = defineType({
     }),
   ],
   preview: {
-    select: { title: "title", subtitle: "distance" },
+    select: { title: "title.cs", subtitle: "distance.cs" },
   },
 });
