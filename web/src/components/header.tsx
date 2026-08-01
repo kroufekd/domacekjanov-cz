@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Brand } from "@/components/brand";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { useHeaderScroll } from "@/hooks/use-header-scroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionary";
 import type { SiteCopy } from "@/types/content";
@@ -18,7 +19,7 @@ type HeaderProps = {
 
 export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { solid, hidden, hold } = useHeaderScroll({ locked: open });
 
   const navigation = useMemo(
     () => [
@@ -31,13 +32,6 @@ export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
     ],
     [copy.nav],
   );
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -55,13 +49,19 @@ export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
     };
   }, [open]);
 
+  const classNames = [
+    "site-header",
+    solid || open ? "site-header--scrolled" : "",
+    hidden ? "site-header--hidden" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <header
-      className={`site-header ${scrolled || open ? "site-header--scrolled" : ""}`}
-    >
+    <header className={classNames}>
       <div className="site-header__inner">
         <a href="#nahoru" aria-label={dictionary.backToTop}>
-          <Brand light={!scrolled && !open} />
+          <Brand light={!solid && !open} />
         </a>
 
         <nav
@@ -69,7 +69,7 @@ export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
           className="site-header__desktop-nav"
         >
           {navigation.map((item) => (
-            <a key={item.href} href={item.href}>
+            <a key={item.href} href={item.href} onClick={hold}>
               {item.label}
             </a>
           ))}
@@ -105,7 +105,10 @@ export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
               key={item.href}
               href={item.href}
               tabIndex={open ? 0 : -1}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                hold();
+              }}
             >
               {item.label}
             </a>

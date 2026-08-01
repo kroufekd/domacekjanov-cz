@@ -288,7 +288,9 @@ h3 em {
     height 250ms ease,
     background 250ms ease,
     color 250ms ease,
-    box-shadow 250ms ease;
+    box-shadow 250ms ease,
+    transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .site-header--scrolled {
@@ -297,6 +299,12 @@ h3 em {
   box-shadow: 0 8px 30px rgba(20, 53, 34, 0.08);
   color: var(--forest);
   backdrop-filter: blur(18px);
+}
+
+/* Reading downwards - the bar steps aside until the user scrolls back up. */
+.site-header--hidden {
+  box-shadow: none;
+  transform: translateY(-100%);
 }
 
 .site-header__inner {
@@ -3288,6 +3296,11 @@ h3 em {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0ms !important;
+  }
+
+  /* Without the slide it would just blink away - keep the bar put instead. */
+  .site-header--hidden {
+    transform: none;
   }
 
   .hero {
