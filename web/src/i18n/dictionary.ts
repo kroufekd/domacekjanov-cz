@@ -29,6 +29,10 @@ export type Dictionary = {
     previous: string;
     next: string;
   };
+  /** Hero corner plates. `{count}` is the sleeping capacity of the house. */
+  hero: {
+    capacityLink: string;
+  };
   /** Booking.com award. `{year}` and `{score}` are filled per certificate. */
   award: {
     open: string;

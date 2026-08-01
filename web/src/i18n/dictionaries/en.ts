@@ -21,6 +21,9 @@ export const en: Dictionary = {
     previous: "Previous photo",
     next: "Next photo",
   },
+  hero: {
+    capacityLink: "Sleeps up to {count} guests – see the rooms and amenities",
+  },
   award: {
     open: "Show the Booking.com Traveller Review Awards {year} certificate",
     viewer: "Booking.com award",

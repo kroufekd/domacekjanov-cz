@@ -36,6 +36,16 @@ test("starts Matterport only after user interaction", async ({ page }) => {
   await expect(page.locator('iframe[title="3D prohlídka Domečku Janov"]')).toHaveCount(1);
 });
 
+test("sends the capacity plate to the room list", async ({ page }) => {
+  await page.goto("/");
+
+  const plate = page.getByRole("link", { name: /zobrazit pokoje a vybavení/i });
+  await expect(plate).toHaveAttribute("href", "#vybaveni");
+
+  await plate.click();
+  await expect(page.locator("#vybaveni")).toBeInViewport();
+});
+
 test("links availability to the e-chalupy listing", async ({ page }) => {
   await page.goto("/#cenik");
   await page.waitForTimeout(300);

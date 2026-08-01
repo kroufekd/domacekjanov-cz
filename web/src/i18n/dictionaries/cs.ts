@@ -21,6 +21,9 @@ export const cs: Dictionary = {
     previous: "Předchozí fotografie",
     next: "Další fotografie",
   },
+  hero: {
+    capacityLink: "Až {count} hostů – zobrazit pokoje a vybavení",
+  },
   award: {
     open: "Zobrazit certifikát Booking.com Traveller Review Awards {year}",
     viewer: "Ocenění Booking.com",
