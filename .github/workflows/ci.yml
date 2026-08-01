@@ -32,6 +32,11 @@ jobs:
           node-version: 22
           cache: npm
 
+      # Testy prochází nad oběma zdroji, takže zelené CI samo o sobě neprozradí,
+      # že se proměnná ztratila. Tenhle krok ano.
+      - name: Ověřit, že se nečte z produkčního CMS
+        run: test "$CONTENT_SOURCE" = fallback
+
       - name: Install dependencies
         run: npm ci
 
@@ -58,6 +63,9 @@ jobs:
         with:
           node-version: 22
           cache: npm
+
+      - name: Ověřit, že se nečte z produkčního CMS
+        run: test "$CONTENT_SOURCE" = fallback
 
       - name: Install dependencies
         run: npm ci
