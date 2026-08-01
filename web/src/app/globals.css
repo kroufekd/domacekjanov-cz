@@ -1124,6 +1124,19 @@ h3 em {
   border-radius: 34px 170px 34px 150px;
 }
 
+/* The room photos are stacked so hovering cross-fades instead of swapping in a
+   still-loading <img>. */
+.rooms-showcase__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.rooms-showcase__slide.is-active {
+  opacity: 1;
+}
+
 .rooms-list {
   border-top: 1px solid var(--line);
 }
@@ -1131,6 +1144,11 @@ h3 em {
 .rooms-list article {
   padding: 26px 0;
   border-bottom: 1px solid var(--line);
+  transition: color 220ms ease;
+}
+
+.rooms-list article.is-active {
+  color: var(--forest);
 }
 
 .rooms-list h3 {
