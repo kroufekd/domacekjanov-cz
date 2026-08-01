@@ -563,8 +563,13 @@ h3 em {
   --hero-blur: 3px;
   --hero-veil-floor: 0.1;
 
-  /* Corner plates. One size keeps the award stacked flush on the capacity badge. */
+  /* Corner plates. One size keeps the award stacked flush on the capacity badge,
+     and one set of type/spacing tokens keeps the two of them on the same grid. */
   --hero-badge-size: 174px;
+  --hero-plate-inset: 22px;
+  --hero-plate-gap: 12px;
+  --hero-plate-numeral: 2.9rem;
+  --hero-plate-label: 0.6rem;
 
   /* Bands uncovered around the shrunken photo. hero.tsx measures the height. */
   --hero-sticky-height: max(100vh, 650px);
@@ -756,69 +761,97 @@ h3 em {
   animation: scroll-pulse 1.8s ease-in-out infinite;
 }
 
-.hero__badge {
+/* The two corner plates share one grid, so the label / numeral / caption of both
+   land on the same rhythm. The rows are spaced by an explicit gap instead of by
+   whatever half-leading the display face adds around the numeral - that is what
+   used to push the caption tight under "9,5" while the label floated away. */
+.hero__badge,
+.hero-award {
   position: absolute;
   z-index: 2;
   right: 0;
-  bottom: 0;
   display: grid;
   width: var(--hero-badge-size);
   height: var(--hero-badge-size);
-  place-content: center;
-  padding: 20px;
-  /* Square while the award plate sits on top of it - that plate carries the
-     rounded corner for the pair. The radius comes back below 880px, where the
-     award steps aside and this badge stands alone again. */
-  border-radius: 0;
-  background: var(--terracotta);
+  align-content: center;
+  justify-items: center;
+  gap: var(--hero-plate-gap);
+  /* Narrower on the sides: the corner marks need the full inset, but the German
+     captions ("AUSZEICHNUNG 2025") run nearly the whole width of the plate. */
+  padding: var(--hero-plate-inset) calc(var(--hero-plate-inset) - 8px);
+  border: 0;
   color: var(--white);
   opacity: var(--hero-badge-opacity);
+  /* Faded out means gone: both plates are real links. */
+  pointer-events: var(--hero-badge-events);
   text-align: center;
 }
 
-.hero__badge span {
-  font-size: 0.6rem;
+.hero__badge span,
+.hero-award span {
+  font-size: var(--hero-plate-label);
   font-weight: 750;
   letter-spacing: 0.1em;
-  line-height: 1.3;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
-.hero__badge strong {
+/* Playfair defaults to old-style figures, where "1" is short and "9" hangs below
+   the baseline - a lopsided block whatever the leading. Lining figures put every
+   digit on one cap-height band, so "9,5" and any capacity read as one stat. The
+   negative margins then trim the line box down to that band; without them the
+   font's own leading pushes the caption tight under the numeral. */
+.hero__badge strong,
+.hero-award strong {
   font-family: var(--font-display), Georgia, serif;
-  font-size: 2.8rem;
+  font-size: var(--hero-plate-numeral);
+  font-variant-numeric: lining-nums;
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
-  line-height: 0.95;
+  line-height: 1;
+  margin-block: -0.16em -0.04em;
 }
 
-.hero__badge svg {
+/* Both corner marks sit in the same spot, level with the plate padding. */
+.hero__badge > svg,
+.hero-award__expand {
   position: absolute;
-  top: 25px;
-  right: 24px;
+  top: var(--hero-plate-inset);
+  right: var(--hero-plate-inset);
+  transition: transform 220ms ease;
+}
+
+/* The shared focus ring is terracotta and would disappear on these plates. */
+.hero__badge:focus-visible,
+.hero-award:focus-visible {
+  outline-color: var(--white);
+}
+
+.hero__badge {
+  bottom: 0;
+  /* Square while the award plate sits on top of it - that plate carries the
+     rounded corner for the pair. The radius comes back below 1240px, where the
+     award steps aside and this badge stands alone again. */
+  border-radius: 0;
+  background: var(--terracotta);
+  transition: background 220ms ease;
+}
+
+.hero__badge:hover {
+  background: #d06d59;
+}
+
+.hero__badge:hover > svg {
+  transform: translate(3px, -3px);
 }
 
 /* Stacks flush on top of .hero__badge, so the two plates read as one column and
    share a single rounded corner. Booking's own blue makes the score read as a rating. */
 .hero-award {
-  position: absolute;
-  z-index: 2;
-  right: 0;
   bottom: var(--hero-badge-size);
-  display: grid;
-  width: var(--hero-badge-size);
-  height: var(--hero-badge-size);
-  place-content: center;
-  padding: 20px;
-  border: 0;
   border-radius: 70px 0 0 0;
   background: #1668e3;
-  color: var(--white);
   cursor: zoom-in;
-  opacity: var(--hero-badge-opacity);
-  /* Faded out means gone: unlike its twin, this plate is a real button. */
-  pointer-events: var(--hero-badge-events);
-  text-align: center;
   transition: background 220ms ease, border-radius 220ms ease;
 }
 
@@ -826,31 +859,6 @@ h3 em {
 .hero-award:hover {
   border-radius: 96px 0 0 0;
   background: #1c7bf5;
-}
-
-.hero-award span {
-  font-size: 0.6rem;
-  font-weight: 750;
-  letter-spacing: 0.1em;
-  line-height: 1.3;
-  text-transform: uppercase;
-}
-
-.hero-award strong {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 2.8rem;
-  font-weight: var(--display-weight);
-  letter-spacing: var(--display-tracking);
-  /* Looser than the capacity badge: "9,5" has a descender on the comma, and at
-     0.95 it clipped into the line below. */
-  line-height: 1.24;
-}
-
-.hero-award__expand {
-  position: absolute;
-  top: 25px;
-  right: 24px;
-  transition: transform 220ms ease;
 }
 
 .hero-award:hover .hero-award__expand {
@@ -2724,14 +2732,13 @@ h3 em {
 
   .hero {
     --hero-badge-size: 138px;
+    --hero-plate-inset: 18px;
+    --hero-plate-gap: 10px;
+    --hero-plate-numeral: 2.25rem;
   }
 
   .hero__badge {
     border-radius: 52px 0 0;
-  }
-
-  .hero__badge strong {
-    font-size: 2.2rem;
   }
 
   .hero__scroll {
@@ -2915,25 +2922,18 @@ h3 em {
 
   .hero {
     --hero-badge-size: 112px;
+    --hero-plate-inset: 14px;
+    --hero-plate-gap: 8px;
+    --hero-plate-numeral: 1.85rem;
+    --hero-plate-label: 0.48rem;
   }
 
   .hero__badge {
     bottom: 62px;
-    padding: 12px;
     border-radius: 42px 0 0;
   }
 
-  .hero__badge strong {
-    font-size: 1.85rem;
-  }
-
-  .hero__badge span {
-    font-size: 0.48rem;
-  }
-
-  .hero__badge svg {
-    top: 16px;
-    right: 14px;
+  .hero__badge > svg {
     width: 13px;
   }
 

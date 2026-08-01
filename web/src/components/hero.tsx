@@ -6,6 +6,7 @@ import { useEffect, useRef } from "react";
 
 import { BookingAward } from "@/components/booking-award";
 import type { Dictionary } from "@/i18n/dictionary";
+import { formatTemplate } from "@/lib/format";
 import type { Accommodation, SiteCopy, SiteSettings } from "@/types/content";
 
 type HeroProps = {
@@ -130,7 +131,7 @@ export function Hero({ settings, accommodation, copy, dictionary }: HeroProps) {
           TIMING.contentFade,
         ).toString(),
         "--hero-badge-opacity": badgeOpacity.toString(),
-        // The award plate is a button, so a faded badge has to stop taking clicks.
+        // Both corner plates are interactive, so a faded pair has to stop taking clicks.
         "--hero-badge-events": badgeOpacity < 0.05 ? "none" : "auto",
         "--hero-scroll-opacity": clamp01(
           1 - progress / TIMING.scrollHintEnd,
@@ -218,12 +219,20 @@ export function Hero({ settings, accommodation, copy, dictionary }: HeroProps) {
           dictionary={dictionary.award}
         />
 
-        <div className="hero__badge">
+        {/* The corner arrow is a promise, so the plate jumps to the room list -
+            the section that explains where those guests actually sleep. */}
+        <a
+          className="hero__badge"
+          href="#vybaveni"
+          aria-label={formatTemplate(dictionary.hero.capacityLink, {
+            count: accommodation.capacity,
+          })}
+        >
           <span>{copy.hero.badgePrefix}</span>
           <strong>{accommodation.capacity}</strong>
           <span>{copy.hero.badgeSuffix}</span>
           <ArrowUpRight aria-hidden="true" size={16} />
-        </div>
+        </a>
       </div>
     </section>
   );
