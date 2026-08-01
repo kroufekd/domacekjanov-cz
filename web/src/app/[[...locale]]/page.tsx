@@ -28,6 +28,7 @@ import { Gallery } from "@/components/gallery";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { MatterportTour } from "@/components/matterport-tour";
+import { RoomsShowcase } from "@/components/rooms-showcase";
 import { HeadingText, SectionHeading } from "@/components/section-heading";
 import { TripMap } from "@/components/trip-map";
 import {
@@ -243,24 +244,11 @@ export default async function HomePage({ params }: HomePageProps) {
               description={copy.rooms.description}
             />
 
-            <div className="rooms-showcase">
-              <figure className="rooms-showcase__image">
-                <Image
-                  src={localAsset("/images/bedroom-double.jpg")}
-                  alt={dictionary.alt.roomsShowcase}
-                  fill
-                  sizes="(max-width: 900px) 94vw, 52vw"
-                />
-              </figure>
-              <div className="rooms-list">
-                {accommodation.rooms.map((room) => (
-                  <article key={room.title}>
-                    <h3>{room.title}</h3>
-                    <p>{room.description}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
+            <RoomsShowcase
+              rooms={accommodation.rooms}
+              gallery={gallery}
+              fallbackAlt={dictionary.alt.roomsShowcase}
+            />
 
             <div className="amenities-grid">
               {accommodation.amenities.map((group, index) => {
