@@ -211,6 +211,30 @@ npm run build
 npm run test:e2e --workspace web
 ```
 
+Workflow `.github/workflows/ci.yml` pouští to samé na každém PR i na pushi do
+`master`, ve dvou jobech (typy/lint/build a Playwright).
+
+### CONTENT_SOURCE
+
+Kde se obsah bere:
+
+| Hodnota | Chování |
+| --- | --- |
+| nenastaveno, `sanity` | čte se ze Sanity, fallback jen když dotaz selže |
+| `fallback` | Sanity se přeskočí, obsah jde výhradně z repa |
+
+CI běží s `CONTENT_SOURCE=fallback`, aby si nesahalo na živý dataset klienta -
+`web/src/sanity/env.ts` má project ID natvrdo jako fallback, takže bez toho by
+build tahal obsah z produkčního CMS a editace ve Studiu by mohla shodit testy.
+Statický export (`STATIC_EXPORT=true`) čte z repa vždy. Jiná hodnota než
+`sanity` nebo `fallback` build shodí, ať se tiše nečte z produkce.
+
+Stejné přepnutí lze pustit lokálně:
+
+```bash
+CONTENT_SOURCE=fallback npm run test:e2e --workspace web
+```
+
 E2E testy si samy sestaví a spustí web na portu `3100`. Pokud je port obsazený,
 předejte jiný přes `E2E_PORT`:
 

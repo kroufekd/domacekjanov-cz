@@ -12,6 +12,12 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# CI si nesahá na živý dataset klienta. `web/src/sanity/env.ts` má project ID
+# natvrdo jako fallback, takže bez tohohle by build tahal obsah z produkčního
+# CMS a klientova editace ve Studiu by mohla shodit testy.
+env:
+  CONTENT_SOURCE: fallback
+
 jobs:
   quality:
     name: Typy, lint a build
