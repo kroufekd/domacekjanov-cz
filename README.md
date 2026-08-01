@@ -59,9 +59,13 @@ npm run seed --workspace studio
 ```
 
 Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu. Nahraje
-všechny tři jazyky přímo z `web/src/lib/content/text/*.json`, takže Studio od
-začátku obsahuje kompletní překlady. Nová letecká fotografie se později vymění
-v dokumentu **Nastavení webu → Hlavní fotografie**.
+všechny tři jazyky přímo z `web/src/lib/content/text/*.json` a texty výletů
+z `web/src/data/trip-text/*.json`, takže Studio od začátku obsahuje kompletní
+překlady. Nová letecká fotografie se později vymění v dokumentu **Nastavení webu
+→ Hlavní fotografie**.
+
+Seed také smaže dokumenty starého typu `tripTip` (sekce „Tipy na výlet“, kterou
+web přestal vypisovat po nasazení mapy) - jejich ID se kryjí s novými výlety.
 
 ### Struktura Studia
 
@@ -72,7 +76,7 @@ V levém sloupci jsou tři samostatné dokumenty a tři seznamy:
 | Nastavení webu | název, kontakty, odkazy, úvodní obrazovka, SEO |
 | Texty webu | všechny popisky rozhraní - menu, tlačítka, nadpisy sekcí, patička |
 | Domeček a vybavení | úvodní odstavce, čísla, pokoje, skupiny vybavení |
-| Fotografie / Ceny / Tipy na výlet | běžné seznamy dokumentů |
+| Fotografie / Ceny / Výlety na mapě | běžné seznamy dokumentů |
 
 Každé přeložitelné pole je typu `localeString` nebo `localeText` a vykresluje se
 jako tři sloupce vedle sebe - 🇨🇿 čeština, 🇩🇪 němčina, 🇬🇧 angličtina. Jedno pole
@@ -114,6 +118,27 @@ vrací `403 Forbidden`. Veřejný klíč omezte na doménu webu.
 
 Zdroj dat o výletech je `web/src/data/trips.ts` - po jeho úpravě je potřeba
 `npm run build:routes` spustit znovu, jinak by se rozešly značky s trasami.
+
+### Texty výletů ve Studiu
+
+Geometrie zůstává v kódu, **názvy, výchozí body, popisy a upozornění** ale řídí
+Studio - seznam **Výlety na mapě**. Dokument se s bodem na mapě páruje polem
+`Id výletu`, které se po uložení zamkne; id, které v `trips.ts` neexistuje, web
+přeskočí a napíše to do serverového logu.
+
+| Situace ve Studiu | Co uvidí host |
+| --- | --- |
+| pole vyplněné | text ze Studia |
+| pole prázdné | vestavěný překlad z `web/src/data/trip-text/*.json` |
+| dokument smazaný | vestavěný překlad ve všech jazycích |
+
+Výjimkou je **Upozornění**: prázdné pole uzavírku z karty odstraní, aby po
+znovuotevření stezky nešlo varování jen tak zaseknout. Proto Studio hlídá, že se
+vyplní ve všech třech jazycích naráz - jinak by jeden z hostů vyrazil na
+uzavřenou trasu bez varování.
+
+Změna textu se projeví do minuty (`revalidate: 60`) a **nevyžaduje nový build
+tras ani klíč k Mapy.com**.
 
 ## Coolify
 

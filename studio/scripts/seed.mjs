@@ -22,14 +22,25 @@ const client = createClient({
 });
 
 const TEXT_DIRECTORY = resolve("../web/src/lib/content/text");
+const TRIP_TEXT_DIRECTORY = resolve("../web/src/data/trip-text");
 const IMAGE_DIRECTORY = resolve("../web/public/images");
 
-const readText = (locale) =>
-  JSON.parse(readFileSync(resolve(TEXT_DIRECTORY, `${locale}.json`), "utf8"));
+const readJson = (directory, locale) =>
+  JSON.parse(readFileSync(resolve(directory, `${locale}.json`), "utf8"));
+
+const readText = (locale) => readJson(TEXT_DIRECTORY, locale);
+const readTripText = (locale) => readJson(TRIP_TEXT_DIRECTORY, locale);
 
 const texts = { cs: readText("cs"), de: readText("de"), en: readText("en") };
 const localeIds = Object.keys(texts);
 const czech = texts.cs;
+
+/** Názvy a popisy cílů na mapě; geometrie zůstává v kódu webu. */
+const tripTexts = {
+  cs: readTripText("cs"),
+  de: readTripText("de"),
+  en: readTripText("en"),
+};
 
 /** Builds one `{ cs, de, en }` value out of the same field in each language. */
 const localized = (type, pick) =>
@@ -111,12 +122,17 @@ const ratePrices = [
   ["weekend", "25 000 Kč", false],
 ];
 
-const tripLinks = [
-  ["janov", "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna"],
-  ["hrensko", "https://www.hrensko.cz/inpage/soutesky/"],
-  ["pravcicka", "https://www.pbrana.cz/"],
-  ["jetrichovice", "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky"],
-];
+/**
+ * Jeden `{cs, de, en}` objekt z textů výletů. Jazyk bez hodnoty se vynechá, ať
+ * z chybějícího upozornění nevznikne prázdný řetězec, který by web bral vážně.
+ */
+const localizedTrip = (type, pick) =>
+  Object.fromEntries([
+    ["_type", type],
+    ...localeIds
+      .map((locale) => [locale, pick(tripTexts[locale])])
+      .filter(([, value]) => typeof value === "string" && value.trim()),
+  ]);
 
 async function assetFor(filename) {
   const existing = await client.fetch(
@@ -228,15 +244,20 @@ const rates = ratePrices.map(([id, price, featured], order) => ({
   order,
 }));
 
-const tips = tripLinks.map(([id, href], order) => ({
-  _id: `trip-${id}`,
-  _type: "tripTip",
-  title: lstr((text) => text.tripTips[id].title),
-  distance: lstr((text) => text.tripTips[id].distance),
-  description: ltext((text) => text.tripTips[id].description),
-  href,
-  order,
-}));
+const trips = Object.keys(tripTexts.cs).map((id) => {
+  const note = localizedTrip("localeText", (text) => text[id]?.note);
+
+  return {
+    _id: `trip-${id}`,
+    _type: "trip",
+    tripId: id,
+    title: localizedTrip("localeString", (text) => text[id]?.title),
+    startName: localizedTrip("localeString", (text) => text[id]?.startName),
+    summary: localizedTrip("localeText", (text) => text[id]?.summary),
+    // Bez uzavírky se pole vynechá, ať Studio neukazuje prázdné upozornění.
+    ...(Object.keys(note).length > 1 ? { note } : {}),
+  };
+});
 
 const gallery = photos.map(([filename, id, category, featured], order) => ({
   _id: `gallery-${id}`,
@@ -252,13 +273,26 @@ const gallery = photos.map(([filename, id, category, featured], order) => ({
   order,
 }));
 
+/**
+ * Starý typ `tripTip` nahradily texty výletů na mapě. Dokumenty už nemají ve
+ * Studiu schéma ani záložku, a jejich id se navíc kryjí s novými - proto mizí
+ * dřív, než se začne zapisovat.
+ */
+const legacyTips = await client.fetch(`*[_type == "tripTip"]._id`);
+if (legacyTips.length > 0) {
+  console.log(`Mažu ${legacyTips.length} starých tipů na výlet…`);
+  for (const id of legacyTips) {
+    await client.delete(id);
+  }
+}
+
 console.log("Zapisuji dokumenty…");
 const documents = [
   settings,
   siteCopy,
   accommodation,
   ...rates,
-  ...tips,
+  ...trips,
   ...gallery,
 ];
 for (const document of documents) {

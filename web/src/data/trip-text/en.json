@@ -1,0 +1,109 @@
+{
+  "rozhledna-janov": {
+    "title": "Janov Lookout Tower",
+    "startName": "Domeček Janov",
+    "summary": "The steel tower from 2013 stands right in the village. A hundred and sixty-two steps lead to a 360° view over Bohemian and Saxon Switzerland."
+  },
+  "bunkry-janov": {
+    "title": "Janov Bunkers",
+    "startName": "Domeček Janov",
+    "summary": "A loop past the pre-war border bunkers of the 1930s. Forest tracks lead from the village to several well-preserved pillboxes with information boards."
+  },
+  "hrensko": {
+    "title": "Hřensko",
+    "startName": "Domeček Janov",
+    "summary": "The lowest-lying village in Czechia and the gateway to the national park. Walks to the Kamenice gorges and to Pravčická brána start here."
+  },
+  "ruzovsky-vrch": {
+    "title": "Růžovský vrch Hill",
+    "startName": "Domeček Janov",
+    "summary": "A basalt summit at 619 m with cuttings that open onto the wider country. The yellow trail from Hřensko to Srbská Kamenice leads up from Janov."
+  },
+  "pravcicka-brana": {
+    "title": "Pravčická brána Arch",
+    "startName": "Mezní Louka",
+    "summary": "The largest sandstone arch in Europe - 26.5 metres high. The Falcon's Nest viewing terrace and its restaurant sit right beneath it.",
+    "note": "The red Gabriela's Path has stayed closed since the 2022 fire, so the route detours via Tři prameny. Check the current status on npcs.cz before you set out."
+  },
+  "divoka-soutesky": {
+    "title": "Wild Gorge (Divoká soutěska)",
+    "startName": "Hřensko, gorge entrance",
+    "summary": "A punt ride through the Kamenice canyon between walls up to 150 metres high. The boats run from Easter to the end of October.",
+    "note": "The route passes through Edmund's Gorge, which closes at times for rock stabilisation. You will find the current status on soutesky.cz."
+  },
+  "mezni-louka": {
+    "title": "Mezní Louka",
+    "startName": "Hřensko",
+    "summary": "A hamlet in the middle of the park and the main junction of trails. A roomy car park, a bus from Děčín, and waymarks heading off in every direction."
+  },
+  "labska-vyhlidka": {
+    "title": "Elbe Viewpoint (Belvedere)",
+    "startName": "Bynovec",
+    "summary": "A rock terrace 130 metres above a bend in the Elbe. The Prince's Path from Bynovec is easy enough for children, and there is usually a refreshment stand at the top."
+  },
+  "rozhledna-ruzenka": {
+    "title": "Růženka Lookout Tower",
+    "startName": "Růžová",
+    "summary": "A concrete tower on Pastevní vrch whose shape recalls Kaplický's library design. It is a short walk from Růžová and entry is free."
+  },
+  "dolsky-mlyn": {
+    "title": "Dolský mlýn Mill Ruin",
+    "startName": "Vysoká Lípa",
+    "summary": "The ruin of a 16th-century mill on the bank of the Kamenice, the oldest in the park. The path drops through the river valley in the shade of the forest."
+  },
+  "mala-pravcicka-brana": {
+    "title": "Little Pravčická brána",
+    "startName": "Vysoká Lípa",
+    "summary": "The smaller sister of the famous arch, hidden deep in the forest. Yellow waymarks lead to the Pod Šaunštejnem junction, then red - no entry fee and no queues."
+  },
+  "saunstejn": {
+    "title": "Šaunštejn Rock Castle",
+    "startName": "Vysoká Lípa",
+    "summary": "A 14th-century rock castle, later a robbers' den. The final stretch climbs ladders fixed in the rock - pick another target in rain or ice."
+  },
+  "rudolfuv-kamen": {
+    "title": "Rudolfův kámen Viewpoint",
+    "startName": "Vysoká Lípa",
+    "summary": "A viewpoint on a sandstone tor at 484 metres. The climb finishes on metal ladders and steps cut into the rock."
+  },
+  "vileminina-stena": {
+    "title": "Vilemínina stěna Viewpoint",
+    "startName": "Jetřichovice",
+    "summary": "The most photogenic viewpoint of the Jetřichovice walls, perched on the edge of an almost vertical face. The gentle forest climb suits less experienced walkers."
+  },
+  "mariina-vyhlidka": {
+    "title": "Mariina vyhlídka Viewpoint",
+    "startName": "Jetřichovice",
+    "summary": "A railed rock spur with a view sweeping more than 180 degrees. The walk from Jetřichovice is moderate and ends on steps cut into the rock."
+  },
+  "falkenstejn": {
+    "title": "Falkenštejn Rock Castle",
+    "startName": "Jetřichovice",
+    "summary": "A 13th-century rock castle whose name means Falcon's Stone. The way up threads narrow clefts and staircases carved into the sandstone."
+  },
+  "trpaslici-skaly": {
+    "title": "Trpasličí skály (Dwarf Rocks)",
+    "startName": "Jetřichovice",
+    "summary": "A labyrinth of rock passages, towers and overhangs - a miniature of the great rock towns. Allow at least two hours to explore every corner."
+  },
+  "pavlinino-udoli": {
+    "title": "Pavlínino údolí Valley",
+    "startName": "Jetřichovice",
+    "summary": "The valley of the Chřibská Kamenice from Jetřichovice down to the hamlet of Všemily. Almost no climbing, so a less fit group will manage it."
+  },
+  "kyjovske-udoli": {
+    "title": "Kyjovské údolí Valley",
+    "startName": "Kyjov near Krásná Lípa",
+    "summary": "A nature trail through the Křinice valley with wooden walkways and bridges over the stream. Easy going and suitable for every age."
+  },
+  "decinsky-sneznik": {
+    "title": "Sněžník Lookout Tower",
+    "startName": "Sněžník",
+    "summary": "The oldest stone lookout tower in Bohemia, built in 1864 and 33 metres tall. From the platform the view runs from the Ore Mountains to the Krkonoše."
+  },
+  "tiske-steny": {
+    "title": "Tiské stěny Rock Town",
+    "startName": "Tisá",
+    "summary": "A rock town with a Large and a Small circuit; The Chronicles of Narnia was filmed here. The circuits inside the rocks alone take two to three hours."
+  }
+}

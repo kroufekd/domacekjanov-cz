@@ -6,7 +6,7 @@ import {
   normalizeGallery,
   normalizeRates,
   normalizeSettings,
-  normalizeTripTips,
+  normalizeTripTexts,
 } from "@/lib/content/from-sanity";
 import { sanityClient } from "@/sanity/client";
 import { hasSanityConfig } from "@/sanity/env";
@@ -16,7 +16,7 @@ import {
   ratesQuery,
   siteCopyQuery,
   siteSettingsQuery,
-  tripTipsQuery,
+  tripTextsQuery,
 } from "@/sanity/queries";
 import type { SiteContent } from "@/types/content";
 
@@ -35,14 +35,14 @@ export async function getSiteContent(locale: Locale): Promise<SiteContent> {
   }
 
   try {
-    const [settings, copy, accommodation, gallery, rates, tripTips] =
+    const [settings, copy, accommodation, gallery, rates, tripTexts] =
       await Promise.all([
         fetchDocument(siteSettingsQuery),
         fetchDocument(siteCopyQuery),
         fetchDocument(accommodationQuery),
         fetchDocument(galleryQuery),
         fetchDocument(ratesQuery),
-        fetchDocument(tripTipsQuery),
+        fetchDocument(tripTextsQuery),
       ]);
 
     return {
@@ -55,7 +55,7 @@ export async function getSiteContent(locale: Locale): Promise<SiteContent> {
       ),
       gallery: normalizeGallery(gallery, locale) ?? fallback.gallery,
       rates: normalizeRates(rates, locale) ?? fallback.rates,
-      tripTips: normalizeTripTips(tripTips, locale) ?? fallback.tripTips,
+      tripTexts: normalizeTripTexts(tripTexts, locale),
     };
   } catch {
     return fallback;

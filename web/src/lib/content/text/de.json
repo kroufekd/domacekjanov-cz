@@ -183,28 +183,6 @@
       "note": "Außerhalb der Sommersaison mindestens zwei Nächte."
     }
   },
-  "tripTips": {
-    "janov": {
-      "title": "Aussichtsturm Janov",
-      "distance": "zu Fuß vom Haus",
-      "description": "Der Turm steht direkt im Ort. Ein kurzer Spaziergang mit Blick über das Elbsandsteingebirge."
-    },
-    "hrensko": {
-      "title": "Klammen bei Hřensko",
-      "distance": "2 km",
-      "description": "Kahnfahrt durch die Schlucht der Kamenice. In der Saison früh morgens losfahren, nachmittags ist es voll."
-    },
-    "pravcicka": {
-      "title": "Prebischtor",
-      "distance": "kurze Fahrt",
-      "description": "Das größte Sandsteinfelsentor Europas. Mit dem Auto nach Hřensko oder Mezní Louka, weiter zu Fuß."
-    },
-    "jetrichovice": {
-      "title": "Aussichten von Jetřichovice",
-      "distance": "Tagesausflug",
-      "description": "Rundweg über die Marien-, Wilhelminen- und Rudolfsaussicht. Rechnet mit drei bis vier Stunden Gehzeit."
-    }
-  },
   "copy": {
     "nav": {
       "about": "Das Haus",

@@ -4,7 +4,7 @@ import { localeTypes } from "./locale";
 import { rateType } from "./rate";
 import { siteCopyType } from "./siteCopy";
 import { siteSettingsType } from "./siteSettings";
-import { tripTipType } from "./tripTip";
+import { tripType } from "./trip";
 
 export const schemaTypes = [
   ...localeTypes,
@@ -13,5 +13,5 @@ export const schemaTypes = [
   accommodationType,
   galleryItemType,
   rateType,
-  tripTipType,
+  tripType,
 ];

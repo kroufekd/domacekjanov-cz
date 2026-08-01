@@ -68,10 +68,14 @@ export const ratesQuery = `*[_type == "rate" && active != false] | order(order a
   featured
 }`;
 
-export const tripTipsQuery = `*[_type == "tripTip"] | order(order asc) {
-  "id": _id,
+/**
+ * Texty cílů na mapě. Pořadí ani souřadnice odsud nechodí - ty drží
+ * `@/data/trips` a dokument se s bodem páruje přes `tripId`.
+ */
+export const tripTextsQuery = `*[_type == "trip" && defined(tripId)] {
+  tripId,
   title,
-  distance,
-  description,
-  href
+  startName,
+  summary,
+  note
 }`;

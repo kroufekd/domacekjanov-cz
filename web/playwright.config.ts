@@ -3,7 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 /** Overridable so the suite can dodge a port that is already taken locally. */
 const port = Number(process.env.E2E_PORT) || 3100;
 const baseURL = `http://127.0.0.1:${port}`;
-const unitTests = /(content-mapping|trip-text)\.spec\.ts/;
+const unitTests = /(content-mapping|trip-text|trip-studio-text)\.spec\.ts/;
 
 export default defineConfig({
   testDir: "./tests",

@@ -183,28 +183,6 @@
       "note": "Outside the summer season, two nights minimum."
     }
   },
-  "tripTips": {
-    "janov": {
-      "title": "Janov lookout tower",
-      "distance": "walk from the house",
-      "description": "The tower stands right in the village. A short walk with views over the Elbe Sandstone Mountains."
-    },
-    "hrensko": {
-      "title": "Hřensko gorges",
-      "distance": "2 km",
-      "description": "A punt ride through the canyon of the Kamenice river. In season set off early - afternoons get busy."
-    },
-    "pravcicka": {
-      "title": "Pravčická brána arch",
-      "distance": "short drive",
-      "description": "The largest sandstone arch in Europe. Drive to Hřensko or Mezní Louka, then continue on foot."
-    },
-    "jetrichovice": {
-      "title": "Jetřichovice viewpoints",
-      "distance": "full-day trip",
-      "description": "A loop past the Mariina, Vilemínina and Rudolfova viewpoints. Allow three to four hours of walking."
-    }
-  },
   "copy": {
     "nav": {
       "about": "The house",

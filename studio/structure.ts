@@ -36,5 +36,5 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem("galleryItem").title("Fotografie"),
       S.documentTypeListItem("rate").title("Ceny"),
-      S.documentTypeListItem("tripTip").title("Tipy na výlet"),
+      S.documentTypeListItem("trip").title("Výlety na mapě"),
     ]);
