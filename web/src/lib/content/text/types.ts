@@ -23,7 +23,8 @@ export type LocaleContentText = {
     rooms: Array<{ title: string; description: string }>;
     amenities: Array<{ title: string; items: string[] }>;
   };
-  gallery: Record<GalleryImageId, { alt: string; caption: string }>;
+  /** `caption` only where the photo needs a label - detail shots and facts. */
+  gallery: Record<GalleryImageId, { alt: string; caption?: string }>;
   rates: Record<RateId, { title: string; unit: string; note: string }>;
   copy: SiteCopy;
 };

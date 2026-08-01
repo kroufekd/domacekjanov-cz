@@ -8,7 +8,8 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "seed": "node --env-file-if-exists=.env.local scripts/seed.mjs",
-    "sync:trips": "node --env-file-if-exists=.env.local scripts/sync-trips.mjs"
+    "sync:trips": "node --env-file-if-exists=.env.local scripts/sync-trips.mjs",
+    "sync:content": "node --env-file-if-exists=.env.local scripts/sync-content.mjs"
   },
   "dependencies": {
     "@sanity/client": "6.29.1",

@@ -125,11 +125,6 @@ export default async function HomePage({ params }: HomePageProps) {
   const { settings, accommodation, copy, gallery, rates, tripTexts } = content;
   const structuredData = buildStructuredData(content, locale, siteUrl);
 
-  // Grouping differs per language: 4 000 m² in Czech, 4.000 m² in German.
-  const gardenArea = `${new Intl.NumberFormat(
-    localeMeta[locale].htmlLang,
-  ).format(accommodation.gardenArea)} m²`;
-
   return (
     <>
       <Header
@@ -213,7 +208,7 @@ export default async function HomePage({ params }: HomePageProps) {
               />
               <div className="garden-stamp" aria-hidden="true">
                 <Trees />
-                <span>{gardenArea}</span>
+                <span>{copy.garden.stampTitle}</span>
                 <small>{copy.garden.stampNote}</small>
               </div>
             </div>

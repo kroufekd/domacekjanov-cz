@@ -18,13 +18,7 @@ type GalleryProps = {
 
 type Category = "vse" | GalleryCategory;
 
-const categoryOrder: Category[] = [
-  "vse",
-  "exterier",
-  "zahrada",
-  "spolecne",
-  "pokoje",
-];
+const categoryOrder: Category[] = ["vse", "exterier", "spolecne", "pokoje"];
 
 const VISIBLE_BY_DEFAULT = 10;
 
@@ -109,8 +103,12 @@ export function Gallery({ images, copy, actions, dictionary }: GalleryProps) {
               fill
               sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
             />
-            <span className="gallery-card__overlay">
-              <span>{item.caption || item.alt}</span>
+            <span
+              className={`gallery-card__overlay ${
+                item.caption ? "" : "gallery-card__overlay--bare"
+              }`}
+            >
+              {item.caption ? <span>{item.caption}</span> : null}
               <Expand aria-hidden="true" size={19} />
             </span>
           </button>

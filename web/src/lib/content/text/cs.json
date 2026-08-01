@@ -12,7 +12,7 @@
   "accommodation": {
     "introTitle": "Jeden velký dům pro tři až čtyři rodiny.",
     "introText": [
-      "Domeček stojí v klidné části Janova, pár minut nad Hřenskem. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+      "Domeček stojí v klidné části Janova, pár minut pod Hřenskem. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
       "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok."
     ],
     "facts": [
@@ -25,8 +25,8 @@
         "label": "ložnic"
       },
       {
-        "value": "4 000 m²",
-        "label": "oplocené zahrady"
+        "value": "Soukromí",
+        "label": "celý pozemek jen pro vás"
       },
       {
         "value": "celý rok",
@@ -90,68 +90,53 @@
   },
   "gallery": {
     "aerial-house-garden": {
-      "alt": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
-      "caption": "Domeček Janov z ptačí perspektivy"
+      "alt": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou"
     },
     "exterior-golden-hour": {
-      "alt": "Domeček Janov v podvečerním slunci pod korunou ořešáku",
-      "caption": "Podvečer na zahradě"
+      "alt": "Domeček Janov v podvečerním slunci pod korunou ořešáku"
     },
     "aerial-terrace": {
-      "alt": "Letecký pohled na terasu s vířivým sudem a zásobou dřeva",
-      "caption": "Terasa a vířivý sud shora"
+      "alt": "Letecký pohled na terasu s vířivým sudem a zásobou dřeva"
     },
     "aerial-top-down": {
-      "alt": "Pohled shora na Domeček Janov, parkování a celý pozemek",
-      "caption": "Celý pozemek i parkování z výšky"
+      "alt": "Pohled shora na Domeček Janov, parkování a celý pozemek"
     },
     "exterior-summer-meadow": {
-      "alt": "Domeček Janov z louky, rámovaný korunami stromů",
-      "caption": "Dům uprostřed zeleně"
+      "alt": "Domeček Janov z louky, rámovaný korunami stromů"
     },
     "exterior-back-lawn": {
-      "alt": "Zadní strana domu s hospodářskou částí a posezením na trávníku",
-      "caption": "Zadní průčelí a trávník"
+      "alt": "Zadní strana domu s hospodářskou částí a posezením na trávníku"
     },
     "hot-tub-terrace": {
-      "alt": "Vyhřívaný vířivý sud na dlážděné terase s výhledem do zahrady",
-      "caption": "Vyhřívaný sud přímo na terase"
+      "alt": "Vyhřívaný vířivý sud na dlážděné terase s výhledem do zahrady"
     },
     "terrace-awning": {
-      "alt": "Terasa s vysunutou markýzou, dlouhým stolem a plynovým grilem",
-      "caption": "Markýza, gril a stůl pro celou partu"
+      "alt": "Terasa s vysunutou markýzou, dlouhým stolem a plynovým grilem"
     },
     "garden-playground": {
       "alt": "Dřevěná prolézačka se skluzavkou a houpačkami na zahradě",
       "caption": "Hřiště pro děti přímo na zahradě"
     },
     "terrace-dining-long": {
-      "alt": "Dlouhý jídelní stůl na terase s muškáty v oknech",
-      "caption": "Snídaně i večeře venku"
+      "alt": "Dlouhý jídelní stůl na terase s muškáty v oknech"
     },
     "hot-tub-bubbles": {
-      "alt": "Bublající vířivý sud s výhledem na terasu a ovocný sad",
-      "caption": "Vířivka pro odpočinek po výletě"
+      "alt": "Bublající vířivý sud s výhledem na terasu a ovocný sad"
     },
     "hot-tub-sun": {
-      "alt": "Vířivý sud na terase v protisvětle letního slunce",
-      "caption": "Vířivka v letním slunci"
+      "alt": "Vířivý sud na terase v protisvětle letního slunce"
     },
     "terrace-awning-table": {
-      "alt": "Stinné posezení pod markýzou na terase",
-      "caption": "Stín markýzy i v poledním slunci"
+      "alt": "Stinné posezení pod markýzou na terase"
     },
     "terrace-grill-orchard": {
-      "alt": "Terasa s grilem a výhledem do ovocného sadu",
-      "caption": "Gril a výhled do sadu"
+      "alt": "Terasa s grilem a výhledem do ovocného sadu"
     },
     "terrace-lounge": {
-      "alt": "Terasa s jídelním stolem a lehátky u zahrady",
-      "caption": "Lehátka a stůl na sluneční straně"
+      "alt": "Terasa s jídelním stolem a lehátky u zahrady"
     },
     "terrace-garden-table": {
-      "alt": "Posezení na dlážděné terase s výhledem na zahradu",
-      "caption": "Posezení u zahrady"
+      "alt": "Posezení na dlážděné terase s výhledem na zahradu"
     },
     "hero-aerial": {
       "alt": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
@@ -163,19 +148,16 @@
     },
     "exterior-wide": {
       "alt": "Domeček a rozlehlá travnatá zahrada",
-      "caption": "4 000 m² oplocené zahrady"
+      "caption": "Prostorná oplocená zahrada"
     },
     "terrace-hot-tub": {
-      "alt": "Jižní terasa s vířivým sudem a posezením",
-      "caption": "Terasa, gril a vyhřívaný sud"
+      "alt": "Jižní terasa s vířivým sudem a posezením"
     },
     "terrace-table": {
-      "alt": "Velký jídelní stůl na terase",
-      "caption": "Jídelní stůl na terase"
+      "alt": "Velký jídelní stůl na terase"
     },
     "hot-tub": {
-      "alt": "Hosté ve vyhřívaném vířivém sudu",
-      "caption": "Vyhřívaný koupací sud"
+      "alt": "Hosté ve vyhřívaném vířivém sudu"
     },
     "kitchen-dining": {
       "alt": "Prostorná kuchyň s jídelnou a kamny",
@@ -190,12 +172,10 @@
       "caption": "Plně vybavená kuchyň"
     },
     "kitchen-island": {
-      "alt": "Kuchyň s velkým pracovním ostrůvkem",
-      "caption": "Kuchyňský ostrůvek"
+      "alt": "Kuchyň s velkým pracovním ostrůvkem"
     },
     "kitchen-detail": {
-      "alt": "Kuchyňské vybavení v Domečku Janov",
-      "caption": "Vybavení kuchyně"
+      "alt": "Kuchyňské vybavení v Domečku Janov"
     },
     "bedroom-double": {
       "alt": "Ložnice s manželskou postelí",
@@ -206,8 +186,7 @@
       "caption": "Ložnice v patře"
     },
     "bedroom-bunk-red": {
-      "alt": "Pokoj s palandou a červenými detaily",
-      "caption": "Pokoj s palandami"
+      "alt": "Pokoj s palandou a červenými detaily"
     },
     "bedroom-bunk": {
       "alt": "Prostorný pokoj s palandou",
@@ -283,9 +262,10 @@
     },
     "garden": {
       "eyebrow": "Zahrada a terasa",
-      "title": "Čtyři tisíce metrů|oplocené zahrady.",
-      "description": "Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček - a protože je pozemek celý oplocený, děti klidně pustíte z dohledu.",
-      "stampNote": "jen pro vás",
+      "title": "Prostorná zahrada|jen pro vás.",
+      "description": "Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček - a protože je pozemek celý oplocený, děti klidně pustíte z dohledu a soukromí máte i u vířivky.",
+      "stampTitle": "Soukromí",
+      "stampNote": "oplocený pozemek",
       "cardTitle": "Vířivý sud",
       "cardText": "Vyhřívaný koupací sud na terase. Když ho budete chtít, připravíme ho na celý pobyt.",
       "cardPrice": "2 000 Kč / pobyt"
@@ -310,7 +290,6 @@
       "categories": {
         "vse": "Vše",
         "exterier": "Exteriér",
-        "zahrada": "Zahrada & wellness",
         "spolecne": "Společné prostory",
         "pokoje": "Pokoje"
       },
@@ -325,7 +304,7 @@
     "trips": {
       "eyebrow": "Výlety po okolí",
       "title": "Každý den|jiným směrem.",
-      "description": "Janov leží na okraji národního parku České Švýcarsko, dva kilometry nad Hřenskem. Soutěsky, skalní vyhlídky i Pravčická brána jsou na dosah pěšky nebo pár minut autem."
+      "description": "Janov leží na okraji národního parku České Švýcarsko, dva kilometry od Hřenska. Soutěsky, skalní vyhlídky i Pravčická brána jsou na dosah pěšky nebo pár minut autem."
     },
     "pricing": {
       "eyebrow": "Ceny & volné termíny",

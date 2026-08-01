@@ -5,7 +5,8 @@ test("renders the complete landing page and contact actions", async ({ page }) =
 
   await expect(page.locator("html")).toHaveAttribute("lang", "cs");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/\S/);
-  await expect(page.getByText("4 000 m²", { exact: true }).first()).toBeVisible();
+  // Rozlohu zahrady zmiňuje jen hero, dál už text mluví o soukromí a prostoru.
+  await expect(page.getByText(/4 000 m²/).first()).toBeVisible();
   await expect(
     page.locator('a[href="tel:+420777181920"]:visible').first(),
   ).toBeVisible();
