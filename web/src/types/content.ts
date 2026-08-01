@@ -1,10 +1,6 @@
 import type { TripTextOverrides } from "@/types/trips";
 
-export type GalleryCategory =
-  | "exterier"
-  | "zahrada"
-  | "spolecne"
-  | "pokoje";
+export type GalleryCategory = "exterier" | "spolecne" | "pokoje";
 
 export type MediaImage = {
   id: string;
@@ -111,6 +107,7 @@ export type SiteCopy = {
     noteRest: string;
   };
   garden: SectionCopy & {
+    stampTitle: string;
     stampNote: string;
     cardTitle: string;
     cardText: string;

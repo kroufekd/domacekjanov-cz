@@ -129,6 +129,7 @@ export const siteCopyType = defineType({
     }),
     section("garden", "Sekce Zahrada a terasa", "sections", {
       extra: [
+        str("stampTitle", "Nadpis v razítku"),
         str("stampNote", "Text v razítku"),
         str("cardTitle", "Nadpis kartičky"),
         txt("cardText", "Text kartičky"),
@@ -149,7 +150,6 @@ export const siteCopyType = defineType({
           fields: [
             str("vse", "Vše"),
             str("exterier", "Exteriér"),
-            str("zahrada", "Zahrada a wellness"),
             str("spolecne", "Společné prostory"),
             str("pokoje", "Pokoje"),
           ],

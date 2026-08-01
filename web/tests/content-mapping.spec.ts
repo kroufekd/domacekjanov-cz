@@ -182,6 +182,11 @@ test("drops photos and rates that have no alt or title in the language", () => {
 });
 
 test("ships a complete translation for every language", () => {
+  // Popisek je volitelný, ale fotka ho má mít buď ve všech jazycích, nebo v žádném.
+  const captioned = fallbackContent.cs.gallery
+    .filter((image) => image.caption)
+    .map((image) => image.id);
+
   for (const locale of ["cs", "de", "en"] as const) {
     const content = fallbackContent[locale];
     expect(content.gallery).toHaveLength(35);
@@ -190,7 +195,12 @@ test("ships a complete translation for every language", () => {
     expect(content.copy.nav.pricing).toMatch(/\S/);
     for (const image of content.gallery) {
       expect(image.alt).toMatch(/\S/);
-      expect(image.caption).toMatch(/\S/);
+      if (image.caption !== undefined) {
+        expect(image.caption).toMatch(/\S/);
+      }
     }
+    expect(
+      content.gallery.filter((image) => image.caption).map((image) => image.id),
+    ).toEqual(captioned);
   }
 });

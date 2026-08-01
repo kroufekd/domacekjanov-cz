@@ -46,6 +46,9 @@ const localized = (type, pick) =>
 const lstr = (pick) => localized("localeString", pick);
 const ltext = (pick) => localized("localeText", pick);
 
+/** Nepovinné pole - bez české hodnoty se do Sanity nezapíše vůbec. */
+const optionalLstr = (pick) => (pick(czech) ? lstr(pick) : undefined);
+
 const localizedArray = (type, pick) =>
   pick(czech).map((_, index) => ({
     _key: `item-${index}`,
@@ -91,9 +94,9 @@ const photos = [
   ["aerial-house-garden.jpg", "aerial-house-garden", "exterier", true],
   ["exterior-golden-hour.jpg", "exterior-golden-hour", "exterier", true],
   ["aerial-terrace.jpg", "aerial-terrace", "exterier", false],
-  ["hot-tub-terrace.jpg", "hot-tub-terrace", "zahrada", true],
-  ["terrace-awning.jpg", "terrace-awning", "zahrada", false],
-  ["garden-playground.jpg", "garden-playground", "zahrada", false],
+  ["hot-tub-terrace.jpg", "hot-tub-terrace", "exterier", true],
+  ["terrace-awning.jpg", "terrace-awning", "exterier", false],
+  ["garden-playground.jpg", "garden-playground", "exterier", false],
   ["kitchen-dining.jpg", "kitchen-dining", "spolecne", true],
   ["living-room.jpg", "living-room", "spolecne", false],
   ["kitchen.jpg", "kitchen", "spolecne", false],
@@ -104,16 +107,16 @@ const photos = [
   ["hero-aerial-summer.jpg", "hero-aerial", "exterier", false],
   ["exterior-garden.jpg", "exterior-garden", "exterier", false],
   ["exterior-wide.jpg", "exterior-wide", "exterier", false],
-  ["terrace-dining-long.jpg", "terrace-dining-long", "zahrada", false],
-  ["hot-tub-bubbles.jpg", "hot-tub-bubbles", "zahrada", false],
-  ["terrace-awning-table.jpg", "terrace-awning-table", "zahrada", false],
-  ["hot-tub-sun.jpg", "hot-tub-sun", "zahrada", false],
-  ["terrace-grill-orchard.jpg", "terrace-grill-orchard", "zahrada", false],
-  ["terrace-lounge.jpg", "terrace-lounge", "zahrada", false],
-  ["terrace-garden-table.jpg", "terrace-garden-table", "zahrada", false],
-  ["terrace-hot-tub.jpg", "terrace-hot-tub", "zahrada", false],
-  ["terrace-table.jpg", "terrace-table", "zahrada", false],
-  ["hot-tub.jpg", "hot-tub", "zahrada", false],
+  ["terrace-dining-long.jpg", "terrace-dining-long", "exterier", false],
+  ["hot-tub-bubbles.jpg", "hot-tub-bubbles", "exterier", false],
+  ["terrace-awning-table.jpg", "terrace-awning-table", "exterier", false],
+  ["hot-tub-sun.jpg", "hot-tub-sun", "exterier", false],
+  ["terrace-grill-orchard.jpg", "terrace-grill-orchard", "exterier", false],
+  ["terrace-lounge.jpg", "terrace-lounge", "exterier", false],
+  ["terrace-garden-table.jpg", "terrace-garden-table", "exterier", false],
+  ["terrace-hot-tub.jpg", "terrace-hot-tub", "exterier", false],
+  ["terrace-table.jpg", "terrace-table", "exterier", false],
+  ["hot-tub.jpg", "hot-tub", "exterier", false],
   ["kitchen-detail.jpg", "kitchen-detail", "spolecne", false],
   ["bedroom-double.jpg", "bedroom-double", "pokoje", true],
   ["bedroom-double-window.jpg", "bedroom-double-window", "pokoje", false],
@@ -252,7 +255,7 @@ const gallery = photos.map(([filename, id, category, featured], order) => ({
     asset: { _type: "reference", _ref: assetIds.get(filename) },
   },
   alt: lstr((text) => text.gallery[id].alt),
-  caption: lstr((text) => text.gallery[id].caption),
+  caption: optionalLstr((text) => text.gallery[id].caption),
   category,
   featured,
   order,

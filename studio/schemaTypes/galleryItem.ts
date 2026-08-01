@@ -31,7 +31,6 @@ export const galleryItemType = defineType({
       options: {
         list: [
           { title: "Exteriér", value: "exterier" },
-          { title: "Zahrada a wellness", value: "zahrada" },
           { title: "Společné prostory", value: "spolecne" },
           { title: "Pokoje", value: "pokoje" },
         ],

@@ -12,7 +12,7 @@
   "accommodation": {
     "introTitle": "One big house for three or four families.",
     "introText": [
-      "Domeček sits in a quiet part of Janov, a few minutes above Hřensko. It is always rented as a whole - six bedrooms, the large kitchen and dining room and the garden are yours alone.",
+      "Domeček sits in a quiet part of Janov, a few minutes below Hřensko. It is always rented as a whole - six bedrooms, the large kitchen and dining room and the garden are yours alone.",
       "Most of our guests are families with children, groups of friends, sports teams or small companies on a team-building trip. The house is open all year round."
     ],
     "facts": [
@@ -25,8 +25,8 @@
         "label": "bedrooms"
       },
       {
-        "value": "4,000 m²",
-        "label": "of fenced garden"
+        "value": "Privacy",
+        "label": "the whole plot to yourselves"
       },
       {
         "value": "all year",
@@ -90,68 +90,53 @@
   },
   "gallery": {
     "aerial-house-garden": {
-      "alt": "Aerial view of Domeček Janov with the terrace and the large summer garden",
-      "caption": "Domeček Janov from a bird's eye view"
+      "alt": "Aerial view of Domeček Janov with the terrace and the large summer garden"
     },
     "exterior-golden-hour": {
-      "alt": "Domeček Janov in the evening sun beneath a walnut tree",
-      "caption": "Golden hour in the garden"
+      "alt": "Domeček Janov in the evening sun beneath a walnut tree"
     },
     "aerial-terrace": {
-      "alt": "Aerial view of the terrace with the hot tub and the firewood store",
-      "caption": "The terrace and hot tub from above"
+      "alt": "Aerial view of the terrace with the hot tub and the firewood store"
     },
     "aerial-top-down": {
-      "alt": "Top-down view of Domeček Janov, the parking area and the whole plot",
-      "caption": "The entire plot and parking from above"
+      "alt": "Top-down view of Domeček Janov, the parking area and the whole plot"
     },
     "exterior-summer-meadow": {
-      "alt": "Domeček Janov seen from the meadow, framed by tree branches",
-      "caption": "The house surrounded by greenery"
+      "alt": "Domeček Janov seen from the meadow, framed by tree branches"
     },
     "exterior-back-lawn": {
-      "alt": "Back of the house with the utility wing and seating on the lawn",
-      "caption": "The rear facade and the lawn"
+      "alt": "Back of the house with the utility wing and seating on the lawn"
     },
     "hot-tub-terrace": {
-      "alt": "Heated hot tub on the paved terrace overlooking the garden",
-      "caption": "Heated hot tub right on the terrace"
+      "alt": "Heated hot tub on the paved terrace overlooking the garden"
     },
     "terrace-awning": {
-      "alt": "Terrace with an extended awning, a long table and a gas grill",
-      "caption": "Awning, grill and a table for the whole group"
+      "alt": "Terrace with an extended awning, a long table and a gas grill"
     },
     "garden-playground": {
       "alt": "Wooden climbing frame with a slide and swings in the garden",
       "caption": "A playground right in the garden"
     },
     "terrace-dining-long": {
-      "alt": "Long dining table on the terrace with geraniums in the windows",
-      "caption": "Breakfast and dinner outdoors"
+      "alt": "Long dining table on the terrace with geraniums in the windows"
     },
     "hot-tub-bubbles": {
-      "alt": "Bubbling hot tub overlooking the terrace and the orchard",
-      "caption": "A whirlpool to unwind after a hike"
+      "alt": "Bubbling hot tub overlooking the terrace and the orchard"
     },
     "hot-tub-sun": {
-      "alt": "Hot tub on the terrace backlit by the summer sun",
-      "caption": "The hot tub in the summer sun"
+      "alt": "Hot tub on the terrace backlit by the summer sun"
     },
     "terrace-awning-table": {
-      "alt": "Shaded seating under the awning on the terrace",
-      "caption": "Shade under the awning even at midday"
+      "alt": "Shaded seating under the awning on the terrace"
     },
     "terrace-grill-orchard": {
-      "alt": "Terrace with the grill and a view of the orchard",
-      "caption": "The grill and a view of the orchard"
+      "alt": "Terrace with the grill and a view of the orchard"
     },
     "terrace-lounge": {
-      "alt": "Terrace with a dining table and sun loungers by the garden",
-      "caption": "Loungers and a table on the sunny side"
+      "alt": "Terrace with a dining table and sun loungers by the garden"
     },
     "terrace-garden-table": {
-      "alt": "Seating on the paved terrace with a garden view",
-      "caption": "Seating by the garden"
+      "alt": "Seating on the paved terrace with a garden view"
     },
     "hero-aerial": {
       "alt": "Aerial view of Domeček Janov, the terrace and the fenced garden",
@@ -163,19 +148,16 @@
     },
     "exterior-wide": {
       "alt": "The house and its wide lawn garden",
-      "caption": "4,000 m² of fenced garden"
+      "caption": "A spacious fenced garden"
     },
     "terrace-hot-tub": {
-      "alt": "South-facing terrace with a hot tub and seating",
-      "caption": "Terrace, grill and heated hot tub"
+      "alt": "South-facing terrace with a hot tub and seating"
     },
     "terrace-table": {
-      "alt": "Large dining table on the terrace",
-      "caption": "Dining table on the terrace"
+      "alt": "Large dining table on the terrace"
     },
     "hot-tub": {
-      "alt": "Guests in the heated hot tub",
-      "caption": "Heated hot tub"
+      "alt": "Guests in the heated hot tub"
     },
     "kitchen-dining": {
       "alt": "Spacious kitchen and dining room with a stove",
@@ -190,12 +172,10 @@
       "caption": "Fully equipped kitchen"
     },
     "kitchen-island": {
-      "alt": "Kitchen with a large work island",
-      "caption": "Kitchen island"
+      "alt": "Kitchen with a large work island"
     },
     "kitchen-detail": {
-      "alt": "Kitchen equipment at Domeček Janov",
-      "caption": "Kitchen equipment"
+      "alt": "Kitchen equipment at Domeček Janov"
     },
     "bedroom-double": {
       "alt": "Bedroom with a double bed",
@@ -206,8 +186,7 @@
       "caption": "Bedroom upstairs"
     },
     "bedroom-bunk-red": {
-      "alt": "Room with a bunk bed and red details",
-      "caption": "Bunk bed room"
+      "alt": "Room with a bunk bed and red details"
     },
     "bedroom-bunk": {
       "alt": "Spacious room with a bunk bed",
@@ -283,9 +262,10 @@
     },
     "garden": {
       "eyebrow": "Garden and terrace",
-      "title": "Four thousand square metres|of fenced garden.",
-      "description": "The terrace with the grill faces south. The garden has a trampoline, a swing and a playhouse - and because the whole plot is fenced, you can let the children out of sight.",
-      "stampNote": "just for you",
+      "title": "A spacious garden|all to yourselves.",
+      "description": "The terrace with the grill faces south. The garden has a trampoline, a swing and a playhouse - and because the whole plot is fenced, you can let the children out of sight and still have the hot tub to yourselves.",
+      "stampTitle": "Privacy",
+      "stampNote": "a fenced plot",
       "cardTitle": "Hot tub",
       "cardText": "A heated hot tub on the terrace. If you want it, we will have it ready for your whole stay.",
       "cardPrice": "CZK 2,000 / stay"
@@ -310,7 +290,6 @@
       "categories": {
         "vse": "All",
         "exterier": "Exterior",
-        "zahrada": "Garden & wellness",
         "spolecne": "Shared spaces",
         "pokoje": "Rooms"
       },
@@ -325,7 +304,7 @@
     "trips": {
       "eyebrow": "Trips nearby",
       "title": "A different direction|every day.",
-      "description": "Janov sits on the edge of Bohemian Switzerland National Park, two kilometres above Hřensko. The gorges, rock viewpoints and the Pravčická brána arch are within walking distance or a few minutes by car."
+      "description": "Janov sits on the edge of Bohemian Switzerland National Park, two kilometres from Hřensko. The gorges, rock viewpoints and the Pravčická brána arch are within walking distance or a few minutes by car."
     },
     "pricing": {
       "eyebrow": "Prices & availability",

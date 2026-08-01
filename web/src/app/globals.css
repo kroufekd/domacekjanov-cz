@@ -1032,9 +1032,12 @@ h3 em {
   place-items: center;
   align-content: center;
   transform: rotate(3deg);
+  /* V razítku stojí slovo, ne číslo - delší překlad se musí vejít do kruhu. */
+  padding: 0 20px;
   border: 1px solid rgba(24, 94, 54, 0.4);
   border-radius: 50%;
   color: var(--forest);
+  text-align: center;
 }
 
 .garden-stamp svg {
@@ -1332,7 +1335,8 @@ h3 em {
   inset: auto 0 0;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  /* Popisek je volitelný - bez něj zůstane ikona lupy vpravo. */
+  justify-content: flex-end;
   gap: 20px;
   padding: 44px 22px 20px;
   background: linear-gradient(transparent, rgba(14, 49, 28, 0.76));
@@ -1340,6 +1344,16 @@ h3 em {
   font-size: 0.79rem;
   font-weight: 650;
   text-align: left;
+}
+
+.gallery-card__overlay > span {
+  margin-right: auto;
+}
+
+/* Bez popisku stačí jemnější závoj - drží čitelnost ikony, nekalí fotku. */
+.gallery-card__overlay--bare {
+  padding-top: 28px;
+  background: linear-gradient(transparent, rgba(14, 49, 28, 0.45));
 }
 
 .gallery-more {

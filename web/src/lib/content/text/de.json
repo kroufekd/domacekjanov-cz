@@ -12,7 +12,7 @@
   "accommodation": {
     "introTitle": "Ein großes Haus für drei bis vier Familien.",
     "introText": [
-      "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten oberhalb von Hřensko. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
+      "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten unterhalb von Hřensko. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
       "Am häufigsten kommen Familien mit Kindern, Freundesgruppen, Sportteams oder kleinere Firmen zum Teambuilding. Das Haus ist das ganze Jahr über geöffnet."
     ],
     "facts": [
@@ -25,8 +25,8 @@
         "label": "Schlafzimmer"
       },
       {
-        "value": "4 000 m²",
-        "label": "eingezäunter Garten"
+        "value": "Privat",
+        "label": "das ganze Grundstück für euch"
       },
       {
         "value": "ganzjährig",
@@ -90,68 +90,53 @@
   },
   "gallery": {
     "aerial-house-garden": {
-      "alt": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
-      "caption": "Domeček Janov aus der Vogelperspektive"
+      "alt": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten"
     },
     "exterior-golden-hour": {
-      "alt": "Domeček Janov in der Abendsonne unter der Krone eines Walnussbaums",
-      "caption": "Abendstimmung im Garten"
+      "alt": "Domeček Janov in der Abendsonne unter der Krone eines Walnussbaums"
     },
     "aerial-terrace": {
-      "alt": "Luftaufnahme der Terrasse mit Badezuber und Brennholzvorrat",
-      "caption": "Terrasse und Zuber von oben"
+      "alt": "Luftaufnahme der Terrasse mit Badezuber und Brennholzvorrat"
     },
     "aerial-top-down": {
-      "alt": "Blick von oben auf den Domeček Janov, den Parkplatz und das ganze Grundstück",
-      "caption": "Das gesamte Grundstück und der Parkplatz von oben"
+      "alt": "Blick von oben auf den Domeček Janov, den Parkplatz und das ganze Grundstück"
     },
     "exterior-summer-meadow": {
-      "alt": "Domeček Janov von der Wiese aus, umrahmt von Baumkronen",
-      "caption": "Das Haus mitten im Grünen"
+      "alt": "Domeček Janov von der Wiese aus, umrahmt von Baumkronen"
     },
     "exterior-back-lawn": {
-      "alt": "Rückseite des Hauses mit Wirtschaftstrakt und Sitzgelegenheit auf dem Rasen",
-      "caption": "Rückfront und Rasenfläche"
+      "alt": "Rückseite des Hauses mit Wirtschaftstrakt und Sitzgelegenheit auf dem Rasen"
     },
     "hot-tub-terrace": {
-      "alt": "Beheizter Badezuber auf der gepflasterten Terrasse mit Blick in den Garten",
-      "caption": "Beheizter Zuber direkt auf der Terrasse"
+      "alt": "Beheizter Badezuber auf der gepflasterten Terrasse mit Blick in den Garten"
     },
     "terrace-awning": {
-      "alt": "Terrasse mit ausgefahrener Markise, langem Tisch und Gasgrill",
-      "caption": "Markise, Grill und Tisch für die ganze Gruppe"
+      "alt": "Terrasse mit ausgefahrener Markise, langem Tisch und Gasgrill"
     },
     "garden-playground": {
       "alt": "Hölzernes Spielgerät mit Rutsche und Schaukeln im Garten",
       "caption": "Spielplatz direkt im Garten"
     },
     "terrace-dining-long": {
-      "alt": "Langer Esstisch auf der Terrasse mit Geranien in den Fenstern",
-      "caption": "Frühstück und Abendessen im Freien"
+      "alt": "Langer Esstisch auf der Terrasse mit Geranien in den Fenstern"
     },
     "hot-tub-bubbles": {
-      "alt": "Sprudelnder Badezuber mit Blick auf die Terrasse und den Obstgarten",
-      "caption": "Whirlpool zum Entspannen nach dem Ausflug"
+      "alt": "Sprudelnder Badezuber mit Blick auf die Terrasse und den Obstgarten"
     },
     "hot-tub-sun": {
-      "alt": "Badezuber auf der Terrasse im Gegenlicht der Sommersonne",
-      "caption": "Der Zuber in der Sommersonne"
+      "alt": "Badezuber auf der Terrasse im Gegenlicht der Sommersonne"
     },
     "terrace-awning-table": {
-      "alt": "Schattiger Sitzplatz unter der Markise auf der Terrasse",
-      "caption": "Schatten unter der Markise auch mittags"
+      "alt": "Schattiger Sitzplatz unter der Markise auf der Terrasse"
     },
     "terrace-grill-orchard": {
-      "alt": "Terrasse mit Grill und Blick in den Obstgarten",
-      "caption": "Grill und Blick in den Obstgarten"
+      "alt": "Terrasse mit Grill und Blick in den Obstgarten"
     },
     "terrace-lounge": {
-      "alt": "Terrasse mit Esstisch und Liegestühlen am Garten",
-      "caption": "Liegen und Tisch auf der Sonnenseite"
+      "alt": "Terrasse mit Esstisch und Liegestühlen am Garten"
     },
     "terrace-garden-table": {
-      "alt": "Sitzecke auf der gepflasterten Terrasse mit Gartenblick",
-      "caption": "Sitzecke am Garten"
+      "alt": "Sitzecke auf der gepflasterten Terrasse mit Gartenblick"
     },
     "hero-aerial": {
       "alt": "Luftaufnahme des Domeček Janov mit Terrasse und eingezäuntem Garten",
@@ -163,19 +148,16 @@
     },
     "exterior-wide": {
       "alt": "Das Haus und der weitläufige Rasengarten",
-      "caption": "4 000 m² eingezäunter Garten"
+      "caption": "Weitläufiger eingezäunter Garten"
     },
     "terrace-hot-tub": {
-      "alt": "Südterrasse mit Badezuber und Sitzecke",
-      "caption": "Terrasse, Grill und beheizter Zuber"
+      "alt": "Südterrasse mit Badezuber und Sitzecke"
     },
     "terrace-table": {
-      "alt": "Großer Esstisch auf der Terrasse",
-      "caption": "Esstisch auf der Terrasse"
+      "alt": "Großer Esstisch auf der Terrasse"
     },
     "hot-tub": {
-      "alt": "Gäste im beheizten Badezuber",
-      "caption": "Beheizter Badezuber"
+      "alt": "Gäste im beheizten Badezuber"
     },
     "kitchen-dining": {
       "alt": "Geräumige Wohnküche mit Kaminofen",
@@ -190,12 +172,10 @@
       "caption": "Voll ausgestattete Küche"
     },
     "kitchen-island": {
-      "alt": "Küche mit großer Arbeitsinsel",
-      "caption": "Kücheninsel"
+      "alt": "Küche mit großer Arbeitsinsel"
     },
     "kitchen-detail": {
-      "alt": "Küchenausstattung im Domeček Janov",
-      "caption": "Ausstattung der Küche"
+      "alt": "Küchenausstattung im Domeček Janov"
     },
     "bedroom-double": {
       "alt": "Schlafzimmer mit Doppelbett",
@@ -206,8 +186,7 @@
       "caption": "Schlafzimmer im Obergeschoss"
     },
     "bedroom-bunk-red": {
-      "alt": "Zimmer mit Etagenbett und roten Details",
-      "caption": "Zimmer mit Etagenbetten"
+      "alt": "Zimmer mit Etagenbett und roten Details"
     },
     "bedroom-bunk": {
       "alt": "Geräumiges Zimmer mit Etagenbett",
@@ -283,9 +262,10 @@
     },
     "garden": {
       "eyebrow": "Garten und Terrasse",
-      "title": "Viertausend Quadratmeter|eingezäunter Garten.",
-      "description": "Die Terrasse mit Grill liegt nach Süden. Im Garten stehen Trampolin, Schaukel und ein Spielhaus - und weil das Grundstück komplett eingezäunt ist, könnt ihr die Kinder ruhig aus den Augen lassen.",
-      "stampNote": "nur für euch",
+      "title": "Weitläufiger Garten|nur für euch.",
+      "description": "Die Terrasse mit Grill liegt nach Süden. Im Garten stehen Trampolin, Schaukel und ein Spielhaus - und weil das Grundstück komplett eingezäunt ist, könnt ihr die Kinder ruhig aus den Augen lassen und habt auch am Badezuber eure Ruhe.",
+      "stampTitle": "Privat",
+      "stampNote": "eingezäuntes Grundstück",
       "cardTitle": "Badezuber",
       "cardText": "Beheizter Badezuber auf der Terrasse. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
       "cardPrice": "2 000 CZK / Aufenthalt"
@@ -310,7 +290,6 @@
       "categories": {
         "vse": "Alles",
         "exterier": "Außenbereich",
-        "zahrada": "Garten & Wellness",
         "spolecne": "Gemeinschaftsräume",
         "pokoje": "Zimmer"
       },
@@ -325,7 +304,7 @@
     "trips": {
       "eyebrow": "Ausflüge in der Umgebung",
       "title": "Jeden Tag|in eine andere Richtung.",
-      "description": "Janov liegt am Rand des Nationalparks Böhmische Schweiz, zwei Kilometer oberhalb von Hřensko. Klammen, Felsaussichten und das Prebischtor sind zu Fuß oder in wenigen Autominuten erreichbar."
+      "description": "Janov liegt am Rand des Nationalparks Böhmische Schweiz, zwei Kilometer von Hřensko entfernt. Klammen, Felsaussichten und das Prebischtor sind zu Fuß oder in wenigen Autominuten erreichbar."
     },
     "pricing": {
       "eyebrow": "Preise & freie Termine",

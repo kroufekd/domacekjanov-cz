@@ -27,7 +27,6 @@ import type { TripTextOverride, TripTextOverrides } from "@/types/trips";
 
 const galleryCategories: readonly GalleryCategory[] = [
   "exterier",
-  "zahrada",
   "spolecne",
   "pokoje",
 ];
