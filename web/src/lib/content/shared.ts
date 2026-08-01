@@ -29,9 +29,25 @@ export const sharedAccommodation = {
 } as const;
 
 export type GalleryImageId =
+  | "aerial-house-garden"
+  | "exterior-golden-hour"
+  | "aerial-terrace"
+  | "aerial-top-down"
+  | "exterior-summer-meadow"
+  | "exterior-back-lawn"
   | "hero-aerial"
   | "exterior-garden"
   | "exterior-wide"
+  | "hot-tub-terrace"
+  | "terrace-awning"
+  | "garden-playground"
+  | "terrace-dining-long"
+  | "hot-tub-bubbles"
+  | "hot-tub-sun"
+  | "terrace-awning-table"
+  | "terrace-grill-orchard"
+  | "terrace-lounge"
+  | "terrace-garden-table"
   | "terrace-hot-tub"
   | "terrace-table"
   | "hot-tub"
@@ -58,50 +74,56 @@ export type GalleryImageDefinition = {
   featured?: boolean;
 };
 
+/**
+ * Order matters: the first entry doubles as the hero photo (see `fallback.ts`)
+ * and the first eight feed the JSON-LD `image` list. The opening block is
+ * deliberately mixed across categories so the default "vše" view shows the
+ * house, the garden and the interior before the visitor has to click anything.
+ */
 export const galleryImageDefinitions: GalleryImageDefinition[] = [
   {
-    id: "hero-aerial",
-    file: "hero-aerial-summer.jpg",
-    width: 1024,
-    height: 765,
-    category: "exterier",
-    featured: true,
-  },
-  {
-    id: "exterior-garden",
-    file: "exterior-garden.jpg",
-    width: 1280,
-    height: 960,
-    category: "exterier",
-    featured: true,
-  },
-  {
-    id: "exterior-wide",
-    file: "exterior-wide.jpg",
-    width: 1280,
-    height: 960,
-    category: "exterier",
-  },
-  {
-    id: "terrace-hot-tub",
-    file: "terrace-hot-tub.jpg",
+    id: "aerial-house-garden",
+    file: "aerial-house-garden.jpg",
     width: 1600,
-    height: 1066,
-    category: "zahrada",
+    height: 1200,
+    category: "exterier",
     featured: true,
   },
   {
-    id: "terrace-table",
-    file: "terrace-table.jpg",
+    id: "exterior-golden-hour",
+    file: "exterior-golden-hour.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+    featured: true,
+  },
+  {
+    id: "aerial-terrace",
+    file: "aerial-terrace.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "hot-tub-terrace",
+    file: "hot-tub-terrace.jpg",
     width: 1600,
     height: 1200,
     category: "zahrada",
+    featured: true,
   },
   {
-    id: "hot-tub",
-    file: "hot-tub.jpg",
-    width: 1280,
-    height: 960,
+    id: "terrace-awning",
+    file: "terrace-awning.jpg",
+    width: 1600,
+    height: 1356,
+    category: "zahrada",
+  },
+  {
+    id: "garden-playground",
+    file: "garden-playground.jpg",
+    width: 1600,
+    height: 1200,
     category: "zahrada",
   },
   {
@@ -132,6 +154,119 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     width: 1600,
     height: 1066,
     category: "spolecne",
+  },
+  {
+    id: "aerial-top-down",
+    file: "aerial-top-down.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "exterior-summer-meadow",
+    file: "exterior-summer-meadow.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "exterior-back-lawn",
+    file: "exterior-back-lawn.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "hero-aerial",
+    file: "hero-aerial-summer.jpg",
+    width: 1024,
+    height: 765,
+    category: "exterier",
+  },
+  {
+    id: "exterior-garden",
+    file: "exterior-garden.jpg",
+    width: 1280,
+    height: 960,
+    category: "exterier",
+  },
+  {
+    id: "exterior-wide",
+    file: "exterior-wide.jpg",
+    width: 1280,
+    height: 960,
+    category: "exterier",
+  },
+  {
+    id: "terrace-dining-long",
+    file: "terrace-dining-long.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "hot-tub-bubbles",
+    file: "hot-tub-bubbles.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-awning-table",
+    file: "terrace-awning-table.jpg",
+    width: 1600,
+    height: 1201,
+    category: "zahrada",
+  },
+  // Portrait shot: keep it off the wide slots of the grid, they crop it to sky.
+  {
+    id: "hot-tub-sun",
+    file: "hot-tub-sun.jpg",
+    width: 1201,
+    height: 1600,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-grill-orchard",
+    file: "terrace-grill-orchard.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-lounge",
+    file: "terrace-lounge.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-garden-table",
+    file: "terrace-garden-table.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-hot-tub",
+    file: "terrace-hot-tub.jpg",
+    width: 1600,
+    height: 1066,
+    category: "zahrada",
+  },
+  {
+    id: "terrace-table",
+    file: "terrace-table.jpg",
+    width: 1600,
+    height: 1200,
+    category: "zahrada",
+  },
+  {
+    id: "hot-tub",
+    file: "hot-tub.jpg",
+    width: 1280,
+    height: 960,
+    category: "zahrada",
   },
   {
     id: "kitchen-detail",

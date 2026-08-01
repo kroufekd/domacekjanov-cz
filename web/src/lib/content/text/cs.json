@@ -89,6 +89,70 @@
     ]
   },
   "gallery": {
+    "aerial-house-garden": {
+      "alt": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
+      "caption": "Domeček Janov z ptačí perspektivy"
+    },
+    "exterior-golden-hour": {
+      "alt": "Domeček Janov v podvečerním slunci pod korunou ořešáku",
+      "caption": "Podvečer na zahradě"
+    },
+    "aerial-terrace": {
+      "alt": "Letecký pohled na terasu s vířivým sudem a zásobou dřeva",
+      "caption": "Terasa a vířivý sud shora"
+    },
+    "aerial-top-down": {
+      "alt": "Pohled shora na Domeček Janov, parkování a celý pozemek",
+      "caption": "Celý pozemek i parkování z výšky"
+    },
+    "exterior-summer-meadow": {
+      "alt": "Domeček Janov z louky, rámovaný korunami stromů",
+      "caption": "Dům uprostřed zeleně"
+    },
+    "exterior-back-lawn": {
+      "alt": "Zadní strana domu s hospodářskou částí a posezením na trávníku",
+      "caption": "Zadní průčelí a trávník"
+    },
+    "hot-tub-terrace": {
+      "alt": "Vyhřívaný vířivý sud na dlážděné terase s výhledem do zahrady",
+      "caption": "Vyhřívaný sud přímo na terase"
+    },
+    "terrace-awning": {
+      "alt": "Terasa s vysunutou markýzou, dlouhým stolem a plynovým grilem",
+      "caption": "Markýza, gril a stůl pro celou partu"
+    },
+    "garden-playground": {
+      "alt": "Dřevěná prolézačka se skluzavkou a houpačkami na zahradě",
+      "caption": "Hřiště pro děti přímo na zahradě"
+    },
+    "terrace-dining-long": {
+      "alt": "Dlouhý jídelní stůl na terase s muškáty v oknech",
+      "caption": "Snídaně i večeře venku"
+    },
+    "hot-tub-bubbles": {
+      "alt": "Bublající vířivý sud s výhledem na terasu a ovocný sad",
+      "caption": "Vířivka pro odpočinek po výletě"
+    },
+    "hot-tub-sun": {
+      "alt": "Vířivý sud na terase v protisvětle letního slunce",
+      "caption": "Vířivka v letním slunci"
+    },
+    "terrace-awning-table": {
+      "alt": "Stinné posezení pod markýzou na terase",
+      "caption": "Stín markýzy i v poledním slunci"
+    },
+    "terrace-grill-orchard": {
+      "alt": "Terasa s grilem a výhledem do ovocného sadu",
+      "caption": "Gril a výhled do sadu"
+    },
+    "terrace-lounge": {
+      "alt": "Terasa s jídelním stolem a lehátky u zahrady",
+      "caption": "Lehátka a stůl na sluneční straně"
+    },
+    "terrace-garden-table": {
+      "alt": "Posezení na dlážděné terase s výhledem na zahradu",
+      "caption": "Posezení u zahrady"
+    },
     "hero-aerial": {
       "alt": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
       "caption": "Domeček Janov v srdci Českého Švýcarska"

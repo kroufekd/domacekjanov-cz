@@ -184,7 +184,7 @@ test("drops photos and rates that have no alt or title in the language", () => {
 test("ships a complete translation for every language", () => {
   for (const locale of ["cs", "de", "en"] as const) {
     const content = fallbackContent[locale];
-    expect(content.gallery).toHaveLength(19);
+    expect(content.gallery).toHaveLength(35);
     expect(content.rates).toHaveLength(3);
     expect(content.tripTips).toHaveLength(4);
     expect(content.settings.heroTitle).toMatch(/\S/);
