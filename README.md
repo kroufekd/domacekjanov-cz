@@ -68,29 +68,35 @@ kompletní překlady. Nová letecká fotografie se později vymění v dokumentu
 > na živém datasetu přemaže všechno, co majitel ve Studiu napsal. Na běžící web
 > používejte synchronizaci níže.
 
-### Synchronizace výletů
+### Automatická synchronizace Studia
 
-O to, aby se nové výlety z kódu objevily ve Studiu, se stará
-`.github/workflows/sanity-sync.yml` - po každém mergi do masteru, který sáhne na
-texty výletů nebo na skripty Studia:
+Po každém mergi do masteru, který sáhne na `studio/**` nebo na texty výletů,
+běží `.github/workflows/sanity-sync.yml` a udělá dvě věci:
 
 ```bash
-npm run sync:trips --workspace studio   # totéž ručně
+npm run sync:trips --workspace studio   # 1. doplní chybějící výlety do datasetu
+npm run deploy --workspace studio       # 2. nasadí schéma na domecek-janov.sanity.studio
 ```
 
-Skript umí jedinou operaci, `createIfNotExists`. **Nic nepřepisuje a nic nemaže**,
-takže nasazení nemůže sáhnout na to, co majitel ve Studiu upravil - chybějící
-výlet doplní, existující nechá být. Proto mají nové dokumenty ID `trip-text-<id>`:
-staré `tripTip` se jmenovaly `trip-<id>` a jinak by se kryly.
+Synchronizace umí jedinou operaci, `createIfNotExists`. **Nic nepřepisuje a nic
+nemaže**, takže nasazení nemůže sáhnout na to, co majitel ve Studiu upravil -
+chybějící výlet doplní, existující nechá být. Proto mají dokumenty ID
+`trip-text-<id>`: staré `tripTip` se jmenovaly `trip-<id>` a jinak by se kryly.
 
-Workflow potřebuje v repozitáři secret `SANITY_API_WRITE_TOKEN` (token s právem
-zápisu z [sanity.io/manage](https://sanity.io/manage) → projekt → API → Tokens):
+Pořadí kroků je záměrné - kdyby deploy Studia selhal, výlety v datasetu už jsou
+a stačí Studio nasadit ručně.
+
+Obojí potřebuje repo secret `SANITY_API_WRITE_TOKEN` (token role Developer
+z [sanity.io/manage](https://sanity.io/manage) → projekt → API → Tokens); ten
+samý patří do `studio/.env.local` pro ruční spuštění:
 
 ```bash
 gh secret set SANITY_API_WRITE_TOKEN
 ```
 
-Bez tokenu se krok jen přeskočí s varováním, nasazení kvůli němu nespadne.
+Bez tokenu se oba kroky přeskočí s varováním, workflow kvůli tomu nespadne.
+Web samotný **žádný token nepotřebuje** - čte veřejný dataset přes CDN, takže
+do Coolify se nic tajného nepřidává.
 
 ### Struktura Studia
 

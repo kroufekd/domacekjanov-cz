@@ -1,16 +1,16 @@
-name: Sync trips to Sanity
+name: Sync Sanity Studio
 
-# Po každém mergi doplní do datasetu výlety, které v něm ještě nejsou.
-# Zapisuje výhradně přes `createIfNotExists`, takže nasazení nikdy nepřepíše to,
-# co majitel napsal ve Studiu. Bez tokenu se krok přeskočí, ne že spadne.
+# Po každém mergi (1) nasadí schéma na domecek-janov.sanity.studio a (2) doplní
+# do datasetu výlety, které v něm ještě nejsou. Zapisuje výhradně přes
+# `createIfNotExists`, takže nasazení nikdy nepřepíše to, co majitel ve Studiu
+# napsal. Bez tokenu se oba kroky přeskočí, ne že spadnou.
 on:
   push:
     branches:
       - master
     paths:
       - "web/src/data/trip-text/**"
-      - "studio/scripts/**"
-      - "studio/schemaTypes/trip.ts"
+      - "studio/**"
       - ".github/workflows/sanity-sync.yml"
   workflow_dispatch:
 
@@ -34,6 +34,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Nejdřív dokumenty, pak schéma: kdyby deploy Studia selhal, výlety
+      # v datasetu už jsou a stačí Studio nasadit ručně.
       - name: Sync trips
         env:
           SANITY_API_WRITE_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
@@ -43,3 +45,13 @@ jobs:
             exit 0
           fi
           npm run sync:trips --workspace studio
+
+      - name: Deploy Studio
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_API_WRITE_TOKEN }}
+        run: |
+          if [ -z "$SANITY_AUTH_TOKEN" ]; then
+            echo "::warning::SANITY_API_WRITE_TOKEN není nastavený, deploy Studia přeskočen."
+            exit 0
+          fi
+          npm run deploy --workspace studio -- --yes
