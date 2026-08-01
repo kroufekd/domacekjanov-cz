@@ -1,8 +1,4 @@
-import type {
-  GalleryImageId,
-  RateId,
-  TripTipId,
-} from "@/lib/content/shared";
+import type { GalleryImageId, RateId } from "@/lib/content/shared";
 import type { SiteCopy } from "@/types/content";
 
 /**
@@ -29,9 +25,5 @@ export type LocaleContentText = {
   };
   gallery: Record<GalleryImageId, { alt: string; caption: string }>;
   rates: Record<RateId, { title: string; unit: string; note: string }>;
-  tripTips: Record<
-    TripTipId,
-    { title: string; distance: string; description: string }
-  >;
   copy: SiteCopy;
 };

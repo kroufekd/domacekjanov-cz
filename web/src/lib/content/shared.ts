@@ -346,17 +346,3 @@ export const rateDefinitions: Array<{
   { id: "weekend", price: "25 000 Kč" },
 ];
 
-export type TripTipId = "janov" | "hrensko" | "pravcicka" | "jetrichovice";
-
-export const tripTipDefinitions: Array<{ id: TripTipId; href: string }> = [
-  {
-    id: "janov",
-    href: "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna",
-  },
-  { id: "hrensko", href: "https://www.hrensko.cz/inpage/soutesky/" },
-  { id: "pravcicka", href: "https://www.pbrana.cz/" },
-  {
-    id: "jetrichovice",
-    href: "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky",
-  },
-];

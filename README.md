@@ -45,7 +45,7 @@ nerozešly.
 
 Překlad z Sanity se čte striktně: pokud v daném jazyce chybí, použije se
 vestavěné znění pro tentýž jazyk - nikdy se nemíchá čeština do německé stránky.
-Položka seznamu (fotka, cena, tip na výlet) bez překladu se v daném jazyce
+Položka seznamu (fotka, cena) bez překladu se v daném jazyce
 nezobrazí; když takto vypadne celý seznam, nastoupí vestavěný.
 
 ## Sanity
@@ -58,10 +58,45 @@ nastavte `SANITY_API_WRITE_TOKEN` a spusťte:
 npm run seed --workspace studio
 ```
 
-Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu. Nahraje
-všechny tři jazyky přímo z `web/src/lib/content/text/*.json`, takže Studio od
-začátku obsahuje kompletní překlady. Nová letecká fotografie se později vymění
-v dokumentu **Nastavení webu → Hlavní fotografie**.
+Seed nahraje všechny tři jazyky přímo z `web/src/lib/content/text/*.json` a texty
+výletů z `web/src/data/trip-text/*.json`, takže Studio od začátku obsahuje
+kompletní překlady. Nová letecká fotografie se později vymění v dokumentu
+**Nastavení webu → Hlavní fotografie**. Zároveň uklidí dokumenty mrtvého typu
+`tripTip` (sekce „Tipy na výlet“, kterou web přestal vypisovat po nasazení mapy).
+
+> **Seed patří jen do prázdného projektu.** Zapisuje přes `createOrReplace`, takže
+> na živém datasetu přemaže všechno, co majitel ve Studiu napsal. Na běžící web
+> používejte synchronizaci níže.
+
+### Automatická synchronizace Studia
+
+Po každém mergi do masteru, který sáhne na `studio/**` nebo na texty výletů,
+běží `.github/workflows/sanity-sync.yml` a udělá dvě věci:
+
+```bash
+npm run sync:trips --workspace studio   # 1. doplní chybějící výlety do datasetu
+npm run deploy --workspace studio       # 2. nasadí schéma na domecek-janov.sanity.studio
+```
+
+Synchronizace umí jedinou operaci, `createIfNotExists`. **Nic nepřepisuje a nic
+nemaže**, takže nasazení nemůže sáhnout na to, co majitel ve Studiu upravil -
+chybějící výlet doplní, existující nechá být. Proto mají dokumenty ID
+`trip-text-<id>`: staré `tripTip` se jmenovaly `trip-<id>` a jinak by se kryly.
+
+Pořadí kroků je záměrné - kdyby deploy Studia selhal, výlety v datasetu už jsou
+a stačí Studio nasadit ručně.
+
+Obojí potřebuje repo secret `SANITY_API_WRITE_TOKEN` (token role Developer
+z [sanity.io/manage](https://sanity.io/manage) → projekt → API → Tokens); ten
+samý patří do `studio/.env.local` pro ruční spuštění:
+
+```bash
+gh secret set SANITY_API_WRITE_TOKEN
+```
+
+Bez tokenu se oba kroky přeskočí s varováním, workflow kvůli tomu nespadne.
+Web samotný **žádný token nepotřebuje** - čte veřejný dataset přes CDN, takže
+do Coolify se nic tajného nepřidává.
 
 ### Struktura Studia
 
@@ -72,7 +107,7 @@ V levém sloupci jsou tři samostatné dokumenty a tři seznamy:
 | Nastavení webu | název, kontakty, odkazy, úvodní obrazovka, SEO |
 | Texty webu | všechny popisky rozhraní - menu, tlačítka, nadpisy sekcí, patička |
 | Domeček a vybavení | úvodní odstavce, čísla, pokoje, skupiny vybavení |
-| Fotografie / Ceny / Tipy na výlet | běžné seznamy dokumentů |
+| Fotografie / Ceny / Výlety na mapě | běžné seznamy dokumentů |
 
 Každé přeložitelné pole je typu `localeString` nebo `localeText` a vykresluje se
 jako tři sloupce vedle sebe - 🇨🇿 čeština, 🇩🇪 němčina, 🇬🇧 angličtina. Jedno pole
@@ -114,6 +149,27 @@ vrací `403 Forbidden`. Veřejný klíč omezte na doménu webu.
 
 Zdroj dat o výletech je `web/src/data/trips.ts` - po jeho úpravě je potřeba
 `npm run build:routes` spustit znovu, jinak by se rozešly značky s trasami.
+
+### Texty výletů ve Studiu
+
+Geometrie zůstává v kódu, **názvy, výchozí body, popisy a upozornění** ale řídí
+Studio - seznam **Výlety na mapě**. Dokument se s bodem na mapě páruje polem
+`Id výletu`, které se po uložení zamkne; id, které v `trips.ts` neexistuje, web
+přeskočí a napíše to do serverového logu.
+
+| Situace ve Studiu | Co uvidí host |
+| --- | --- |
+| pole vyplněné | text ze Studia |
+| pole prázdné | vestavěný překlad z `web/src/data/trip-text/*.json` |
+| dokument smazaný | vestavěný překlad ve všech jazycích |
+
+Výjimkou je **Upozornění**: prázdné pole uzavírku z karty odstraní, aby po
+znovuotevření stezky nešlo varování jen tak zaseknout. Proto Studio hlídá, že se
+vyplní ve všech třech jazycích naráz - jinak by jeden z hostů vyrazil na
+uzavřenou trasu bez varování.
+
+Změna textu se projeví do minuty (`revalidate: 60`) a **nevyžaduje nový build
+tras ani klíč k Mapy.com**.
 
 ## Coolify
 

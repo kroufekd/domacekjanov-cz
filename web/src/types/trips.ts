@@ -70,6 +70,24 @@ export type TripText = {
   readonly note?: string;
 };
 
+/**
+ * Texty jednoho výletu tak, jak je napsalo Studio. Nevyplněné pole chybí, takže
+ * si ho web dotáhne z vestavěných překladů a rozdělaná práce nikdy nevymaže
+ * hotový text.
+ *
+ * Výjimkou je `note`: uzavírka musí jít zrušit, jakmile se stezka otevře, proto
+ * `null` znamená „Studio žádné upozornění nemá“ a přebije i vestavěný text.
+ */
+export type TripTextOverride = {
+  readonly title?: string;
+  readonly startName?: string;
+  readonly summary?: string;
+  readonly note?: string | null;
+};
+
+/** Texty ze Studia podle id výletu. Neznámá id mapa ignoruje. */
+export type TripTextOverrides = Readonly<Record<string, TripTextOverride>>;
+
 /** Výlet i s texty pro zvolený jazyk - to, co dostane komponenta mapy. */
 export type LocalisedTrip = Trip & TripText;
 

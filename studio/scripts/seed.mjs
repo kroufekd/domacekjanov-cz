@@ -2,6 +2,11 @@ import { createClient } from "@sanity/client";
 import { createReadStream, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+import {
+  buildTripDocuments,
+  deleteLegacyTripTips,
+} from "./trip-documents.mjs";
+
 /**
  * One-time bootstrap of the Sanity dataset. All wording comes from the very
  * same JSON files the website falls back to, so the Studio starts out with a
@@ -127,13 +132,6 @@ const ratePrices = [
   ["weekend", "25 000 Kč", false],
 ];
 
-const tripLinks = [
-  ["janov", "https://mapy.com/cs/?q=Janovsk%C3%A1%20rozhledna"],
-  ["hrensko", "https://www.hrensko.cz/inpage/soutesky/"],
-  ["pravcicka", "https://www.pbrana.cz/"],
-  ["jetrichovice", "https://mapy.com/cs/?q=Jet%C5%99ichovick%C3%A9%20vyhl%C3%ADdky"],
-];
-
 async function assetFor(filename) {
   const existing = await client.fetch(
     `*[_type == "sanity.imageAsset" && originalFilename == $filename][0]._id`,
@@ -244,15 +242,7 @@ const rates = ratePrices.map(([id, price, featured], order) => ({
   order,
 }));
 
-const tips = tripLinks.map(([id, href], order) => ({
-  _id: `trip-${id}`,
-  _type: "tripTip",
-  title: lstr((text) => text.tripTips[id].title),
-  distance: lstr((text) => text.tripTips[id].distance),
-  description: ltext((text) => text.tripTips[id].description),
-  href,
-  order,
-}));
+const trips = buildTripDocuments();
 
 const gallery = photos.map(([filename, id, category, featured], order) => ({
   _id: `gallery-${id}`,
@@ -268,13 +258,20 @@ const gallery = photos.map(([filename, id, category, featured], order) => ({
   order,
 }));
 
+// Staré tipy na výlet mizí dřív, než se začne zapisovat - jejich id se kryjí
+// s novými výlety.
+const removed = await deleteLegacyTripTips(client);
+if (removed > 0) {
+  console.log(`Smazáno ${removed} starých tipů na výlet.`);
+}
+
 console.log("Zapisuji dokumenty…");
 const documents = [
   settings,
   siteCopy,
   accommodation,
   ...rates,
-  ...tips,
+  ...trips,
   ...gallery,
 ];
 for (const document of documents) {

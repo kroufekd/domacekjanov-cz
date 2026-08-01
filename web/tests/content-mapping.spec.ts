@@ -186,7 +186,6 @@ test("ships a complete translation for every language", () => {
     const content = fallbackContent[locale];
     expect(content.gallery).toHaveLength(35);
     expect(content.rates).toHaveLength(3);
-    expect(content.tripTips).toHaveLength(4);
     expect(content.settings.heroTitle).toMatch(/\S/);
     expect(content.copy.nav.pricing).toMatch(/\S/);
     for (const image of content.gallery) {

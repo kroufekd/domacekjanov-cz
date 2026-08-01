@@ -247,28 +247,6 @@
       "note": "Mimo letní sezonu minimálně dvě noci."
     }
   },
-  "tripTips": {
-    "janov": {
-      "title": "Janovská rozhledna",
-      "distance": "pěšky z domu",
-      "description": "Rozhledna stojí přímo v obci. Krátká procházka s výhledem na Labské pískovce."
-    },
-    "hrensko": {
-      "title": "Soutěsky Hřensko",
-      "distance": "2 km",
-      "description": "Plavba na pramicích kaňonem říčky Kamenice. V sezoně vyrazte brzy ráno, odpoledne bývá plno."
-    },
-    "pravcicka": {
-      "title": "Pravčická brána",
-      "distance": "krátký přejezd",
-      "description": "Největší pískovcová skalní brána v Evropě. Autem do Hřenska nebo na Mezní Louku, dál pěšky."
-    },
-    "jetrichovice": {
-      "title": "Jetřichovické vyhlídky",
-      "distance": "na celý den",
-      "description": "Okruh přes Mariinu, Vilemíninu a Rudolfovu vyhlídku. Počítejte se třemi až čtyřmi hodinami chůze."
-    }
-  },
   "copy": {
     "nav": {
       "about": "O domečku",

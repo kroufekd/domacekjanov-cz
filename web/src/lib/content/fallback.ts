@@ -5,19 +5,13 @@ import {
   rateDefinitions,
   sharedAccommodation,
   sharedSettings,
-  tripTipDefinitions,
 } from "@/lib/content/shared";
 import { csText } from "@/lib/content/text/cs";
 import { deText } from "@/lib/content/text/de";
 import { enText } from "@/lib/content/text/en";
 import type { LocaleContentText } from "@/lib/content/text/types";
 import { localAsset } from "@/lib/paths";
-import type {
-  MediaImage,
-  Rate,
-  SiteContent,
-  TripTip,
-} from "@/types/content";
+import type { MediaImage, Rate, SiteContent } from "@/types/content";
 
 export const localeTexts: Record<Locale, LocaleContentText> = {
   cs: csText,
@@ -50,14 +44,6 @@ function buildRates(text: LocaleContentText): Rate[] {
   }));
 }
 
-function buildTripTips(text: LocaleContentText): TripTip[] {
-  return tripTipDefinitions.map((definition) => ({
-    id: definition.id,
-    href: definition.href,
-    ...text.tripTips[definition.id],
-  }));
-}
-
 function buildContent(locale: Locale): SiteContent {
   const text = localeTexts[locale];
   const gallery = buildGallery(text);
@@ -76,7 +62,8 @@ function buildContent(locale: Locale): SiteContent {
     copy: text.copy,
     gallery,
     rates: buildRates(text),
-    tripTips: buildTripTips(text),
+    // Texty výletů drží `@/data/trip-text`, odsud chodí jen to, co přebíjí Studio.
+    tripTexts: {},
   };
 }
 

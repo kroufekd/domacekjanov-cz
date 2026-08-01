@@ -1,3 +1,4 @@
+import { TRIPS } from "@/data/trips";
 import type { Locale } from "@/i18n/config";
 import {
   localizedList,
@@ -11,8 +12,8 @@ import type {
   Rate,
   SiteCopy,
   SiteSettings,
-  TripTip,
 } from "@/types/content";
+import type { TripTextOverride, TripTextOverrides } from "@/types/trips";
 
 /**
  * Turns raw Sanity documents into the shapes the page renders.
@@ -44,6 +45,8 @@ const positiveNumber = (value: unknown): number | undefined =>
 
 const asCategory = (value: unknown): GalleryCategory | undefined =>
   galleryCategories.find((category) => category === value);
+
+const knownTripIds: ReadonlySet<string> = new Set(TRIPS.map((trip) => trip.id));
 
 const records = (value: unknown): Record<string, unknown>[] =>
   Array.isArray(value) ? value.filter(isRecord) : [];
@@ -201,26 +204,41 @@ export function normalizeRates(
   return rates.length > 0 ? rates : undefined;
 }
 
-export function normalizeTripTips(
+/**
+ * Texty výletů ze Studia, klíčované podle `tripId`.
+ *
+ * Geometrie zůstává v kódu, takže dokument s neznámým id nemá kam patřit -
+ * mapa ho tiše přeskočí a normalizace na to upozorní v serverovém logu.
+ *
+ * `note` je jediné pole, které Studio přebíjí i prázdnou hodnotou: po
+ * znovuotevření stezky musí jít upozornění na uzavírku smazat.
+ */
+export function normalizeTripTexts(
   raw: unknown,
   locale: Locale,
-): TripTip[] | undefined {
-  const tips = records(raw)
-    .map((item): TripTip | undefined => {
-      const id = plainText(item.id);
-      const title = localizedText(item.title, locale);
-      const description = localizedText(item.description, locale);
-      if (!id || !title || !description) return undefined;
+): TripTextOverrides {
+  const entries = records(raw)
+    .map((item): [string, TripTextOverride] | undefined => {
+      const tripId = plainText(item.tripId);
+      if (!tripId) return undefined;
 
-      return {
-        id,
-        title,
-        description,
-        distance: localizedText(item.distance, locale) ?? "",
-        href: plainText(item.href),
+      if (!knownTripIds.has(tripId)) {
+        console.warn(
+          `Výlet "${tripId}" ze Studia nemá v mapě žádný bod, texty se nepoužijí.`,
+        );
+        return undefined;
+      }
+
+      const override: TripTextOverride = {
+        title: localizedText(item.title, locale),
+        startName: localizedText(item.startName, locale),
+        summary: localizedText(item.summary, locale),
+        note: localizedText(item.note, locale) ?? null,
       };
-    })
-    .filter((item): item is TripTip => item !== undefined);
 
-  return tips.length > 0 ? tips : undefined;
+      return [tripId, override];
+    })
+    .filter((entry): entry is [string, TripTextOverride] => entry !== undefined);
+
+  return Object.fromEntries(entries);
 }

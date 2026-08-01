@@ -1,3 +1,5 @@
+import type { TripTextOverrides } from "@/types/trips";
+
 export type GalleryCategory =
   | "exterier"
   | "zahrada"
@@ -55,14 +57,6 @@ export type Rate = {
   unit: string;
   note?: string;
   featured?: boolean;
-};
-
-export type TripTip = {
-  id: string;
-  title: string;
-  distance: string;
-  description: string;
-  href?: string;
 };
 
 /**
@@ -173,5 +167,6 @@ export type SiteContent = {
   copy: SiteCopy;
   gallery: MediaImage[];
   rates: Rate[];
-  tripTips: TripTip[];
+  /** Texty výletů ze Studia; geometrii mapy drží `@/data/trips`. */
+  tripTexts: TripTextOverrides;
 };
