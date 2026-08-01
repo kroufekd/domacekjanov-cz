@@ -89,6 +89,70 @@
     ]
   },
   "gallery": {
+    "aerial-house-garden": {
+      "alt": "Aerial view of Domeček Janov with the terrace and the large summer garden",
+      "caption": "Domeček Janov from a bird's eye view"
+    },
+    "exterior-golden-hour": {
+      "alt": "Domeček Janov in the evening sun beneath a walnut tree",
+      "caption": "Golden hour in the garden"
+    },
+    "aerial-terrace": {
+      "alt": "Aerial view of the terrace with the hot tub and the firewood store",
+      "caption": "The terrace and hot tub from above"
+    },
+    "aerial-top-down": {
+      "alt": "Top-down view of Domeček Janov, the parking area and the whole plot",
+      "caption": "The entire plot and parking from above"
+    },
+    "exterior-summer-meadow": {
+      "alt": "Domeček Janov seen from the meadow, framed by tree branches",
+      "caption": "The house surrounded by greenery"
+    },
+    "exterior-back-lawn": {
+      "alt": "Back of the house with the utility wing and seating on the lawn",
+      "caption": "The rear facade and the lawn"
+    },
+    "hot-tub-terrace": {
+      "alt": "Heated hot tub on the paved terrace overlooking the garden",
+      "caption": "Heated hot tub right on the terrace"
+    },
+    "terrace-awning": {
+      "alt": "Terrace with an extended awning, a long table and a gas grill",
+      "caption": "Awning, grill and a table for the whole group"
+    },
+    "garden-playground": {
+      "alt": "Wooden climbing frame with a slide and swings in the garden",
+      "caption": "A playground right in the garden"
+    },
+    "terrace-dining-long": {
+      "alt": "Long dining table on the terrace with geraniums in the windows",
+      "caption": "Breakfast and dinner outdoors"
+    },
+    "hot-tub-bubbles": {
+      "alt": "Bubbling hot tub overlooking the terrace and the orchard",
+      "caption": "A whirlpool to unwind after a hike"
+    },
+    "hot-tub-sun": {
+      "alt": "Hot tub on the terrace backlit by the summer sun",
+      "caption": "The hot tub in the summer sun"
+    },
+    "terrace-awning-table": {
+      "alt": "Shaded seating under the awning on the terrace",
+      "caption": "Shade under the awning even at midday"
+    },
+    "terrace-grill-orchard": {
+      "alt": "Terrace with the grill and a view of the orchard",
+      "caption": "The grill and a view of the orchard"
+    },
+    "terrace-lounge": {
+      "alt": "Terrace with a dining table and sun loungers by the garden",
+      "caption": "Loungers and a table on the sunny side"
+    },
+    "terrace-garden-table": {
+      "alt": "Seating on the paved terrace with a garden view",
+      "caption": "Seating by the garden"
+    },
     "hero-aerial": {
       "alt": "Aerial view of Domeček Janov, the terrace and the fenced garden",
       "caption": "Domeček Janov in the heart of Bohemian Switzerland"

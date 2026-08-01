@@ -89,6 +89,70 @@
     ]
   },
   "gallery": {
+    "aerial-house-garden": {
+      "alt": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
+      "caption": "Domeček Janov aus der Vogelperspektive"
+    },
+    "exterior-golden-hour": {
+      "alt": "Domeček Janov in der Abendsonne unter der Krone eines Walnussbaums",
+      "caption": "Abendstimmung im Garten"
+    },
+    "aerial-terrace": {
+      "alt": "Luftaufnahme der Terrasse mit Badezuber und Brennholzvorrat",
+      "caption": "Terrasse und Zuber von oben"
+    },
+    "aerial-top-down": {
+      "alt": "Blick von oben auf den Domeček Janov, den Parkplatz und das ganze Grundstück",
+      "caption": "Das gesamte Grundstück und der Parkplatz von oben"
+    },
+    "exterior-summer-meadow": {
+      "alt": "Domeček Janov von der Wiese aus, umrahmt von Baumkronen",
+      "caption": "Das Haus mitten im Grünen"
+    },
+    "exterior-back-lawn": {
+      "alt": "Rückseite des Hauses mit Wirtschaftstrakt und Sitzgelegenheit auf dem Rasen",
+      "caption": "Rückfront und Rasenfläche"
+    },
+    "hot-tub-terrace": {
+      "alt": "Beheizter Badezuber auf der gepflasterten Terrasse mit Blick in den Garten",
+      "caption": "Beheizter Zuber direkt auf der Terrasse"
+    },
+    "terrace-awning": {
+      "alt": "Terrasse mit ausgefahrener Markise, langem Tisch und Gasgrill",
+      "caption": "Markise, Grill und Tisch für die ganze Gruppe"
+    },
+    "garden-playground": {
+      "alt": "Hölzernes Spielgerät mit Rutsche und Schaukeln im Garten",
+      "caption": "Spielplatz direkt im Garten"
+    },
+    "terrace-dining-long": {
+      "alt": "Langer Esstisch auf der Terrasse mit Geranien in den Fenstern",
+      "caption": "Frühstück und Abendessen im Freien"
+    },
+    "hot-tub-bubbles": {
+      "alt": "Sprudelnder Badezuber mit Blick auf die Terrasse und den Obstgarten",
+      "caption": "Whirlpool zum Entspannen nach dem Ausflug"
+    },
+    "hot-tub-sun": {
+      "alt": "Badezuber auf der Terrasse im Gegenlicht der Sommersonne",
+      "caption": "Der Zuber in der Sommersonne"
+    },
+    "terrace-awning-table": {
+      "alt": "Schattiger Sitzplatz unter der Markise auf der Terrasse",
+      "caption": "Schatten unter der Markise auch mittags"
+    },
+    "terrace-grill-orchard": {
+      "alt": "Terrasse mit Grill und Blick in den Obstgarten",
+      "caption": "Grill und Blick in den Obstgarten"
+    },
+    "terrace-lounge": {
+      "alt": "Terrasse mit Esstisch und Liegestühlen am Garten",
+      "caption": "Liegen und Tisch auf der Sonnenseite"
+    },
+    "terrace-garden-table": {
+      "alt": "Sitzecke auf der gepflasterten Terrasse mit Gartenblick",
+      "caption": "Sitzecke am Garten"
+    },
     "hero-aerial": {
       "alt": "Luftaufnahme des Domeček Janov mit Terrasse und eingezäuntem Garten",
       "caption": "Domeček Janov im Herzen der Böhmischen Schweiz"

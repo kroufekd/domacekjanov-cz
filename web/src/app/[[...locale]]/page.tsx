@@ -220,7 +220,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="garden-visual">
               <figure className="garden-visual__wide">
                 <Image
-                  src={localAsset("/images/terrace-hot-tub.jpg")}
+                  src={localAsset("/images/hot-tub-terrace.jpg")}
                   alt={dictionary.alt.gardenWide}
                   fill
                   sizes="(max-width: 900px) 94vw, 72vw"
@@ -408,7 +408,7 @@ export default async function HomePage({ params }: HomePageProps) {
         <section id="kontakt" className="contact-section">
           <div className="contact-section__photo">
             <Image
-              src={localAsset("/images/exterior-wide.jpg")}
+              src={localAsset("/images/exterior-golden-hour.jpg")}
               alt={dictionary.alt.contactPhoto}
               fill
               sizes="100vw"
