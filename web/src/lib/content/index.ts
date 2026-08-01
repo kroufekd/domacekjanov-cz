@@ -8,6 +8,7 @@ import {
   normalizeSettings,
   normalizeTripTexts,
 } from "@/lib/content/from-sanity";
+import { usesFallbackOnly } from "@/lib/content/source";
 import { sanityClient } from "@/sanity/client";
 import { hasSanityConfig } from "@/sanity/env";
 import {
@@ -30,7 +31,7 @@ const fetchDocument = (query: string) =>
 export async function getSiteContent(locale: Locale): Promise<SiteContent> {
   const fallback = fallbackContent[locale];
 
-  if (process.env.STATIC_EXPORT === "true" || !hasSanityConfig) {
+  if (usesFallbackOnly(process.env, hasSanityConfig)) {
     return fallback;
   }
 
