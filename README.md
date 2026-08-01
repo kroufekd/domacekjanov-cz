@@ -45,7 +45,7 @@ nerozešly.
 
 Překlad z Sanity se čte striktně: pokud v daném jazyce chybí, použije se
 vestavěné znění pro tentýž jazyk - nikdy se nemíchá čeština do německé stránky.
-Položka seznamu (fotka, cena, tip na výlet) bez překladu se v daném jazyce
+Položka seznamu (fotka, cena) bez překladu se v daném jazyce
 nezobrazí; když takto vypadne celý seznam, nastoupí vestavěný.
 
 ## Sanity
@@ -58,14 +58,39 @@ nastavte `SANITY_API_WRITE_TOKEN` a spusťte:
 npm run seed --workspace studio
 ```
 
-Seed používá stabilní ID dokumentů, takže jej lze bezpečně spustit znovu. Nahraje
-všechny tři jazyky přímo z `web/src/lib/content/text/*.json` a texty výletů
-z `web/src/data/trip-text/*.json`, takže Studio od začátku obsahuje kompletní
-překlady. Nová letecká fotografie se později vymění v dokumentu **Nastavení webu
-→ Hlavní fotografie**.
+Seed nahraje všechny tři jazyky přímo z `web/src/lib/content/text/*.json` a texty
+výletů z `web/src/data/trip-text/*.json`, takže Studio od začátku obsahuje
+kompletní překlady. Nová letecká fotografie se později vymění v dokumentu
+**Nastavení webu → Hlavní fotografie**. Zároveň uklidí dokumenty mrtvého typu
+`tripTip` (sekce „Tipy na výlet“, kterou web přestal vypisovat po nasazení mapy).
 
-Seed také smaže dokumenty starého typu `tripTip` (sekce „Tipy na výlet“, kterou
-web přestal vypisovat po nasazení mapy) - jejich ID se kryjí s novými výlety.
+> **Seed patří jen do prázdného projektu.** Zapisuje přes `createOrReplace`, takže
+> na živém datasetu přemaže všechno, co majitel ve Studiu napsal. Na běžící web
+> používejte synchronizaci níže.
+
+### Synchronizace výletů
+
+O to, aby se nové výlety z kódu objevily ve Studiu, se stará
+`.github/workflows/sanity-sync.yml` - po každém mergi do masteru, který sáhne na
+texty výletů nebo na skripty Studia:
+
+```bash
+npm run sync:trips --workspace studio   # totéž ručně
+```
+
+Skript umí jedinou operaci, `createIfNotExists`. **Nic nepřepisuje a nic nemaže**,
+takže nasazení nemůže sáhnout na to, co majitel ve Studiu upravil - chybějící
+výlet doplní, existující nechá být. Proto mají nové dokumenty ID `trip-text-<id>`:
+staré `tripTip` se jmenovaly `trip-<id>` a jinak by se kryly.
+
+Workflow potřebuje v repozitáři secret `SANITY_API_WRITE_TOKEN` (token s právem
+zápisu z [sanity.io/manage](https://sanity.io/manage) → projekt → API → Tokens):
+
+```bash
+gh secret set SANITY_API_WRITE_TOKEN
+```
+
+Bez tokenu se krok jen přeskočí s varováním, nasazení kvůli němu nespadne.
 
 ### Struktura Studia
 
