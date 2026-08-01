@@ -1,0 +1,75 @@
+name: CI
+
+# Brána před mergem: typy, lint, build obou workspaceů a Playwright.
+# Do teď se na master mergovalo bez jediné kontroly.
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Typy, lint a build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      # Staví web (standalone, jako Docker) i Studio, aby se chyba ve schématu
+      # nedostala až do nočního deploye.
+      - name: Build
+        run: npm run build
+
+  e2e:
+    name: Playwright
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Oba projekty (Desktop Chrome i Pixel 5) jedou na Chromiu, víc prohlížečů
+      # stahovat nemusíme.
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+        working-directory: web
+
+      # Playwright si přes webServer sám udělá `npm run build && npm run start`.
+      - name: Run E2E tests
+        run: npm run test:e2e --workspace web
+
+      - name: Upload traces on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: web/test-results
+          retention-days: 7
