@@ -1159,6 +1159,19 @@ h3 em {
   letter-spacing: 0;
 }
 
+/* Nadpis pokoje je tlačítko, aby šel ovládat klávesnicí i dotykem. Vypadat má
+   pořád jako nadpis - stylování si bere z něj, globální :focus-visible zůstává. */
+.rooms-list h3 button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .rooms-list p {
   margin-top: 8px;
   color: #656b66;
