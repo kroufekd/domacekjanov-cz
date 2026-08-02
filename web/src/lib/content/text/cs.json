@@ -81,8 +81,7 @@
         "title": "Dobré vědět",
         "items": [
           "povlečení a malé ručníky v ceně",
-          "dvě koupelny v přízemí",
-          "další WC s umyvadlem v patře",
+          "dvě koupelny v přízemí a jedna samostatná toaleta v patře",
           "bezbariérový pokoj v přízemí",
           "nekuřácký objekt bez domácích mazlíčků"
         ]
@@ -265,7 +264,7 @@
       "eyebrow": "Zahrada a terasa",
       "title": "Trampolína, houpačka|a dětský domeček.",
       "description": "Terasa s grilem míří na jih. Pozemek je celý oplocený, děti tu klidně pustíte z dohledu.",
-      "stampTitle": "Soukromí",
+      "stampTitle": "Soukromý",
       "stampNote": "oplocený pozemek",
       "cardTitle": "Vířivý sud",
       "cardText": "Vyhřívaný sud stojí na terase u domu. Když ho budete chtít, připravíme ho na celý pobyt.",
@@ -312,8 +311,8 @@
       "title": "Jedna cena|za celý dům.",
       "description": "Stačí vybrat termín a zavolat nebo napsat.",
       "notes": [
-        "rekreační poplatek obci 20 Kč / dospělý / den",
-        "vířivý sud 2 000 Kč / pobyt"
+        "vířivý sud 2 000 Kč / pobyt",
+        "nabíjení elektromobilu 10 Kč / kWh"
       ],
       "calendarNote": "Kalendář obsazenosti najdete na e‑chalupy.cz."
     },

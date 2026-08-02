@@ -81,8 +81,7 @@
         "title": "Gut zu wissen",
         "items": [
           "Bettwäsche und kleine Handtücher inklusive",
-          "zwei Bäder im Erdgeschoss",
-          "weiteres WC mit Waschbecken im Obergeschoss",
+          "zwei Bäder im Erdgeschoss und ein separates WC im Obergeschoss",
           "barrierefreies Zimmer im Erdgeschoss",
           "Nichtraucherhaus, keine Haustiere"
         ]
@@ -265,7 +264,7 @@
       "eyebrow": "Garten und Terrasse",
       "title": "Trampolin, Schaukel|und Spielhaus.",
       "description": "Die Terrasse mit Grill liegt nach Süden. Das Grundstück ist komplett eingezäunt, ihr könnt die Kinder ruhig aus den Augen lassen.",
-      "stampTitle": "Privat",
+      "stampTitle": "Privates",
       "stampNote": "eingezäuntes Grundstück",
       "cardTitle": "Badezuber",
       "cardText": "Der beheizte Zuber steht auf der Terrasse am Haus. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
@@ -312,8 +311,8 @@
       "title": "Ein Preis|für das ganze Haus.",
       "description": "Termin aussuchen, anrufen oder schreiben.",
       "notes": [
-        "Kurtaxe an die Gemeinde 20 CZK / Erwachsener / Tag",
-        "Badezuber 2 000 CZK / Aufenthalt"
+        "Badezuber 2 000 CZK / Aufenthalt",
+        "Laden des E-Autos 10 CZK / kWh"
       ],
       "calendarNote": "Den Belegungskalender findet ihr auf e‑chalupy.cz."
     },
