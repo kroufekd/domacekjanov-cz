@@ -25,8 +25,8 @@
         "label": "ložnic"
       },
       {
-        "value": "Soukromí",
-        "label": "celý pozemek jen pro vás"
+        "value": "4 000 m²",
+        "label": "oplocené zahrady"
       },
       {
         "value": "celý rok",
@@ -140,15 +140,15 @@
     },
     "hero-aerial": {
       "alt": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
-      "caption": "Domeček Janov v srdci Českého Švýcarska"
+      "caption": "Domeček Janov, dva kilometry od Hřenska"
     },
     "exterior-garden": {
       "alt": "Domeček Janov ze zahrady",
-      "caption": "Celý dům a zahrada jen pro vás"
+      "caption": "Pohled od zahrady"
     },
     "exterior-wide": {
       "alt": "Domeček a rozlehlá travnatá zahrada",
-      "caption": "Prostorná oplocená zahrada"
+      "caption": "Travnatá zahrada kolem domu"
     },
     "terrace-hot-tub": {
       "alt": "Jižní terasa s vířivým sudem a posezením"
@@ -258,16 +258,16 @@
     "story": {
       "eyebrow": "O domečku",
       "noteAccent": "pro tři až čtyři rodiny",
-      "noteRest": "i partu dobrých přátel"
+      "noteRest": "i partu přátel"
     },
     "garden": {
       "eyebrow": "Zahrada a terasa",
-      "title": "Prostorná zahrada|jen pro vás.",
-      "description": "Terasa s grilem míří na jih. Na zahradě je trampolína, houpačka a dětský domeček - a protože je pozemek celý oplocený, děti klidně pustíte z dohledu a soukromí máte i u vířivky.",
+      "title": "Trampolína, houpačka|a dětský domeček.",
+      "description": "Terasa s grilem míří na jih. Pozemek je celý oplocený, děti tu klidně pustíte z dohledu.",
       "stampTitle": "Soukromí",
       "stampNote": "oplocený pozemek",
       "cardTitle": "Vířivý sud",
-      "cardText": "Vyhřívaný koupací sud na terase. Když ho budete chtít, připravíme ho na celý pobyt.",
+      "cardText": "Vyhřívaný sud stojí na terase u domu. Když ho budete chtít, připravíme ho na celý pobyt.",
       "cardPrice": "2 000 Kč / pobyt"
     },
     "rooms": {
@@ -298,7 +298,7 @@
     "tour": {
       "eyebrow": "Virtuální návštěva",
       "title": "Projděte si Domeček|pokoj po pokoji.",
-      "description": "Otevřete dveře, nahlédněte do ložnic a ověřte si dispozici ještě před příjezdem.",
+      "description": "Otevřete dveře, nahlédněte do ložnic a ověřte si dispozici domu.",
       "teaser": "Projděte se domem ještě před příjezdem"
     },
     "trips": {
@@ -308,9 +308,8 @@
     },
     "pricing": {
       "eyebrow": "Ceny & volné termíny",
-      "title": "Celý dům.|Žádní cizí hosté.",
-      "description": "Cena je vždy za celý Domeček. Stačí vybrat termín a zavolat nebo napsat - domluvíte se přímo s majitelem.",
-      "featuredTag": "Nejoblíbenější",
+      "title": "Jedna cena|za celý dům.",
+      "description": "Stačí vybrat termín a zavolat nebo napsat.",
       "notes": [
         "rekreační poplatek obci 20 Kč / dospělý / den",
         "vířivý sud 2 000 Kč / pobyt"
@@ -319,8 +318,8 @@
     },
     "contact": {
       "eyebrow": "Rezervace a dotazy",
-      "title": "Těšíme se|na vaši partu.",
-      "description": "Rezervace jde přímo přes majitele, bez agentur a prostředníků. Zavolejte nebo napište, domluvíme termín i detaily.",
+      "title": "Domluvte se|přímo s majitelem.",
+      "description": "Bez agentur a prostředníků. Zavolejte nebo napište, doladíme termín i detaily.",
       "phoneLabel": "Telefon",
       "emailLabel": "E‑mail",
       "addressLabel": "Adresa"

@@ -2206,7 +2206,6 @@ h3 em {
 
 .rate-card {
   --rate-card-gutter: 36px;
-  position: relative;
   min-height: 340px;
   padding: 42px var(--rate-card-gutter);
   border: 1px solid var(--line);
@@ -2220,21 +2219,6 @@ h3 em {
   background: var(--forest);
   color: var(--white);
   box-shadow: var(--shadow);
-}
-
-/* Out of flow and above the title, so every card keeps the same content rhythm. */
-.rate-card__tag {
-  position: absolute;
-  top: 20px;
-  left: var(--rate-card-gutter);
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: var(--terracotta);
-  color: var(--white);
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .rate-card h3 {
@@ -2253,7 +2237,7 @@ h3 em {
   line-height: 1;
 }
 
-.rate-card > span:not(.rate-card__tag) {
+.rate-card > span {
   display: block;
   margin-top: 9px;
   color: #6c716d;
@@ -2263,7 +2247,7 @@ h3 em {
   text-transform: uppercase;
 }
 
-.rate-card--featured > span:not(.rate-card__tag) {
+.rate-card--featured > span {
   color: var(--sage);
 }
 

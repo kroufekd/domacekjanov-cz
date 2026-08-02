@@ -17,13 +17,15 @@ import { fileURLToPath } from "node:url";
  *   node scripts/sync-content.mjs            # náhled, token není potřeba
  *   node scripts/sync-content.mjs --write    # zápis
  *
- * Zdrojem hodnot jsou tytéž fallback JSONy, ze kterých čte web, a kategorie
- * fotek `galleryImageDefinitions` z `web/src/lib/content/shared.ts`. Nic se tu
- * tedy nepíše podruhé ručně - co se změní v kódu, to skript nabídne k zápisu.
+ * Zdrojem hodnot jsou tytéž fallback JSONy, ze kterých čte web, texty výletů
+ * z `web/src/data/trip-text` a kategorie fotek `galleryImageDefinitions`
+ * z `web/src/lib/content/shared.ts`. Nic se tu tedy nepíše podruhé ručně - co
+ * se změní v kódu, to skript nabídne k zápisu.
  */
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const TEXT_DIRECTORY = resolve(HERE, "../../web/src/lib/content/text");
+const TRIP_TEXT_DIRECTORY = resolve(HERE, "../../web/src/data/trip-text");
 const SHARED_CONTENT_FILE = resolve(HERE, "../../web/src/lib/content/shared.ts");
 
 /** Jazyky, ve kterých web běží. Čeština je ta, na kterou se padá zpátky. */
@@ -31,6 +33,9 @@ const LOCALES = ["cs", "de", "en"];
 
 const SITE_COPY_ID = "siteCopy-main";
 const ACCOMMODATION_ID = "accommodation-main";
+
+/** Výlety, jejichž popis se v repu přepsal. Zbytek si Studio řídí samo. */
+const TRIP_SUMMARY_IDS = ["vileminina-stena", "mala-pravcicka-brana"];
 
 const write = process.argv.slice(2).includes("--write");
 const token = process.env.SANITY_API_WRITE_TOKEN;
@@ -49,28 +54,32 @@ const client = createClient({
 
 // --- Zdroj pravdy: fallback JSONy webu -------------------------------------
 
-const readText = (locale) =>
-  JSON.parse(readFileSync(resolve(TEXT_DIRECTORY, `${locale}.json`), "utf8"));
+const readByLocale = (directory) =>
+  Object.fromEntries(
+    LOCALES.map((locale) => [
+      locale,
+      JSON.parse(readFileSync(resolve(directory, `${locale}.json`), "utf8")),
+    ]),
+  );
 
-const texts = Object.fromEntries(
-  LOCALES.map((locale) => [locale, readText(locale)]),
-);
+const texts = readByLocale(TEXT_DIRECTORY);
+const tripTexts = readByLocale(TRIP_TEXT_DIRECTORY);
 const czech = texts.cs;
 
 /**
  * Jeden `{cs, de, en}` objekt. Jazyk bez hodnoty se vynechá, ať se do datasetu
  * nedostane `undefined` místo textu.
  */
-const localized = (type, pick) =>
+const localizedFrom = (source, type, pick) =>
   Object.fromEntries([
     ["_type", type],
-    ...LOCALES.map((locale) => [locale, pick(texts[locale])]).filter(
+    ...LOCALES.map((locale) => [locale, pick(source[locale])]).filter(
       ([, value]) => typeof value === "string" && value.trim(),
     ),
   ]);
 
-const lstr = (pick) => localized("localeString", pick);
-const ltext = (pick) => localized("localeText", pick);
+const lstr = (pick) => localizedFrom(texts, "localeString", pick);
+const ltext = (pick) => localizedFrom(texts, "localeText", pick);
 
 // --- Zdroj pravdy: kategorie fotek ze `shared.ts` ---------------------------
 
@@ -187,12 +196,36 @@ const buildRequirements = () => {
   ];
 
   const sections = [
+    ["story.noteRest", lstr((text) => text.copy.story.noteRest)],
     ["garden.title", lstr((text) => text.copy.garden.title)],
     ["garden.description", ltext((text) => text.copy.garden.description)],
     ["garden.stampTitle", lstr((text) => text.copy.garden.stampTitle)],
     ["garden.stampNote", lstr((text) => text.copy.garden.stampNote)],
+    ["garden.cardText", ltext((text) => text.copy.garden.cardText)],
+    ["tour.description", ltext((text) => text.copy.tour.description)],
     ["trips.description", ltext((text) => text.copy.trips.description)],
+    ["pricing.title", lstr((text) => text.copy.pricing.title)],
+    ["pricing.description", ltext((text) => text.copy.pricing.description)],
+    ["contact.title", lstr((text) => text.copy.contact.title)],
+    ["contact.description", ltext((text) => text.copy.contact.description)],
   ].map(([path, value]) => localeRequirement(SITE_COPY_ID, path, value));
+
+  // Štítek zvýrazněné ceny web ani Studio už nemají, takže musí zmizet
+  // i z datasetu - jinak by v něm zůstal text, ke kterému nevede žádné pole.
+  const removed = [
+    { document: SITE_COPY_ID, path: "pricing.featuredTag", kind: "remove" },
+  ];
+
+  // Popisy výletů se srovnávají po jednom. Hromadná synchronizace všech cílů
+  // by přebila i texty, které majitel doladil ve Studiu, takže sem patří jen
+  // ty, jejichž znění se opravdu změnilo v repu.
+  const trips = TRIP_SUMMARY_IDS.map((id) =>
+    localeRequirement(
+      `trip-text-${id}`,
+      "summary",
+      localizedFrom(tripTexts, "localeText", (text) => text[id]?.summary),
+    ),
+  );
 
   const accommodation = [
     localeRequirement(
@@ -215,7 +248,14 @@ const buildRequirements = () => {
     ),
   ];
 
-  return [...sections, ...categories, ...accommodation, ...gallery];
+  return [
+    ...sections,
+    ...removed,
+    ...categories,
+    ...accommodation,
+    ...trips,
+    ...gallery,
+  ];
 };
 
 // --- Porovnání s datasetem -------------------------------------------------
@@ -338,14 +378,21 @@ const fetchDocuments = async () => {
     const result = await client.fetch(
       `{
         "gallery": *[_type == "galleryItem"]{_id, category, caption},
-        "siteCopy": *[_id == $siteCopy][0]{_id, garden, gallery, trips},
-        "accommodation": *[_id == $accommodation][0]{_id, introText, facts}
+        "siteCopy": *[_id == $siteCopy][0]{
+          _id, story, garden, tour, gallery, trips, pricing, contact
+        },
+        "accommodation": *[_id == $accommodation][0]{_id, introText, facts},
+        "trips": *[_id in $trips]{_id, summary}
       }`,
-      { siteCopy: SITE_COPY_ID, accommodation: ACCOMMODATION_ID },
+      {
+        siteCopy: SITE_COPY_ID,
+        accommodation: ACCOMMODATION_ID,
+        trips: TRIP_SUMMARY_IDS.map((id) => `trip-text-${id}`),
+      },
     );
 
     return new Map(
-      [...result.gallery, result.siteCopy, result.accommodation]
+      [...result.gallery, ...result.trips, result.siteCopy, result.accommodation]
         .filter(Boolean)
         .map((document) => [document._id, document]),
     );

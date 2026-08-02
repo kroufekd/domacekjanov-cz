@@ -126,7 +126,6 @@ export type SiteCopy = {
   };
   trips: SectionCopy;
   pricing: SectionCopy & {
-    featuredTag: string;
     notes: string[];
     calendarNote: string;
   };

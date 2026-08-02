@@ -164,7 +164,6 @@ export const siteCopyType = defineType({
 
     section("pricing", "Sekce Ceník", "pricing", {
       extra: [
-        str("featuredTag", "Štítek zvýrazněné ceny"),
         strList("notes", "Příplatky pod ceníkem"),
         str("calendarNote", "Poznámka u kalendáře"),
       ],
