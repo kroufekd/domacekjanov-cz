@@ -357,11 +357,6 @@ export default async function HomePage({ params }: HomePageProps) {
                     rate.featured ? "rate-card rate-card--featured" : "rate-card"
                   }
                 >
-                  {rate.featured ? (
-                    <span className="rate-card__tag">
-                      {copy.pricing.featuredTag}
-                    </span>
-                  ) : null}
                   <h3>{rate.title}</h3>
                   <strong>{rate.price}</strong>
                   <span>{rate.unit}</span>

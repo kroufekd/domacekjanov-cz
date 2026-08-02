@@ -25,8 +25,8 @@
         "label": "Schlafzimmer"
       },
       {
-        "value": "Privat",
-        "label": "das ganze Grundstück für euch"
+        "value": "4 000 m²",
+        "label": "eingezäunter Garten"
       },
       {
         "value": "ganzjährig",
@@ -140,15 +140,15 @@
     },
     "hero-aerial": {
       "alt": "Luftaufnahme des Domeček Janov mit Terrasse und eingezäuntem Garten",
-      "caption": "Domeček Janov im Herzen der Böhmischen Schweiz"
+      "caption": "Domeček Janov, zwei Kilometer von Hřensko"
     },
     "exterior-garden": {
       "alt": "Domeček Janov vom Garten aus",
-      "caption": "Das ganze Haus und der Garten nur für euch"
+      "caption": "Blick vom Garten"
     },
     "exterior-wide": {
       "alt": "Das Haus und der weitläufige Rasengarten",
-      "caption": "Weitläufiger eingezäunter Garten"
+      "caption": "Rasengarten rund um das Haus"
     },
     "terrace-hot-tub": {
       "alt": "Südterrasse mit Badezuber und Sitzecke"
@@ -258,16 +258,16 @@
     "story": {
       "eyebrow": "Über das Haus",
       "noteAccent": "für drei bis vier Familien",
-      "noteRest": "und eine Runde guter Freunde"
+      "noteRest": "und eine Runde Freunde"
     },
     "garden": {
       "eyebrow": "Garten und Terrasse",
-      "title": "Weitläufiger Garten|nur für euch.",
-      "description": "Die Terrasse mit Grill liegt nach Süden. Im Garten stehen Trampolin, Schaukel und ein Spielhaus - und weil das Grundstück komplett eingezäunt ist, könnt ihr die Kinder ruhig aus den Augen lassen und habt auch am Badezuber eure Ruhe.",
+      "title": "Trampolin, Schaukel|und Spielhaus.",
+      "description": "Die Terrasse mit Grill liegt nach Süden. Das Grundstück ist komplett eingezäunt, ihr könnt die Kinder ruhig aus den Augen lassen.",
       "stampTitle": "Privat",
       "stampNote": "eingezäuntes Grundstück",
       "cardTitle": "Badezuber",
-      "cardText": "Beheizter Badezuber auf der Terrasse. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
+      "cardText": "Der beheizte Zuber steht auf der Terrasse am Haus. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
       "cardPrice": "2 000 CZK / Aufenthalt"
     },
     "rooms": {
@@ -298,7 +298,7 @@
     "tour": {
       "eyebrow": "Virtueller Besuch",
       "title": "Geht durch das Domeček|Zimmer für Zimmer.",
-      "description": "Öffnet die Türen, schaut in die Schlafzimmer und prüft den Grundriss schon vor der Anreise.",
+      "description": "Öffnet die Türen, schaut in die Schlafzimmer und prüft den Grundriss des Hauses.",
       "teaser": "Geht schon vor der Anreise durch das Haus"
     },
     "trips": {
@@ -308,9 +308,8 @@
     },
     "pricing": {
       "eyebrow": "Preise & freie Termine",
-      "title": "Das ganze Haus.|Keine fremden Gäste.",
-      "description": "Der Preis gilt immer für das gesamte Domeček. Termin aussuchen, anrufen oder schreiben - ihr sprecht direkt mit dem Eigentümer.",
-      "featuredTag": "Am beliebtesten",
+      "title": "Ein Preis|für das ganze Haus.",
+      "description": "Termin aussuchen, anrufen oder schreiben.",
       "notes": [
         "Kurtaxe an die Gemeinde 20 CZK / Erwachsener / Tag",
         "Badezuber 2 000 CZK / Aufenthalt"
@@ -319,8 +318,8 @@
     },
     "contact": {
       "eyebrow": "Buchung und Fragen",
-      "title": "Wir freuen uns|auf eure Gruppe.",
-      "description": "Gebucht wird direkt beim Eigentümer, ohne Agenturen und Vermittler. Ruft an oder schreibt, wir stimmen Termin und Details ab.",
+      "title": "Sprecht direkt|mit dem Eigentümer.",
+      "description": "Ohne Agenturen und Vermittler. Ruft an oder schreibt, wir stimmen Termin und Details ab.",
       "phoneLabel": "Telefon",
       "emailLabel": "E‑Mail",
       "addressLabel": "Adresse"
