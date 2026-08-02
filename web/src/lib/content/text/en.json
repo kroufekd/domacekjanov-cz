@@ -177,6 +177,10 @@
     "kitchen-detail": {
       "alt": "Kitchen equipment at Domeček Janov"
     },
+    "bathroom": {
+      "alt": "Bright bathroom with a shower",
+      "caption": "Two bathrooms on the ground floor"
+    },
     "bedroom-double": {
       "alt": "Bedroom with a double bed",
       "caption": "Four rooms with a double bed"
@@ -195,10 +199,6 @@
     "bedroom-twin": {
       "alt": "Attic room with two beds",
       "caption": "Room in the attic"
-    },
-    "bathroom": {
-      "alt": "Bright bathroom with a shower",
-      "caption": "Two bathrooms on the ground floor"
     },
     "bedroom-single": {
       "alt": "Room with a single bed",

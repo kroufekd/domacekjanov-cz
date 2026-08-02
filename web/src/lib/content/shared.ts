@@ -56,12 +56,12 @@ export type GalleryImageId =
   | "kitchen"
   | "kitchen-island"
   | "kitchen-detail"
+  | "bathroom"
   | "bedroom-double"
   | "bedroom-double-window"
   | "bedroom-bunk-red"
   | "bedroom-bunk"
   | "bedroom-twin"
-  | "bathroom"
   | "bedroom-single"
   | "stairs";
 
@@ -276,6 +276,13 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     category: "spolecne",
   },
   {
+    id: "bathroom",
+    file: "bathroom.jpg",
+    width: 1600,
+    height: 1200,
+    category: "spolecne",
+  },
+  {
     id: "bedroom-double",
     file: "bedroom-double.jpg",
     width: 1600,
@@ -309,13 +316,6 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     file: "bedroom-twin.jpg",
     width: 1600,
     height: 1200,
-    category: "pokoje",
-  },
-  {
-    id: "bathroom",
-    file: "bathroom.jpg",
-    width: 1280,
-    height: 756,
     category: "pokoje",
   },
   {

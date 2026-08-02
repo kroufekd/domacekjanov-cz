@@ -177,6 +177,10 @@
     "kitchen-detail": {
       "alt": "Kuchyňské vybavení v Domečku Janov"
     },
+    "bathroom": {
+      "alt": "Světlá koupelna se sprchovým koutem",
+      "caption": "Dvě koupelny v přízemí"
+    },
     "bedroom-double": {
       "alt": "Ložnice s manželskou postelí",
       "caption": "Čtyři pokoje s manželskou postelí"
@@ -195,10 +199,6 @@
     "bedroom-twin": {
       "alt": "Podkrovní pokoj se dvěma lůžky",
       "caption": "Pokoj v podkroví"
-    },
-    "bathroom": {
-      "alt": "Světlá koupelna se sprchovým koutem",
-      "caption": "Dvě koupelny v přízemí"
     },
     "bedroom-single": {
       "alt": "Pokoj s jednolůžkem",
