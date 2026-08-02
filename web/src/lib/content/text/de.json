@@ -177,6 +177,10 @@
     "kitchen-detail": {
       "alt": "Küchenausstattung im Domeček Janov"
     },
+    "bathroom": {
+      "alt": "Helles Bad mit Dusche",
+      "caption": "Zwei Bäder im Erdgeschoss"
+    },
     "bedroom-double": {
       "alt": "Schlafzimmer mit Doppelbett",
       "caption": "Vier Zimmer mit Doppelbett"
@@ -195,10 +199,6 @@
     "bedroom-twin": {
       "alt": "Dachzimmer mit zwei Betten",
       "caption": "Zimmer im Dachgeschoss"
-    },
-    "bathroom": {
-      "alt": "Helles Bad mit Dusche",
-      "caption": "Zwei Bäder im Erdgeschoss"
     },
     "bedroom-single": {
       "alt": "Zimmer mit Einzelbett",
