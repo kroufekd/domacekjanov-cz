@@ -150,13 +150,35 @@ const localeRequirement = (document, path, value, requires) => {
 };
 
 /**
+ * Nová položka lokalizovaného pole. Použije se, když v repu přibyla odrážka,
+ * kterou dataset ještě nezná - `set` na cestu s `_key`, který v poli není,
+ * by totiž tiše neudělal nic. Existující položka se nechává být, ať se
+ * nepřepíše znění, které mohl majitel doladit ve Studiu.
+ */
+const localeItemRequirement = (document, path, key, value, requires) => {
+  if (!LOCALES.some((locale) => value[locale] !== undefined)) {
+    throw new Error(`Ve fallback JSONech chybí text pro ${document}.${path}.`);
+  }
+
+  return {
+    document,
+    path,
+    kind: "append",
+    key,
+    value: { _key: key, ...value },
+    ...(requires ? { requires } : {}),
+  };
+};
+
+/**
  * Požadavek na jedno pole: kam se dívat a co tam má být.
  *
  * `kind` je `locale` pro `{cs, de, en}` objekt, `value` pro prostý řetězec,
- * `remove` pro pole, které má z dokumentu zmizet, a `restrict` pro objekt,
- * ve kterém nesmí zůstat jiné klíče než ty vyjmenované. `requires` je cesta,
- * která v dokumentu musí existovat - patch přes filtr `[_key=="…"]` u chybějící
- * položky totiž tiše neudělá nic, a to by v souhrnu vypadalo jako úspěch.
+ * `remove` pro pole, které má z dokumentu zmizet, `restrict` pro objekt,
+ * ve kterém nesmí zůstat jiné klíče než ty vyjmenované, a `append` pro novou
+ * položku pole. `requires` je cesta, která v dokumentu musí existovat - patch
+ * přes filtr `[_key=="…"]` u chybějící položky totiž tiše neudělá nic, a to by
+ * v souhrnu vypadalo jako úspěch.
  */
 const buildRequirements = () => {
   const gallery = readGalleryCategories().flatMap(({ id, category }) => {
@@ -246,6 +268,19 @@ const buildRequirements = () => {
       lstr((text) => text.accommodation.facts[2].label),
       'facts[_key=="fact-2"]',
     ),
+    localeRequirement(
+      ACCOMMODATION_ID,
+      'amenities[_key=="amenity-2"].title',
+      lstr((text) => text.accommodation.amenities[2].title),
+      'amenities[_key=="amenity-2"]',
+    ),
+    localeItemRequirement(
+      ACCOMMODATION_ID,
+      'amenities[_key=="amenity-1"].items',
+      "item-5",
+      lstr((text) => text.accommodation.amenities[1].items[5]),
+      'amenities[_key=="amenity-1"]',
+    ),
   ];
 
   return [
@@ -305,7 +340,7 @@ const localeOperations = (path, current, target) => {
 
 /** Rozdíl mezi požadavkem a dokumentem. Co už sedí, vrátí prázdný seznam. */
 const toOperations = (requirement, document) => {
-  const { path, kind, value, allowed, requires } = requirement;
+  const { path, kind, value, allowed, requires, key } = requirement;
 
   if (requires && readPath(document, requires) === undefined) {
     return { skipped: `v datasetu chybí ${requires}`, operations: [] };
@@ -341,6 +376,17 @@ const toOperations = (requirement, document) => {
     return { operations };
   }
 
+  if (kind === "append") {
+    if (!Array.isArray(current)) {
+      return { skipped: `${path} v datasetu není pole`, operations: [] };
+    }
+
+    const operations = current.some((item) => item?._key === key)
+      ? []
+      : [{ kind: "insert", path, from: undefined, to: value }];
+    return { operations };
+  }
+
   return { operations: localeOperations(path, current, value) };
 };
 
@@ -364,6 +410,12 @@ const printOperation = (operation) => {
     return;
   }
 
+  if (operation.kind === "insert") {
+    console.log(`  + ${operation.path} (nová položka)`);
+    console.log(`      přidá: ${preview(operation.to)}`);
+    return;
+  }
+
   console.log(`  ${operation.from === undefined ? "+" : "~"} ${operation.path}`);
   if (operation.from !== undefined) {
     console.log(`      z: ${preview(operation.from)}`);
@@ -381,7 +433,9 @@ const fetchDocuments = async () => {
         "siteCopy": *[_id == $siteCopy][0]{
           _id, story, garden, tour, gallery, trips, pricing, contact
         },
-        "accommodation": *[_id == $accommodation][0]{_id, introText, facts},
+        "accommodation": *[_id == $accommodation][0]{
+          _id, introText, facts, amenities
+        },
         "trips": *[_id in $trips]{_id, summary}
       }`,
       {
@@ -412,6 +466,7 @@ const applyOperations = async (documentId, operations) => {
   const removed = operations
     .filter(({ kind }) => kind === "unset")
     .map(({ path }) => path);
+  const inserted = operations.filter(({ kind }) => kind === "insert");
 
   try {
     const patch = client.patch(documentId);
@@ -419,8 +474,13 @@ const applyOperations = async (documentId, operations) => {
       Object.keys(values).length > 0 ? patch.set(values) : patch;
     const withRemoved =
       removed.length > 0 ? withValues.unset(removed) : withValues;
+    // Nové položky jdou na konec pole, aby pořadí odpovídalo fallback JSONům.
+    const withInserted = inserted.reduce(
+      (current, { path, to }) => current.insert("after", `${path}[-1]`, [to]),
+      withRemoved,
+    );
 
-    await withRemoved.commit();
+    await withInserted.commit();
   } catch (error) {
     throw new Error(`Zápis do ${documentId} selhal: ${error.message}`);
   }

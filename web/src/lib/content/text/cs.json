@@ -12,7 +12,7 @@
   "accommodation": {
     "introTitle": "Jeden velký dům pro tři až čtyři rodiny.",
     "introText": [
-      "Domeček stojí v klidné části Janova, pár minut pod Hřenskem. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+      "Domeček stojí v klidné části Janova, pár minut od Hřenska. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
       "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok."
     ],
     "facts": [
@@ -73,11 +73,12 @@
           "jižní terasa s plynovým grilem",
           "trampolína, houpačka a dětský domeček",
           "oplocená travnatá zahrada",
-          "parkování přímo u domu"
+          "parkování přímo u domu",
+          "wallbox 11 kW pro elektromobily"
         ]
       },
       {
-        "title": "Prakticky",
+        "title": "Dobré vědět",
         "items": [
           "povlečení a malé ručníky v ceně",
           "dvě koupelny v přízemí",

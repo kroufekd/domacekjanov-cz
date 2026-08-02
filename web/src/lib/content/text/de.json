@@ -12,7 +12,7 @@
   "accommodation": {
     "introTitle": "Ein großes Haus für drei bis vier Familien.",
     "introText": [
-      "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten unterhalb von Hřensko. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
+      "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten von Hřensko entfernt. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
       "Am häufigsten kommen Familien mit Kindern, Freundesgruppen, Sportteams oder kleinere Firmen zum Teambuilding. Das Haus ist das ganze Jahr über geöffnet."
     ],
     "facts": [
@@ -73,11 +73,12 @@
           "Südterrasse mit Gasgrill",
           "Trampolin, Schaukel und Spielhaus",
           "eingezäunter Rasengarten",
-          "Parkplatz direkt am Haus"
+          "Parkplatz direkt am Haus",
+          "11-kW-Wallbox für E-Autos"
         ]
       },
       {
-        "title": "Praktisches",
+        "title": "Gut zu wissen",
         "items": [
           "Bettwäsche und kleine Handtücher inklusive",
           "zwei Bäder im Erdgeschoss",
