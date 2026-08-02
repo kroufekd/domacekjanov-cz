@@ -7,10 +7,10 @@ import {
   Check,
   ChefHat,
   Flame,
+  Info,
   Mail,
   MapPin,
   Phone,
-  ShieldCheck,
   Sparkles,
   Trees,
   UsersRound,
@@ -46,7 +46,7 @@ import { getTrips } from "@/lib/trips";
 import { buildStructuredData } from "@/lib/structured-data";
 
 const featureIcons = [UsersRound, BedDouble, Trees, Sparkles];
-const amenityIcons = [Flame, Waves, ShieldCheck];
+const amenityIcons = [Flame, Waves, Info];
 const comfortIcons = [Accessibility, Baby, ChefHat, Wifi, Bath];
 
 const siteUrl =
