@@ -234,8 +234,25 @@ const buildRequirements = () => {
 
   // Štítek zvýrazněné ceny web ani Studio už nemají, takže musí zmizet
   // i z datasetu - jinak by v něm zůstal text, ke kterému nevede žádné pole.
+  // Rekreační poplatek obci si majitel v ceníku nepřeje, takže odchází taky.
   const removed = [
     { document: SITE_COPY_ID, path: "pricing.featuredTag", kind: "remove" },
+    {
+      document: SITE_COPY_ID,
+      path: 'pricing.notes[_key=="item-0"]',
+      kind: "remove",
+    },
+  ];
+
+  // Cena za nabíjení. Klíč je `item-2`, i když v JSONech je poznámka druhá -
+  // `item-0` z datasetu mizí výše a klíče se po smazání nepřečíslovávají.
+  const pricingNotes = [
+    localeItemRequirement(
+      SITE_COPY_ID,
+      "pricing.notes",
+      "item-2",
+      lstr((text) => text.copy.pricing.notes[1]),
+    ),
   ];
 
   // Popisy výletů se srovnávají po jednom. Hromadná synchronizace všech cílů
@@ -281,11 +298,24 @@ const buildRequirements = () => {
       lstr((text) => text.accommodation.amenities[1].items[5]),
       'amenities[_key=="amenity-1"]',
     ),
+    // Koupelny a toaleta se slily do jedné odrážky, druhá proto z pole mizí.
+    localeRequirement(
+      ACCOMMODATION_ID,
+      'amenities[_key=="amenity-2"].items[_key=="item-1"]',
+      lstr((text) => text.accommodation.amenities[2].items[1]),
+      'amenities[_key=="amenity-2"].items[_key=="item-1"]',
+    ),
+    {
+      document: ACCOMMODATION_ID,
+      path: 'amenities[_key=="amenity-2"].items[_key=="item-2"]',
+      kind: "remove",
+    },
   ];
 
   return [
     ...sections,
     ...removed,
+    ...pricingNotes,
     ...categories,
     ...accommodation,
     ...trips,

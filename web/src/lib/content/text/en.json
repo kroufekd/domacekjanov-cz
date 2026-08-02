@@ -81,8 +81,7 @@
         "title": "Good to know",
         "items": [
           "bed linen and small towels included",
-          "two bathrooms on the ground floor",
-          "another toilet with a basin upstairs",
+          "two bathrooms on the ground floor and a separate toilet upstairs",
           "step-free room on the ground floor",
           "non-smoking house, no pets"
         ]
@@ -265,8 +264,8 @@
       "eyebrow": "Garden and terrace",
       "title": "Trampoline, swing|and a playhouse.",
       "description": "The terrace with the grill faces south. The whole plot is fenced, so you can let the children out of sight.",
-      "stampTitle": "Privacy",
-      "stampNote": "a fenced plot",
+      "stampTitle": "Private",
+      "stampNote": "fenced plot",
       "cardTitle": "Hot tub",
       "cardText": "The heated tub stands on the terrace by the house. If you want it, we will have it ready for your whole stay.",
       "cardPrice": "CZK 2,000 / stay"
@@ -312,8 +311,8 @@
       "title": "One price|for the whole house.",
       "description": "Pick your dates and call or write.",
       "notes": [
-        "municipal tourist fee CZK 20 / adult / day",
-        "hot tub CZK 2,000 / stay"
+        "hot tub CZK 2,000 / stay",
+        "electric car charging CZK 10 / kWh"
       ],
       "calendarNote": "You will find the availability calendar on e‑chalupy.cz."
     },
