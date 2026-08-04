@@ -396,14 +396,18 @@ h3 em {
   transform: scaleX(1);
 }
 
-.header-call {
+/* The two header pills - the language trigger and the call link - share one
+   shape so they read as a matched pair rather than two similar buttons. */
+.header-call,
+.lang-switcher__trigger {
   display: inline-flex;
+  height: 38px;
   align-items: center;
   gap: 8px;
-  padding: 9px 16px;
+  padding: 0 15px;
   border: 1px solid currentColor;
   border-radius: 99px;
-  font-size: 0.79rem;
+  font-size: 0.78rem;
   font-weight: 750;
 }
 
@@ -429,17 +433,8 @@ h3 em {
 }
 
 .lang-switcher__trigger {
-  display: inline-flex;
-  height: 38px;
-  align-items: center;
-  gap: 7px;
-  padding: 0 13px;
-  border: 1px solid currentColor;
-  border-radius: 99px;
   background: transparent;
   cursor: pointer;
-  font-size: 0.76rem;
-  font-weight: 750;
   letter-spacing: 0.04em;
   transition:
     background 200ms ease,

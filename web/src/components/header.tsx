@@ -79,7 +79,7 @@ export function Header({ phone, locale, copy, dictionary }: HeaderProps) {
           <LanguageSwitcher locale={locale} labels={dictionary.language} />
 
           <a className="header-call" href={`tel:${phone}`}>
-            <Phone aria-hidden="true" size={17} />
+            <Phone aria-hidden="true" size={16} />
             {copy.actions.call}
           </a>
 
