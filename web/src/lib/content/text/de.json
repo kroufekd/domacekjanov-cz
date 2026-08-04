@@ -52,7 +52,7 @@
       },
       {
         "title": "Wohnzimmer",
-        "description": "Zwei Schlafsofas erweitern die Kapazität auf insgesamt 17 Schlafplätze."
+        "description": "Große Ecksofagarnitur und Fernseher für gemeinsame Abende."
       }
     ],
     "amenities": [
@@ -165,7 +165,7 @@
     },
     "living-room": {
       "alt": "Wohnzimmer mit großer Ecksofagarnitur",
-      "caption": "Wohnzimmer mit Schlafsofas"
+      "caption": "Wohnzimmer"
     },
     "kitchen": {
       "alt": "Voll ausgestattete graue Küche",
@@ -273,7 +273,7 @@
     "rooms": {
       "eyebrow": "Schlafen & Ausstattung",
       "title": "Fünfzehn Betten|in sechs Schlafzimmern.",
-      "description": "Fünf Zimmer im Obergeschoss, ein barrierefreies im Erdgeschoss und dazu zwei Schlafsofas im Wohnzimmer - zusammen bis zu 17 Schlafplätze.",
+      "description": "Fünf Zimmer im Obergeschoss, ein barrierefreies im Erdgeschoss und dazu zwei Zustellbetten - zusammen bis zu 17 Schlafplätze.",
       "comfort": [
         "barrierefreies Zimmer",
         "Ausstattung für Kinder",

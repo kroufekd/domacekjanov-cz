@@ -52,7 +52,7 @@
       },
       {
         "title": "Obývací pokoj",
-        "description": "Dvě rozkládací pohovky doplňují kapacitu na 17 míst."
+        "description": "Velká rohová pohovka a televize pro společné večery."
       }
     ],
     "amenities": [
@@ -165,7 +165,7 @@
     },
     "living-room": {
       "alt": "Obývací pokoj s velkou rohovou pohovkou",
-      "caption": "Obývací pokoj s rozkládacími pohovkami"
+      "caption": "Obývací pokoj"
     },
     "kitchen": {
       "alt": "Plně vybavená šedá kuchyň",
@@ -273,7 +273,7 @@
     "rooms": {
       "eyebrow": "Spaní & vybavení",
       "title": "Patnáct lůžek|v šesti ložnicích.",
-      "description": "Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě rozkládací pohovky v obýváku - dohromady až 17 míst na spaní.",
+      "description": "Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě přistýlky - dohromady až 17 míst na spaní.",
       "comfort": [
         "bezbariérový pokoj",
         "vybavení pro děti",
