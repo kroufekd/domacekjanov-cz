@@ -52,7 +52,7 @@
       },
       {
         "title": "Living room",
-        "description": "Two sofa beds bring the total capacity to 17 places."
+        "description": "A large corner sofa and a television for evenings together."
       }
     ],
     "amenities": [
@@ -165,7 +165,7 @@
     },
     "living-room": {
       "alt": "Living room with a large corner sofa",
-      "caption": "Living room with sofa beds"
+      "caption": "Living room"
     },
     "kitchen": {
       "alt": "Fully equipped grey kitchen",
@@ -273,7 +273,7 @@
     "rooms": {
       "eyebrow": "Sleeping & amenities",
       "title": "Fifteen beds|in six bedrooms.",
-      "description": "Five rooms upstairs, one step-free room on the ground floor and two sofa beds in the living room - up to 17 places to sleep in total.",
+      "description": "Five rooms upstairs, one step-free room on the ground floor and two extra beds - up to 17 places to sleep in total.",
       "comfort": [
         "step-free room",
         "equipment for children",
