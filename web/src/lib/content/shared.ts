@@ -76,9 +76,14 @@ export type GalleryImageDefinition = {
 
 /**
  * Order matters: the first entry doubles as the hero photo (see `fallback.ts`)
- * and the first eight feed the JSON-LD `image` list. The opening block is
- * deliberately mixed across categories so the default "vše" view shows the
- * house, the garden and the interior before the visitor has to click anything.
+ * and the first eight feed the JSON-LD `image` list.
+ *
+ * Since 2026-08-10 the order matches the portal listings (e-chalupy, CS chalupy,
+ * Booking) one to one, at the owner's request: exterior, hot tub, terrace,
+ * garden, kitchen, living room, bathroom, bedrooms. It used to open with a mix
+ * of categories; that is gone, so the default "vše" view now starts with nine
+ * exterior shots. The live site reads the order from Sanity (`galleryItem.order`),
+ * this list is the offline fallback and has to stay in sync with it.
  */
 export const galleryImageDefinitions: GalleryImageDefinition[] = [
   {
@@ -98,8 +103,50 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     featured: true,
   },
   {
+    id: "hero-aerial",
+    file: "hero-aerial-summer.jpg",
+    width: 1024,
+    height: 765,
+    category: "exterier",
+  },
+  {
     id: "aerial-terrace",
     file: "aerial-terrace.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "aerial-top-down",
+    file: "aerial-top-down.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "exterior-wide",
+    file: "exterior-wide.jpg",
+    width: 1280,
+    height: 960,
+    category: "exterier",
+  },
+  {
+    id: "exterior-garden",
+    file: "exterior-garden.jpg",
+    width: 1280,
+    height: 960,
+    category: "exterier",
+  },
+  {
+    id: "exterior-summer-meadow",
+    file: "exterior-summer-meadow.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "exterior-back-lawn",
+    file: "exterior-back-lawn.jpg",
     width: 1600,
     height: 1200,
     category: "exterier",
@@ -113,10 +160,81 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     featured: true,
   },
   {
+    id: "hot-tub-bubbles",
+    file: "hot-tub-bubbles.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  // Portrait shot: keep it off the wide slots of the grid, they crop it to sky.
+  {
+    id: "hot-tub-sun",
+    file: "hot-tub-sun.jpg",
+    width: 1201,
+    height: 1600,
+    category: "exterier",
+  },
+  {
+    id: "hot-tub",
+    file: "hot-tub.jpg",
+    width: 1280,
+    height: 960,
+    category: "exterier",
+  },
+  {
+    id: "terrace-hot-tub",
+    file: "terrace-hot-tub.jpg",
+    width: 1600,
+    height: 1066,
+    category: "exterier",
+  },
+  {
     id: "terrace-awning",
     file: "terrace-awning.jpg",
     width: 1600,
     height: 1356,
+    category: "exterier",
+  },
+  {
+    id: "terrace-awning-table",
+    file: "terrace-awning-table.jpg",
+    width: 1600,
+    height: 1201,
+    category: "exterier",
+  },
+  {
+    id: "terrace-dining-long",
+    file: "terrace-dining-long.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "terrace-garden-table",
+    file: "terrace-garden-table.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "terrace-table",
+    file: "terrace-table.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "terrace-lounge",
+    file: "terrace-lounge.jpg",
+    width: 1600,
+    height: 1200,
+    category: "exterier",
+  },
+  {
+    id: "terrace-grill-orchard",
+    file: "terrace-grill-orchard.jpg",
+    width: 1600,
+    height: 1200,
     category: "exterier",
   },
   {
@@ -135,13 +253,6 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     featured: true,
   },
   {
-    id: "living-room",
-    file: "living-room.jpg",
-    width: 1280,
-    height: 965,
-    category: "spolecne",
-  },
-  {
     id: "kitchen",
     file: "kitchen.jpg",
     width: 1600,
@@ -156,123 +267,17 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     category: "spolecne",
   },
   {
-    id: "aerial-top-down",
-    file: "aerial-top-down.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "exterior-summer-meadow",
-    file: "exterior-summer-meadow.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "exterior-back-lawn",
-    file: "exterior-back-lawn.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "hero-aerial",
-    file: "hero-aerial-summer.jpg",
-    width: 1024,
-    height: 765,
-    category: "exterier",
-  },
-  {
-    id: "exterior-garden",
-    file: "exterior-garden.jpg",
-    width: 1280,
-    height: 960,
-    category: "exterier",
-  },
-  {
-    id: "exterior-wide",
-    file: "exterior-wide.jpg",
-    width: 1280,
-    height: 960,
-    category: "exterier",
-  },
-  {
-    id: "terrace-dining-long",
-    file: "terrace-dining-long.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "hot-tub-bubbles",
-    file: "hot-tub-bubbles.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "terrace-awning-table",
-    file: "terrace-awning-table.jpg",
-    width: 1600,
-    height: 1201,
-    category: "exterier",
-  },
-  // Portrait shot: keep it off the wide slots of the grid, they crop it to sky.
-  {
-    id: "hot-tub-sun",
-    file: "hot-tub-sun.jpg",
-    width: 1201,
-    height: 1600,
-    category: "exterier",
-  },
-  {
-    id: "terrace-grill-orchard",
-    file: "terrace-grill-orchard.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "terrace-lounge",
-    file: "terrace-lounge.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "terrace-garden-table",
-    file: "terrace-garden-table.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "terrace-hot-tub",
-    file: "terrace-hot-tub.jpg",
-    width: 1600,
-    height: 1066,
-    category: "exterier",
-  },
-  {
-    id: "terrace-table",
-    file: "terrace-table.jpg",
-    width: 1600,
-    height: 1200,
-    category: "exterier",
-  },
-  {
-    id: "hot-tub",
-    file: "hot-tub.jpg",
-    width: 1280,
-    height: 960,
-    category: "exterier",
-  },
-  {
     id: "kitchen-detail",
     file: "kitchen-detail.jpg",
     width: 1600,
     height: 1066,
+    category: "spolecne",
+  },
+  {
+    id: "living-room",
+    file: "living-room.jpg",
+    width: 1280,
+    height: 965,
     category: "spolecne",
   },
   {
@@ -281,6 +286,13 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     width: 1600,
     height: 1200,
     category: "spolecne",
+  },
+  {
+    id: "stairs",
+    file: "stairs.jpg",
+    width: 1200,
+    height: 1600,
+    category: "pokoje",
   },
   {
     id: "bedroom-double",
@@ -298,20 +310,6 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     category: "pokoje",
   },
   {
-    id: "bedroom-bunk-red",
-    file: "bedroom-bunk-red.jpg",
-    width: 1600,
-    height: 1600,
-    category: "pokoje",
-  },
-  {
-    id: "bedroom-bunk",
-    file: "bedroom-bunk.jpg",
-    width: 1600,
-    height: 1200,
-    category: "pokoje",
-  },
-  {
     id: "bedroom-twin",
     file: "bedroom-twin.jpg",
     width: 1600,
@@ -326,9 +324,16 @@ export const galleryImageDefinitions: GalleryImageDefinition[] = [
     category: "pokoje",
   },
   {
-    id: "stairs",
-    file: "stairs.jpg",
-    width: 1200,
+    id: "bedroom-bunk",
+    file: "bedroom-bunk.jpg",
+    width: 1600,
+    height: 1200,
+    category: "pokoje",
+  },
+  {
+    id: "bedroom-bunk-red",
+    file: "bedroom-bunk-red.jpg",
+    width: 1600,
     height: 1600,
     category: "pokoje",
   },
