@@ -13,8 +13,8 @@ type EditFieldProps = {
   readonly field: EditableField;
   readonly value: string;
   readonly changed: boolean;
-  readonly onChange: (key: string, value: string) => void;
-  readonly onFocus: (value: string) => void;
+  readonly onChange: (field: EditableField, value: string) => void;
+  readonly onFocus: (field: EditableField) => void;
   readonly onBlur: () => void;
 };
 
@@ -37,8 +37,8 @@ export function EditField({
     }`,
     onChange: (
       event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => onChange(field.key, event.target.value),
-    onFocus: () => onFocus(field.value),
+    ) => onChange(field, event.target.value),
+    onFocus: () => onFocus(field),
     onBlur,
   };
 

@@ -5,11 +5,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 
-import { EditPanel } from "./edit-panel";
+import { EditWorkbench } from "./edit-workbench";
 import { PinDialog } from "./pin-dialog";
 
 /**
- * Přepínač mezi PINem a panelem.
+ * Přepínač mezi PINem a dílnou.
  *
  * Načte se až po `?edit` v adrese, takže běžný návštěvník si ho nikdy
  * nestáhne. Vypnutý režim (chybí PIN nebo zápisový token) odpoví 404 a
@@ -59,14 +59,13 @@ export function EditMode({ onExit }: EditModeProps) {
   if (phase === "checking" || phase === "off") return null;
 
   if (phase === "locked") {
-    return (
-      <PinDialog onUnlocked={() => setPhase("open")} onCancel={onExit} />
-    );
+    return <PinDialog onUnlocked={() => setPhase("open")} onCancel={onExit} />;
   }
 
   return (
-    <EditPanel
+    <EditWorkbench
       locale={localeFromPathname(pathname)}
+      previewPath={pathname}
       onExit={onExit}
       onSignedOut={handleSignedOut}
     />

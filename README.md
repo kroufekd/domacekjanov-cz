@@ -101,10 +101,21 @@ CDN. Token do Coolify přidává až editační režim níže.
 ## Úprava textů z webu
 
 Majitel nemusí do Studia. Na `https://www.domecekjanov.cz/?edit` se objeví
-dialog s PINem a po jeho zadání panel se všemi texty stránky rozdělenými po
-sekcích. Kliknutí do pole odscrolluje stránku na místo, kde text stojí, a
-orámuje ho. Uložení zapíše do Sanity a překreslí stránku, takže výsledek je
-vidět hned.
+dialog s PINem a po jeho zadání dílna: vlevo web v rámu, vpravo panel se všemi
+texty rozdělenými po sekcích. **Psaní v panelu se rovnou promítá do rámu**, takže
+je vidět, jak to bude vypadat, ještě než se uloží. Kliknutí do pole na to místo
+odscrolluje a orámuje ho, „Zahodit“ vrátí náhled zpátky.
+
+Web sedí v rámu schválně. Panel položený přes stránku by ji nejen zakrýval -
+lepivá hlavička, hero a šířky počítané z `100vw` by pořád počítaly s celou
+obrazovkou a rozjely by se. V rámu má web vlastní viewport a vypadá přesně jako
+naostro, jen užší. Rám je ze stejné domény, takže náhled sahá rovnou do jeho
+DOM; žádné posílání zpráv sem tam.
+
+Náhled hledá text v rámu podle obsahu, ne podle atributů - komponenty webu
+kvůli tomu nemusely dostat žádné značky navíc. Co se nenajde (typicky text, do
+kterého se před vykreslením doplňuje počet fotek nebo ročník ocenění), se v
+náhledu prostě nezmění a ukáže se po uložení, kdy se rám načte znovu.
 
 Panel edituje **jazyk, ve kterém je stránka otevřená** - `/?edit` češtinu,
 `/de?edit` němčinu. Ostatních jazyků se zápis nedotkne. Prázdné pole se

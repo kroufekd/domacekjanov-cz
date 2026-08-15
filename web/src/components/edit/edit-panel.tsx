@@ -1,25 +1,25 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import type { Locale } from "@/i18n/config";
 import type { EditableField, EditableGroup } from "@/lib/edit/fields";
 
 import { EditField } from "./edit-field";
-import { highlight, PANEL_ATTRIBUTE, type ActiveHighlight } from "./highlight";
+import type { Preview } from "./preview";
 import styles from "./edit-mode.module.css";
 
 /**
  * Panel s texty webu.
  *
- * Rozdělaná změna žije jen tady, dokud se neuloží. Po uložení se hodnoty polí
- * přepíšou na uložené znění a stránka se překreslí, aby klient viděl výsledek
- * hned a ne až po minutě, kdy vyprší cache.
+ * Rozdělaná změna žije jen tady a rovnou se promítá do rámu vedle, takže
+ * klient vidí výsledek dřív, než se rozhodne uložit. Do CMS jde až na tlačítko.
  */
 
 type EditPanelProps = {
   readonly locale: Locale;
+  readonly preview: Preview;
+  readonly onSaved: () => void;
   readonly onExit: () => void;
   readonly onSignedOut: () => void;
 };
@@ -48,14 +48,18 @@ async function readError(response: Response, fallback: string) {
   return message || fallback;
 }
 
-export function EditPanel({ locale, onExit, onSignedOut }: EditPanelProps) {
-  const router = useRouter();
+export function EditPanel({
+  locale,
+  preview,
+  onSaved,
+  onExit,
+  onSignedOut,
+}: EditPanelProps) {
   const [load, setLoad] = useState<LoadState>({ status: "loading" });
   const [draft, setDraft] = useState<Draft>({});
   const [query, setQuery] = useState("");
   const [saving, setSaving] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const marker = useRef<ActiveHighlight | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -88,9 +92,6 @@ export function EditPanel({ locale, onExit, onSignedOut }: EditPanelProps) {
     };
   }, [locale, onSignedOut]);
 
-  // Zvýraznění musí zmizet i tehdy, když se panel zavře s polem ve focusu.
-  useEffect(() => () => marker.current?.clear(), []);
-
   const changedKeys = useMemo(() => Object.keys(draft), [draft]);
 
   useEffect(() => {
@@ -101,20 +102,28 @@ export function EditPanel({ locale, onExit, onSignedOut }: EditPanelProps) {
     return () => window.removeEventListener("beforeunload", warn);
   }, [changedKeys.length]);
 
-  const handleChange = useCallback((key: string, value: string) => {
-    setDraft((current) => ({ ...current, [key]: value }));
+  const fields = useMemo(
+    () =>
+      load.status === "ready" ? load.groups.flatMap((group) => group.fields) : [],
+    [load],
+  );
+
+  const handleChange = useCallback(
+    (field: EditableField, value: string) => {
+      setDraft((current) => ({ ...current, [field.key]: value }));
+      setFeedback(null);
+      preview.apply(field, value);
+    },
+    [preview],
+  );
+
+  const discard = useCallback(() => {
+    fields
+      .filter((field) => field.key in draft)
+      .forEach((field) => preview.reset(field));
+    setDraft({});
     setFeedback(null);
-  }, []);
-
-  const handleFocus = useCallback((value: string) => {
-    marker.current?.clear();
-    marker.current = highlight(document, value);
-  }, []);
-
-  const handleBlur = useCallback(() => {
-    marker.current?.clear();
-    marker.current = null;
-  }, []);
+  }, [draft, fields, preview]);
 
   const applySaved = useCallback((saved: Draft) => {
     setLoad((current) =>
@@ -168,13 +177,13 @@ export function EditPanel({ locale, onExit, onSignedOut }: EditPanelProps) {
       applySaved(body.values ?? draft);
       setDraft({});
       setFeedback({ kind: "info", message: "Uloženo." });
-      router.refresh();
+      onSaved();
     } catch {
       setFeedback({ kind: "error", message: "Server neodpověděl." });
     } finally {
       setSaving(false);
     }
-  }, [applySaved, draft, locale, onSignedOut, router]);
+  }, [applySaved, draft, locale, onSaved, onSignedOut]);
 
   const signOut = useCallback(async () => {
     await fetch("/api/edit/logout", { method: "POST" }).catch(() => null);
@@ -197,105 +206,103 @@ export function EditPanel({ locale, onExit, onSignedOut }: EditPanelProps) {
   const status = feedback
     ? feedback.message
     : changedKeys.length > 0
-      ? `Neuložených změn: ${changedKeys.length}`
+      ? `Neuloženo: ${changedKeys.length}`
       : "Vše uloženo";
 
   return (
-    <div className={styles.root} {...{ [PANEL_ATTRIBUTE]: "" }}>
-      <section className={styles.panel} aria-label="Úprava textů">
-        <header className={styles.header}>
-          <h2 className={styles.title}>Úprava textů</h2>
-          <span className={styles.badge}>{locale}</span>
-          <button type="button" className={styles.iconButton} onClick={signOut}>
-            Odhlásit
-          </button>
-          <button
-            type="button"
-            className={styles.iconButton}
-            onClick={onExit}
-            aria-label="Zavřít panel"
+    <section className={styles.panel} aria-label="Úprava textů">
+      <header className={styles.header}>
+        <h2 className={styles.title}>Úprava textů</h2>
+        <span className={styles.badge}>{locale}</span>
+        <button type="button" className={styles.iconButton} onClick={signOut}>
+          Odhlásit
+        </button>
+        <button
+          type="button"
+          className={styles.iconButton}
+          onClick={onExit}
+          aria-label="Zavřít panel"
+        >
+          Zavřít
+        </button>
+      </header>
+
+      <div className={styles.search}>
+        <input
+          type="search"
+          className={styles.searchInput}
+          placeholder="Hledat v textech…"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+      </div>
+
+      <div className={styles.body}>
+        {load.status === "loading" ? (
+          <p className={styles.empty}>Načítám texty…</p>
+        ) : null}
+
+        {load.status === "failed" ? (
+          <p className={`${styles.empty} ${styles.statusError}`}>
+            {load.message}
+          </p>
+        ) : null}
+
+        {load.status === "ready" && groups.length === 0 ? (
+          <p className={styles.empty}>Nic takového tu není.</p>
+        ) : null}
+
+        {groups.map((group, index) => (
+          <details
+            key={group.id}
+            className={styles.group}
+            open={index === 0 || needle.length > 0}
           >
-            Zavřít
-          </button>
-        </header>
+            <summary className={styles.groupSummary}>
+              {group.title}
+              <span className={styles.groupCount}>{group.fields.length}</span>
+            </summary>
+            {group.fields.map((field) => (
+              <EditField
+                key={field.key}
+                field={field}
+                value={draft[field.key] ?? field.value}
+                changed={field.key in draft}
+                onChange={handleChange}
+                onFocus={preview.highlight}
+                onBlur={preview.clearHighlight}
+              />
+            ))}
+          </details>
+        ))}
+      </div>
 
-        <div className={styles.search}>
-          <input
-            type="search"
-            className={styles.searchInput}
-            placeholder="Hledat v textech…"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </div>
-
-        <div className={styles.body}>
-          {load.status === "loading" ? (
-            <p className={styles.empty}>Načítám texty…</p>
-          ) : null}
-
-          {load.status === "failed" ? (
-            <p className={`${styles.empty} ${styles.statusError}`}>
-              {load.message}
-            </p>
-          ) : null}
-
-          {load.status === "ready" && groups.length === 0 ? (
-            <p className={styles.empty}>Nic takového tu není.</p>
-          ) : null}
-
-          {groups.map((group, index) => (
-            <details
-              key={group.id}
-              className={styles.group}
-              open={index === 0 || needle.length > 0}
-            >
-              <summary className={styles.groupSummary}>
-                {group.title}
-                <span className={styles.groupCount}>{group.fields.length}</span>
-              </summary>
-              {group.fields.map((field) => (
-                <EditField
-                  key={field.key}
-                  field={field}
-                  value={draft[field.key] ?? field.value}
-                  changed={field.key in draft}
-                  onChange={handleChange}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                />
-              ))}
-            </details>
-          ))}
-        </div>
-
-        <footer className={styles.footer}>
-          <span
-            className={`${styles.status} ${
-              feedback?.kind === "error" ? styles.statusError : ""
-            }`}
-            role="status"
-          >
-            {status}
-          </span>
-          <button
-            type="button"
-            className={`${styles.button} ${styles.buttonGhost}`}
-            onClick={() => setDraft({})}
-            disabled={saving || changedKeys.length === 0}
-          >
-            Zahodit
-          </button>
-          <button
-            type="button"
-            className={styles.button}
-            onClick={save}
-            disabled={saving || changedKeys.length === 0}
-          >
-            {saving ? "Ukládám…" : "Uložit"}
-          </button>
-        </footer>
-      </section>
-    </div>
+      <footer className={styles.footer}>
+        <span
+          className={`${styles.status} ${
+            feedback?.kind === "error" ? styles.statusError : ""
+          }`}
+          role="status"
+        >
+          {status}
+        </span>
+        <button
+          type="button"
+          className={`${styles.button} ${styles.buttonGhost}`}
+          onClick={discard}
+          disabled={saving || changedKeys.length === 0}
+        >
+          Zahodit
+        </button>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={save}
+          disabled={saving || changedKeys.length === 0}
+        >
+          {saving ? "Ukládám…" : "Uložit"}
+        </button>
+      </footer>
+    </section>
   );
 }
