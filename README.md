@@ -95,8 +95,49 @@ gh secret set SANITY_API_WRITE_TOKEN
 ```
 
 Bez tokenu se oba kroky přeskočí s varováním, workflow kvůli tomu nespadne.
-Web samotný **žádný token nepotřebuje** - čte veřejný dataset přes CDN, takže
-do Coolify se nic tajného nepřidává.
+Ke *čtení* obsahu web **žádný token nepotřebuje** - bere veřejný dataset přes
+CDN. Token do Coolify přidává až editační režim níže.
+
+## Úprava textů z webu
+
+Majitel nemusí do Studia. Na `https://www.domecekjanov.cz/?edit` se objeví
+dialog s PINem a po jeho zadání panel se všemi texty stránky rozdělenými po
+sekcích. Kliknutí do pole odscrolluje stránku na místo, kde text stojí, a
+orámuje ho. Uložení zapíše do Sanity a překreslí stránku, takže výsledek je
+vidět hned.
+
+Panel edituje **jazyk, ve kterém je stránka otevřená** - `/?edit` češtinu,
+`/de?edit` němčinu. Ostatních jazyků se zápis nedotkne. Prázdné pole se
+neuloží: normalizace obsahu bere prázdnou hodnotu jako „nevyplněno“ a text by
+se vrátil na vestavěné znění.
+
+Režim se zapíná třemi proměnnými prostředí naráz. Chybí-li kterákoli, celé API
+odpovídá 404 a `?edit` nic neudělá - stejně jako když web čte obsah z repa
+(`CONTENT_SOURCE=fallback` nebo statický export), protože tam by se uložený
+text stejně nikde neprojevil.
+
+| Proměnná | K čemu |
+| --- | --- |
+| `EDIT_PIN` | Přihlášení do panelu, nejméně 6 znaků. |
+| `EDIT_SECRET` | Podpis přihlašovací cookie, nejméně 32 znaků (`openssl rand -hex 32`). Změna odhlásí všechny. |
+| `SANITY_API_WRITE_TOKEN` | Token role Editor, kterým se zapisuje do datasetu. |
+
+Žádná z nich nesmí být `NEXT_PUBLIC_` - do prohlížeče nepatří ani jedna.
+
+Co panel hlídá:
+
+- Pět pokusů o PIN na IP za čtvrt hodiny a třicet celkem, aby střídání adres
+  hádání nezlevnilo.
+- Cesty k polím se z prohlížeče nepřebírají. Klient posílá jen klíč do seznamu,
+  který si server odvodí z obsahu sám, takže se zápis nedostane mimo texty.
+- Před uložením se dokument načte a pošle zpátky s `ifRevisionId`. Souběžná
+  úprava ve Studiu tak skončí hláškou místo tichého přepsání.
+- Editační API běží v souborech `route.node.ts`. Statický export takovou routu
+  neumí, a `pageExtensions` v `web/next.config.ts` ji do něj proto nezahrne.
+
+Panel je jen na texty - včetně názvů a částek v ceníku. Fotky, jejich pořadí,
+kategorie, geometrie výletů a schéma zůstávají ve Studiu na
+[domecek-janov.sanity.studio](https://domecek-janov.sanity.studio).
 
 ### Struktura Studia
 
