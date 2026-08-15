@@ -1,24 +1,31 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type { Locale } from "@/i18n/config";
 import type { EditableField, EditableGroup } from "@/lib/edit/fields";
 
 import { EditField } from "./edit-field";
-import type { Preview } from "./preview";
+import type { FrameBridge } from "./frame-bridge";
 import styles from "./edit-mode.module.css";
 
 /**
  * Panel s texty webu.
  *
- * Rozdělaná změna žije jen tady a rovnou se promítá do rámu vedle, takže
- * klient vidí výsledek dřív, než se rozhodne uložit. Do CMS jde až na tlačítko.
+ * Drží rozdělanou změnu, ať přišla z políčka tady nebo z psaní přímo do
+ * stránky vedle. Obojí je pořád jedna a ta samá hodnota - do CMS jde až na
+ * tlačítko.
+ *
+ * Scroll rámu panel posouvá na pole, které je v náhledu zrovna vidět. Po
+ * zásahu z panelu je synchronizace chvíli zticha, jinak by se obě strany
+ * přetahovaly.
  */
 
 type EditPanelProps = {
   readonly locale: Locale;
-  readonly preview: Preview;
+  readonly bridge: FrameBridge;
+  /** Roste s každým načtením rámu; napojení textů se musí udělat znovu. */
+  readonly frameEpoch: number;
   readonly onSaved: () => void;
   readonly onExit: () => void;
   readonly onSignedOut: () => void;
@@ -50,7 +57,8 @@ async function readError(response: Response, fallback: string) {
 
 export function EditPanel({
   locale,
-  preview,
+  bridge,
+  frameEpoch,
   onSaved,
   onExit,
   onSignedOut,
@@ -60,6 +68,12 @@ export function EditPanel({
   const [query, setQuery] = useState("");
   const [saving, setSaving] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [openGroups, setOpenGroups] = useState<Readonly<Record<string, boolean>>>(
+    {},
+  );
+  const [activeKey, setActiveKey] = useState<string | null>(null);
+  const [inlineEnabled, setInlineEnabled] = useState(true);
+  const body = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let live = true;
@@ -78,8 +92,13 @@ export function EditPanel({
           });
           return;
         }
-        const body = (await response.json()) as { groups: EditableGroup[] };
-        setLoad({ status: "ready", groups: body.groups });
+        const payload = (await response.json()) as { groups: EditableGroup[] };
+        setLoad({ status: "ready", groups: payload.groups });
+
+        // Na začátku je otevřená první skupina, zbytek se otevírá až podle
+        // toho, kam čtenář v rámu dojede nebo na co v panelu klikne.
+        const first = payload.groups[0]?.id;
+        if (first) setOpenGroups({ [first]: true });
       })
       .catch(() => {
         if (live) {
@@ -92,6 +111,39 @@ export function EditPanel({
     };
   }, [locale, onSignedOut]);
 
+  const fields = useMemo(
+    () =>
+      load.status === "ready"
+        ? load.groups.flatMap((group) => group.fields)
+        : [],
+    [load],
+  );
+
+  const groupOfField = useMemo(() => {
+    const pairs =
+      load.status === "ready"
+        ? load.groups.flatMap((group) =>
+            group.fields.map((field) => [field.key, group.id] as const),
+          )
+        : [];
+
+    return new Map(pairs);
+  }, [load]);
+
+  const fieldByKey = useMemo(
+    () => new Map(fields.map((field) => [field.key, field])),
+    [fields],
+  );
+
+  // Napojení na text v rámu se dělá po načtení polí a po každém načtení rámu.
+  useEffect(() => {
+    if (fields.length > 0) bridge.refresh(fields);
+  }, [bridge, fields, frameEpoch]);
+
+  useEffect(() => {
+    bridge.setInlineEnabled(inlineEnabled);
+  }, [bridge, inlineEnabled]);
+
   const changedKeys = useMemo(() => Object.keys(draft), [draft]);
 
   useEffect(() => {
@@ -102,28 +154,56 @@ export function EditPanel({
     return () => window.removeEventListener("beforeunload", warn);
   }, [changedKeys.length]);
 
-  const fields = useMemo(
-    () =>
-      load.status === "ready" ? load.groups.flatMap((group) => group.fields) : [],
-    [load],
+  /** Otevře skupinu a odscrolluje panel na pole, ať už kliknutím nebo scrollem. */
+  const revealField = useCallback(
+    (key: string) => {
+      const group = groupOfField.get(key);
+      if (group) setOpenGroups((current) => ({ ...current, [group]: true }));
+      setActiveKey(key);
+    },
+    [groupOfField],
   );
+
+  // Doskočení musí počkat na rozbalení skupiny, jinak se scrolluje na nic.
+  useEffect(() => {
+    if (!activeKey) return;
+
+    const target = body.current?.querySelector<HTMLElement>(
+      `[data-field="${CSS.escape(activeKey)}"]`,
+    );
+    target?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, [activeKey, openGroups]);
 
   const handleChange = useCallback(
     (field: EditableField, value: string) => {
       setDraft((current) => ({ ...current, [field.key]: value }));
       setFeedback(null);
-      preview.apply(field, value);
+      bridge.hold();
+      bridge.apply(field, value);
     },
-    [preview],
+    [bridge],
   );
+
+  /** Psaní přímo do stránky i scroll rámu končí tady, u stejného draftu. */
+  useEffect(() => {
+    bridge.listen({
+      onInlineChange: (key, value) => {
+        if (!fieldByKey.has(key)) return;
+        setFeedback(null);
+        setDraft((current) => ({ ...current, [key]: value }));
+        revealField(key);
+      },
+      onVisibleField: revealField,
+    });
+  }, [bridge, fieldByKey, revealField]);
 
   const discard = useCallback(() => {
     fields
       .filter((field) => field.key in draft)
-      .forEach((field) => preview.reset(field));
+      .forEach((field) => bridge.reset(field));
     setDraft({});
     setFeedback(null);
-  }, [draft, fields, preview]);
+  }, [bridge, draft, fields]);
 
   const applySaved = useCallback((saved: Draft) => {
     setLoad((current) =>
@@ -173,8 +253,8 @@ export function EditPanel({
         return;
       }
 
-      const body = (await response.json()) as { values?: Draft };
-      applySaved(body.values ?? draft);
+      const payload = (await response.json()) as { values?: Draft };
+      applySaved(payload.values ?? draft);
       setDraft({});
       setFeedback({ kind: "info", message: "Uloženo." });
       onSaved();
@@ -227,7 +307,7 @@ export function EditPanel({
         </button>
       </header>
 
-      <div className={styles.search}>
+      <div className={styles.tools}>
         <input
           type="search"
           className={styles.searchInput}
@@ -235,9 +315,17 @@ export function EditPanel({
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
+        <label className={styles.toggle}>
+          <input
+            type="checkbox"
+            checked={inlineEnabled}
+            onChange={(event) => setInlineEnabled(event.target.checked)}
+          />
+          Psát rovnou do stránky
+        </label>
       </div>
 
-      <div className={styles.body}>
+      <div className={styles.body} ref={body}>
         {load.status === "loading" ? (
           <p className={styles.empty}>Načítám texty…</p>
         ) : null}
@@ -252,11 +340,23 @@ export function EditPanel({
           <p className={styles.empty}>Nic takového tu není.</p>
         ) : null}
 
-        {groups.map((group, index) => (
+        {groups.map((group) => (
           <details
             key={group.id}
             className={styles.group}
-            open={index === 0 || needle.length > 0}
+            open={needle.length > 0 || (openGroups[group.id] ?? false)}
+            onToggle={(event) => {
+              // Při hledání jsou všechny skupiny otevřené natvrdo, uložit
+              // zavření by se hned přebilo zpátky.
+              if (needle.length > 0) return;
+
+              const open = (event.target as HTMLDetailsElement).open;
+              setOpenGroups((current) =>
+                current[group.id] === open
+                  ? current
+                  : { ...current, [group.id]: open },
+              );
+            }}
           >
             <summary className={styles.groupSummary}>
               {group.title}
@@ -268,9 +368,13 @@ export function EditPanel({
                 field={field}
                 value={draft[field.key] ?? field.value}
                 changed={field.key in draft}
+                active={field.key === activeKey}
                 onChange={handleChange}
-                onFocus={preview.highlight}
-                onBlur={preview.clearHighlight}
+                onFocus={(target) => {
+                  setActiveKey(target.key);
+                  bridge.focusField(target);
+                }}
+                onBlur={bridge.blurField}
               />
             ))}
           </details>

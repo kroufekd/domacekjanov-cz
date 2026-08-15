@@ -7,12 +7,16 @@ import styles from "./edit-mode.module.css";
 /**
  * Jedno pole v panelu. Delší texty dostanou textareu, která zhruba odpovídá
  * délce obsahu - ať klient nemusí scrollovat uvnitř malého okénka.
+ *
+ * `data-field` slouží panelu k doskočení na pole, které je zrovna vidět v rámu.
  */
 
 type EditFieldProps = {
   readonly field: EditableField;
   readonly value: string;
   readonly changed: boolean;
+  /** Text, u kterého se čtenář v rámu právě nachází. */
+  readonly active: boolean;
   readonly onChange: (field: EditableField, value: string) => void;
   readonly onFocus: (field: EditableField) => void;
   readonly onBlur: () => void;
@@ -25,6 +29,7 @@ export function EditField({
   field,
   value,
   changed,
+  active,
   onChange,
   onFocus,
   onBlur,
@@ -43,7 +48,10 @@ export function EditField({
   };
 
   return (
-    <div className={styles.field}>
+    <div
+      className={`${styles.field} ${active ? styles.fieldActive : ""}`}
+      data-field={field.key}
+    >
       <label className={styles.fieldLabel} htmlFor={field.key}>
         {field.label}
       </label>

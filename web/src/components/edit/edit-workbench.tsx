@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { Locale } from "@/i18n/config";
 
 import { EditPanel } from "./edit-panel";
-import { createPreview, PANEL_ATTRIBUTE, type Preview } from "./preview";
+import { createFrameBridge, type FrameBridge } from "./frame-bridge";
 import styles from "./edit-mode.module.css";
 
 /**
@@ -16,9 +16,11 @@ import styles from "./edit-mode.module.css";
  * `100vw` by pořád počítaly s celou obrazovkou a rozjely by se. Takhle web
  * neví, že vedle něj něco stojí, a vypadá přesně jako naostro.
  *
- * Rám je ze stejné domény, takže se do něj sahá přímo přes `contentDocument`.
- * Žádné posílání zpráv sem tam netřeba.
+ * Rám je ze stejné domény, takže se do něj sahá přímo. Spojení obstarává
+ * `createFrameBridge`.
  */
+
+const PANEL_ATTRIBUTE = "data-domecek-edit";
 
 type EditWorkbenchProps = {
   readonly locale: Locale;
@@ -36,12 +38,18 @@ export function EditWorkbench({
 }: EditWorkbenchProps) {
   const frame = useRef<HTMLIFrameElement>(null);
   const scrollToRestore = useRef<number | null>(null);
-  const [preview, setPreview] = useState<Preview | null>(null);
+  const [bridge, setBridge] = useState<FrameBridge | null>(null);
+  const [frameEpoch, setFrameEpoch] = useState(0);
 
-  // Náhled vzniká až po prvním vykreslení, protože sahá na rám. Panel proto
+  // Spojení vzniká až po prvním vykreslení, protože sahá na rám. Panel proto
   // naskočí o jedno vykreslení později, což není vidět - rám se stejně načítá.
   useEffect(() => {
-    setPreview(createPreview(() => frame.current?.contentDocument ?? null));
+    const created = createFrameBridge({
+      getDocument: () => frame.current?.contentDocument ?? null,
+    });
+
+    setBridge(created);
+    return () => created.dispose();
   }, []);
 
   // Stránka pod dílnou se nesmí posouvat, jinak kolečko nad panelem scrolluje
@@ -64,15 +72,15 @@ export function EditWorkbench({
   }, []);
 
   const handleFrameLoad = useCallback(() => {
-    preview?.invalidate();
-
     const view = frame.current?.contentWindow;
     const offset = scrollToRestore.current;
     if (view && offset !== null) {
       view.scrollTo(0, offset);
       scrollToRestore.current = null;
     }
-  }, [preview]);
+
+    setFrameEpoch((current) => current + 1);
+  }, []);
 
   return (
     <div className={styles.root} {...{ [PANEL_ATTRIBUTE]: "" }}>
@@ -83,10 +91,11 @@ export function EditWorkbench({
         title="Náhled webu"
         onLoad={handleFrameLoad}
       />
-      {preview ? (
+      {bridge ? (
         <EditPanel
           locale={locale}
-          preview={preview}
+          bridge={bridge}
+          frameEpoch={frameEpoch}
           onSaved={reloadPreview}
           onExit={onExit}
           onSignedOut={onSignedOut}

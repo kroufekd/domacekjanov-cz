@@ -102,20 +102,35 @@ CDN. Token do Coolify přidává až editační režim níže.
 
 Majitel nemusí do Studia. Na `https://www.domecekjanov.cz/?edit` se objeví
 dialog s PINem a po jeho zadání dílna: vlevo web v rámu, vpravo panel se všemi
-texty rozdělenými po sekcích. **Psaní v panelu se rovnou promítá do rámu**, takže
-je vidět, jak to bude vypadat, ještě než se uloží. Kliknutí do pole na to místo
-odscrolluje a orámuje ho, „Zahodit“ vrátí náhled zpátky.
+texty rozdělenými po sekcích. Obě strany jsou svázané:
+
+- **Psaní v panelu se rovnou promítá do stránky**, takže je vidět, jak to bude
+  vypadat, ještě než se uloží.
+- **Psát jde i rovnou do stránky.** Text pod kurzorem se orámuje, kliknutím se
+  do něj začne psát a hodnota se objeví v panelu. Enter psaní ukončí, Escape ho
+  vrátí. Přepínačem „Psát rovnou do stránky“ se to vypne, když je potřeba po
+  webu jen klikat.
+- **Scroll rámu táhne panel.** Jak se čtenář posouvá po stránce, panel otevírá
+  odpovídající sekci a doskakuje na text, který je zrovna vidět. Kliknutí do
+  pole v panelu naopak odscrolluje rám. Po zásahu z panelu je synchronizace
+  chvíli zticha, jinak by se obě strany přetahovaly.
+- „Zahodit“ vrátí rozdělané změny v panelu i v náhledu.
 
 Web sedí v rámu schválně. Panel položený přes stránku by ji nejen zakrýval -
 lepivá hlavička, hero a šířky počítané z `100vw` by pořád počítaly s celou
 obrazovkou a rozjely by se. V rámu má web vlastní viewport a vypadá přesně jako
-naostro, jen užší. Rám je ze stejné domény, takže náhled sahá rovnou do jeho
-DOM; žádné posílání zpráv sem tam.
+naostro, jen užší. Rám je ze stejné domény, takže se do něj sahá přímo; žádné
+posílání zpráv sem tam.
 
-Náhled hledá text v rámu podle obsahu, ne podle atributů - komponenty webu
-kvůli tomu nemusely dostat žádné značky navíc. Co se nenajde (typicky text, do
-kterého se před vykreslením doplňuje počet fotek nebo ročník ocenění), se v
-náhledu prostě nezmění a ukáže se po uložení, kdy se rám načte znovu.
+Text se v rámu hledá podle obsahu, ne podle atributů - komponenty webu kvůli
+tomu nemusely dostat žádné značky navíc. Dvě věci, které z toho plynou:
+
+- Menu a patička opakují názvy sekcí („Galerie“, „Ceník“), takže se o stejné
+  znění hlásí víc polí. Sporný text připadne tomu, které patří do stejné části
+  stránky - položka menu hlavičce, nadpis sekce obsahu.
+- Co se nenajde vůbec (typicky text, do kterého se před vykreslením doplňuje
+  počet fotek nebo ročník ocenění), se v náhledu nemění a psát se do něj v
+  stránce nedá. V panelu funguje normálně a po uložení se rám načte znovu.
 
 Panel edituje **jazyk, ve kterém je stránka otevřená** - `/?edit` češtinu,
 `/de?edit` němčinu. Ostatních jazyků se zápis nedotkne. Prázdné pole se
