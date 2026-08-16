@@ -31,6 +31,21 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  /**
+   * `max-image-preview: large` je u ubytování to hlavní - bez něj Google
+   * v našeptávači i v obrázkových výsledcích ukáže jen miniaturu.
+   */
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export const viewport: Viewport = {
@@ -62,6 +77,16 @@ export default async function LocaleLayout({
       lang={localeMeta[locale].htmlLang}
       className={`${display.variable} ${inter.variable}`}
     >
+      <head>
+        {/* Fotky jedou z Sanity CDN, včetně té úvodní - spojení se otevírá dřív,
+            než prohlížeč dojde k <img>, aby LCP nečekalo na handshake. */}
+        <link
+          rel="preconnect"
+          href="https://cdn.sanity.io"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://cdn.sanity.io" />
+      </head>
       <body>
         <a className="skip-link" href="#hlavni-obsah">
           {dictionary.skipToContent}

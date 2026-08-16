@@ -171,6 +171,39 @@ uzavřenou trasu bez varování.
 Změna textu se projeví do minuty (`revalidate: 60`) a **nevyžaduje nový build
 tras ani klíč k Mapy.com**.
 
+## SEO
+
+Web je jednostránkový ve třech jazycích, takže se všechno točí kolem jedné
+adresy a jejích jazykových dvojčat.
+
+| Soubor | Co obstarává |
+| --- | --- |
+| `web/src/app/[[...locale]]/layout.tsx` | `metadataBase`, direktivy pro roboty, preconnect na Sanity CDN |
+| `web/src/app/[[...locale]]/page.tsx` | titulek, popis, canonical, hreflang, Open Graph a Twitter |
+| `web/src/lib/structured-data.ts` | JSON-LD `@graph` - ubytování, web, stránka |
+| `web/src/app/robots.ts` | povolení pro vyhledávače i roboty jazykových modelů |
+| `web/src/app/sitemap.ts` | tři jazykové adresy včetně `x-default` |
+| `web/src/app/llms.txt/route.ts` | strojově čitelné shrnutí objektu |
+
+Dvě věci, které se snadno rozbijí:
+
+- **`max-image-preview:large`** v direktivě pro `googlebot`. Bez něj Google
+  u ubytování zobrazí jen miniaturu, což je u fotek domu ta nejdražší ztráta.
+- **Souřadnice domu** žijí v `houseGeo` (`web/src/lib/content/shared.ts`).
+  Odsud je bere JSON-LD i mapa výletů (`COTTAGE`), takže se nemůžou rozejít.
+
+Strukturovaná data se skládají výhradně z toho, co web zároveň zobrazuje. Proto
+tam **není `aggregateRating`**: hodnocení 9,5 z Booking.com sice na stránce visí,
+ale bez počtu recenzí ho Google jako hodnocení neuzná a vymyslet si ho nelze.
+
+Ceny se do `Offer` parsují z textu (`55 000 Kč` → `55000`), aby zůstaly
+editovatelné ve Studiu. Cena, ze které nejde přečíst číslo, se do nabídek
+prostě nedostane - nikdy se nevykreslí nesmysl.
+
+Fotka pro sdílení je `web/public/images/og-cover.jpg`, ořez 1200 × 630 z letecké
+fotografie. Použije se, dokud ve Studiu není vyplněné pole
+**Nastavení webu → SEO a sdílení → Fotografie pro sdílení**; to má přednost.
+
 ## Coolify
 
 Nasazení používá kořenový `Dockerfile`, Node 22, port `3000` a healthcheck

@@ -216,3 +216,18 @@ test("serves the map in English", async ({ page }) => {
   // Angličtina píše desetinnou tečku, čeština čárku.
   await expect(page.locator(".trip-map__item-meta").first()).toContainText(/\d+\.\d\s?km|\d+\s?m/);
 });
+
+test("holds Leaflet back until the map section comes near", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+
+  // Leaflet si při inicializaci označí kontejner třídou `leaflet-container`.
+  // Dokud je mapa daleko pod ohybem, nemá se co stahovat ani spouštět.
+  await page.waitForTimeout(1_500);
+  await expect(page.locator(".leaflet-container")).toHaveCount(0);
+
+  await page.locator("#okoli").scrollIntoViewIfNeeded();
+  await expect(page.locator(".leaflet-container")).toBeVisible({
+    timeout: 30_000,
+  });
+});

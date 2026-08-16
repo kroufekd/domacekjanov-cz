@@ -12,9 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const absolute = (locale: (typeof locales)[number]) =>
     `${siteUrl}${localeHref(locale)}`.replace(/\/$/, "") || siteUrl;
 
-  const languages = Object.fromEntries(
-    locales.map((locale) => [localeMeta[locale].htmlLang, absolute(locale)]),
-  );
+  // `x-default` říká vyhledávači, kam poslat návštěvníka, jehož jazyk neumíme.
+  const languages = Object.fromEntries([
+    ...locales.map((locale) => [localeMeta[locale].htmlLang, absolute(locale)]),
+    ["x-default", absolute(defaultLocale)],
+  ]);
 
   return locales.map((locale) => ({
     url: absolute(locale),

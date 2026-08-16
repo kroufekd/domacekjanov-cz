@@ -1,3 +1,4 @@
+import { houseGeo } from "@/lib/content/shared";
 import type { GeoPoint, Trip, TripStart } from "@/types/trips";
 
 /**
@@ -16,7 +17,10 @@ import type { GeoPoint, Trip, TripStart } from "@/types/trips";
  */
 
 /** Domeček Janov - výchozí bod pro trasy "pěšky od domečku". */
-export const COTTAGE: GeoPoint = { lat: 50.85606, lon: 14.26754 };
+export const COTTAGE: GeoPoint = {
+  lat: houseGeo.latitude,
+  lon: houseGeo.longitude,
+};
 
 const fromCottage: TripStart = { point: COTTAGE, fromCottage: true };
 

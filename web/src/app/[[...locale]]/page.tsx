@@ -110,7 +110,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: settings.seoTitle || settings.title,
       description: settings.seoDescription || settings.description,
-      images: [socialImage.src],
+      images: [{ url: socialImage.src, alt: socialImage.alt }],
     },
   };
 }
