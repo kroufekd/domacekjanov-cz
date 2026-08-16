@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "web",
-    "studio"
+    "web"
   ],
   "overrides": {
     "css-tree": "3.1.0",
@@ -15,11 +14,9 @@
   "scripts": {
     "dev": "npm run dev --workspace web",
     "dev:web": "npm run dev --workspace web",
-    "dev:studio": "npm run dev --workspace studio",
-    "build": "npm run build --workspace web && npm run build --workspace studio",
     "build:web": "npm run build --workspace web",
-    "build:studio": "npm run build --workspace studio",
     "lint": "npm run lint --workspace web",
-    "typecheck": "npm run typecheck --workspace web"
+    "typecheck": "npm run typecheck --workspace web",
+    "build": "npm run build --workspace web"
   }
 }

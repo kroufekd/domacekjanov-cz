@@ -8,10 +8,10 @@ import {
   type KeyFactory,
   type PatchOutcome,
   type PathSegment,
-} from "@/lib/edit/patch";
+} from "@/lib/store/patch";
 
 /**
- * Promítne jednu úpravu z panelu do dokumentu Sanity.
+ * Promítne jednu úpravu z panelu do dokumentu v úložišti.
  *
  * Přeložená pole jsou objekty `{cs, de, en}` a zapisuje se do nich jen jazyk,
  * ve kterém klient zrovna kouká - ostatní překlady zůstávají. `_type` se
@@ -19,7 +19,7 @@ import {
  * na `localeString` by ve Studiu vyměnilo víceřádkové pole za jednořádkové.
  */
 
-export type SanityDocument = Record<string, unknown>;
+export type StoreDocument = Record<string, unknown>;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -28,12 +28,12 @@ const localeTypeFor = (field: EditableField): string =>
   field.type === "block" ? "localeText" : "localeString";
 
 export function applyFieldChange(
-  document: SanityDocument,
+  document: StoreDocument,
   field: EditableField,
   locale: Locale,
   value: string,
   makeKey: KeyFactory,
-): PatchOutcome<SanityDocument> {
+): PatchOutcome<StoreDocument> {
   const segments = parsePath(field.path);
   if (!segments) {
     return { error: `Neplatná cesta "${field.path}".` };

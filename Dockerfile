@@ -2,7 +2,6 @@ FROM node:22-alpine AS dependencies
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY web/package.json ./web/package.json
-COPY studio/package.json ./studio/package.json
 RUN npm ci
 
 FROM node:22-alpine AS builder
@@ -27,6 +26,13 @@ RUN addgroup --system --gid 1001 nodejs \
 COPY --from=builder /app/web/public ./web/public
 COPY --from=builder --chown=nextjs:nodejs /app/web/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/web/.next/static ./web/.next/static
+
+# Obsah webu leží na připojeném svazku. Adresář musí v image existovat a patřit
+# běžícímu uživateli - Docker z něj při prvním připojení převezme vlastnictví,
+# jinak by kontejner pod uid 1001 do svazku nesměl zapisovat.
+ENV CONTENT_DIR=/data
+RUN mkdir -p /data/media /data/history && chown -R nextjs:nodejs /data
+VOLUME /data
 
 USER nextjs
 EXPOSE 3000

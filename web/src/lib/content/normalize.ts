@@ -2,7 +2,7 @@ import type { Locale } from "@/i18n/config";
 import { defaultLocale } from "@/i18n/config";
 
 /**
- * Sanity stores translatable fields as `{ cs, de, en }` objects.
+ * The store keeps translatable fields as `{ cs, de, en }` objects.
  *
  * Resolution is deliberately strict: a field is only ever read from the
  * language that was asked for. A missing translation resolves to `undefined`
@@ -65,7 +65,7 @@ export function localizedList(
 }
 
 /**
- * Overlays Sanity data onto a fallback object of the same shape. Strings and
+ * Overlays stored data onto a fallback object of the same shape. Strings and
  * string arrays are resolved for the locale, nested objects are merged
  * recursively, and anything missing keeps the local value.
  */

@@ -94,7 +94,7 @@ function fieldHint(documentId: string, path: string): string | undefined {
 }
 
 /**
- * Pole, která v Sanity nejsou přeložená, ale drží prostý řetězec. Zapsat do
+ * Pole, která přeložená nejsou a drží prostý řetězec. Zapsat do
  * nich `{cs: …}` by rozbilo normalizaci, která u nich čeká string.
  */
 const PLAIN_PATHS: ReadonlySet<string> = new Set([
@@ -174,7 +174,7 @@ type SourceSpec = {
   readonly scope: Scope;
   /** Odkud ve `SiteContent` číst. */
   readonly from: string;
-  /** Kam to patří v Sanity dokumentu. Prázdné = kořen dokumentu. */
+  /** Kam to patří v dokumentu úložiště. Prázdné = kořen dokumentu. */
   readonly at: string;
   /** Když je uvedeno, projdou se jen tyhle klíče a v tomhle pořadí. */
   readonly only?: readonly string[];

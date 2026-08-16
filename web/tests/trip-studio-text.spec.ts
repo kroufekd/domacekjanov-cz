@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import { tripTextCs } from "@/data/trip-text/cs";
 import { TRIPS } from "@/data/trips";
-import { normalizeTripTexts } from "@/lib/content/from-sanity";
+import { normalizeTripTexts } from "@/lib/content/from-documents";
 import { getTrips } from "@/lib/trips";
 
 /**

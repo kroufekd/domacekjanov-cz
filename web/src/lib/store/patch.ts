@@ -1,5 +1,5 @@
 /**
- * Zápis jedné hodnoty do dokumentu Sanity.
+ * Zápis jedné hodnoty do dokumentu v úložišti.
  *
  * Dokument se načte, upraví se jeho kopie a pošle se zpátky. Chodit na to přes
  * `patch().set()` s hlubokou cestou by bylo kratší, ale u polí to nefunguje -
@@ -66,7 +66,7 @@ export type PatchOutcome<T> = { readonly value: T } | PatchFailure;
 export const failed = <T>(outcome: PatchOutcome<T>): outcome is PatchFailure =>
   "error" in outcome;
 
-/** Klíč nové položky pole. Sanity ho u položek v poli vyžaduje. */
+/** Klíč nové položky pole - drží její totožnost při přerovnání seznamu. */
 export type KeyFactory = () => string;
 
 type SetOptions = {
@@ -78,7 +78,7 @@ type SetOptions = {
 /**
  * Vrátí kopii `root` s hodnotou na dané cestě. Chybějící objekty po cestě
  * vznikají, chybějící položku pole umí doplnit jen na konec - díra uprostřed
- * seznamu by v Sanity nadělala víc škody než užitku.
+ * seznamu by nadělala víc škody než užitku.
  */
 export function setAtPath(
   root: unknown,

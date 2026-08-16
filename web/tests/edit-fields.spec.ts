@@ -56,7 +56,7 @@ test("hero titulek patří do nastavení webu, ne do textů", () => {
   expect(hero?.value).toBe(fallbackContent.cs.settings.heroTitle);
 });
 
-test("telefon a e-mail nejsou v Sanity přeložené", () => {
+test("telefon a e-mail nejsou přeložené", () => {
   expect(index.get(fieldKey(SITE_SETTINGS_ID, "email"))?.localized).toBe(false);
   expect(index.get(fieldKey(SITE_SETTINGS_ID, "phoneDisplay"))?.localized).toBe(
     false,
@@ -108,9 +108,9 @@ test("zapisovat jde jen do známých dokumentů", () => {
   expect(isWritableDocumentId("rate-../../evil")).toBe(false);
 });
 
-test("ceník z repa se do panelu nedostane, protože nemá id ze Sanity", () => {
-  // Fallbackové sazby mají id "summer", dataset "rate-summer". Kdyby se
-  // neodfiltrovaly, mířil by zápis do neexistujícího dokumentu.
+test("ceník z repa se do panelu nedostane, protože nemá id z úložiště", () => {
+  // Fallbackové sazby mají id "summer", úložiště "rate-summer". Kdyby se
+  // neodfiltrovaly, mířil by zápis do neexistující položky.
   const rateFields = [...index.values()].filter(
     (field) => !field.documentId.endsWith("-main"),
   );

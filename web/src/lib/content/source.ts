@@ -1,7 +1,12 @@
-/** Odkud web bere texty a fotky. */
-export type ContentSource = "sanity" | "fallback";
+/**
+ * Odkud web bere texty a fotky.
+ *
+ * `store` je soubor na připojeném svazku, který spravuje editační panel.
+ * `fallback` je znění v repu - používá ho statický export, CI i lokální vývoj.
+ */
+export type ContentSource = "store" | "fallback";
 
-const contentSources: readonly ContentSource[] = ["sanity", "fallback"];
+const contentSources: readonly ContentSource[] = ["store", "fallback"];
 
 /**
  * Ta část `process.env`, na které rozhodnutí stojí. Index signature je tu, aby
@@ -14,13 +19,17 @@ export type ContentSourceEnv = {
 };
 
 function readContentSource(value: string | undefined): ContentSource {
+  // Bez nastavení se čte z repa. Zapisovat se dá jen do svazku, a ten se
+  // zapíná vědomě - jinak by web na vývojářském stroji sahal na cizí data.
   if (!value) {
-    return "sanity";
+    return "fallback";
   }
 
   if (!contentSources.includes(value as ContentSource)) {
     throw new Error(
-      `CONTENT_SOURCE musí být "sanity" nebo "fallback", dostal jsem "${value}".`,
+      `CONTENT_SOURCE musí být ${contentSources
+        .map((item) => `"${item}"`)
+        .join(", ")}, dostal jsem "${value}".`,
     );
   }
 
@@ -28,22 +37,21 @@ function readContentSource(value: string | undefined): ContentSource {
 }
 
 /**
- * Rozhodne, jestli se obsah bere výhradně z repa. Statický export nemá kde
- * revalidovat, CI si nechce sáhnout na živý dataset klienta (jeho editace ve
- * Studiu by jinak mohla shodit testy) a bez project ID není koho se ptát.
+ * Odkud se obsah opravdu vezme.
  *
- * Překlep v `CONTENT_SOURCE` shodí build. Tiché spadnutí zpátky na Sanity by
- * znamenalo, že si CI čte z produkce a nikdo si toho nevšimne.
+ * Statický export nemá kde revalidovat ani kam sáhnout pro připojený svazek,
+ * takže vždycky čte z repa.
+ *
+ * Překlep v `CONTENT_SOURCE` shodí build. Tiché spadnutí zpátky na jiný zdroj
+ * by znamenalo, že si CI čte z produkce a nikdo si toho nevšimne.
  */
-export function usesFallbackOnly(
-  env: ContentSourceEnv,
-  hasSanityConfig: boolean,
-): boolean {
-  const source = readContentSource(env.CONTENT_SOURCE);
-
-  if (!hasSanityConfig) {
-    return true;
-  }
-
-  return env.STATIC_EXPORT === "true" || source === "fallback";
+export function contentSource(env: ContentSourceEnv): ContentSource {
+  // Export běží při buildu, kde žádný svazek připojený není.
+  return env.STATIC_EXPORT === "true"
+    ? "fallback"
+    : readContentSource(env.CONTENT_SOURCE);
 }
+
+/** Zkratka pro místa, která zajímá jen "čte se výhradně z repa?". */
+export const usesFallbackOnly = (env: ContentSourceEnv): boolean =>
+  contentSource(env) === "fallback";

@@ -19,7 +19,7 @@ export async function GET(request: Request): Promise<Response> {
   const locale = readLocale(request);
 
   try {
-    const content = await getSiteContent(locale, { fresh: true });
+    const content = await getSiteContent(locale);
 
     return Response.json(
       { locale, groups: buildEditableGroups(content) },

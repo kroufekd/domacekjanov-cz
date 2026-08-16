@@ -4,7 +4,7 @@ import { isLocale, localeHref, locales, type Locale } from "@/i18n";
 import { getSiteContent } from "@/lib/content";
 import { buildEditableIndex } from "@/lib/edit/fields";
 import { requireEditSession } from "@/lib/edit/guard";
-import { saveChanges, type ResolvedChange } from "@/lib/edit/save";
+import { saveChanges, type ResolvedChange } from "@/lib/store/save";
 import { cleanValue } from "@/lib/edit/value";
 
 export const dynamic = "force-dynamic";
@@ -43,10 +43,10 @@ function parseBody(payload: unknown): ParsedBody {
   return { locale: payload.locale, changes };
 }
 
-/** Seznam povolených polí pro daný jazyk, nebo `null`, když CMS neodpoví. */
+/** Seznam povolených polí, nebo `null`, když se obsah nepodaří načíst. */
 async function loadIndex(locale: Locale) {
   try {
-    return buildEditableIndex(await getSiteContent(locale, { fresh: true }));
+    return buildEditableIndex(await getSiteContent(locale));
   } catch (error) {
     console.error("Editační režim: nepovedlo se načíst texty.", error);
     return null;
@@ -110,12 +110,12 @@ export async function POST(request: Request): Promise<Response> {
     resolved.map((change) => [change.field.key, change.value]),
   );
 
-  const outcome = await saveChanges(guard.config.writeToken, locale, resolved);
+  const outcome = await saveChanges(locale, resolved);
   if ("error" in outcome) {
     return Response.json({ error: outcome.error }, { status: outcome.status });
   }
 
-  // Telefon a e-mail v Sanity přeložené nejsou, takže se změna promítne do
+  // Telefon a e-mail přeložené nejsou, takže se změna promítne do
   // všech jazyků naráz - proto se překreslují všechny tři stránky.
   locales.forEach((item) => revalidatePath(localeHref(item)));
 

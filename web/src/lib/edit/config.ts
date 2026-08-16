@@ -1,23 +1,21 @@
 /**
  * Nastavení editačního režimu.
  *
- * Režim je zapnutý jen tehdy, když prostředí nese všechny tři hodnoty naráz.
- * Chybí-li kterákoli z nich, celé API se tváří jako neexistující - web bez
- * PINu, bez podpisového klíče nebo bez zápisového tokenu nemá co pouštět
- * dovnitř. Slabý PIN nebo krátký klíč režim taky nezapnou: tichý provoz s
- * čtyřmístným PINem je horší než vypnutá funkce, o které se ví.
+ * Režim je zapnutý jen tehdy, když prostředí nese obě hodnoty naráz. Chybí-li
+ * kterákoli z nich, celé API se tváří jako neexistující - web bez PINu nebo
+ * bez podpisového klíče nemá co pouštět dovnitř. Slabý PIN nebo krátký klíč
+ * režim taky nezapnou: tichý provoz s čtyřmístným PINem je horší než vypnutá
+ * funkce, o které se ví.
  */
 
 export type EditConfig = {
   readonly pin: string;
   readonly secret: string;
-  readonly writeToken: string;
 };
 
 export type EditEnv = {
   readonly EDIT_PIN?: string;
   readonly EDIT_SECRET?: string;
-  readonly SANITY_API_WRITE_TOKEN?: string;
   readonly [key: string]: string | undefined;
 };
 
@@ -30,9 +28,9 @@ export const MIN_SECRET_LENGTH = 32;
 type ConfigProblem = { readonly reason: string };
 
 const missing = (env: EditEnv): ConfigProblem | null => {
-  const absent = (
-    ["EDIT_PIN", "EDIT_SECRET", "SANITY_API_WRITE_TOKEN"] as const
-  ).filter((key) => !env[key]?.trim());
+  const absent = (["EDIT_PIN", "EDIT_SECRET"] as const).filter(
+    (key) => !env[key]?.trim(),
+  );
 
   return absent.length > 0
     ? { reason: `chybí ${absent.join(", ")}` }
@@ -47,11 +45,10 @@ const missing = (env: EditEnv): ConfigProblem | null => {
 export function readEditConfig(env: EditEnv): EditConfig | null {
   const pin = env.EDIT_PIN?.trim() ?? "";
   const secret = env.EDIT_SECRET?.trim() ?? "";
-  const writeToken = env.SANITY_API_WRITE_TOKEN?.trim() ?? "";
 
   const gap = missing(env);
   if (gap) {
-    if (pin || secret || writeToken) {
+    if (pin || secret) {
       console.error(`Editační režim zůstal vypnutý: ${gap.reason}.`);
     }
     return null;
@@ -71,5 +68,5 @@ export function readEditConfig(env: EditEnv): EditConfig | null {
     return null;
   }
 
-  return { pin, secret, writeToken };
+  return { pin, secret };
 }

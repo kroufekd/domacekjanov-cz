@@ -68,7 +68,7 @@ function buildContent(locale: Locale): SiteContent {
 }
 
 /**
- * Local content used whenever Sanity has nothing to say - during the static
+ * Local content used whenever the store has nothing to say - during the static
  * export, without project credentials, or when a fetch fails. Built once per
  * locale at module load so every request reuses the same frozen objects.
  */

@@ -2,7 +2,7 @@ import type { TripsDictionary } from "@/i18n/trips-dictionary";
 
 /**
  * Interface strings that never leave the codebase: accessibility labels, image
- * alternative texts and the few micro-copy bits nobody needs to edit in Sanity.
+ * alternative texts and the few micro-copy bits nobody needs to edit.
  * Everything a site owner would realistically want to rewrite lives in
  * `SiteCopy` instead and is editable in the Studio.
  */

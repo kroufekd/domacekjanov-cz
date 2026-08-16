@@ -67,7 +67,7 @@ export type SectionCopy = {
 };
 
 /**
- * Every visible interface string that is worth editing per language. Sanity
+ * Every visible interface string that is worth editing per language. The store
  * holds the localized values; `fallbackCopy` covers the case where the Studio
  * has nothing published yet.
  */
