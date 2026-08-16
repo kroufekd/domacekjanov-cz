@@ -3,8 +3,7 @@ import path from "node:path";
 /**
  * Kde na disku leží obsah webu.
  *
- * Po odpojení Sanity je zdrojem pravdy soubor na připojeném svazku, ne vzdálené
- * CMS. Adresář se dá přenastavit, aby lokální vývoj nesahal na produkční data a
+ * Zdrojem pravdy je soubor na připojeném svazku, ne vzdálené CMS. Adresář se dá přenastavit, aby lokální vývoj nesahal na produkční data a
  * testy si mohly sáhnout do dočasné složky.
  */
 

@@ -7,7 +7,7 @@ import { contentFile, historyDir } from "@/lib/store/paths";
 /**
  * Obsah webu na disku.
  *
- * Tvar souboru je schválně stejný, jaký dřív vracely dotazy do Sanity - texty
+ * Tvar souboru kopíruje původní dokumenty CMS - texty
  * jsou objekty `{cs, de, en}`, seznamy zůstávají seznamy. Díky tomu se
  * normalizace i mapování editovatelných polí nemusely měnit; vyměnil se jen
  * přenos, ne data.
@@ -34,7 +34,7 @@ const SECTIONS = [
   "trips",
 ] as const;
 
-/** Výchozí obsah - přesně to, co bylo na webu v den odpojení Sanity. */
+/** Výchozí obsah - přesně to, co bylo na webu v den přechodu na svazek. */
 export const seedStore = (): ContentStore => structuredClone(seed) as ContentStore;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>

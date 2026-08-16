@@ -43,10 +43,10 @@ function parseBody(payload: unknown): ParsedBody {
   return { locale: payload.locale, changes };
 }
 
-/** Seznam povolených polí pro daný jazyk, nebo `null`, když CMS neodpoví. */
+/** Seznam povolených polí, nebo `null`, když se obsah nepodaří načíst. */
 async function loadIndex(locale: Locale) {
   try {
-    return buildEditableIndex(await getSiteContent(locale, { fresh: true }));
+    return buildEditableIndex(await getSiteContent(locale));
   } catch (error) {
     console.error("Editační režim: nepovedlo se načíst texty.", error);
     return null;
@@ -115,7 +115,7 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ error: outcome.error }, { status: outcome.status });
   }
 
-  // Telefon a e-mail v Sanity přeložené nejsou, takže se změna promítne do
+  // Telefon a e-mail přeložené nejsou, takže se změna promítne do
   // všech jazyků naráz - proto se překreslují všechny tři stránky.
   locales.forEach((item) => revalidatePath(localeHref(item)));
 

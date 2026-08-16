@@ -1,8 +1,8 @@
 /**
  * České popisky polí pro editační panel.
  *
- * Znění je schválně stejné jako v Sanity Studiu (`studio/schemaTypes/*`), aby
- * klient našel totéž pole pod stejným názvem na obou místech.
+ * Znění vychází z původního schématu CMS, aby klient poznal pole podle toho,
+ * jak se jmenovalo dřív.
  *
  * Stromy dole se při načtení modulu zplošťují na cesty typu `nav.about`.
  * Chybějící popisek není chyba - pole se ukáže s odvozeným názvem, jen méně

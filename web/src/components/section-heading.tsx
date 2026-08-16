@@ -1,5 +1,5 @@
 /**
- * Headings are plain strings so they can be translated and edited in Sanity.
+ * Headings are plain strings so they can be translated and edited in the panel.
  * A single `|` marks the hard line break: what follows moves to its own line
  * and is set in italics, which is the accent the design relies on.
  */

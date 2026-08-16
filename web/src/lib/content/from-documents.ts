@@ -4,7 +4,7 @@ import {
   localizedList,
   localizedText,
   mergeLocalized,
-} from "@/sanity/normalize";
+} from "@/lib/content/normalize";
 import type {
   Accommodation,
   GalleryCategory,
@@ -16,7 +16,7 @@ import type {
 import type { TripTextOverride, TripTextOverrides } from "@/types/trips";
 
 /**
- * Turns raw Sanity documents into the shapes the page renders.
+ * Turns raw content documents into the shapes the page renders.
  *
  * Anything the Studio has not translated for the requested language keeps the
  * built-in wording, and a list entry without a translation is left out of that

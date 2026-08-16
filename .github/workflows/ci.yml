@@ -12,9 +12,9 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
-# CI si nesahá na živý dataset klienta. `web/src/sanity/env.ts` má project ID
-# natvrdo jako fallback, takže bez tohohle by build tahal obsah z produkčního
-# CMS a klientova editace ve Studiu by mohla shodit testy.
+# CI čte obsah z repa, ne ze svazku běžícího webu. Výchozí zdroj je stejně
+# `fallback`, ale je to napsané schválně: kdyby se výchozí hodnota někdy
+# změnila, testy by začaly záviset na tom, co má klient zrovna na webu.
 env:
   CONTENT_SOURCE: fallback
 
@@ -34,7 +34,7 @@ jobs:
 
       # Testy prochází nad oběma zdroji, takže zelené CI samo o sobě neprozradí,
       # že se proměnná ztratila. Tenhle krok ano.
-      - name: Ověřit, že se nečte z produkčního CMS
+      - name: Ověřit, že se nečte z běžícího webu
         run: test "$CONTENT_SOURCE" = fallback
 
       - name: Install dependencies
@@ -46,8 +46,6 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      # Staví web (standalone, jako Docker) i Studio, aby se chyba ve schématu
-      # nedostala až do nočního deploye.
       - name: Build
         run: npm run build
 

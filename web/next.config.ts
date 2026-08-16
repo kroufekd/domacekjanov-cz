@@ -7,7 +7,7 @@ const pageExtensions = ["tsx", "ts", "jsx", "js"];
 
 /**
  * Editační API (`route.node.ts`) potřebuje běžící server - čte cookie a
- * zapisuje do Sanity. Statický export takovou routu neumí a spadl by na ní
+ * zapisuje na disk. Statický export takovou routu neumí a spadl by na ní
  * build, takže se do něj vůbec nezahrne: Next hledá stránky podle přípon
  * uvedených tady, a `node.ts` mezi nimi při exportu není.
  */
@@ -23,12 +23,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-      },
-    ],
     formats: ["image/avif", "image/webp"],
     qualities: [75, 88],
     unoptimized: isStaticExport,

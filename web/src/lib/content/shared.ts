@@ -82,7 +82,7 @@ export type GalleryImageDefinition = {
  * Booking) one to one, at the owner's request: exterior, hot tub, terrace,
  * garden, kitchen, living room, bathroom, bedrooms. It used to open with a mix
  * of categories; that is gone, so the default "vše" view now starts with nine
- * exterior shots. The live site reads the order from Sanity (`galleryItem.order`),
+ * exterior shots. The live site reads the order from the content store,
  * this list is the offline fallback and has to stay in sync with it.
  */
 export const galleryImageDefinitions: GalleryImageDefinition[] = [

@@ -1,7 +1,7 @@
 import type { TrailColour, TripKind } from "@/types/trips";
 
 /**
- * Strings of the trip map. They stay in the codebase rather than in Sanity:
+ * Strings of the trip map. They stay in the codebase rather than in the store:
  * they are filter labels, table headings and accessibility names, not copy a
  * site owner would rewrite.
  *

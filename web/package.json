@@ -13,7 +13,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sanity/client": "6.29.1",
     "leaflet": "1.9.4",
     "lucide-react": "1.26.0",
     "next": "16.2.11",

@@ -7,8 +7,8 @@ import {
   normalizeGallery,
   normalizeRates,
   normalizeSettings,
-} from "@/lib/content/from-sanity";
-import { localizedList, localizedText } from "@/sanity/normalize";
+} from "@/lib/content/from-documents";
+import { localizedList, localizedText } from "@/lib/content/normalize";
 
 /**
  * The contract between the Studio and the website: how `{cs, de, en}` objects
@@ -140,7 +140,7 @@ test("drops photos and rates that have no alt or title in the language", () => {
   const photos = [
     {
       id: "one",
-      src: "https://cdn.sanity.io/one.jpg",
+      src: "/images/one.jpg",
       alt: localeString("Kuchyň", "Küche"),
       width: 1600,
       height: 1200,
@@ -148,7 +148,7 @@ test("drops photos and rates that have no alt or title in the language", () => {
     },
     {
       id: "two",
-      src: "https://cdn.sanity.io/two.jpg",
+      src: "/images/two.jpg",
       alt: localeString("Ložnice"),
       width: 1600,
       height: 1200,

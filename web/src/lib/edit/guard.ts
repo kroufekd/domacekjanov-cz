@@ -14,7 +14,7 @@ import { contentSource } from "@/lib/content/source";
  */
 
 export const editModeConfig = (): EditConfig | null =>
-  contentSource(process.env, false) === "store"
+  contentSource(process.env) === "store"
     ? readEditConfig(process.env)
     : null;
 

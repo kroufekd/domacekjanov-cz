@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-import { applyFieldChange } from "@/lib/edit/document-update";
+import { applyFieldChange } from "@/lib/store/document-update";
 import type { EditableField } from "@/lib/edit/fields";
-import { failed, parsePath, setAtPath } from "@/lib/edit/patch";
+import { failed, parsePath, setAtPath } from "@/lib/store/patch";
 import { cleanValue } from "@/lib/edit/value";
 
 const key = () => "klic1";

@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/config";
-import { applyFieldChange, type SanityDocument } from "@/lib/edit/document-update";
+import { applyFieldChange, type StoreDocument } from "@/lib/store/document-update";
 import {
   ACCOMMODATION_ID,
   isWritableDocumentId,
@@ -7,15 +7,14 @@ import {
   SITE_SETTINGS_ID,
   type EditableField,
 } from "@/lib/edit/fields";
-import { failed } from "@/lib/edit/patch";
+import { failed } from "@/lib/store/patch";
 import { updateStore, type ContentStore } from "@/lib/store/content-store";
 
 /**
  * Uložení dávky úprav do obsahu na disku.
  *
  * Panel pořád mluví o dokumentech (`siteCopy-main`, `rate-summer`) - je to
- * tvar, který zbyl po Sanity a nemá smysl ho přejmenovávat, protože přesně
- * odpovídá sekcím v souboru. Tady se jen přeloží na místo v `content.json`.
+ * tvar, který přesně odpovídá sekcím v souboru. Tady se jen přeloží na místo v `content.json`.
  *
  * Zápis je jedna operace: buď se uloží celá dávka, nebo nic. Soubor se čte
  * těsně před zápisem, takže se do něj promítne i to, co uložil někdo jiný.
@@ -40,7 +39,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 
 type Lens = {
   readonly read: (store: ContentStore) => unknown;
-  readonly write: (store: ContentStore, value: SanityDocument) => ContentStore;
+  readonly write: (store: ContentStore, value: StoreDocument) => ContentStore;
 };
 
 /** Kde v souboru daný "dokument" leží. */

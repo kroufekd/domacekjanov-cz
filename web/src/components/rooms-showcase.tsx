@@ -8,7 +8,7 @@ import type { Accommodation, MediaImage } from "@/types/content";
 
 /**
  * Photo that takes over the showcase while a room is picked, in the same order
- * as the room list. Extra rooms added in Sanity simply keep the default photo.
+ * as the room list. Extra rooms added in the panel simply keep the default photo.
  */
 const roomImageIds = [
   "bedroom-bunk", // Pokoj s palandami
@@ -29,7 +29,7 @@ type RoomsShowcaseProps = {
 };
 
 /**
- * The gallery is editable in Sanity, so an id can be missing there. The bundled
+ * The gallery is editable in the panel, so an id can be missing there. The bundled
  * photo of the same name is the safety net.
  */
 function resolveImage(
