@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { Locale } from "@/i18n/config";
+import { localeMeta, locales, type Locale } from "@/i18n/config";
 import type { EditableField, EditableGroup } from "@/lib/edit/fields";
 
 import { EditField } from "./edit-field";
@@ -20,9 +20,14 @@ import styles from "./edit-mode.module.css";
  * Scroll rámu panel posouvá na pole, které je v náhledu zrovna vidět. Po
  * zásahu z panelu je synchronizace chvíli zticha, jinak by se obě strany
  * přetahovaly.
+ *
+ * Jazyk určuje rám, takže se pod rukama mění. Klíče polí jsou pro všechny
+ * jazyky stejné, proto se rozdělané změny drží zvlášť po jazycích - jinak by
+ * se český text uložil jako německý.
  */
 
 type EditPanelProps = {
+  /** Jazyk stránky v rámu; přepnutí jazyka načte panel znovu. */
   readonly locale: Locale;
   readonly bridge: FrameBridge;
   /** Roste s každým načtením rámu; napojení textů se musí udělat znovu. */
@@ -34,6 +39,14 @@ type EditPanelProps = {
 
 type Draft = Readonly<Record<string, string>>;
 
+/** Rozdělané změny po jazycích. Co se nestihlo uložit, čeká na návrat. */
+type Drafts = Readonly<Partial<Record<Locale, Draft>>>;
+
+const EMPTY_DRAFT: Draft = {};
+
+const countChanges = (draft: Draft | undefined): number =>
+  Object.keys(draft ?? EMPTY_DRAFT).length;
+
 /** Kam se panel chystá odejít, dokud čeká na potvrzení. */
 type Departure = "exit" | "signOut" | null;
 
@@ -42,10 +55,16 @@ type Feedback = {
   readonly kind: "info" | "error";
 };
 
-type LoadState =
+/**
+ * Načtená pole nesou jazyk, ke kterému patří. Bez toho by po přepnutí jazyka
+ * v rámu chvíli svítily texty toho minulého a rám by se napojil na pole, která
+ * na stránce nejsou.
+ */
+type LoadState = { readonly locale: Locale } & (
   | { readonly status: "loading" }
   | { readonly status: "failed"; readonly message: string }
-  | { readonly status: "ready"; readonly groups: readonly EditableGroup[] };
+  | { readonly status: "ready"; readonly groups: readonly EditableGroup[] }
+);
 
 const matchesQuery = (field: EditableField, query: string): boolean =>
   `${field.label} ${field.value}`.toLowerCase().includes(query);
@@ -67,8 +86,11 @@ export function EditPanel({
   onExit,
   onSignedOut,
 }: EditPanelProps) {
-  const [load, setLoad] = useState<LoadState>({ status: "loading" });
-  const [draft, setDraft] = useState<Draft>({});
+  const [loaded, setLoad] = useState<LoadState>({
+    status: "loading",
+    locale,
+  });
+  const [drafts, setDrafts] = useState<Drafts>({});
   const [query, setQuery] = useState("");
   const [saving, setSaving] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
@@ -79,6 +101,24 @@ export function EditPanel({
   const [inlineEnabled, setInlineEnabled] = useState(true);
   const [pending, setPending] = useState<Departure>(null);
   const body = useRef<HTMLDivElement>(null);
+
+  const draft = drafts[locale] ?? EMPTY_DRAFT;
+
+  /** Dokud nedojdou pole nového jazyka, panel se tváří jako při načítání. */
+  const load = useMemo<LoadState>(
+    () => (loaded.locale === locale ? loaded : { status: "loading", locale }),
+    [loaded, locale],
+  );
+
+  /** Zápis do rozdělané změny právě zobrazeného jazyka. */
+  const editDraft = useCallback(
+    (change: (current: Draft) => Draft) =>
+      setDrafts((current) => ({
+        ...current,
+        [locale]: change(current[locale] ?? EMPTY_DRAFT),
+      })),
+    [locale],
+  );
 
   useEffect(() => {
     let live = true;
@@ -93,12 +133,13 @@ export function EditPanel({
         if (!response.ok) {
           setLoad({
             status: "failed",
+            locale,
             message: await readError(response, "Texty se nepodařilo načíst."),
           });
           return;
         }
         const payload = (await response.json()) as { groups: EditableGroup[] };
-        setLoad({ status: "ready", groups: payload.groups });
+        setLoad({ status: "ready", locale, groups: payload.groups });
 
         // Na začátku je otevřená první skupina, zbytek se otevírá až podle
         // toho, kam čtenář v rámu dojede nebo na co v panelu klikne.
@@ -107,7 +148,7 @@ export function EditPanel({
       })
       .catch(() => {
         if (live) {
-          setLoad({ status: "failed", message: "Server neodpověděl." });
+          setLoad({ status: "failed", locale, message: "Server neodpověděl." });
         }
       });
 
@@ -140,9 +181,24 @@ export function EditPanel({
     [fields],
   );
 
+  // Rozdělaná změna se do rámu vrací po jeho načtení, ne po každém písmenu -
+  // proto přes ref, aby psaní nespouštělo napojení znovu.
+  const draftRef = useRef(draft);
+  useEffect(() => {
+    draftRef.current = draft;
+  });
+
   // Napojení na text v rámu se dělá po načtení polí a po každém načtení rámu.
   useEffect(() => {
-    if (fields.length > 0) bridge.refresh(fields);
+    if (fields.length === 0) return;
+
+    bridge.refresh(fields);
+
+    // Rám přišel ze serveru, takže o neuložených změnách neví. U návratu k
+    // jazyku, kde něco zůstalo rozdělané, se musí promítnout zpátky.
+    fields
+      .filter((field) => field.key in draftRef.current)
+      .forEach((field) => bridge.apply(field, draftRef.current[field.key]));
   }, [bridge, fields, frameEpoch]);
 
   useEffect(() => {
@@ -151,13 +207,24 @@ export function EditPanel({
 
   const changedKeys = useMemo(() => Object.keys(draft), [draft]);
 
+  /** Neuložené změny v jazycích, které zrovna nejsou vidět. */
+  const changedElsewhere = useMemo(
+    () =>
+      locales
+        .filter((code) => code !== locale)
+        .reduce((sum, code) => sum + countChanges(drafts[code]), 0),
+    [drafts, locale],
+  );
+
+  const changedTotal = changedKeys.length + changedElsewhere;
+
   useEffect(() => {
-    if (changedKeys.length === 0) return undefined;
+    if (changedTotal === 0) return undefined;
 
     const warn = (event: BeforeUnloadEvent) => event.preventDefault();
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
-  }, [changedKeys.length]);
+  }, [changedTotal]);
 
   /** Otevře skupinu a odscrolluje panel na pole, ať už kliknutím nebo scrollem. */
   const revealField = useCallback(
@@ -181,12 +248,12 @@ export function EditPanel({
 
   const handleChange = useCallback(
     (field: EditableField, value: string) => {
-      setDraft((current) => ({ ...current, [field.key]: value }));
+      editDraft((current) => ({ ...current, [field.key]: value }));
       setFeedback(null);
       bridge.hold();
       bridge.apply(field, value);
     },
-    [bridge],
+    [bridge, editDraft],
   );
 
   /** Psaní přímo do stránky i scroll rámu končí tady, u stejného draftu. */
@@ -195,26 +262,29 @@ export function EditPanel({
       onInlineChange: (key, value) => {
         if (!fieldByKey.has(key)) return;
         setFeedback(null);
-        setDraft((current) => ({ ...current, [key]: value }));
+        editDraft((current) => ({ ...current, [key]: value }));
         revealField(key);
       },
       onVisibleField: revealField,
     });
-  }, [bridge, fieldByKey, revealField]);
+  }, [bridge, editDraft, fieldByKey, revealField]);
 
+  /** Zahazuje jen zobrazený jazyk - o rozdělané ostatní panel nepřijde. */
   const discard = useCallback(() => {
     fields
       .filter((field) => field.key in draft)
       .forEach((field) => bridge.reset(field));
-    setDraft({});
+    editDraft(() => EMPTY_DRAFT);
     setFeedback(null);
-  }, [bridge, draft, fields]);
+  }, [bridge, draft, editDraft, fields]);
 
-  const applySaved = useCallback((saved: Draft) => {
+  /** Uložené hodnoty se promítnou jen do polí toho jazyka, kterému patří. */
+  const applySaved = useCallback((target: Locale, saved: Draft) => {
     setLoad((current) =>
-      current.status === "ready"
+      current.status === "ready" && current.locale === target
         ? {
             status: "ready",
+            locale: current.locale,
             groups: current.groups.map((group) => ({
               ...group,
               fields: group.fields.map((field) =>
@@ -228,40 +298,83 @@ export function EditPanel({
     );
   }, []);
 
-  /** Vrací, jestli se uložilo - podle toho se pozná, že jde zavřít. */
+  /**
+   * Vyřadí z rozdělané změny jen to, co server opravdu dostal. Během ukládání
+   * jde dál psát a taková písmena by při plošném vyprázdnění zmizela.
+   */
+  const clearSaved = useCallback((code: Locale, saved: Draft) => {
+    setDrafts((current) => {
+      const draft = current[code] ?? EMPTY_DRAFT;
+      const rest = Object.fromEntries(
+        Object.entries(draft).filter(([key, value]) => saved[key] !== value),
+      );
+
+      return countChanges(draft) === countChanges(rest)
+        ? current
+        : { ...current, [code]: rest };
+    });
+  }, []);
+
+  /**
+   * Uloží rozdělané změny všech jazyků, ne jen toho zobrazeného - jinak by
+   * práce v jazyce, od kterého editor mezitím odešel, tiše spadla pod stůl.
+   *
+   * Vrací, jestli se uložilo - podle toho se pozná, že jde zavřít.
+   */
   const save = useCallback(async (): Promise<boolean> => {
-    const changes = Object.entries(draft).map(([key, value]) => ({
-      key,
-      value,
-    }));
-    if (changes.length === 0) return true;
+    const batches = locales
+      .map((code) => ({
+        locale: code,
+        changes: Object.entries(drafts[code] ?? EMPTY_DRAFT).map(
+          ([key, value]) => ({ key, value }),
+        ),
+      }))
+      .filter((batch) => batch.changes.length > 0);
+
+    if (batches.length === 0) return true;
 
     setSaving(true);
     setFeedback(null);
 
     try {
-      const response = await fetch("/api/edit/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ locale, changes }),
-      });
-
-      if (response.status === 401) {
-        onSignedOut();
-        return false;
-      }
-
-      if (!response.ok) {
-        setFeedback({
-          kind: "error",
-          message: await readError(response, "Uložení se nepovedlo."),
+      // Jeden jazyk po druhém: zápisy jdou do stejných dokumentů, takže by si
+      // souběžné požadavky přepisovaly výsledek.
+      for (const batch of batches) {
+        const response = await fetch("/api/edit/save", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            locale: batch.locale,
+            changes: batch.changes,
+          }),
         });
-        return false;
+
+        if (response.status === 401) {
+          onSignedOut();
+          return false;
+        }
+
+        if (!response.ok) {
+          const message = await readError(response, "Uložení se nepovedlo.");
+          setFeedback({
+            kind: "error",
+            message:
+              batch.locale === locale
+                ? message
+                : `${localeMeta[batch.locale].short}: ${message}`,
+          });
+          return false;
+        }
+
+        const payload = (await response.json()) as { values?: Draft };
+        const sent: Draft = Object.fromEntries(
+          batch.changes.map(({ key, value }) => [key, value]),
+        );
+
+        applySaved(batch.locale, payload.values ?? sent);
+        clearSaved(batch.locale, sent);
       }
 
-      const payload = (await response.json()) as { values?: Draft };
-      applySaved(payload.values ?? draft);
-      setDraft({});
       setFeedback({ kind: "info", message: "Uloženo." });
       onSaved();
       return true;
@@ -271,7 +384,7 @@ export function EditPanel({
     } finally {
       setSaving(false);
     }
-  }, [applySaved, draft, locale, onSaved, onSignedOut]);
+  }, [applySaved, clearSaved, drafts, locale, onSaved, onSignedOut]);
 
   const signOut = useCallback(async () => {
     await fetch("/api/edit/logout", { method: "POST" }).catch(() => null);
@@ -297,13 +410,13 @@ export function EditPanel({
 
   const requestLeave = useCallback(
     (kind: Departure) => {
-      if (changedKeys.length === 0) {
+      if (changedTotal === 0) {
         leave(kind);
       } else {
         setPending(kind);
       }
     },
-    [changedKeys.length, leave],
+    [changedTotal, leave],
   );
 
   const saveAndLeave = useCallback(async () => {
@@ -318,6 +431,7 @@ export function EditPanel({
     if (!kind) return;
 
     discard();
+    setDrafts({});
     setPending(null);
     leave(kind);
   }, [discard, leave, pending]);
@@ -339,13 +453,17 @@ export function EditPanel({
     ? feedback.message
     : changedKeys.length > 0
       ? `Neuloženo: ${changedKeys.length}`
-      : "Vše uloženo";
+      : changedElsewhere > 0
+        ? `Neuloženo v jiném jazyce: ${changedElsewhere}`
+        : "Vše uloženo";
 
   return (
     <section className={styles.panel} aria-label="Úprava textů">
       <header className={styles.header}>
         <h2 className={styles.title}>Úprava textů</h2>
-        <span className={styles.badge}>{locale}</span>
+        <span className={styles.badge} title={localeMeta[locale].nativeName}>
+          {localeMeta[locale].short}
+        </span>
         <button
           type="button"
           className={styles.iconButton}
@@ -461,9 +579,9 @@ export function EditPanel({
       {pending ? (
         <div className={styles.confirm} role="alertdialog" aria-live="assertive">
           <p className={styles.confirmText}>
-            {changedKeys.length === 1
+            {changedTotal === 1
               ? "Jedna změna není uložená."
-              : `Neuložených změn: ${changedKeys.length}.`}{" "}
+              : `Neuložených změn: ${changedTotal}.`}{" "}
             {pending === "signOut" ? "Opravdu se odhlásit?" : "Opravdu zavřít?"}
           </p>
           <div className={styles.confirmActions}>
@@ -516,7 +634,7 @@ export function EditPanel({
           type="button"
           className={styles.button}
           onClick={save}
-          disabled={saving || changedKeys.length === 0}
+          disabled={saving || changedTotal === 0}
         >
           {saving ? "Ukládám…" : "Uložit"}
         </button>

@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
-import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
+import { localeFromPathname } from "@/i18n/config";
 
 import { EditWorkbench } from "./edit-workbench";
 import { PinDialog } from "./pin-dialog";
@@ -21,12 +21,6 @@ type EditModeProps = {
 };
 
 type Phase = "checking" | "locked" | "open" | "off";
-
-/** Jazyk podle adresy: `/de` a `/en`, čeština je na kořeni. */
-function localeFromPathname(pathname: string): Locale {
-  const [, first] = pathname.split("/");
-  return isLocale(first) ? first : defaultLocale;
-}
 
 export function EditMode({ onExit }: EditModeProps) {
   const pathname = usePathname();
@@ -64,7 +58,7 @@ export function EditMode({ onExit }: EditModeProps) {
 
   return (
     <EditWorkbench
-      locale={localeFromPathname(pathname)}
+      initialLocale={localeFromPathname(pathname)}
       previewPath={pathname}
       onExit={onExit}
       onSignedOut={handleSignedOut}
