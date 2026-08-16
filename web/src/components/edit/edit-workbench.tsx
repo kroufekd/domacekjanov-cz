@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { Locale } from "@/i18n/config";
+import { localeFromPathname, type Locale } from "@/i18n/config";
 
 import { EditPanel } from "./edit-panel";
 import { createFrameBridge, type FrameBridge } from "./frame-bridge";
@@ -23,15 +23,25 @@ import styles from "./edit-mode.module.css";
 const PANEL_ATTRIBUTE = "data-domecek-edit";
 
 type EditWorkbenchProps = {
-  readonly locale: Locale;
+  /** Jazyk stránky, se kterou se dílna otevřela; dál ho určuje rám. */
+  readonly initialLocale: Locale;
   /** Adresa, kterou má rám ukázat - bez `?edit`, jinak by se zacyklil. */
   readonly previewPath: string;
   readonly onExit: () => void;
   readonly onSignedOut: () => void;
 };
 
+/** Adresa, na které rám právě stojí. `null`, když do něj není vidět. */
+function framePathname(frame: HTMLIFrameElement | null): string | null {
+  try {
+    return frame?.contentWindow?.location.pathname ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export function EditWorkbench({
-  locale,
+  initialLocale,
   previewPath,
   onExit,
   onSignedOut,
@@ -40,6 +50,7 @@ export function EditWorkbench({
   const scrollToRestore = useRef<number | null>(null);
   const [bridge, setBridge] = useState<FrameBridge | null>(null);
   const [frameEpoch, setFrameEpoch] = useState(0);
+  const [locale, setLocale] = useState<Locale>(initialLocale);
 
   // Spojení vzniká až po prvním vykreslení, protože sahá na rám. Panel proto
   // naskočí o jedno vykreslení později, což není vidět - rám se stejně načítá.
@@ -78,6 +89,11 @@ export function EditWorkbench({
       view.scrollTo(0, offset);
       scrollToRestore.current = null;
     }
+
+    // Jazyk se přepíná uvnitř rámu, ne v adrese pod dílnou. Panel proto bere
+    // jazyk odsud - jinak by u německé stránky pořád nabízel české texty.
+    const path = framePathname(frame.current);
+    if (path) setLocale(localeFromPathname(path));
 
     setFrameEpoch((current) => current + 1);
   }, []);

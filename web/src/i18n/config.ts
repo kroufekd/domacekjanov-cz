@@ -79,6 +79,16 @@ export function localeHref(locale: Locale, hash = ""): string {
 }
 
 /**
+ * Resolves the locale from a rendered URL path. Unlike `localeFromSegments`
+ * this never fails - anything without a known language prefix is Czech, which
+ * is exactly what `/`, `/#kontakt` and friends are.
+ */
+export function localeFromPathname(pathname: string): Locale {
+  const [, first] = pathname.split("/");
+  return isLocale(first) ? first : defaultLocale;
+}
+
+/**
  * Resolves the locale from an optional catch-all route parameter.
  * Returns `null` for anything that is not a known language prefix so the route
  * can answer with a proper 404 instead of silently rendering Czech.
