@@ -6,12 +6,20 @@
  * aby si nástroj nehrál na součást stránky.
  */
 
-.root {
+/*
+ * Barvy patří oběma kořenům. Dialog s PINem je vlastní podstrom vedle dílny,
+ * takže by proměnné z `.root` nezdědil - tlačítko "Otevřít" by bylo bílé písmo
+ * na průhledném pozadí, tedy neviditelné, a vstupy by přišly o rámeček.
+ */
+.root,
+.overlay {
   --edit-forest: #195d36;
   --edit-line: #dcdfd9;
   --edit-ink: #202521;
   --edit-muted: #6b7168;
+}
 
+.root {
   position: fixed;
   inset: 0;
   z-index: 100000;
