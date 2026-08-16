@@ -80,6 +80,14 @@ export function TripMap({ locale, dictionary, trips }: TripMapProps) {
   const [routes, setRoutes] = useState<ReadonlyMap<string, TripRoute>>(new Map());
   const [mapReady, setMapReady] = useState(false);
   const [mapError, setMapError] = useState<string | null>(null);
+  /*
+   * Odklad načtení mapy. Bez `IntersectionObserver` (starý prohlížeč) se mapa
+   * načte rovnou - odklad je optimalizace, ne podmínka funkčnosti. Hodnota se
+   * nikde nevykresluje, takže se serverem a klientem nemá jak rozejít.
+   */
+  const [mapNear, setMapNear] = useState(
+    () => typeof IntersectionObserver !== "function",
+  );
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<LeafletMap | null>(null);
@@ -170,8 +178,39 @@ export function TripMap({ locale, dictionary, trips }: TripMapProps) {
     calloutCardRef.current?.style.setProperty("--tip-shift", `${Math.round(tipShift)}px`);
   }, []);
 
+  /*
+   * Mapa leží hluboko pod ohybem - Leaflet, dlaždice i předpočítané trasy jsou
+   * dohromady stovky kilobajtů. Stahují se proto až když se k sekci host blíží,
+   * ne hned po hydrataci, kde by braly výkon úvodní obrazovce.
+   *
+   * Rezerva 800 px stačí na to, aby byla mapa hotová dřív, než k ní host dojede.
+   */
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof IntersectionObserver !== "function") {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setMapNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "800px" },
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
   // Předpočítané trasy dotahujeme až s mapou, ať nezdržují první vykreslení stránky.
   useEffect(() => {
+    if (!mapNear) {
+      return;
+    }
+
     let cancelled = false;
 
     import("@/data/trip-routes.json")
@@ -191,12 +230,12 @@ export function TripMap({ locale, dictionary, trips }: TripMapProps) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [mapNear]);
 
   // Inicializace Leafletu. Běží jednou, mapa se pak jen aktualizuje.
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) {
+    if (!container || !mapNear) {
       return;
     }
 
@@ -344,7 +383,7 @@ export function TripMap({ locale, dictionary, trips }: TripMapProps) {
       map?.off("move zoom resize", positionCallout);
       map?.remove();
     };
-  }, [dictionary.errors.map, positionCallout]);
+  }, [dictionary.errors.map, mapNear, positionCallout]);
 
   // Překreslení podle vybraného výletu a filtrů.
   useEffect(() => {

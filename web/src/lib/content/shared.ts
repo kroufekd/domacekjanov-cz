@@ -28,6 +28,47 @@ export const sharedAccommodation = {
   gardenArea: 4000,
 } as const;
 
+/**
+ * Poloha domu. Stejný bod používá mapa výletů (`COTTAGE` v `@/data/trips`)
+ * i strukturovaná data, takže se souřadnice nemůžou rozejít.
+ */
+export const houseGeo = {
+  latitude: 50.85606,
+  longitude: 14.26754,
+} as const;
+
+/**
+ * Adresa rozepsaná do polí `PostalAddress` pro strukturovaná data. Jednořádkové
+ * znění, které vidí návštěvník, drží překlady (`settings.address`) - v cizích
+ * jazycích je u něj navíc země.
+ */
+export const houseAddress = {
+  streetAddress: "Janov 167",
+  postalCode: "405 02",
+  addressLocality: "Janov",
+  addressRegion: "Ústecký kraj",
+  addressCountry: "CZ",
+} as const;
+
+/**
+ * Domovní řád, který web uvádí v sekci „Dobré vědět“. Ve strukturovaných datech
+ * jde o `petsAllowed` a `smokingAllowed`, proto sedí sem a ne do překladů.
+ */
+export const housePolicies = {
+  petsAllowed: false,
+  smokingAllowed: false,
+} as const;
+
+/** Fotografie pro sdílení na sítích; ořez 1200 × 630 podle Open Graph. */
+export const socialImage = {
+  id: "og-cover",
+  file: "og-cover.jpg",
+  /** Fotka, ze které se ořez generuje - přebírá se od ní i alternativní popis. */
+  sourceId: "aerial-house-garden",
+  width: 1200,
+  height: 630,
+} as const;
+
 export type GalleryImageId =
   | "aerial-house-garden"
   | "exterior-golden-hour"

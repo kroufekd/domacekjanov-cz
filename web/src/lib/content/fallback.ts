@@ -5,6 +5,7 @@ import {
   rateDefinitions,
   sharedAccommodation,
   sharedSettings,
+  socialImage,
 } from "@/lib/content/shared";
 import { csText } from "@/lib/content/text/cs";
 import { deText } from "@/lib/content/text/de";
@@ -44,6 +45,20 @@ function buildRates(text: LocaleContentText): Rate[] {
   }));
 }
 
+/**
+ * Ořez 1200 × 630 pro náhledy na sítích. Popis si bere od fotky, ze které
+ * vznikl, aby se alternativní text nemusel překládat dvakrát.
+ */
+function buildSocialImage(text: LocaleContentText): MediaImage {
+  return {
+    id: socialImage.id,
+    src: localAsset(`/images/${socialImage.file}`),
+    alt: text.gallery[socialImage.sourceId].alt,
+    width: socialImage.width,
+    height: socialImage.height,
+  };
+}
+
 function buildContent(locale: Locale): SiteContent {
   const text = localeTexts[locale];
   const gallery = buildGallery(text);
@@ -54,6 +69,7 @@ function buildContent(locale: Locale): SiteContent {
       ...sharedSettings,
       ...text.settings,
       heroImage,
+      seoImage: buildSocialImage(text),
     },
     accommodation: {
       ...sharedAccommodation,
