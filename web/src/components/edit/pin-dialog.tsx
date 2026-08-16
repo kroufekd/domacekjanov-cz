@@ -7,8 +7,12 @@ import styles from "./edit-mode.module.css";
 /**
  * Vstup do editačního režimu.
  *
- * PIN se posílá na server, prohlížeč si ho nikam neukládá. Chybová hláška
- * chodí ze serveru tak, jak je - rozlišuje jen "špatný PIN" a "moc pokusů".
+ * Heslo se posílá na server, prohlížeč si ho nikam neukládá. Chybová hláška
+ * chodí ze serveru tak, jak je - rozlišuje jen "špatné heslo" a "moc pokusů".
+ *
+ * Pole je obyčejné textové, ne číselné: heslo smí být i slovo a číselná
+ * klávesnice na telefonu by ho nedovolila napsat. Na drátě zůstává klíč `pin`,
+ * ať se nemusí měnit prostředí, které ho nastavuje.
  */
 
 type PinDialogProps = {
@@ -63,17 +67,16 @@ export function PinDialog({ onUnlocked, onCancel }: PinDialogProps) {
     >
       <form className={styles.dialog} onSubmit={submit}>
         <h2 className={styles.dialogTitle}>Úprava textů</h2>
-        <p className={styles.dialogNote}>Zadejte PIN a otevře se panel.</p>
+        <p className={styles.dialogNote}>Zadejte heslo a otevře se panel.</p>
 
         <input
           className={styles.input}
           type="password"
-          inputMode="numeric"
-          autoComplete="off"
+          autoComplete="current-password"
           autoFocus
           value={pin}
-          placeholder="PIN"
-          aria-label="PIN"
+          placeholder="Heslo"
+          aria-label="Heslo"
           onChange={(event) => setPin(event.target.value)}
         />
 
