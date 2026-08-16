@@ -49,7 +49,7 @@ const copyLabels: LabelTree = {
     tourIssue: "Nouzový odkaz při potížích s prohlídkou",
     checkAvailability: "Tlačítko: Zkontrolovat obsazenost",
     exploreHouse: "Odkaz pod úvodní fotkou",
-    showAll: "Tlačítko: Zobrazit všechny fotky ({count} = počet)",
+    showAll: "Tlačítko: Zobrazit všechny fotky",
     showLess: "Tlačítko: Zobrazit méně",
   },
   hero: {

@@ -22,6 +22,12 @@ type Certificate = {
  * viewer, so the hero keeps one trust mark instead of a wall of certificates.
  * The score is part of the artwork, so it lives here rather than in the
  * translations - only the wording around it is editable.
+ *
+ * The plate and footer card spell the year out in the text (`ocenění 2025`)
+ * rather than through a placeholder, so the owner never meets `{year}` in the
+ * editing panel. Adding a newer certificate therefore means editing those two
+ * texts as well - the viewer below still fills the year in on its own, because
+ * it browses older years too.
  */
 const certificates: Certificate[] = [
   {

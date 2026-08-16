@@ -81,16 +81,46 @@ const HEADING_HINT =
   "Text za svislítkem | se zalomí na druhý řádek a vysází kurzívou.";
 
 /**
+ * Zápisy, které web před vykreslením nahradí skutečnou hodnotou. Bez vysvětlení
+ * vypadají ve složených závorkách jako chyba a editor je smaže - pak zmizí i
+ * číslo, které měly doplnit.
+ */
+const PLACEHOLDERS: Record<string, string> = {
+  "{count}": "počtem fotek",
+  "{year}": "ročníkem ocenění",
+  "{score}": "hodnocením hostů",
+};
+
+function placeholderHint(value: string): string | undefined {
+  const used = Object.entries(PLACEHOLDERS).filter(([token]) =>
+    value.includes(token),
+  );
+  if (used.length === 0) return undefined;
+
+  const list = used
+    .map(([token, meaning]) => `${token} se nahradí ${meaning}`)
+    .join(", ");
+
+  return `${list}. Nechte zápis v textu, jinak se hodnota nedoplní.`;
+}
+
+/**
  * Titulky sekcí projdou `splitHeading`, takže svislítko v nich není překlep -
  * bez upozornění by ho editor smazal a nadpis by přišel o druhý řádek.
  */
-function fieldHint(documentId: string, path: string): string | undefined {
+function fieldHint(
+  documentId: string,
+  path: string,
+  value: string,
+): string | undefined {
   const isSectionTitle =
     documentId === SITE_COPY_ID && path.endsWith(".title");
   const isIntroTitle =
     documentId === ACCOMMODATION_ID && path === "introTitle";
 
-  return isSectionTitle || isIntroTitle ? HEADING_HINT : undefined;
+  return isSectionTitle || isIntroTitle
+    ? HEADING_HINT
+    : placeholderHint(value);
 }
 
 /**
@@ -106,6 +136,19 @@ function isLocalized(documentId: string, path: string): boolean {
   if (RATE_ID_PATTERN.test(documentId)) return path !== "price";
   return !PLAIN_PATHS.has(fieldKey(documentId, path));
 }
+
+/**
+ * Texty, které se v panelu neukazují.
+ *
+ * Prohlížeč certifikátů listuje ročníky, takže jeho záhlaví a popisek musí rok
+ * i známku dosadit až podle otevřeného certifikátu. Napsat je natvrdo by u
+ * staršího ročníku ukázalo špatné číslo, a nechat v panelu `{year}` zase mate.
+ * Zůstávají proto jen v obsahu, kam na ně editor nevidí.
+ */
+const HIDDEN_PATHS: ReadonlySet<string> = new Set([
+  `${SITE_COPY_ID}:award.viewerTop`,
+  `${SITE_COPY_ID}:award.viewerCaption`,
+]);
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
@@ -127,7 +170,9 @@ function walk(value: unknown, options: WalkOptions): EditableField[] {
   const { documentId, scope, path } = options;
 
   if (typeof value === "string") {
-    const hint = fieldHint(documentId, path);
+    if (HIDDEN_PATHS.has(fieldKey(documentId, path))) return [];
+
+    const hint = fieldHint(documentId, path, value);
 
     return value.length === 0
       ? []
