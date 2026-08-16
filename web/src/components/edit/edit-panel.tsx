@@ -33,6 +33,9 @@ type EditPanelProps = {
 
 type Draft = Readonly<Record<string, string>>;
 
+/** Kam se panel chystá odejít, dokud čeká na potvrzení. */
+type Departure = "exit" | "signOut" | null;
+
 type Feedback = {
   readonly message: string;
   readonly kind: "info" | "error";
@@ -73,6 +76,7 @@ export function EditPanel({
   );
   const [activeKey, setActiveKey] = useState<string | null>(null);
   const [inlineEnabled, setInlineEnabled] = useState(true);
+  const [pending, setPending] = useState<Departure>(null);
   const body = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -223,12 +227,13 @@ export function EditPanel({
     );
   }, []);
 
-  const save = useCallback(async () => {
+  /** Vrací, jestli se uložilo - podle toho se pozná, že jde zavřít. */
+  const save = useCallback(async (): Promise<boolean> => {
     const changes = Object.entries(draft).map(([key, value]) => ({
       key,
       value,
     }));
-    if (changes.length === 0) return;
+    if (changes.length === 0) return true;
 
     setSaving(true);
     setFeedback(null);
@@ -242,7 +247,7 @@ export function EditPanel({
 
       if (response.status === 401) {
         onSignedOut();
-        return;
+        return false;
       }
 
       if (!response.ok) {
@@ -250,7 +255,7 @@ export function EditPanel({
           kind: "error",
           message: await readError(response, "Uložení se nepovedlo."),
         });
-        return;
+        return false;
       }
 
       const payload = (await response.json()) as { values?: Draft };
@@ -258,8 +263,10 @@ export function EditPanel({
       setDraft({});
       setFeedback({ kind: "info", message: "Uloženo." });
       onSaved();
+      return true;
     } catch {
       setFeedback({ kind: "error", message: "Server neodpověděl." });
+      return false;
     } finally {
       setSaving(false);
     }
@@ -269,6 +276,50 @@ export function EditPanel({
     await fetch("/api/edit/logout", { method: "POST" }).catch(() => null);
     onSignedOut();
   }, [onSignedOut]);
+
+  /*
+   * Odchod z panelu s rozdělanou změnou.
+   *
+   * `beforeunload` chytá zavření okna, ale ne tlačítka tady - klik na "Zavřít"
+   * dřív rozdělanou práci tiše zahodil. Proto se místo odchodu nejdřív zeptáme.
+   */
+  const leave = useCallback(
+    (kind: Departure) => {
+      if (kind === "signOut") {
+        void signOut();
+      } else {
+        onExit();
+      }
+    },
+    [onExit, signOut],
+  );
+
+  const requestLeave = useCallback(
+    (kind: Departure) => {
+      if (changedKeys.length === 0) {
+        leave(kind);
+      } else {
+        setPending(kind);
+      }
+    },
+    [changedKeys.length, leave],
+  );
+
+  const saveAndLeave = useCallback(async () => {
+    const kind = pending;
+    if (!kind) return;
+
+    if (await save()) leave(kind);
+  }, [leave, pending, save]);
+
+  const discardAndLeave = useCallback(() => {
+    const kind = pending;
+    if (!kind) return;
+
+    discard();
+    setPending(null);
+    leave(kind);
+  }, [discard, leave, pending]);
 
   const needle = query.trim().toLowerCase();
   const groups =
@@ -294,13 +345,17 @@ export function EditPanel({
       <header className={styles.header}>
         <h2 className={styles.title}>Úprava textů</h2>
         <span className={styles.badge}>{locale}</span>
-        <button type="button" className={styles.iconButton} onClick={signOut}>
+        <button
+          type="button"
+          className={styles.iconButton}
+          onClick={() => requestLeave("signOut")}
+        >
           Odhlásit
         </button>
         <button
           type="button"
           className={styles.iconButton}
-          onClick={onExit}
+          onClick={() => requestLeave("exit")}
           aria-label="Zavřít panel"
         >
           Zavřít
@@ -380,6 +435,43 @@ export function EditPanel({
           </details>
         ))}
       </div>
+
+      {pending ? (
+        <div className={styles.confirm} role="alertdialog" aria-live="assertive">
+          <p className={styles.confirmText}>
+            {changedKeys.length === 1
+              ? "Jedna změna není uložená."
+              : `Neuložených změn: ${changedKeys.length}.`}{" "}
+            {pending === "signOut" ? "Opravdu se odhlásit?" : "Opravdu zavřít?"}
+          </p>
+          <div className={styles.confirmActions}>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={saveAndLeave}
+              disabled={saving}
+            >
+              {saving ? "Ukládám…" : "Uložit a zavřít"}
+            </button>
+            <button
+              type="button"
+              className={`${styles.button} ${styles.buttonGhost}`}
+              onClick={discardAndLeave}
+              disabled={saving}
+            >
+              Zahodit
+            </button>
+            <button
+              type="button"
+              className={`${styles.button} ${styles.buttonGhost}`}
+              onClick={() => setPending(null)}
+              disabled={saving}
+            >
+              Zpět
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       <footer className={styles.footer}>
         <span

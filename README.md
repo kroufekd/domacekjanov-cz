@@ -249,6 +249,13 @@ NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SITE_URL=https://www.domecekjanov.cz
 ```
 
+> **`NEXT_PUBLIC_SITE_URL` musí být veřejná doména, nikdy adresa nasazení.**
+> Čtou z ní `layout.tsx`, `robots.ts`, `sitemap.ts` i strukturovaná data, takže
+> dosazená preview adresa (`*.sslip.io`) se propíše do `canonical`, `og:url`,
+> hostu v `robots.txt` a do celé sitemapy - vyhledávačům se pak jako kanonická
+> nabízí hostname, který po přepnutí DNS zmizí. Proměnná je build-time, projeví
+> se až dalším buildem.
+
 Build context je kořen repozitáře a Dockerfile je `./Dockerfile`. Sanity Studio lze
 nasadit samostatně příkazem `npm run build:studio` nebo provozovat přes Sanity
 hosting příkazem `npm run deploy --workspace studio`.
