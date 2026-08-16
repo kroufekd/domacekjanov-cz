@@ -2,21 +2,21 @@ import { cookies } from "next/headers";
 
 import { readEditConfig, type EditConfig } from "@/lib/edit/config";
 import { EDIT_COOKIE, isValidSessionValue } from "@/lib/edit/session";
-import { usesFallbackOnly } from "@/lib/content/source";
-import { hasSanityConfig } from "@/sanity/env";
+import { contentSource } from "@/lib/content/source";
 
 /**
  * Společná vstupní kontrola pro celé editační API.
  *
  * Vypnutý režim odpovídá 404, ne 403 - kdo nemá co hledat, ať se nedozví ani
- * to, že tu něco je. Když web čte obsah z repa, je režim taky vypnutý: uložit
- * by šlo, jenže na stránce by se nikdy nic neukázalo.
+ * to, že tu něco je. Zapnout jde jen nad úložištěm na disku: se čtením z repa
+ * nebo ze statického exportu by uložení nemělo kam a na stránce by se nikdy
+ * nic neukázalo.
  */
 
 export const editModeConfig = (): EditConfig | null =>
-  usesFallbackOnly(process.env, hasSanityConfig)
-    ? null
-    : readEditConfig(process.env);
+  contentSource(process.env, false) === "store"
+    ? readEditConfig(process.env)
+    : null;
 
 export const notFound = (): Response =>
   Response.json({ error: "Nenalezeno." }, { status: 404 });

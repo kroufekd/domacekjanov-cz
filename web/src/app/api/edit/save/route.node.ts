@@ -4,7 +4,7 @@ import { isLocale, localeHref, locales, type Locale } from "@/i18n";
 import { getSiteContent } from "@/lib/content";
 import { buildEditableIndex } from "@/lib/edit/fields";
 import { requireEditSession } from "@/lib/edit/guard";
-import { saveChanges, type ResolvedChange } from "@/lib/edit/save";
+import { saveChanges, type ResolvedChange } from "@/lib/store/save";
 import { cleanValue } from "@/lib/edit/value";
 
 export const dynamic = "force-dynamic";
@@ -110,7 +110,7 @@ export async function POST(request: Request): Promise<Response> {
     resolved.map((change) => [change.field.key, change.value]),
   );
 
-  const outcome = await saveChanges(guard.config.writeToken, locale, resolved);
+  const outcome = await saveChanges(locale, resolved);
   if ("error" in outcome) {
     return Response.json({ error: outcome.error }, { status: outcome.status });
   }

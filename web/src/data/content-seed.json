@@ -250,7 +250,7 @@
       "height": 1200,
       "id": "gallery-aerial-house-garden",
       "order": 0,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
+      "src": "/images/aerial-house-garden.jpg",
       "width": 1600
     },
     {
@@ -265,7 +265,7 @@
       "height": 1200,
       "id": "gallery-exterior-golden-hour",
       "order": 1,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/3bd121e27f0149c39f46f7c869243d85b8ecb6ea-1600x1200.jpg",
+      "src": "/images/exterior-golden-hour.jpg",
       "width": 1600
     },
     {
@@ -284,7 +284,7 @@
       "height": 765,
       "id": "gallery-hero-aerial",
       "order": 2,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a03280dc423304135cc88e716a0389743a0b5742-1024x765.jpg",
+      "src": "/images/hero-aerial-summer.jpg",
       "width": 1024
     },
     {
@@ -299,7 +299,7 @@
       "height": 1200,
       "id": "gallery-aerial-terrace",
       "order": 3,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/15263d9d72c22c1efd78115fec48826cfcc1f926-1600x1200.jpg",
+      "src": "/images/aerial-terrace.jpg",
       "width": 1600
     },
     {
@@ -314,7 +314,7 @@
       "height": 1200,
       "id": "gallery-aerial-top-down",
       "order": 4,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/c47d50f80778f992512a8a9246da2bbde3af212a-1600x1200.jpg",
+      "src": "/images/aerial-top-down.jpg",
       "width": 1600
     },
     {
@@ -330,10 +330,10 @@
       },
       "category": "exterier",
       "featured": false,
-      "height": 959,
+      "height": 960,
       "id": "gallery-exterior-wide",
       "order": 5,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/460127d389a162ef65a4ba1fcc1c06e80407f6b8-1280x959.jpg",
+      "src": "/images/exterior-wide.jpg",
       "width": 1280
     },
     {
@@ -352,7 +352,7 @@
       "height": 960,
       "id": "gallery-exterior-garden",
       "order": 6,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/26fa2ebbc6a488a76c0cbc7581df772a85e0952c-1280x960.jpg",
+      "src": "/images/exterior-garden.jpg",
       "width": 1280
     },
     {
@@ -367,7 +367,7 @@
       "height": 1200,
       "id": "gallery-exterior-summer-meadow",
       "order": 7,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/53d37cc53c8e43a6be730bd21c08dfe7a4f3fe10-1600x1200.jpg",
+      "src": "/images/exterior-summer-meadow.jpg",
       "width": 1600
     },
     {
@@ -382,7 +382,7 @@
       "height": 1200,
       "id": "gallery-exterior-back-lawn",
       "order": 8,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/fa97509d320702880d28000e7cd91a61d70954a2-1600x1200.jpg",
+      "src": "/images/exterior-back-lawn.jpg",
       "width": 1600
     },
     {
@@ -397,7 +397,7 @@
       "height": 1200,
       "id": "gallery-hot-tub-terrace",
       "order": 9,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a8a77e18fb0f7bf071eb4b082eed94d124d8614c-1600x1200.jpg",
+      "src": "/images/hot-tub-terrace.jpg",
       "width": 1600
     },
     {
@@ -412,7 +412,7 @@
       "height": 1200,
       "id": "gallery-hot-tub-bubbles",
       "order": 10,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e4e394aad1dcca99e3a8c53c60975a9f3a6f96ab-1600x1200.jpg",
+      "src": "/images/hot-tub-bubbles.jpg",
       "width": 1600
     },
     {
@@ -427,7 +427,7 @@
       "height": 1600,
       "id": "gallery-hot-tub-sun",
       "order": 11,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/97e5838d5a83354210e6644395f99b4466b2b837-1201x1600.jpg",
+      "src": "/images/hot-tub-sun.jpg",
       "width": 1201
     },
     {
@@ -442,7 +442,7 @@
       "height": 960,
       "id": "gallery-hot-tub",
       "order": 12,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/cccf666b21eaf89b78b89a9118bce04f62afc53e-1280x960.jpg",
+      "src": "/images/hot-tub.jpg",
       "width": 1280
     },
     {
@@ -457,7 +457,7 @@
       "height": 1066,
       "id": "gallery-terrace-hot-tub",
       "order": 13,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/30c536657c3eac40e31927f8bace7719aec74c2b-1600x1066.jpg",
+      "src": "/images/terrace-hot-tub.jpg",
       "width": 1600
     },
     {
@@ -472,7 +472,7 @@
       "height": 1356,
       "id": "gallery-terrace-awning",
       "order": 14,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a90c5f63a3d7ac4d584d001b3d89c5313e682f86-1600x1356.jpg",
+      "src": "/images/terrace-awning.jpg",
       "width": 1600
     },
     {
@@ -487,7 +487,7 @@
       "height": 1201,
       "id": "gallery-terrace-awning-table",
       "order": 15,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/0ed35e5ee8197cb6883aa449b27c98ff288819e7-1600x1201.jpg",
+      "src": "/images/terrace-awning-table.jpg",
       "width": 1600
     },
     {
@@ -502,7 +502,7 @@
       "height": 1200,
       "id": "gallery-terrace-dining-long",
       "order": 16,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/9ed1f795d553b212d25fecf51d09520acecc45c4-1600x1200.jpg",
+      "src": "/images/terrace-dining-long.jpg",
       "width": 1600
     },
     {
@@ -517,7 +517,7 @@
       "height": 1200,
       "id": "gallery-terrace-garden-table",
       "order": 17,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/c0d90efad1d4836a61720625fdef5a2b0d7761c9-1600x1200.jpg",
+      "src": "/images/terrace-garden-table.jpg",
       "width": 1600
     },
     {
@@ -532,7 +532,7 @@
       "height": 1200,
       "id": "gallery-terrace-table",
       "order": 18,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/7653007c2eeb6a0b344fbc4def31f63ce6536476-1600x1200.jpg",
+      "src": "/images/terrace-table.jpg",
       "width": 1600
     },
     {
@@ -547,7 +547,7 @@
       "height": 1200,
       "id": "gallery-terrace-lounge",
       "order": 19,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/6d1a658241dec377b60dead06b714576a3358c78-1600x1200.jpg",
+      "src": "/images/terrace-lounge.jpg",
       "width": 1600
     },
     {
@@ -562,7 +562,7 @@
       "height": 1200,
       "id": "gallery-terrace-grill-orchard",
       "order": 20,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/be0b9c386f76dd3237ffaeac230ff01352dc8dfe-1600x1200.jpg",
+      "src": "/images/terrace-grill-orchard.jpg",
       "width": 1600
     },
     {
@@ -581,7 +581,7 @@
       "height": 1200,
       "id": "gallery-garden-playground",
       "order": 21,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e9a271f3798cbf2fb27873b641c58099e5766284-1600x1200.jpg",
+      "src": "/images/garden-playground.jpg",
       "width": 1600
     },
     {
@@ -600,7 +600,7 @@
       "height": 1200,
       "id": "gallery-kitchen-dining",
       "order": 22,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/4e215ec260e5a5584aaece62f589e83bbc382268-1600x1200.jpg",
+      "src": "/images/kitchen-dining.jpg",
       "width": 1600
     },
     {
@@ -619,7 +619,7 @@
       "height": 1200,
       "id": "gallery-kitchen",
       "order": 23,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e9cb50b4a71026bf4daa478f7b8fcf642828b999-1600x1200.jpg",
+      "src": "/images/kitchen.jpg",
       "width": 1600
     },
     {
@@ -634,7 +634,7 @@
       "height": 1066,
       "id": "gallery-kitchen-island",
       "order": 24,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/eac58dc88e2a7189b3846c9e263819837f5f27fa-1600x1066.jpg",
+      "src": "/images/kitchen-island.jpg",
       "width": 1600
     },
     {
@@ -649,7 +649,7 @@
       "height": 1066,
       "id": "gallery-kitchen-detail",
       "order": 25,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/2216d8056ecb5aab94503032e0bb2f6ed62dcaf9-1600x1066.jpg",
+      "src": "/images/kitchen-detail.jpg",
       "width": 1600
     },
     {
@@ -668,7 +668,7 @@
       "height": 965,
       "id": "gallery-living-room",
       "order": 26,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/34c6f1bca05eb5c54f2aeb4eac434e3ca181bd30-1280x965.jpg",
+      "src": "/images/living-room.jpg",
       "width": 1280
     },
     {
@@ -687,7 +687,7 @@
       "height": 1200,
       "id": "gallery-bathroom",
       "order": 27,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/abe1a4692cc93281a1c24481332ec08552211bde-1600x1200.jpg",
+      "src": "/images/bathroom.jpg",
       "width": 1600
     },
     {
@@ -706,7 +706,7 @@
       "height": 1600,
       "id": "gallery-stairs",
       "order": 28,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ab841bb54d65d5d258d7d89f4bd0aaf27ade49f8-1200x1600.jpg",
+      "src": "/images/stairs.jpg",
       "width": 1200
     },
     {
@@ -725,7 +725,7 @@
       "height": 1200,
       "id": "gallery-bedroom-double",
       "order": 29,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/9464be5ab7d4d19921b6c769a0995580ff9f47d6-1600x1200.jpg",
+      "src": "/images/bedroom-double.jpg",
       "width": 1600
     },
     {
@@ -744,7 +744,7 @@
       "height": 1067,
       "id": "gallery-bedroom-double-window",
       "order": 30,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/89e1f3e6dd13f3fa1eb2dd613720b29f514d9e69-1600x1067.jpg",
+      "src": "/images/bedroom-double-window.jpg",
       "width": 1600
     },
     {
@@ -763,7 +763,7 @@
       "height": 1200,
       "id": "gallery-bedroom-twin",
       "order": 31,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/b0fc5586e688d2cb89f4fe544cc170be1fabc142-1600x1200.jpg",
+      "src": "/images/bedroom-twin.jpg",
       "width": 1600
     },
     {
@@ -782,7 +782,7 @@
       "height": 1200,
       "id": "gallery-bedroom-single",
       "order": 32,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/eb7012da9fb9f64c55922fbdd2fbe705299d111b-1600x1200.jpg",
+      "src": "/images/bedroom-single.jpg",
       "width": 1600
     },
     {
@@ -801,7 +801,7 @@
       "height": 1200,
       "id": "gallery-bedroom-bunk",
       "order": 33,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/0b08e55069611417465ff7f85cb111790e61f06c-1600x1200.jpg",
+      "src": "/images/bedroom-bunk.jpg",
       "width": 1600
     },
     {
@@ -816,7 +816,7 @@
       "height": 1600,
       "id": "gallery-bedroom-bunk-red",
       "order": 34,
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/3ef9801af93b2db6b2272ee69073eac5044516e8-1600x1600.jpg",
+      "src": "/images/bedroom-bunk-red.jpg",
       "width": 1600
     }
   ],
@@ -1357,15 +1357,14 @@
       "en": "Bohemian-Saxon Switzerland · Janov near Hřensko"
     },
     "heroImage": {
+      "src": "/images/aerial-house-garden.jpg",
+      "width": 1600,
+      "height": 1200,
       "alt": {
         "cs": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
         "de": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
         "en": "Aerial view of Domeček Janov with the terrace and the large summer garden"
-      },
-      "height": 1200,
-      "id": "image-ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200-jpg",
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
-      "width": 1600
+      }
     },
     "heroTitle": {
       "cs": "Celý dům jen pro vaši partu.",
@@ -1384,15 +1383,14 @@
       "en": "An entire holiday house for up to 17 guests, 6 bedrooms, a 4,000 m² fenced garden and a hot tub in Janov near Hřensko."
     },
     "seoImage": {
+      "src": "/images/aerial-house-garden.jpg",
+      "width": 1600,
+      "height": 1200,
       "alt": {
         "cs": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
         "de": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
         "en": "Aerial view of Domeček Janov with the terrace and the large summer garden"
-      },
-      "height": 1200,
-      "id": "image-ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200-jpg",
-      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
-      "width": 1600
+      }
     },
     "seoTitle": {
       "cs": "Domeček Janov | Celá chalupa v Českém Švýcarsku",

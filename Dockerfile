@@ -28,6 +28,13 @@ COPY --from=builder /app/web/public ./web/public
 COPY --from=builder --chown=nextjs:nodejs /app/web/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/web/.next/static ./web/.next/static
 
+# Obsah webu leží na připojeném svazku. Adresář musí v image existovat a patřit
+# běžícímu uživateli - Docker z něj při prvním připojení převezme vlastnictví,
+# jinak by kontejner pod uid 1001 do svazku nesměl zapisovat.
+ENV CONTENT_DIR=/data
+RUN mkdir -p /data/media /data/history && chown -R nextjs:nodejs /data
+VOLUME /data
+
 USER nextjs
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \

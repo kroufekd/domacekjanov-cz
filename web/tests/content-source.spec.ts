@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { usesFallbackOnly } from "@/lib/content/source";
+import { contentSource, usesFallbackOnly } from "@/lib/content/source";
 
 test("bez project ID není koho se ptát", () => {
   expect(usesFallbackOnly({}, false)).toBe(true);
@@ -35,4 +35,21 @@ test("překlep v CONTENT_SOURCE spadne, ať se tiše nečte z živého CMS", () 
 
 test("jen přesné \"true\" vypíná Sanity přes STATIC_EXPORT", () => {
   expect(usesFallbackOnly({ STATIC_EXPORT: "1" }, true)).toBe(false);
+});
+
+test("úložiště na disku je vlastní zdroj, ne fallback", () => {
+  expect(usesFallbackOnly({ CONTENT_SOURCE: "store" }, true)).toBe(false);
+  expect(contentSource({ CONTENT_SOURCE: "store" }, false)).toBe("store");
+});
+
+test("statický export přebije i úložiště", () => {
+  // Export nemá kam sáhnout pro připojený svazek, musí číst z repa.
+  expect(
+    contentSource({ CONTENT_SOURCE: "store", STATIC_EXPORT: "true" }, true),
+  ).toBe("fallback");
+});
+
+test("bez project ID spadne Sanity na repo, úložiště ne", () => {
+  expect(contentSource({}, false)).toBe("fallback");
+  expect(contentSource({ CONTENT_SOURCE: "store" }, false)).toBe("store");
 });

@@ -18,17 +18,14 @@ const SECRET = "0".repeat(64);
 const complete = {
   EDIT_PIN: "12345678",
   EDIT_SECRET: SECRET,
-  SANITY_API_WRITE_TOKEN: "sk-test",
 };
 
 test("bez proměnných je editační režim vypnutý", () => {
   expect(readEditConfig({})).toBeNull();
 });
 
-test("chybějící zápisový token režim nezapne", () => {
-  expect(
-    readEditConfig({ EDIT_PIN: "12345678", EDIT_SECRET: SECRET }),
-  ).toBeNull();
+test("chybějící podpisový klíč režim nezapne", () => {
+  expect(readEditConfig({ EDIT_PIN: "12345678" })).toBeNull();
 });
 
 test("krátký PIN režim nezapne", () => {
@@ -47,7 +44,6 @@ test("kompletní nastavení režim zapne a hodnoty ořízne", () => {
   expect(readEditConfig({ ...complete, EDIT_PIN: " 12345678 " })).toEqual({
     pin: "12345678",
     secret: SECRET,
-    writeToken: "sk-test",
   });
 });
 
