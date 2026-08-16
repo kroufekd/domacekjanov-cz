@@ -8,7 +8,8 @@ import {
   normalizeSettings,
   normalizeTripTexts,
 } from "@/lib/content/from-sanity";
-import { usesFallbackOnly } from "@/lib/content/source";
+import { contentSource } from "@/lib/content/source";
+import { readStore } from "@/lib/store/content-store";
 import { sanityClient } from "@/sanity/client";
 import { hasSanityConfig } from "@/sanity/env";
 import {
@@ -43,18 +44,56 @@ const fetchDocument = (query: string, options: ContentOptions) =>
     options.fresh ? noStore : revalidate,
   );
 
+/** Syrová data z libovolného zdroje - tvar je u obou stejný. */
+type RawContent = {
+  readonly siteSettings: unknown;
+  readonly siteCopy: unknown;
+  readonly accommodation: unknown;
+  readonly gallery: unknown;
+  readonly rates: unknown;
+  readonly trips: unknown;
+};
+
+/**
+ * Poskládá stránce obsah a chybějící kousky doplní vestavěným zněním. Sanity i
+ * soubor na disku vrací stejný tvar, takže tenhle krok je pro oba společný.
+ */
+function compose(
+  raw: RawContent,
+  locale: Locale,
+  fallback: SiteContent,
+): SiteContent {
+  return {
+    settings: normalizeSettings(raw.siteSettings, locale, fallback.settings),
+    copy: normalizeCopy(raw.siteCopy, locale, fallback.copy),
+    accommodation: normalizeAccommodation(
+      raw.accommodation,
+      locale,
+      fallback.accommodation,
+    ),
+    gallery: normalizeGallery(raw.gallery, locale) ?? fallback.gallery,
+    rates: normalizeRates(raw.rates, locale) ?? fallback.rates,
+    tripTexts: normalizeTripTexts(raw.trips, locale),
+  };
+}
+
 export async function getSiteContent(
   locale: Locale,
   options: ContentOptions = {},
 ): Promise<SiteContent> {
   const fallback = fallbackContent[locale];
 
-  if (usesFallbackOnly(process.env, hasSanityConfig)) {
+  const source = contentSource(process.env, hasSanityConfig);
+  if (source === "fallback") {
     return fallback;
   }
 
+  if (source === "store") {
+    return compose(await readStore(), locale, fallback);
+  }
+
   try {
-    const [settings, copy, accommodation, gallery, rates, tripTexts] =
+    const [siteSettings, siteCopy, accommodation, gallery, rates, trips] =
       await Promise.all([
         fetchDocument(siteSettingsQuery, options),
         fetchDocument(siteCopyQuery, options),
@@ -64,18 +103,11 @@ export async function getSiteContent(
         fetchDocument(tripTextsQuery, options),
       ]);
 
-    return {
-      settings: normalizeSettings(settings, locale, fallback.settings),
-      copy: normalizeCopy(copy, locale, fallback.copy),
-      accommodation: normalizeAccommodation(
-        accommodation,
-        locale,
-        fallback.accommodation,
-      ),
-      gallery: normalizeGallery(gallery, locale) ?? fallback.gallery,
-      rates: normalizeRates(rates, locale) ?? fallback.rates,
-      tripTexts: normalizeTripTexts(tripTexts, locale),
-    };
+    return compose(
+      { siteSettings, siteCopy, accommodation, gallery, rates, trips },
+      locale,
+      fallback,
+    );
   } catch {
     return fallback;
   }

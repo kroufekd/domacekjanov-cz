@@ -1,0 +1,1813 @@
+{
+  "accommodation": {
+    "amenities": [
+      {
+        "items": [
+          {
+            "cs": "velká vybavená kuchyň",
+            "de": "große, voll ausgestattete Küche",
+            "en": "large fully equipped kitchen"
+          },
+          {
+            "cs": "dvě lednice s mrazákem",
+            "de": "zwei Kühlschränke mit Gefrierfach",
+            "en": "two fridges with a freezer"
+          },
+          {
+            "cs": "myčka, mikrovlnka, kávovar na kapsle i překapávač",
+            "de": "Spülmaschine, Mikrowelle, Kapsel- und Filterkaffeemaschine",
+            "en": "dishwasher, microwave, capsule and filter coffee machines"
+          },
+          {
+            "cs": "krbová kamna, v přízemí podlahové topení",
+            "de": "Kaminofen, im Erdgeschoss Fußbodenheizung",
+            "en": "wood-burning stove, underfloor heating downstairs"
+          },
+          {
+            "cs": "Wi‑Fi a televize se sportovními programy",
+            "de": "WLAN und Fernseher mit Sportprogrammen",
+            "en": "Wi‑Fi and a TV with sports channels"
+          }
+        ],
+        "title": {
+          "cs": "Uvnitř",
+          "de": "Drinnen",
+          "en": "Inside"
+        }
+      },
+      {
+        "items": [
+          {
+            "cs": "vyhřívaný vířivý sud",
+            "de": "beheizter Badezuber",
+            "en": "heated hot tub"
+          },
+          {
+            "cs": "jižní terasa s plynovým grilem",
+            "de": "Südterrasse mit Gasgrill",
+            "en": "south-facing terrace with a gas grill"
+          },
+          {
+            "cs": "trampolína, houpačka a dětský domeček",
+            "de": "Trampolin, Schaukel und Spielhaus",
+            "en": "trampoline, swing and a playhouse"
+          },
+          {
+            "cs": "oplocená travnatá zahrada",
+            "de": "eingezäunter Rasengarten",
+            "en": "fenced lawn garden"
+          },
+          {
+            "cs": "parkování přímo u domu",
+            "de": "Parkplatz direkt am Haus",
+            "en": "parking right by the house"
+          },
+          {
+            "cs": "wallbox 11 kW pro elektromobily",
+            "de": "11-kW-Wallbox für E-Autos",
+            "en": "11 kW wallbox for electric cars"
+          }
+        ],
+        "title": {
+          "cs": "Venku",
+          "de": "Draußen",
+          "en": "Outside"
+        }
+      },
+      {
+        "items": [
+          {
+            "cs": "povlečení a malé ručníky v ceně",
+            "de": "Bettwäsche und kleine Handtücher inklusive",
+            "en": "bed linen and small towels included"
+          },
+          {
+            "cs": "dvě koupelny v přízemí a jedna samostatná toaleta v patře",
+            "de": "zwei Bäder im Erdgeschoss und ein separates WC im Obergeschoss",
+            "en": "two bathrooms on the ground floor and a separate toilet upstairs"
+          },
+          {
+            "cs": "bezbariérový pokoj v přízemí",
+            "de": "barrierefreies Zimmer im Erdgeschoss",
+            "en": "step-free room on the ground floor"
+          },
+          {
+            "cs": "nekuřácký objekt bez domácích mazlíčků",
+            "de": "Nichtraucherhaus, keine Haustiere",
+            "en": "non-smoking house, no pets"
+          }
+        ],
+        "title": {
+          "cs": "Dobré vědět",
+          "de": "Gut zu wissen",
+          "en": "Good to know"
+        }
+      }
+    ],
+    "bedrooms": 6,
+    "capacity": 17,
+    "facts": [
+      {
+        "label": {
+          "cs": "hostů",
+          "de": "Gäste",
+          "en": "guests"
+        },
+        "value": {
+          "cs": "17",
+          "de": "17",
+          "en": "17"
+        }
+      },
+      {
+        "label": {
+          "cs": "ložnic",
+          "de": "Schlafzimmer",
+          "en": "bedrooms"
+        },
+        "value": {
+          "cs": "6",
+          "de": "6",
+          "en": "6"
+        }
+      },
+      {
+        "label": {
+          "cs": "oplocené zahrady",
+          "de": "eingezäunter Garten",
+          "en": "of fenced garden"
+        },
+        "value": {
+          "cs": "4 000 m²",
+          "de": "4 000 m²",
+          "en": "4,000 m²"
+        }
+      },
+      {
+        "label": {
+          "cs": "v provozu",
+          "de": "geöffnet",
+          "en": "open"
+        },
+        "value": {
+          "cs": "celý rok",
+          "de": "ganzjährig",
+          "en": "all year"
+        }
+      }
+    ],
+    "gardenArea": 4000,
+    "introText": [
+      {
+        "cs": "Domeček stojí v klidné části Janova, pár minut od Hřenska. Pronajímá se vždy celý - šest ložnic, velká kuchyň s jídelnou i zahrada jsou jen pro vaši skupinu.",
+        "de": "Das Domeček steht in einem ruhigen Teil von Janov, wenige Minuten von Hřensko entfernt. Vermietet wird immer das ganze Haus - sechs Schlafzimmer, die große Wohnküche und der Garten gehören allein eurer Gruppe.",
+        "en": "Domeček sits in a quiet part of Janov, a few minutes from Hřensko. It is always rented as a whole - six bedrooms, the large kitchen and dining room and the garden are yours alone."
+      },
+      {
+        "cs": "Nejčastěji sem jezdí rodiny s dětmi, party přátel, sportovní týmy nebo menší firmy na teambuilding. Dům je v provozu po celý rok.",
+        "de": "Am häufigsten kommen Familien mit Kindern, Freundesgruppen, Sportteams oder kleinere Firmen zum Teambuilding. Das Haus ist das ganze Jahr über geöffnet.",
+        "en": "Most of our guests are families with children, groups of friends, sports teams or small companies on a team-building trip. The house is open all year round."
+      }
+    ],
+    "introTitle": {
+      "cs": "Jeden velký dům pro tři až čtyři rodiny.",
+      "de": "Ein großes Haus für drei bis vier Familien.",
+      "en": "One big house for three or four families."
+    },
+    "rooms": [
+      {
+        "description": {
+          "cs": "Dvě patrové postele pro čtyři. Horní lůžka unesou do 80 kg.",
+          "de": "Zwei Etagenbetten für vier Personen. Die oberen Betten tragen bis 80 kg.",
+          "en": "Two bunk beds for four people. The upper bunks hold up to 80 kg."
+        },
+        "title": {
+          "cs": "Pokoj s palandami",
+          "de": "Zimmer mit Etagenbetten",
+          "en": "Bunk bed room"
+        }
+      },
+      {
+        "description": {
+          "cs": "Tři samostatná jednolůžka.",
+          "de": "Drei separate Einzelbetten.",
+          "en": "Three separate single beds."
+        },
+        "title": {
+          "cs": "Třílůžkový pokoj",
+          "de": "Dreibettzimmer",
+          "en": "Triple room"
+        }
+      },
+      {
+        "description": {
+          "cs": "Manželská postel v každém z nich, všechny v patře.",
+          "de": "Je ein Doppelbett, alle im Obergeschoss.",
+          "en": "A double bed in each, all upstairs."
+        },
+        "title": {
+          "cs": "Tři dvoulůžkové pokoje",
+          "de": "Drei Doppelzimmer",
+          "en": "Three double rooms"
+        }
+      },
+      {
+        "description": {
+          "cs": "Manželská postel v přízemí a bezbariérový přístup dveřmi širokými 80 cm.",
+          "de": "Doppelbett im Erdgeschoss und barrierefreier Zugang durch eine 80 cm breite Tür.",
+          "en": "A double bed downstairs with step-free access through an 80 cm wide door."
+        },
+        "title": {
+          "cs": "Přízemní dvoulůžkový pokoj",
+          "de": "Doppelzimmer im Erdgeschoss",
+          "en": "Ground floor double room"
+        }
+      },
+      {
+        "description": {
+          "cs": "Velká rohová pohovka a televize pro společné večery.",
+          "de": "Große Ecksofagarnitur und Fernseher für gemeinsame Abende.",
+          "en": "A large corner sofa and a television for evenings together."
+        },
+        "title": {
+          "cs": "Obývací pokoj",
+          "de": "Wohnzimmer",
+          "en": "Living room"
+        }
+      }
+    ]
+  },
+  "gallery": [
+    {
+      "alt": {
+        "cs": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
+        "de": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
+        "en": "Aerial view of Domeček Janov with the terrace and the large summer garden"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": true,
+      "height": 1200,
+      "id": "gallery-aerial-house-garden",
+      "order": 0,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Domeček Janov v podvečerním slunci pod korunou ořešáku",
+        "de": "Domeček Janov in der Abendsonne unter der Krone eines Walnussbaums",
+        "en": "Domeček Janov in the evening sun beneath a walnut tree"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": true,
+      "height": 1200,
+      "id": "gallery-exterior-golden-hour",
+      "order": 1,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/3bd121e27f0149c39f46f7c869243d85b8ecb6ea-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Letecký pohled na Domeček Janov, terasu a oplocenou zahradu",
+        "de": "Luftaufnahme des Domeček Janov mit Terrasse und eingezäuntem Garten",
+        "en": "Aerial view of Domeček Janov, the terrace and the fenced garden"
+      },
+      "caption": {
+        "cs": "Domeček Janov, dva kilometry od Hřenska",
+        "de": "Domeček Janov, zwei Kilometer von Hřensko",
+        "en": "Domeček Janov, two kilometres from Hřensko"
+      },
+      "category": "exterier",
+      "featured": false,
+      "height": 765,
+      "id": "gallery-hero-aerial",
+      "order": 2,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a03280dc423304135cc88e716a0389743a0b5742-1024x765.jpg",
+      "width": 1024
+    },
+    {
+      "alt": {
+        "cs": "Letecký pohled na terasu s vířivým sudem a zásobou dřeva",
+        "de": "Luftaufnahme der Terrasse mit Badezuber und Brennholzvorrat",
+        "en": "Aerial view of the terrace with the hot tub and the firewood store"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-aerial-terrace",
+      "order": 3,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/15263d9d72c22c1efd78115fec48826cfcc1f926-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Pohled shora na Domeček Janov, parkování a celý pozemek",
+        "de": "Blick von oben auf den Domeček Janov, den Parkplatz und das ganze Grundstück",
+        "en": "Top-down view of Domeček Janov, the parking area and the whole plot"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-aerial-top-down",
+      "order": 4,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/c47d50f80778f992512a8a9246da2bbde3af212a-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Domeček a rozlehlá travnatá zahrada",
+        "de": "Das Haus und der weitläufige Rasengarten",
+        "en": "The house and its wide lawn garden"
+      },
+      "caption": {
+        "cs": "Travnatá zahrada kolem domu",
+        "de": "Rasengarten rund um das Haus",
+        "en": "Lawn garden around the house"
+      },
+      "category": "exterier",
+      "featured": false,
+      "height": 959,
+      "id": "gallery-exterior-wide",
+      "order": 5,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/460127d389a162ef65a4ba1fcc1c06e80407f6b8-1280x959.jpg",
+      "width": 1280
+    },
+    {
+      "alt": {
+        "cs": "Domeček Janov ze zahrady",
+        "de": "Domeček Janov vom Garten aus",
+        "en": "Domeček Janov seen from the garden"
+      },
+      "caption": {
+        "cs": "Pohled od zahrady",
+        "de": "Blick vom Garten",
+        "en": "Seen from the garden"
+      },
+      "category": "exterier",
+      "featured": false,
+      "height": 960,
+      "id": "gallery-exterior-garden",
+      "order": 6,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/26fa2ebbc6a488a76c0cbc7581df772a85e0952c-1280x960.jpg",
+      "width": 1280
+    },
+    {
+      "alt": {
+        "cs": "Domeček Janov z louky, rámovaný korunami stromů",
+        "de": "Domeček Janov von der Wiese aus, umrahmt von Baumkronen",
+        "en": "Domeček Janov seen from the meadow, framed by tree branches"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-exterior-summer-meadow",
+      "order": 7,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/53d37cc53c8e43a6be730bd21c08dfe7a4f3fe10-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Zadní strana domu s hospodářskou částí a posezením na trávníku",
+        "de": "Rückseite des Hauses mit Wirtschaftstrakt und Sitzgelegenheit auf dem Rasen",
+        "en": "Back of the house with the utility wing and seating on the lawn"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-exterior-back-lawn",
+      "order": 8,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/fa97509d320702880d28000e7cd91a61d70954a2-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Vyhřívaný vířivý sud na dlážděné terase s výhledem do zahrady",
+        "de": "Beheizter Badezuber auf der gepflasterten Terrasse mit Blick in den Garten",
+        "en": "Heated hot tub on the paved terrace overlooking the garden"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": true,
+      "height": 1200,
+      "id": "gallery-hot-tub-terrace",
+      "order": 9,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a8a77e18fb0f7bf071eb4b082eed94d124d8614c-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Bublající vířivý sud s výhledem na terasu a ovocný sad",
+        "de": "Sprudelnder Badezuber mit Blick auf die Terrasse und den Obstgarten",
+        "en": "Bubbling hot tub overlooking the terrace and the orchard"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-hot-tub-bubbles",
+      "order": 10,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e4e394aad1dcca99e3a8c53c60975a9f3a6f96ab-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Vířivý sud na terase v protisvětle letního slunce",
+        "de": "Badezuber auf der Terrasse im Gegenlicht der Sommersonne",
+        "en": "Hot tub on the terrace backlit by the summer sun"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1600,
+      "id": "gallery-hot-tub-sun",
+      "order": 11,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/97e5838d5a83354210e6644395f99b4466b2b837-1201x1600.jpg",
+      "width": 1201
+    },
+    {
+      "alt": {
+        "cs": "Hosté ve vyhřívaném vířivém sudu",
+        "de": "Gäste im beheizten Badezuber",
+        "en": "Guests in the heated hot tub"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 960,
+      "id": "gallery-hot-tub",
+      "order": 12,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/cccf666b21eaf89b78b89a9118bce04f62afc53e-1280x960.jpg",
+      "width": 1280
+    },
+    {
+      "alt": {
+        "cs": "Jižní terasa s vířivým sudem a posezením",
+        "de": "Südterrasse mit Badezuber und Sitzecke",
+        "en": "South-facing terrace with a hot tub and seating"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1066,
+      "id": "gallery-terrace-hot-tub",
+      "order": 13,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/30c536657c3eac40e31927f8bace7719aec74c2b-1600x1066.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Terasa s vysunutou markýzou, dlouhým stolem a plynovým grilem",
+        "de": "Terrasse mit ausgefahrener Markise, langem Tisch und Gasgrill",
+        "en": "Terrace with an extended awning, a long table and a gas grill"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1356,
+      "id": "gallery-terrace-awning",
+      "order": 14,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/a90c5f63a3d7ac4d584d001b3d89c5313e682f86-1600x1356.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Stinné posezení pod markýzou na terase",
+        "de": "Schattiger Sitzplatz unter der Markise auf der Terrasse",
+        "en": "Shaded seating under the awning on the terrace"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1201,
+      "id": "gallery-terrace-awning-table",
+      "order": 15,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/0ed35e5ee8197cb6883aa449b27c98ff288819e7-1600x1201.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Dlouhý jídelní stůl na terase s muškáty v oknech",
+        "de": "Langer Esstisch auf der Terrasse mit Geranien in den Fenstern",
+        "en": "Long dining table on the terrace with geraniums in the windows"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-terrace-dining-long",
+      "order": 16,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/9ed1f795d553b212d25fecf51d09520acecc45c4-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Posezení na dlážděné terase s výhledem na zahradu",
+        "de": "Sitzecke auf der gepflasterten Terrasse mit Gartenblick",
+        "en": "Seating on the paved terrace with a garden view"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-terrace-garden-table",
+      "order": 17,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/c0d90efad1d4836a61720625fdef5a2b0d7761c9-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Velký jídelní stůl na terase",
+        "de": "Großer Esstisch auf der Terrasse",
+        "en": "Large dining table on the terrace"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-terrace-table",
+      "order": 18,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/7653007c2eeb6a0b344fbc4def31f63ce6536476-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Terasa s jídelním stolem a lehátky u zahrady",
+        "de": "Terrasse mit Esstisch und Liegestühlen am Garten",
+        "en": "Terrace with a dining table and sun loungers by the garden"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-terrace-lounge",
+      "order": 19,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/6d1a658241dec377b60dead06b714576a3358c78-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Terasa s grilem a výhledem do ovocného sadu",
+        "de": "Terrasse mit Grill und Blick in den Obstgarten",
+        "en": "Terrace with the grill and a view of the orchard"
+      },
+      "caption": null,
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-terrace-grill-orchard",
+      "order": 20,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/be0b9c386f76dd3237ffaeac230ff01352dc8dfe-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Dřevěná prolézačka se skluzavkou a houpačkami na zahradě",
+        "de": "Hölzernes Spielgerät mit Rutsche und Schaukeln im Garten",
+        "en": "Wooden climbing frame with a slide and swings in the garden"
+      },
+      "caption": {
+        "cs": "Hřiště pro děti přímo na zahradě",
+        "de": "Spielplatz direkt im Garten",
+        "en": "A playground right in the garden"
+      },
+      "category": "exterier",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-garden-playground",
+      "order": 21,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e9a271f3798cbf2fb27873b641c58099e5766284-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Prostorná kuchyň s jídelnou a kamny",
+        "de": "Geräumige Wohnküche mit Kaminofen",
+        "en": "Spacious kitchen and dining room with a stove"
+      },
+      "caption": {
+        "cs": "Kuchyň s jídelnou a kamny",
+        "de": "Wohnküche mit Kaminofen",
+        "en": "Kitchen and dining room with a stove"
+      },
+      "category": "spolecne",
+      "featured": true,
+      "height": 1200,
+      "id": "gallery-kitchen-dining",
+      "order": 22,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/4e215ec260e5a5584aaece62f589e83bbc382268-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Plně vybavená šedá kuchyň",
+        "de": "Voll ausgestattete graue Küche",
+        "en": "Fully equipped grey kitchen"
+      },
+      "caption": {
+        "cs": "Plně vybavená kuchyň",
+        "de": "Voll ausgestattete Küche",
+        "en": "Fully equipped kitchen"
+      },
+      "category": "spolecne",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-kitchen",
+      "order": 23,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/e9cb50b4a71026bf4daa478f7b8fcf642828b999-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Kuchyň s velkým pracovním ostrůvkem",
+        "de": "Küche mit großer Arbeitsinsel",
+        "en": "Kitchen with a large work island"
+      },
+      "caption": null,
+      "category": "spolecne",
+      "featured": false,
+      "height": 1066,
+      "id": "gallery-kitchen-island",
+      "order": 24,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/eac58dc88e2a7189b3846c9e263819837f5f27fa-1600x1066.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Kuchyňské vybavení v Domečku Janov",
+        "de": "Küchenausstattung im Domeček Janov",
+        "en": "Kitchen equipment at Domeček Janov"
+      },
+      "caption": null,
+      "category": "spolecne",
+      "featured": false,
+      "height": 1066,
+      "id": "gallery-kitchen-detail",
+      "order": 25,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/2216d8056ecb5aab94503032e0bb2f6ed62dcaf9-1600x1066.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Obývací pokoj s velkou rohovou pohovkou",
+        "de": "Wohnzimmer mit großer Ecksofagarnitur",
+        "en": "Living room with a large corner sofa"
+      },
+      "caption": {
+        "cs": "Obývací pokoj",
+        "de": "Wohnzimmer",
+        "en": "Living room"
+      },
+      "category": "spolecne",
+      "featured": false,
+      "height": 965,
+      "id": "gallery-living-room",
+      "order": 26,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/34c6f1bca05eb5c54f2aeb4eac434e3ca181bd30-1280x965.jpg",
+      "width": 1280
+    },
+    {
+      "alt": {
+        "cs": "Světlá koupelna se sprchovým koutem",
+        "de": "Helles Bad mit Dusche",
+        "en": "Bright bathroom with a shower"
+      },
+      "caption": {
+        "cs": "Dvě koupelny v přízemí",
+        "de": "Zwei Bäder im Erdgeschoss",
+        "en": "Two bathrooms on the ground floor"
+      },
+      "category": "spolecne",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-bathroom",
+      "order": 27,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/abe1a4692cc93281a1c24481332ec08552211bde-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Schodiště do patra Domečku Janov",
+        "de": "Treppe ins Obergeschoss des Domeček Janov",
+        "en": "Staircase to the upper floor of Domeček Janov"
+      },
+      "caption": {
+        "cs": "Dům má dvě podlaží",
+        "de": "Das Haus hat zwei Etagen",
+        "en": "The house has two floors"
+      },
+      "category": "pokoje",
+      "featured": false,
+      "height": 1600,
+      "id": "gallery-stairs",
+      "order": 28,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ab841bb54d65d5d258d7d89f4bd0aaf27ade49f8-1200x1600.jpg",
+      "width": 1200
+    },
+    {
+      "alt": {
+        "cs": "Ložnice s manželskou postelí",
+        "de": "Schlafzimmer mit Doppelbett",
+        "en": "Bedroom with a double bed"
+      },
+      "caption": {
+        "cs": "Čtyři pokoje s manželskou postelí",
+        "de": "Vier Zimmer mit Doppelbett",
+        "en": "Four rooms with a double bed"
+      },
+      "category": "pokoje",
+      "featured": true,
+      "height": 1200,
+      "id": "gallery-bedroom-double",
+      "order": 29,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/9464be5ab7d4d19921b6c769a0995580ff9f47d6-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Světlá ložnice s manželskou postelí",
+        "de": "Helles Schlafzimmer mit Doppelbett",
+        "en": "Bright bedroom with a double bed"
+      },
+      "caption": {
+        "cs": "Ložnice v patře",
+        "de": "Schlafzimmer im Obergeschoss",
+        "en": "Bedroom upstairs"
+      },
+      "category": "pokoje",
+      "featured": false,
+      "height": 1067,
+      "id": "gallery-bedroom-double-window",
+      "order": 30,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/89e1f3e6dd13f3fa1eb2dd613720b29f514d9e69-1600x1067.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Podkrovní pokoj se dvěma lůžky",
+        "de": "Dachzimmer mit zwei Betten",
+        "en": "Attic room with two beds"
+      },
+      "caption": {
+        "cs": "Pokoj v podkroví",
+        "de": "Zimmer im Dachgeschoss",
+        "en": "Room in the attic"
+      },
+      "category": "pokoje",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-bedroom-twin",
+      "order": 31,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/b0fc5586e688d2cb89f4fe544cc170be1fabc142-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Pokoj s jednolůžkem",
+        "de": "Zimmer mit Einzelbett",
+        "en": "Room with a single bed"
+      },
+      "caption": {
+        "cs": "Šest samostatných ložnic",
+        "de": "Sechs separate Schlafzimmer",
+        "en": "Six separate bedrooms"
+      },
+      "category": "pokoje",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-bedroom-single",
+      "order": 32,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/eb7012da9fb9f64c55922fbdd2fbe705299d111b-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Prostorný pokoj s palandou",
+        "de": "Geräumiges Zimmer mit Etagenbett",
+        "en": "Spacious room with a bunk bed"
+      },
+      "caption": {
+        "cs": "Palandy až pro čtyři",
+        "de": "Etagenbetten für bis zu vier Personen",
+        "en": "Bunks for up to four"
+      },
+      "category": "pokoje",
+      "featured": false,
+      "height": 1200,
+      "id": "gallery-bedroom-bunk",
+      "order": 33,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/0b08e55069611417465ff7f85cb111790e61f06c-1600x1200.jpg",
+      "width": 1600
+    },
+    {
+      "alt": {
+        "cs": "Pokoj s palandou a červenými detaily",
+        "de": "Zimmer mit Etagenbett und roten Details",
+        "en": "Room with a bunk bed and red details"
+      },
+      "caption": null,
+      "category": "pokoje",
+      "featured": false,
+      "height": 1600,
+      "id": "gallery-bedroom-bunk-red",
+      "order": 34,
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/3ef9801af93b2db6b2272ee69073eac5044516e8-1600x1600.jpg",
+      "width": 1600
+    }
+  ],
+  "rates": [
+    {
+      "active": true,
+      "featured": true,
+      "id": "rate-summer",
+      "note": {
+        "cs": "V létě pobyty od soboty do soboty.",
+        "de": "Im Sommer Aufenthalte von Samstag bis Samstag.",
+        "en": "In summer stays run from Saturday to Saturday."
+      },
+      "order": 0,
+      "price": "55 000 Kč",
+      "title": {
+        "cs": "Léto",
+        "de": "Sommer",
+        "en": "Summer"
+      },
+      "unit": {
+        "cs": "celý dům / týden",
+        "de": "ganzes Haus / Woche",
+        "en": "whole house / week"
+      }
+    },
+    {
+      "active": true,
+      "featured": false,
+      "id": "rate-week",
+      "note": {
+        "cs": "Platí pro zimní sezonu i mimosezonu.",
+        "de": "Gilt für die Wintersaison und die Nebensaison.",
+        "en": "Applies to the winter season and the off-season."
+      },
+      "order": 1,
+      "price": "49 000 Kč",
+      "title": {
+        "cs": "Mimo léto",
+        "de": "Außerhalb des Sommers",
+        "en": "Outside summer"
+      },
+      "unit": {
+        "cs": "celý dům / týden",
+        "de": "ganzes Haus / Woche",
+        "en": "whole house / week"
+      }
+    },
+    {
+      "active": true,
+      "featured": false,
+      "id": "rate-weekend",
+      "note": {
+        "cs": "Mimo letní sezonu minimálně dvě noci.",
+        "de": "Außerhalb der Sommersaison mindestens zwei Nächte.",
+        "en": "Outside the summer season, two nights minimum."
+      },
+      "order": 2,
+      "price": "25 000 Kč",
+      "title": {
+        "cs": "Víkend",
+        "de": "Wochenende",
+        "en": "Weekend"
+      },
+      "unit": {
+        "cs": "celý dům / víkend",
+        "de": "ganzes Haus / Wochenende",
+        "en": "whole house / weekend"
+      }
+    }
+  ],
+  "siteCopy": {
+    "actions": {
+      "call": {
+        "cs": "Zavolat",
+        "de": "Anrufen",
+        "en": "Call"
+      },
+      "callOwner": {
+        "cs": "Zavolat majiteli",
+        "de": "Eigentümer anrufen",
+        "en": "Call the owner"
+      },
+      "checkAvailability": {
+        "cs": "Zkontrolovat obsazenost",
+        "de": "Verfügbarkeit prüfen",
+        "en": "Check availability"
+      },
+      "datesAndPrices": {
+        "cs": "Termíny a ceny",
+        "de": "Termine und Preise",
+        "en": "Dates and prices"
+      },
+      "exploreHouse": {
+        "cs": "Prohlédnout dům",
+        "de": "Das Haus ansehen",
+        "en": "Explore the house"
+      },
+      "lookInside": {
+        "cs": "Podívat se dovnitř",
+        "de": "Nach drinnen schauen",
+        "en": "Take a look inside"
+      },
+      "openSeparately": {
+        "cs": "Otevřít samostatně",
+        "de": "Separat öffnen",
+        "en": "Open separately"
+      },
+      "showAll": {
+        "cs": "Zobrazit všech {count} fotek",
+        "de": "Alle {count} Fotos anzeigen",
+        "en": "Show all {count} photos"
+      },
+      "showLess": {
+        "cs": "Zobrazit méně",
+        "de": "Weniger anzeigen",
+        "en": "Show less"
+      },
+      "showOnMap": {
+        "cs": "Ukázat na mapě",
+        "de": "Auf der Karte zeigen",
+        "en": "Show on the map"
+      },
+      "startTour": {
+        "cs": "Spustit 3D prohlídku",
+        "de": "3D-Rundgang starten",
+        "en": "Start the 3D tour"
+      },
+      "tourIssue": {
+        "cs": "Problém s prohlídkou? Otevřít samostatně",
+        "de": "Probleme mit dem Rundgang? Separat öffnen",
+        "en": "Trouble with the tour? Open it separately"
+      }
+    },
+    "award": {
+      "cardSource": {
+        "cs": "Booking.com - hodnocení hostů",
+        "de": "Booking.com - Gästebewertung",
+        "en": "Booking.com - guest rating"
+      },
+      "cardTitle": {
+        "cs": "Traveller Review Awards {year}",
+        "de": "Traveller Review Awards {year}",
+        "en": "Traveller Review Awards {year}"
+      },
+      "plateLabel": {
+        "cs": "ocenění {year}",
+        "de": "Auszeichnung {year}",
+        "en": "award {year}"
+      },
+      "scoreSuffix": {
+        "cs": "z 10",
+        "de": "von 10",
+        "en": "out of 10"
+      },
+      "source": {
+        "cs": "Booking.com",
+        "de": "Booking.com",
+        "en": "Booking.com"
+      },
+      "viewerCaption": {
+        "cs": "Booking.com - hodnocení hostů {score} z 10",
+        "de": "Booking.com - Gästebewertung {score} von 10",
+        "en": "Booking.com - guest rating {score} out of 10"
+      },
+      "viewerHint": {
+        "cs": "Šipkami přejdete na další ročník.",
+        "de": "Mit den Pfeiltasten zum nächsten Jahrgang.",
+        "en": "Use the arrow keys for the next year."
+      },
+      "viewerTop": {
+        "cs": "Traveller Review Awards {year}",
+        "de": "Traveller Review Awards {year}",
+        "en": "Traveller Review Awards {year}"
+      }
+    },
+    "contact": {
+      "addressLabel": {
+        "cs": "Adresa",
+        "de": "Adresse",
+        "en": "Address"
+      },
+      "description": {
+        "cs": "Bez agentur a prostředníků. Zavolejte nebo napište, doladíme termín i detaily.",
+        "de": "Ohne Agenturen und Vermittler. Ruft an oder schreibt, wir stimmen Termin und Details ab.",
+        "en": "No agencies, no middlemen. Call or write and we will agree on the dates and the details."
+      },
+      "emailLabel": {
+        "cs": "E‑mail",
+        "de": "E‑Mail",
+        "en": "E‑mail"
+      },
+      "eyebrow": {
+        "cs": "Rezervace a dotazy",
+        "de": "Buchung und Fragen",
+        "en": "Booking and questions"
+      },
+      "phoneLabel": {
+        "cs": "Telefon",
+        "de": "Telefon",
+        "en": "Phone"
+      },
+      "title": {
+        "cs": "Domluvte se|přímo s majitelem.",
+        "de": "Sprecht direkt|mit dem Eigentümer.",
+        "en": "Deal directly|with the owner."
+      }
+    },
+    "footer": {
+      "facebookLink": {
+        "cs": "Facebook",
+        "de": "Facebook",
+        "en": "Facebook"
+      },
+      "instagramLink": {
+        "cs": "Instagram",
+        "de": "Instagram",
+        "en": "Instagram"
+      },
+      "mapLink": {
+        "cs": "Kde nás najdete",
+        "de": "So findet ihr uns",
+        "en": "How to find us"
+      },
+      "pricingLink": {
+        "cs": "Ceny a termíny",
+        "de": "Preise und Termine",
+        "en": "Prices and dates"
+      },
+      "tagline": {
+        "cs": "Ubytování pro rodiny, přátele a týmy v Českém Švýcarsku.",
+        "de": "Unterkunft für Familien, Freunde und Teams in der Böhmischen Schweiz.",
+        "en": "Accommodation for families, friends and teams in Bohemian Switzerland."
+      }
+    },
+    "gallery": {
+      "categories": {
+        "exterier": {
+          "cs": "Exteriér",
+          "de": "Außenbereich",
+          "en": "Exterior"
+        },
+        "pokoje": {
+          "cs": "Pokoje",
+          "de": "Zimmer",
+          "en": "Rooms"
+        },
+        "spolecne": {
+          "cs": "Společné prostory",
+          "de": "Gemeinschaftsräume",
+          "en": "Shared spaces"
+        },
+        "vse": {
+          "cs": "Vše",
+          "de": "Alles",
+          "en": "All"
+        }
+      },
+      "description": {
+        "cs": "Aktuální fotky domu - pokoje, kuchyň, zahrada i terasa.",
+        "de": "Aktuelle Fotos vom Haus - Zimmer, Küche, Garten und Terrasse.",
+        "en": "Current photos of the house - rooms, kitchen, garden and terrace."
+      },
+      "eyebrow": {
+        "cs": "Galerie",
+        "de": "Galerie",
+        "en": "Gallery"
+      },
+      "filterLabel": {
+        "cs": "Vyberte si pohled",
+        "de": "Wählt eure Ansicht",
+        "en": "Choose your view"
+      },
+      "swipeHint": {
+        "cs": "Tažením nebo šipkami přejdete na další fotografii.",
+        "de": "Mit Wischen oder den Pfeiltasten zum nächsten Foto.",
+        "en": "Swipe or use the arrow keys for the next photo."
+      },
+      "title": {
+        "cs": "Podívejte se,|jak to tu vypadá.",
+        "de": "Schaut euch an,|wie es hier aussieht.",
+        "en": "Take a look|at what it is like here."
+      }
+    },
+    "garden": {
+      "cardPrice": {
+        "cs": "2 000 Kč / pobyt",
+        "de": "2 000 CZK / Aufenthalt",
+        "en": "CZK 2,000 / stay"
+      },
+      "cardText": {
+        "cs": "Vyhřívaný sud stojí na terase u domu. Když ho budete chtít, připravíme ho na celý pobyt.",
+        "de": "Der beheizte Zuber steht auf der Terrasse am Haus. Auf Wunsch bereiten wir ihn für den gesamten Aufenthalt vor.",
+        "en": "The heated tub stands on the terrace by the house. If you want it, we will have it ready for your whole stay."
+      },
+      "cardTitle": {
+        "cs": "Vířivý sud",
+        "de": "Badezuber",
+        "en": "Hot tub"
+      },
+      "description": {
+        "cs": "Terasa s grilem míří na jih. Pozemek je celý oplocený, děti tu klidně pustíte z dohledu.",
+        "de": "Die Terrasse mit Grill liegt nach Süden. Das Grundstück ist komplett eingezäunt, ihr könnt die Kinder ruhig aus den Augen lassen.",
+        "en": "The terrace with the grill faces south. The whole plot is fenced, so you can let the children out of sight."
+      },
+      "eyebrow": {
+        "cs": "Zahrada a terasa",
+        "de": "Garten und Terrasse",
+        "en": "Garden and terrace"
+      },
+      "stampNote": {
+        "cs": "oplocený pozemek",
+        "de": "eingezäuntes Grundstück",
+        "en": "fenced plot"
+      },
+      "stampTitle": {
+        "cs": "Soukromý",
+        "de": "Privates",
+        "en": "Private"
+      },
+      "title": {
+        "cs": "Vířivý sud, trampolína|a dětský domeček.",
+        "de": "Badezuber, Trampolin|und Spielhaus.",
+        "en": "Hot tub, trampoline|and a playhouse."
+      }
+    },
+    "hero": {
+      "badgePrefix": {
+        "cs": "Až",
+        "de": "Bis zu",
+        "en": "Up to"
+      },
+      "badgeSuffix": {
+        "cs": "hostů",
+        "de": "Gäste",
+        "en": "guests"
+      },
+      "metaCoords": {
+        "cs": "50° 51′ N · 14° 16′ E",
+        "de": "50° 51′ N · 14° 16′ O",
+        "en": "50° 51′ N · 14° 16′ E"
+      },
+      "metaPlace": {
+        "cs": "V Českém Švýcarsku",
+        "de": "In der Böhmischen Schweiz",
+        "en": "In Bohemian Switzerland"
+      }
+    },
+    "nav": {
+      "about": {
+        "cs": "O domečku",
+        "de": "Das Haus",
+        "en": "The house"
+      },
+      "amenities": {
+        "cs": "Vybavení",
+        "de": "Ausstattung",
+        "en": "Amenities"
+      },
+      "contact": {
+        "cs": "Kontakt",
+        "de": "Kontakt",
+        "en": "Contact"
+      },
+      "gallery": {
+        "cs": "Galerie",
+        "de": "Galerie",
+        "en": "Gallery"
+      },
+      "pricing": {
+        "cs": "Ceník",
+        "de": "Preise",
+        "en": "Prices"
+      },
+      "tour": {
+        "cs": "3D prohlídka",
+        "de": "3D-Rundgang",
+        "en": "3D tour"
+      }
+    },
+    "pricing": {
+      "calendarNote": {
+        "cs": "Kalendář obsazenosti najdete na e‑chalupy.cz.",
+        "de": "Den Belegungskalender findet ihr auf e‑chalupy.cz.",
+        "en": "You will find the availability calendar on e‑chalupy.cz."
+      },
+      "description": {
+        "cs": "Stačí vybrat termín a zavolat nebo napsat.",
+        "de": "Termin aussuchen, anrufen oder schreiben.",
+        "en": "Pick your dates and call or write."
+      },
+      "eyebrow": {
+        "cs": "Ceny & volné termíny",
+        "de": "Preise & freie Termine",
+        "en": "Prices & availability"
+      },
+      "notes": [
+        {
+          "cs": "vířivý sud 2 000 Kč / pobyt",
+          "de": "Badezuber 2 000 CZK / Aufenthalt",
+          "en": "hot tub CZK 2,000 / stay"
+        },
+        {
+          "cs": "nabíjení elektromobilu 10 Kč / kWh",
+          "de": "Laden des E-Autos 10 CZK / kWh",
+          "en": "electric car charging CZK 10 / kWh"
+        }
+      ],
+      "title": {
+        "cs": "Jedna cena|za celý dům.",
+        "de": "Ein Preis|für das ganze Haus.",
+        "en": "One price|for the whole house."
+      }
+    },
+    "rooms": {
+      "comfort": [
+        {
+          "cs": "bezbariérový pokoj",
+          "de": "barrierefreies Zimmer",
+          "en": "step-free room"
+        },
+        {
+          "cs": "vybavení pro děti",
+          "de": "Ausstattung für Kinder",
+          "en": "equipment for children"
+        },
+        {
+          "cs": "plně vybavená kuchyň",
+          "de": "voll ausgestattete Küche",
+          "en": "fully equipped kitchen"
+        },
+        {
+          "cs": "Wi‑Fi v celém domě",
+          "de": "WLAN im ganzen Haus",
+          "en": "Wi‑Fi throughout the house"
+        },
+        {
+          "cs": "dvě koupelny",
+          "de": "zwei Bäder",
+          "en": "two bathrooms"
+        }
+      ],
+      "description": {
+        "cs": "Pět pokojů v patře, jeden bezbariérový v přízemí a k tomu dvě přistýlky - dohromady až 17 míst na spaní.",
+        "de": "Fünf Zimmer im Obergeschoss, ein barrierefreies im Erdgeschoss und dazu zwei Zustellbetten - zusammen bis zu 17 Schlafplätze.",
+        "en": "Five rooms upstairs, one step-free room on the ground floor and two extra beds - up to 17 places to sleep in total."
+      },
+      "eyebrow": {
+        "cs": "Spaní & vybavení",
+        "de": "Schlafen & Ausstattung",
+        "en": "Sleeping & amenities"
+      },
+      "title": {
+        "cs": "Patnáct lůžek|v šesti ložnicích.",
+        "de": "Fünfzehn Betten|in sechs Schlafzimmern.",
+        "en": "Fifteen beds|in six bedrooms."
+      }
+    },
+    "story": {
+      "eyebrow": {
+        "cs": "O domečku",
+        "de": "Über das Haus",
+        "en": "About the house"
+      },
+      "noteAccent": {
+        "cs": "pro tři až čtyři rodiny",
+        "de": "für drei bis vier Familien",
+        "en": "for three or four families"
+      },
+      "noteRest": {
+        "cs": "i partu přátel",
+        "de": "und eine Runde Freunde",
+        "en": "and a group of friends"
+      }
+    },
+    "tour": {
+      "description": {
+        "cs": "Otevřete dveře, nahlédněte do ložnic a ověřte si dispozici domu.",
+        "de": "Öffnet die Türen, schaut in die Schlafzimmer und prüft den Grundriss des Hauses.",
+        "en": "Open the doors, look into the bedrooms and check the layout of the house."
+      },
+      "eyebrow": {
+        "cs": "Virtuální návštěva",
+        "de": "Virtueller Besuch",
+        "en": "Virtual visit"
+      },
+      "teaser": {
+        "cs": "Projděte se domem ještě před příjezdem",
+        "de": "Geht schon vor der Anreise durch das Haus",
+        "en": "Walk through the house before you arrive"
+      },
+      "title": {
+        "cs": "Projděte si Domeček|pokoj po pokoji.",
+        "de": "Geht durch das Domeček|Zimmer für Zimmer.",
+        "en": "Walk through Domeček|room by room."
+      }
+    },
+    "trips": {
+      "description": {
+        "cs": "Janov leží na okraji národního parku České Švýcarsko, dva kilometry od Hřenska. Soutěsky, skalní vyhlídky i Pravčická brána jsou na dosah pěšky nebo pár minut autem.",
+        "de": "Janov liegt am Rand des Nationalparks Böhmische Schweiz, zwei Kilometer von Hřensko entfernt. Klammen, Felsaussichten und das Prebischtor sind zu Fuß oder in wenigen Autominuten erreichbar.",
+        "en": "Janov sits on the edge of Bohemian Switzerland National Park, two kilometres from Hřensko. The gorges, rock viewpoints and the Pravčická brána arch are within walking distance or a few minutes by car."
+      },
+      "eyebrow": {
+        "cs": "Výlety po okolí",
+        "de": "Ausflüge in der Umgebung",
+        "en": "Trips nearby"
+      },
+      "title": {
+        "cs": "Každý den|jiným směrem.",
+        "de": "Jeden Tag|in eine andere Richtung.",
+        "en": "A different direction|every day."
+      }
+    }
+  },
+  "siteSettings": {
+    "address": {
+      "cs": "Janov 167, 405 02 Janov",
+      "de": "Janov 167, 405 02 Janov, Tschechien",
+      "en": "Janov 167, 405 02 Janov, Czech Republic"
+    },
+    "calendarUrl": "https://obsazenost.e-chalupy.cz/kalendar.php?id=17320&pocetMesicu=12&velikost=3&legenda=ano&naStred=ano&jazyk=cz&jednotky=ano",
+    "description": {
+      "cs": "Celý dům pro až 17 hostů, velká oplocená zahrada a České Švýcarsko hned za dveřmi.",
+      "de": "Das ganze Haus für bis zu 17 Gäste, ein großer eingezäunter Garten und die Böhmische Schweiz direkt vor der Tür.",
+      "en": "The whole house for up to 17 guests, a large fenced garden and Bohemian Switzerland right outside the door."
+    },
+    "email": "majitel@akcenaseveru.cz",
+    "facebookUrl": null,
+    "heroDescription": {
+      "cs": "Šest ložnic pro až 17 hostů, 4 000 m² oplocené zahrady a vířivý sud. Soutěsky ve Hřensku jsou dva kilometry od domu.",
+      "de": "Sechs Schlafzimmer für bis zu 17 Gäste, 4 000 m² eingezäunter Garten und ein Badezuber. Die Klammen bei Hřensko liegen zwei Kilometer entfernt.",
+      "en": "Six bedrooms for up to 17 guests, 4,000 m² of fenced garden and a hot tub. The Hřensko gorges are two kilometres from the house."
+    },
+    "heroEyebrow": {
+      "cs": "Českosaské Švýcarsko · Janov u Hřenska",
+      "de": "Sächsisch-Böhmische Schweiz · Janov bei Hřensko",
+      "en": "Bohemian-Saxon Switzerland · Janov near Hřensko"
+    },
+    "heroImage": {
+      "alt": {
+        "cs": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
+        "de": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
+        "en": "Aerial view of Domeček Janov with the terrace and the large summer garden"
+      },
+      "height": 1200,
+      "id": "image-ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200-jpg",
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
+      "width": 1600
+    },
+    "heroTitle": {
+      "cs": "Celý dům jen pro vaši partu.",
+      "de": "Das ganze Haus nur für eure Gruppe.",
+      "en": "The whole house, just for your group."
+    },
+    "instagramUrl": null,
+    "listingUrl": "https://www.e-chalupy.cz/domecek-janov-ubytovani-o17320",
+    "mapUrl": "https://mapy.com/cs/?q=50.85606N%2C%2014.26754E&z=16",
+    "matterportUrl": "https://my.matterport.com/show/?m=QgBtFa22zu6",
+    "phone": "+420777181920",
+    "phoneDisplay": "777 181 920",
+    "seoDescription": {
+      "cs": "Celý dům až pro 17 hostů, 6 ložnic, oplocená zahrada 4 000 m² a vířivý sud v Janově u Hřenska.",
+      "de": "Ganzes Ferienhaus für bis zu 17 Gäste, 6 Schlafzimmer, 4 000 m² eingezäunter Garten und Badezuber in Janov bei Hřensko.",
+      "en": "An entire holiday house for up to 17 guests, 6 bedrooms, a 4,000 m² fenced garden and a hot tub in Janov near Hřensko."
+    },
+    "seoImage": {
+      "alt": {
+        "cs": "Letecký pohled na Domeček Janov s terasou a rozlehlou letní zahradou",
+        "de": "Luftaufnahme des Domeček Janov mit Terrasse und weitläufigem Sommergarten",
+        "en": "Aerial view of Domeček Janov with the terrace and the large summer garden"
+      },
+      "height": 1200,
+      "id": "image-ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200-jpg",
+      "src": "https://cdn.sanity.io/images/lli7g5ge/production/ff5d8d876b99131f6dda35b09231d3b5fd4bdcd2-1600x1200.jpg",
+      "width": 1600
+    },
+    "seoTitle": {
+      "cs": "Domeček Janov | Celá chalupa v Českém Švýcarsku",
+      "de": "Domeček Janov | Ferienhaus in der Böhmischen Schweiz",
+      "en": "Domeček Janov | Whole holiday house in Bohemian Switzerland"
+    },
+    "title": "Domeček Janov"
+  },
+  "trips": [
+    {
+      "note": null,
+      "startName": {
+        "cs": "Domeček Janov",
+        "de": "Domeček Janov",
+        "en": "Domeček Janov"
+      },
+      "summary": {
+        "cs": "Okruh po předválečných řopících z třicátých let. Vede z obce lesními cestami kolem několika zachovalých pevnůstek s informačními tabulemi.",
+        "de": "Rundweg zu den Grenzbunkern aus den 1930er-Jahren. Vom Ort führen Waldwege an mehreren gut erhaltenen Kleinbunkern mit Infotafeln vorbei.",
+        "en": "A loop past the pre-war border bunkers of the 1930s. Forest tracks lead from the village to several well-preserved pillboxes with information boards."
+      },
+      "title": {
+        "cs": "Bunkry Janov",
+        "de": "Bunker bei Janov",
+        "en": "Janov Bunkers"
+      },
+      "tripId": "bunkry-janov"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Sněžník",
+        "de": "Sněžník",
+        "en": "Sněžník"
+      },
+      "summary": {
+        "cs": "Nejstarší kamenná rozhledna v Čechách z roku 1864, vysoká 33 metrů. Z vyhlídkové plošiny je vidět od Krušných hor po Krkonoše.",
+        "de": "Der älteste steinerne Aussichtsturm Böhmens von 1864, 33 Meter hoch. Von der Plattform reicht der Blick vom Erzgebirge bis ins Riesengebirge.",
+        "en": "The oldest stone lookout tower in Bohemia, built in 1864 and 33 metres tall. From the platform the view runs from the Ore Mountains to the Krkonoše."
+      },
+      "title": {
+        "cs": "Rozhledna Sněžník",
+        "de": "Aussichtsturm Hoher Schneeberg",
+        "en": "Sněžník Lookout Tower"
+      },
+      "tripId": "decinsky-sneznik"
+    },
+    {
+      "note": {
+        "cs": "Cesta vede přes Edmundovu soutěsku, která bývá kvůli sanaci skal uzavřená. Aktuální stav najdete na soutesky.cz.",
+        "de": "Der Weg führt durch die Edmundsklamm, die wegen Felssicherung immer wieder gesperrt ist. Den aktuellen Stand finden Sie auf soutesky.cz.",
+        "en": "The route passes through Edmund's Gorge, which closes at times for rock stabilisation. You will find the current status on soutesky.cz."
+      },
+      "startName": {
+        "cs": "Hřensko, k soutěskám",
+        "de": "Hřensko, zu den Klammen",
+        "en": "Hřensko, gorge entrance"
+      },
+      "summary": {
+        "cs": "Plavba na pramicích kaňonem Kamenice mezi stěnami vysokými až 150 metrů. Přeprava jede od Velikonoc do konce října.",
+        "de": "Kahnfahrt durch die Kamnitzschlucht zwischen bis zu 150 Meter hohen Wänden. Die Boote fahren von Ostern bis Ende Oktober.",
+        "en": "A punt ride through the Kamenice canyon between walls up to 150 metres high. The boats run from Easter to the end of October."
+      },
+      "title": {
+        "cs": "Divoká soutěska",
+        "de": "Wilde Klamm (Divoká soutěska)",
+        "en": "Wild Gorge (Divoká soutěska)"
+      },
+      "tripId": "divoka-soutesky"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Vysoká Lípa",
+        "de": "Vysoká Lípa",
+        "en": "Vysoká Lípa"
+      },
+      "summary": {
+        "cs": "Zřícenina mlýna ze 16. století na břehu Kamenice, nejstarší v celém parku. Cesta klesá údolím řeky ve stínu lesa.",
+        "de": "Ruine einer Mühle aus dem 16. Jahrhundert am Ufer der Kamnitz, die älteste im ganzen Park. Der Weg führt schattig im Flusstal bergab.",
+        "en": "The ruin of a 16th-century mill on the bank of the Kamenice, the oldest in the park. The path drops through the river valley in the shade of the forest."
+      },
+      "title": {
+        "cs": "Dolský mlýn",
+        "de": "Grundmühle (Dolský mlýn)",
+        "en": "Dolský mlýn Mill Ruin"
+      },
+      "tripId": "dolsky-mlyn"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Jetřichovice",
+        "de": "Jetřichovice",
+        "en": "Jetřichovice"
+      },
+      "summary": {
+        "cs": "Skalní hrad ze 13. století, jméno znamená Sokolí kámen. Průchod úzkými průrvami a výstup po schodištích vytesaných do pískovce.",
+        "de": "Felsenburg aus dem 13. Jahrhundert, der Name bedeutet Falkenstein. Der Aufstieg führt durch enge Spalten und über in den Sandstein geschlagene Treppen.",
+        "en": "A 13th-century rock castle whose name means Falcon's Stone. The way up threads narrow clefts and staircases carved into the sandstone."
+      },
+      "title": {
+        "cs": "Falkenštejn",
+        "de": "Falkenstein (Falkenštejn)",
+        "en": "Falkenštejn Rock Castle"
+      },
+      "tripId": "falkenstejn"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Domeček Janov",
+        "de": "Domeček Janov",
+        "en": "Domeček Janov"
+      },
+      "summary": {
+        "cs": "Nejníže položená obec v Česku a vstupní brána národního parku. Odtud se vyráží do soutěsek Kamenice i k Pravčické bráně.",
+        "de": "Der tiefstgelegene Ort Tschechiens und das Tor zum Nationalpark. Von hier starten die Wege in die Kamnitzklammen und zum Prebischtor.",
+        "en": "The lowest-lying village in Czechia and the gateway to the national park. Walks to the Kamenice gorges and to Pravčická brána start here."
+      },
+      "title": {
+        "cs": "Hřensko",
+        "de": "Hřensko (Herrnskretschen)",
+        "en": "Hřensko"
+      },
+      "tripId": "hrensko"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Kyjov u Krásné Lípy",
+        "de": "Kyjov bei Krásná Lípa",
+        "en": "Kyjov near Krásná Lípa"
+      },
+      "summary": {
+        "cs": "Naučná stezka údolím Křinice s dřevěnými lávkami a mosty přes říčku. Nenáročná, vhodná pro všechny věkové kategorie.",
+        "de": "Lehrpfad durch das Tal der Kirnitzsch mit Holzstegen und Brücken über den Fluss. Leicht und für jedes Alter geeignet.",
+        "en": "A nature trail through the Křinice valley with wooden walkways and bridges over the stream. Easy going and suitable for every age."
+      },
+      "title": {
+        "cs": "Kyjovské údolí",
+        "de": "Khaatal (Kyjovské údolí)",
+        "en": "Kyjovské údolí Valley"
+      },
+      "tripId": "kyjovske-udoli"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Bynovec",
+        "de": "Bynovec",
+        "en": "Bynovec"
+      },
+      "summary": {
+        "cs": "Skalní ochoz 130 metrů nad meandrem Labe. Z Bynovce se k němu jde po Knížecí cestě, zvládnou ji i děti, a v cíli bývá otevřené občerstvení.",
+        "de": "Felsenkanzel 130 Meter über der Elbschleife. Von Bynovec führt der Fürstenweg hinauf, auch mit Kindern machbar, und am Ziel gibt es meist eine Einkehr.",
+        "en": "A rock terrace 130 metres above a bend in the Elbe. The Prince's Path from Bynovec is easy enough for children, and there is usually a refreshment stand at the top."
+      },
+      "title": {
+        "cs": "Labská vyhlídka (Belvedér)",
+        "de": "Elbaussicht Belvedere",
+        "en": "Elbe Viewpoint (Belvedere)"
+      },
+      "tripId": "labska-vyhlidka"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Vysoká Lípa",
+        "de": "Vysoká Lípa",
+        "en": "Vysoká Lípa"
+      },
+      "summary": {
+        "cs": "Menší sestra slavné brány, schovaná v hlubokém lese. Vede k ní žlutá k rozcestí Pod Šaunštejnem a dál červená, bez vstupného.",
+        "de": "Die kleine Schwester des berühmten Tors, versteckt im tiefen Wald. Gelb bis zur Kreuzung Pod Šaunštejnem, dann rot, ohne Eintritt.",
+        "en": "The smaller sister of the famous arch, hidden deep in the forest. Yellow waymarks lead to the Pod Šaunštejnem junction, then red, no entry fee."
+      },
+      "title": {
+        "cs": "Malá Pravčická brána",
+        "de": "Kleines Prebischtor",
+        "en": "Little Pravčická brána"
+      },
+      "tripId": "mala-pravcicka-brana"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Jetřichovice",
+        "de": "Jetřichovice",
+        "en": "Jetřichovice"
+      },
+      "summary": {
+        "cs": "Skalní ostroh se zábradlím a výhledem přes 180 stupňů. Cesta z Jetřichovic je středně náročná a končí schody vytesanými do skály.",
+        "de": "Felsvorsprung mit Geländer und einem Blick über mehr als 180 Grad. Der Weg von Jetřichovice ist mittelschwer und endet auf in den Fels gehauenen Stufen.",
+        "en": "A railed rock spur with a view sweeping more than 180 degrees. The walk from Jetřichovice is moderate and ends on steps cut into the rock."
+      },
+      "title": {
+        "cs": "Mariina vyhlídka",
+        "de": "Marienfelsen (Mariina vyhlídka)",
+        "en": "Mariina vyhlídka Viewpoint"
+      },
+      "tripId": "mariina-vyhlidka"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Hřensko",
+        "de": "Hřensko",
+        "en": "Hřensko"
+      },
+      "summary": {
+        "cs": "Osada uprostřed parku a hlavní křižovatka tras. Prostorné parkoviště, autobus z Děčína a odtud se rozbíhají značky na všechny strany.",
+        "de": "Siedlung mitten im Park und wichtigster Knotenpunkt der Wege. Großer Parkplatz, Bus aus Děčín, und von hier laufen die Markierungen in alle Richtungen.",
+        "en": "A hamlet in the middle of the park and the main junction of trails. A roomy car park, a bus from Děčín, and waymarks heading off in every direction."
+      },
+      "title": {
+        "cs": "Mezní Louka",
+        "de": "Mezní Louka (Rainwiese)",
+        "en": "Mezní Louka"
+      },
+      "tripId": "mezni-louka"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Jetřichovice",
+        "de": "Jetřichovice",
+        "en": "Jetřichovice"
+      },
+      "summary": {
+        "cs": "Údolí Chřibské Kamenice z Jetřichovic až k osadě Všemily. Skoro žádné převýšení, takže projde i méně zdatná parta.",
+        "de": "Das Tal der Chřibská Kamenice von Jetřichovice bis zur Siedlung Všemily. Kaum Höhenmeter, also auch für weniger geübte Gruppen.",
+        "en": "The valley of the Chřibská Kamenice from Jetřichovice down to the hamlet of Všemily. Almost no climbing, so a less fit group will manage it."
+      },
+      "title": {
+        "cs": "Pavlínino údolí",
+        "de": "Paulinengrund (Pavlínino údolí)",
+        "en": "Pavlínino údolí Valley"
+      },
+      "tripId": "pavlinino-udoli"
+    },
+    {
+      "note": {
+        "cs": "Červená Gabrielina stezka je po požáru z roku 2022 stále uzavřená, proto trasa obchází přes Tři prameny. Před výletem si ověřte aktuální stav na npcs.cz.",
+        "de": "Der rote Gabrielensteig ist nach dem Brand von 2022 weiterhin gesperrt, die Route führt deshalb über Tři prameny. Den aktuellen Stand vor der Tour auf npcs.cz prüfen.",
+        "en": "The red Gabriela's Path has stayed closed since the 2022 fire, so the route detours via Tři prameny. Check the current status on npcs.cz before you set out."
+      },
+      "startName": {
+        "cs": "Mezní Louka",
+        "de": "Mezní Louka",
+        "en": "Mezní Louka"
+      },
+      "summary": {
+        "cs": "Největší pískovcová brána v Evropě - 26,5 metru na výšku. Vyhlídková terasa Sokolího hnízda i restaurace jsou přímo pod ní.",
+        "de": "Das größte Sandsteintor Europas - 26,5 Meter hoch. Direkt darunter liegen die Aussichtsterrasse und das Restaurant Falkennest.",
+        "en": "The largest sandstone arch in Europe - 26.5 metres high. The Falcon's Nest viewing terrace and its restaurant sit right beneath it."
+      },
+      "title": {
+        "cs": "Pravčická brána",
+        "de": "Prebischtor (Pravčická brána)",
+        "en": "Pravčická brána Arch"
+      },
+      "tripId": "pravcicka-brana"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Domeček Janov",
+        "de": "Domeček Janov",
+        "en": "Domeček Janov"
+      },
+      "summary": {
+        "cs": "Kovová rozhledna z roku 2013 stojí přímo v obci. Sto šedesát dva schodů a nahoře 360° výhled na České i Saské Švýcarsko.",
+        "de": "Der Stahlturm von 2013 steht direkt im Ort. Hundertzweiundsechzig Stufen, oben ein 360°-Blick über die Böhmische und die Sächsische Schweiz.",
+        "en": "The steel tower from 2013 stands right in the village. A hundred and sixty-two steps lead to a 360° view over Bohemian and Saxon Switzerland."
+      },
+      "title": {
+        "cs": "Rozhledna Janov",
+        "de": "Aussichtsturm Janov",
+        "en": "Janov Lookout Tower"
+      },
+      "tripId": "rozhledna-janov"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Růžová",
+        "de": "Růžová",
+        "en": "Růžová"
+      },
+      "summary": {
+        "cs": "Betonová rozhledna na Pastevním vrchu, tvarem připomíná Kaplického knihovnu. Z Růžové je to kousek a vstup je zdarma.",
+        "de": "Betonturm auf dem Pastevní vrch, in der Form an Kaplickýs Bibliotheksentwurf erinnernd. Von Růžová ist es nur ein kurzes Stück, der Eintritt ist frei.",
+        "en": "A concrete tower on Pastevní vrch whose shape recalls Kaplický's library design. It is a short walk from Růžová and entry is free."
+      },
+      "title": {
+        "cs": "Rozhledna Růženka",
+        "de": "Aussichtsturm Růženka",
+        "en": "Růženka Lookout Tower"
+      },
+      "tripId": "rozhledna-ruzenka"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Vysoká Lípa",
+        "de": "Vysoká Lípa",
+        "en": "Vysoká Lípa"
+      },
+      "summary": {
+        "cs": "Vyhlídka na pískovcovém suku ve výšce 484 metrů. Závěr výstupu tvoří kovové žebříky a schody vytesané do skály.",
+        "de": "Aussicht auf einem Sandsteinfelsen in 484 Metern Höhe. Zum Schluss geht es über Eisenleitern und in den Fels geschlagene Stufen hinauf.",
+        "en": "A viewpoint on a sandstone tor at 484 metres. The climb finishes on metal ladders and steps cut into the rock."
+      },
+      "title": {
+        "cs": "Rudolfův kámen",
+        "de": "Rudolfstein (Rudolfův kámen)",
+        "en": "Rudolfův kámen Viewpoint"
+      },
+      "tripId": "rudolfuv-kamen"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Domeček Janov",
+        "de": "Domeček Janov",
+        "en": "Domeček Janov"
+      },
+      "summary": {
+        "cs": "Čedičový vrchol 619 m n. m. s průseky do širokého okolí. Z Janova k němu vede žlutá značka Hřensko - Srbská Kamenice.",
+        "de": "Basaltkegel auf 619 m mit Durchblicken in die weite Umgebung. Von Janov führt die gelbe Markierung Hřensko - Srbská Kamenice hinauf.",
+        "en": "A basalt summit at 619 m with cuttings that open onto the wider country. The yellow trail from Hřensko to Srbská Kamenice leads up from Janov."
+      },
+      "title": {
+        "cs": "Růžovský vrch",
+        "de": "Růžovský vrch (Rosenberg)",
+        "en": "Růžovský vrch Hill"
+      },
+      "tripId": "ruzovsky-vrch"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Vysoká Lípa",
+        "de": "Vysoká Lípa",
+        "en": "Vysoká Lípa"
+      },
+      "summary": {
+        "cs": "Skalní hrad ze 14. století, později doupě loupežníků. Poslední úsek se leze po žebřících ve skále - za deště a námrazy raději jinam.",
+        "de": "Felsenburg aus dem 14. Jahrhundert, später Räuberversteck. Das letzte Stück geht über Leitern im Fels - bei Regen und Eis lieber ein anderes Ziel.",
+        "en": "A 14th-century rock castle, later a robbers' den. The final stretch climbs ladders fixed in the rock - pick another target in rain or ice."
+      },
+      "title": {
+        "cs": "Šaunštejn",
+        "de": "Schauenstein (Šaunštejn)",
+        "en": "Šaunštejn Rock Castle"
+      },
+      "tripId": "saunstejn"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Tisá",
+        "de": "Tisá",
+        "en": "Tisá"
+      },
+      "summary": {
+        "cs": "Skalní město s Velkým a Malým okruhem, natáčely se tu Letopisy Narnie. Samotné okruhy uvnitř skal zaberou dvě až tři hodiny.",
+        "de": "Felsenstadt mit großem und kleinem Rundweg, hier wurden die Chroniken von Narnia gedreht. Die Runden im Fels selbst dauern zwei bis drei Stunden.",
+        "en": "A rock town with a Large and a Small circuit; The Chronicles of Narnia was filmed here. The circuits inside the rocks alone take two to three hours."
+      },
+      "title": {
+        "cs": "Tiské stěny",
+        "de": "Tyssaer Wände (Tiské stěny)",
+        "en": "Tiské stěny Rock Town"
+      },
+      "tripId": "tiske-steny"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Jetřichovice",
+        "de": "Jetřichovice",
+        "en": "Jetřichovice"
+      },
+      "summary": {
+        "cs": "Labyrint skalních průchodů, věží a převisů - zmenšenina velkých skalních měst. Na průzkum všech zákoutí si nechte aspoň dvě hodiny.",
+        "de": "Labyrinth aus Felsgassen, Türmen und Überhängen - eine Miniatur der großen Felsenstädte. Für alle Winkel mindestens zwei Stunden einplanen.",
+        "en": "A labyrinth of rock passages, towers and overhangs - a miniature of the great rock towns. Allow at least two hours to explore every corner."
+      },
+      "title": {
+        "cs": "Trpasličí skály",
+        "de": "Zwergenfelsen (Trpasličí skály)",
+        "en": "Trpasličí skály (Dwarf Rocks)"
+      },
+      "tripId": "trpaslici-skaly"
+    },
+    {
+      "note": null,
+      "startName": {
+        "cs": "Jetřichovice",
+        "de": "Jetřichovice",
+        "en": "Jetřichovice"
+      },
+      "summary": {
+        "cs": "Vyhlídka na hraně téměř kolmé stěny nad Jetřichovicemi. Mírné stoupání lesem zvládne i méně zkušený turista.",
+        "de": "Aussichtspunkt auf der Kante einer fast senkrechten Wand über Jetřichovice. Der sanfte Anstieg durch den Wald ist auch für Ungeübte machbar.",
+        "en": "A viewpoint perched on the edge of an almost vertical face above Jetřichovice. The gentle forest climb suits less experienced walkers."
+      },
+      "title": {
+        "cs": "Vilemínina stěna",
+        "de": "Wilhelminenwand (Vilemínina stěna)",
+        "en": "Vilemínina stěna Viewpoint"
+      },
+      "tripId": "vileminina-stena"
+    }
+  ]
+}
