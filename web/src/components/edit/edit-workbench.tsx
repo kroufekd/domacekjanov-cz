@@ -22,6 +22,9 @@ import styles from "./edit-mode.module.css";
 
 const PANEL_ATTRIBUTE = "data-domecek-edit";
 
+/** Jak často se kouká na adresu rámu. Krátce, ať přepnutí jazyka neblikne. */
+const PATH_POLL_MS = 250;
+
 type EditWorkbenchProps = {
   /** Jazyk stránky, se kterou se dílna otevřela; dál ho určuje rám. */
   readonly initialLocale: Locale;
@@ -48,6 +51,8 @@ export function EditWorkbench({
 }: EditWorkbenchProps) {
   const frame = useRef<HTMLIFrameElement>(null);
   const scrollToRestore = useRef<number | null>(null);
+  /** Naposledy viděná adresa rámu; podle ní se pozná přechod na jinou stránku. */
+  const seenPath = useRef<string | null>(null);
   const [bridge, setBridge] = useState<FrameBridge | null>(null);
   const [frameEpoch, setFrameEpoch] = useState(0);
   const [locale, setLocale] = useState<Locale>(initialLocale);
@@ -90,12 +95,36 @@ export function EditWorkbench({
       scrollToRestore.current = null;
     }
 
-    // Jazyk se přepíná uvnitř rámu, ne v adrese pod dílnou. Panel proto bere
-    // jazyk odsud - jinak by u německé stránky pořád nabízel české texty.
-    const path = framePathname(frame.current);
-    if (path) setLocale(localeFromPathname(path));
+    seenPath.current = framePathname(frame.current);
+    if (seenPath.current) setLocale(localeFromPathname(seenPath.current));
 
     setFrameEpoch((current) => current + 1);
+  }, []);
+
+  /*
+   * Sledování adresy rámu.
+   *
+   * Jazyk se přepíná uvnitř rámu, ne v adrese pod dílnou - a přepínač je
+   * `next/link`, takže jde o klientskou navigaci: dokument se nenačte znovu a
+   * `onLoad` mlčí. Bez tohohle hlídání by panel u anglické stránky dál nabízel
+   * české texty a napojení na text v rámu by zůstalo viset na staré stránce.
+   *
+   * Next o svých přechodech nedává vědět žádnou událostí, kterou by šlo
+   * odsud odebírat, takže se adresa čte v krátkém intervalu. Je to jedno
+   * čtení `location.pathname`, které se navíc dělá jen v editačním režimu.
+   */
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      const path = framePathname(frame.current);
+      if (!path || path === seenPath.current) return;
+
+      seenPath.current = path;
+      setLocale(localeFromPathname(path));
+      // Stránka se přerovnala, takže napojení na text je potřeba udělat znovu.
+      setFrameEpoch((current) => current + 1);
+    }, PATH_POLL_MS);
+
+    return () => window.clearInterval(timer);
   }, []);
 
   return (
