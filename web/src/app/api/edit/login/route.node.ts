@@ -25,7 +25,7 @@ const limiter = createRateLimiter();
 const badRequest = (message: string, status = 400): Response =>
   Response.json({ error: message }, { status });
 
-/** Přihlášení PINem. Chyba je schválně jedna a stejná pro všechny důvody. */
+/** Přihlášení heslem. Chyba je schválně jedna a stejná pro všechny důvody. */
 export async function POST(request: Request): Promise<Response> {
   const config = editModeConfig();
   if (!config) return notFound();
@@ -48,14 +48,14 @@ export async function POST(request: Request): Promise<Response> {
       : undefined;
 
   if (typeof pin !== "string" || pin.length > 200) {
-    return badRequest("Zadejte PIN.");
+    return badRequest("Zadejte heslo.");
   }
 
   if (!matchesPin(config.pin, pin)) {
     console.warn(
       `Editační režim: neúspěšné přihlášení z ${clientAddress(request)}.`,
     );
-    return badRequest("Nesprávný PIN.", 401);
+    return badRequest("Nesprávné heslo.", 401);
   }
 
   limiter.reset(clientAddress(request));
