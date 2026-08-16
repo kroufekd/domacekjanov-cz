@@ -10,21 +10,23 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   reporter: "list",
-  // Playwright si sám bere polovinu jader. Na runneru s dvěma jádry to znamená
-  // jednoho workera a čekání, přitom testy nic těžkého nedělají - server běží
-  // vedle a scénáře jen klikají. Doma zůstává výchozí půlka, ať se dá u toho
-  // pracovat.
-  workers: process.env.CI ? "100%" : undefined,
+  // Workeři schválně zůstávají na výchozí půlce jader. Zkoušené `100%` na
+  // dvoujádrovém runneru testy nezrychlilo a rozhodilo scénáře, které měří
+  // scroll a překreslení mapy. Běh se v CI dělí na runnery přes `--shard`.
   use: {
     baseURL,
     trace: "retain-on-failure",
   },
-  webServer: {
-    command: `npm run build && npm run start -- -p ${port}`,
-    url: `${baseURL}/api/health`,
-    reuseExistingServer: true,
-    timeout: 120_000,
-  },
+  // Projekt `unit` prohlížeč ani server nepotřebuje. Když jede sám, ušetří
+  // `E2E_NO_SERVER` build a start webu, který by stejně nikdo neotevřel.
+  webServer: process.env.E2E_NO_SERVER
+    ? undefined
+    : {
+        command: `npm run build && npm run start -- -p ${port}`,
+        url: `${baseURL}/api/health`,
+        reuseExistingServer: true,
+        timeout: 120_000,
+      },
   projects: [
     // Pure mapping tests - no browser, so they run once instead of per device.
     { name: "unit", testMatch: unitTests },
