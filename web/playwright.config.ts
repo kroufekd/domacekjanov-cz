@@ -10,6 +10,11 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   reporter: "list",
+  // Playwright si sám bere polovinu jader. Na runneru s dvěma jádry to znamená
+  // jednoho workera a čekání, přitom testy nic těžkého nedělají - server běží
+  // vedle a scénáře jen klikají. Doma zůstává výchozí půlka, ať se dá u toho
+  // pracovat.
+  workers: process.env.CI ? "100%" : undefined,
   use: {
     baseURL,
     trace: "retain-on-failure",
