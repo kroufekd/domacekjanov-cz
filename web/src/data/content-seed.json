@@ -985,7 +985,8 @@
       "viewerHint": {
         "cs": "Šipkami přejdete na další ročník.",
         "de": "Mit den Pfeiltasten zum nächsten Jahrgang.",
-        "en": "Use the arrow keys for the next year."
+        "en": "Use the arrow keys for the next year.",
+        "_type": "localeString"
       },
       "viewerTop": {
         "cs": "Traveller Review Awards {year}",
