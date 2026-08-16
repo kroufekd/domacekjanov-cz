@@ -1,0 +1,95 @@
+name: Záloha obsahu do gitu
+
+# Obsah webu žije na svazku u běžícího kontejneru. Tenhle workflow si ho jednou
+# denně stáhne a uloží do repozitáře, takže je z čeho web obnovit, kdyby o svazek
+# přišel - a zároveň je v gitu vidět, co majitel kdy změnil.
+#
+# Stahuje se, netlačí. Kontejner tak nepotřebuje zápisový přístup do repozitáře.
+#
+# Uložený soubor je zároveň výchozím obsahem: prázdný svazek se jím naplní při
+# prvním spuštění. Záloha a seed jsou schválně jedno a totéž.
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: content-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    name: Stáhnout obsah a commitnout změny
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ověřit nastavení
+        id: setup
+        env:
+          SITE: ${{ secrets.CONTENT_BACKUP_URL }}
+          TOKEN: ${{ secrets.EDIT_SECRET }}
+        run: |
+          if [ -z "$SITE" ] || [ -z "$TOKEN" ]; then
+            echo "Chybí CONTENT_BACKUP_URL nebo EDIT_SECRET, zálohu přeskakuji."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Stáhnout obsah
+        if: steps.setup.outputs.ready == 'true'
+        env:
+          SITE: ${{ secrets.CONTENT_BACKUP_URL }}
+          TOKEN: ${{ secrets.EDIT_SECRET }}
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --max-time 60 \
+            -H "Authorization: Bearer $TOKEN" \
+            "$SITE/api/edit/export" -o /tmp/export.json
+
+          # Obsah i seznam fotek v jednom balíku; rozdělíme ho až tady.
+          python3 - <<'PY'
+          import json, pathlib
+          data = json.load(open("/tmp/export.json"))
+          pathlib.Path("web/src/data/content-seed.json").write_text(
+              json.dumps(data["content"], ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          pathlib.Path("/tmp/media.txt").write_text(
+              "\n".join(data.get("media", [])), encoding="utf-8"
+          )
+          PY
+
+      - name: Stáhnout nahrané fotky
+        if: steps.setup.outputs.ready == 'true'
+        env:
+          SITE: ${{ secrets.CONTENT_BACKUP_URL }}
+        run: |
+          set -euo pipefail
+          mkdir -p web/public/uploads
+          while read -r name; do
+            [ -z "$name" ] && continue
+            curl --fail --silent --show-error --max-time 120 \
+              "$SITE/media/$name" -o "web/public/uploads/$name"
+          done < /tmp/media.txt
+
+      - name: Commitnout, pokud se něco změnilo
+        if: steps.setup.outputs.ready == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/src/data/content-seed.json web/public/uploads
+
+          if git diff --cached --quiet; then
+            echo "Obsah se od poslední zálohy nezměnil."
+            exit 0
+          fi
+
+          git commit -m "chore: záloha obsahu webu"
+          git push
