@@ -4,7 +4,7 @@ import { defineConfig, devices } from "@playwright/test";
 const port = Number(process.env.E2E_PORT) || 3100;
 const baseURL = `http://127.0.0.1:${port}`;
 const unitTests =
-  /(content-mapping|content-source|trip-text|trip-studio-text|edit-access|edit-fields|edit-frame|edit-write)\.spec\.ts/;
+  /(content-mapping|content-source|trip-text|trip-studio-text|edit-access|edit-fields|edit-frame|edit-photos|edit-write)\.spec\.ts/;
 
 export default defineConfig({
   testDir: "./tests",

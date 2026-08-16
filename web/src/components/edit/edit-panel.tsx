@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/config";
 import type { EditableField, EditableGroup } from "@/lib/edit/fields";
 
 import { EditField } from "./edit-field";
+import { EditPhotos } from "./edit-photos";
 import type { FrameBridge } from "./frame-bridge";
 import styles from "./edit-mode.module.css";
 
@@ -434,6 +435,27 @@ export function EditPanel({
             ))}
           </details>
         ))}
+
+        {load.status === "ready" ? (
+          <details
+            className={styles.group}
+            open={openGroups.fotky ?? false}
+            onToggle={(event) => {
+              const open = (event.target as HTMLDetailsElement).open;
+              setOpenGroups((current) =>
+                current.fotky === open ? current : { ...current, fotky: open },
+              );
+            }}
+          >
+            <summary className={styles.groupSummary}>
+              Fotky
+              <span className={styles.groupCount}>galerie</span>
+            </summary>
+            {openGroups.fotky ? (
+              <EditPhotos locale={locale} onChanged={onSaved} />
+            ) : null}
+          </details>
+        ) : null}
       </div>
 
       {pending ? (

@@ -8,12 +8,7 @@ import {
   type EditableField,
 } from "@/lib/edit/fields";
 import { failed } from "@/lib/edit/patch";
-import {
-  archiveStore,
-  readStore,
-  writeStore,
-  type ContentStore,
-} from "@/lib/store/content-store";
+import { updateStore, type ContentStore } from "@/lib/store/content-store";
 
 /**
  * Uložení dávky úprav do obsahu na disku.
@@ -42,18 +37,6 @@ const makeKey = (): string =>
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
-
-/**
- * Čtení a zápis jsou dva kroky, takže dvě souběžná uložení by si mohla
- * přepsat výsledek. Na jednom kontejneru stačí je poskládat za sebe.
- */
-let queue: Promise<unknown> = Promise.resolve();
-
-const serialize = <T,>(task: () => Promise<T>): Promise<T> => {
-  const next = queue.then(task, task);
-  queue = next.catch(() => undefined);
-  return next;
-};
 
 type Lens = {
   readonly read: (store: ContentStore) => unknown;
@@ -133,26 +116,20 @@ function applyAll(
 }
 
 /** Uloží změny a vrátí, kolik polí se zapsalo. */
-export function saveChanges(
+export async function saveChanges(
   locale: Locale,
   changes: readonly ResolvedChange[],
 ): Promise<SaveOutcome> {
-  return serialize(async () => {
-    try {
-      const store = await readStore();
-      const result = applyAll(store, locale, changes);
+  try {
+    const outcome = await updateStore((store) =>
+      applyAll(store, locale, changes),
+    );
 
-      if ("error" in result) {
-        return { error: result.error, status: 400 };
-      }
-
-      await archiveStore(new Date().toISOString().replace(/[:.]/g, "-"));
-      await writeStore(result.store);
-
-      return { saved: changes.length };
-    } catch (error) {
-      console.error("Editační režim: zápis obsahu selhal.", error);
-      return { error: "Uložení se nepovedlo.", status: 502 };
-    }
-  });
+    return outcome.error
+      ? { error: outcome.error, status: 400 }
+      : { saved: changes.length };
+  } catch (error) {
+    console.error("Editační režim: zápis obsahu selhal.", error);
+    return { error: "Uložení se nepovedlo.", status: 502 };
+  }
 }

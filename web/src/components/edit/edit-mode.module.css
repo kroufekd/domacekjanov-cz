@@ -350,3 +350,90 @@
   font-size: 13px;
   color: #a33224;
 }
+
+/* Fotky */
+
+.photoTools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 4px 0 12px;
+}
+
+.photoNote {
+  flex: 1;
+  min-width: 150px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--edit-muted);
+}
+
+.photoError {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #a33224;
+}
+
+.photoList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo {
+  padding: 12px 0;
+  border-top: 1px solid var(--edit-line);
+}
+
+.photoHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.photoThumb {
+  width: 84px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eef1ec;
+}
+
+.photoOrder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.photoIndex {
+  min-width: 24px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--edit-muted);
+}
+
+.photoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.select {
+  flex: 1;
+  min-width: 0;
+  padding: 7px 8px;
+  border: 1px solid var(--edit-line);
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 13px;
+  color: inherit;
+}
+
+.buttonDanger {
+  background: #a33224;
+  color: #fff;
+}

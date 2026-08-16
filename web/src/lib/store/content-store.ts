@@ -130,3 +130,34 @@ export async function archiveStore(stamp: string): Promise<void> {
     }
   }
 }
+
+/**
+ * Čtení a zápis jsou dva kroky, takže dvě souběžné úpravy by si mohly přepsat
+ * výsledek. Na jednom kontejneru stačí je poskládat za sebe - texty i fotky
+ * sdílejí jednu frontu, protože sahají do stejného souboru.
+ */
+let queue: Promise<unknown> = Promise.resolve();
+
+export type StoreChange =
+  | { readonly store: ContentStore }
+  | { readonly error: string };
+
+/** Načte obsah, nechá ho upravit a uloží. Chybu z úpravy jen propustí dál. */
+export function updateStore(
+  mutate: (store: ContentStore) => StoreChange | Promise<StoreChange>,
+): Promise<{ readonly error?: string }> {
+  const task = async () => {
+    const current = await readStore();
+    const outcome = await mutate(current);
+
+    if ("error" in outcome) return { error: outcome.error };
+
+    await archiveStore(new Date().toISOString().replace(/[:.]/g, "-"));
+    await writeStore(outcome.store);
+    return {};
+  };
+
+  const next = queue.then(task, task);
+  queue = next.catch(() => undefined);
+  return next;
+}
