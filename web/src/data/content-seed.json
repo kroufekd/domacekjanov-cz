@@ -958,14 +958,14 @@
         "en": "Booking.com - guest rating"
       },
       "cardTitle": {
-        "cs": "Traveller Review Awards {year}",
-        "de": "Traveller Review Awards {year}",
-        "en": "Traveller Review Awards {year}"
+        "cs": "Traveller Review Awards 2025",
+        "de": "Traveller Review Awards 2025",
+        "en": "Traveller Review Awards 2025"
       },
       "plateLabel": {
-        "cs": "ocenění {year}",
-        "de": "Auszeichnung {year}",
-        "en": "award {year}"
+        "cs": "ocenění 2025",
+        "de": "Auszeichnung 2025",
+        "en": "award 2025"
       },
       "scoreSuffix": {
         "cs": "z 10",

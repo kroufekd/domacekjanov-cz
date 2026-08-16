@@ -333,8 +333,8 @@
     },
     "award": {
       "source": "Booking.com",
-      "plateLabel": "Auszeichnung {year}",
-      "cardTitle": "Traveller Review Awards {year}",
+      "plateLabel": "Auszeichnung 2025",
+      "cardTitle": "Traveller Review Awards 2025",
       "cardSource": "Booking.com - Gästebewertung",
       "scoreSuffix": "von 10",
       "viewerTop": "Traveller Review Awards {year}",

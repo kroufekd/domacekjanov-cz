@@ -134,3 +134,30 @@ test("titulky se svislítkem mají poznámku, ostatní pole ne", () => {
     index.get(fieldKey(SITE_SETTINGS_ID, "heroTitle"))?.hint,
   ).toBeUndefined();
 });
+
+test("prohlížeč certifikátů se v panelu neukazuje", () => {
+  // Listuje ročníky, takže rok i známku musí dosadit web. Natvrdo by u
+  // staršího certifikátu ukázal špatné číslo.
+  expect(index.get(fieldKey(SITE_COPY_ID, "award.viewerTop"))).toBeUndefined();
+  expect(
+    index.get(fieldKey(SITE_COPY_ID, "award.viewerCaption")),
+  ).toBeUndefined();
+  expect(index.get(fieldKey(SITE_COPY_ID, "award.viewerHint"))).toBeDefined();
+});
+
+test("v panelu nezbyl žádný zápis ve složených závorkách bez vysvětlení", () => {
+  const unexplained = [...index.values()].filter(
+    (field) => /\{\w+\}/.test(field.value) && !field.hint,
+  );
+
+  expect(unexplained.map((field) => field.key)).toEqual([]);
+});
+
+test("ocenění má rok natvrdo, ne zástupný zápis", () => {
+  expect(index.get(fieldKey(SITE_COPY_ID, "award.plateLabel"))?.value).toBe(
+    "ocenění 2025",
+  );
+  expect(index.get(fieldKey(SITE_COPY_ID, "award.cardTitle"))?.value).toBe(
+    "Traveller Review Awards 2025",
+  );
+});
