@@ -2,6 +2,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 
+import { EditMount } from "@/components/edit/edit-mount";
 import {
   defaultLocale,
   getDictionary,
@@ -67,6 +68,8 @@ export default async function LocaleLayout({
           {dictionary.skipToContent}
         </a>
         {children}
+        {/* Ožije až s `?edit` v adrese, jinak nevykreslí nic. */}
+        <EditMount />
       </body>
     </html>
   );

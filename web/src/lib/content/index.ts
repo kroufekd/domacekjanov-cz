@@ -25,10 +25,28 @@ export { fallbackContent } from "@/lib/content/fallback";
 
 const revalidate = { next: { revalidate: 60 } } as const;
 
-const fetchDocument = (query: string) =>
-  sanityClient.fetch<unknown>(query, {}, revalidate);
+/**
+ * Editační panel potřebuje vidět, co v CMS opravdu leží. Minutu stará kopie by
+ * mu ukázala překonané znění a klient by cizí úpravu přepsal, aniž by o ní
+ * věděl - proto si umí říct o čerstvý dotaz mimo cache.
+ */
+const noStore = { cache: "no-store" } as const;
 
-export async function getSiteContent(locale: Locale): Promise<SiteContent> {
+export type ContentOptions = {
+  readonly fresh?: boolean;
+};
+
+const fetchDocument = (query: string, options: ContentOptions) =>
+  sanityClient.fetch<unknown>(
+    query,
+    {},
+    options.fresh ? noStore : revalidate,
+  );
+
+export async function getSiteContent(
+  locale: Locale,
+  options: ContentOptions = {},
+): Promise<SiteContent> {
   const fallback = fallbackContent[locale];
 
   if (usesFallbackOnly(process.env, hasSanityConfig)) {
@@ -38,12 +56,12 @@ export async function getSiteContent(locale: Locale): Promise<SiteContent> {
   try {
     const [settings, copy, accommodation, gallery, rates, tripTexts] =
       await Promise.all([
-        fetchDocument(siteSettingsQuery),
-        fetchDocument(siteCopyQuery),
-        fetchDocument(accommodationQuery),
-        fetchDocument(galleryQuery),
-        fetchDocument(ratesQuery),
-        fetchDocument(tripTextsQuery),
+        fetchDocument(siteSettingsQuery, options),
+        fetchDocument(siteCopyQuery, options),
+        fetchDocument(accommodationQuery, options),
+        fetchDocument(galleryQuery, options),
+        fetchDocument(ratesQuery, options),
+        fetchDocument(tripTextsQuery, options),
       ]);
 
     return {

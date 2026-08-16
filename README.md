@@ -95,8 +95,75 @@ gh secret set SANITY_API_WRITE_TOKEN
 ```
 
 Bez tokenu se oba kroky přeskočí s varováním, workflow kvůli tomu nespadne.
-Web samotný **žádný token nepotřebuje** - čte veřejný dataset přes CDN, takže
-do Coolify se nic tajného nepřidává.
+Ke *čtení* obsahu web **žádný token nepotřebuje** - bere veřejný dataset přes
+CDN. Token do Coolify přidává až editační režim níže.
+
+## Úprava textů z webu
+
+Majitel nemusí do Studia. Na `https://www.domecekjanov.cz/?edit` se objeví
+dialog s PINem a po jeho zadání dílna: vlevo web v rámu, vpravo panel se všemi
+texty rozdělenými po sekcích. Obě strany jsou svázané:
+
+- **Psaní v panelu se rovnou promítá do stránky**, takže je vidět, jak to bude
+  vypadat, ještě než se uloží.
+- **Psát jde i rovnou do stránky.** Text pod kurzorem se orámuje, kliknutím se
+  do něj začne psát a hodnota se objeví v panelu. Enter psaní ukončí, Escape ho
+  vrátí. Přepínačem „Psát rovnou do stránky“ se to vypne, když je potřeba po
+  webu jen klikat.
+- **Scroll rámu táhne panel.** Jak se čtenář posouvá po stránce, panel otevírá
+  odpovídající sekci a doskakuje na text, který je zrovna vidět. Kliknutí do
+  pole v panelu naopak odscrolluje rám. Po zásahu z panelu je synchronizace
+  chvíli zticha, jinak by se obě strany přetahovaly.
+- „Zahodit“ vrátí rozdělané změny v panelu i v náhledu.
+
+Web sedí v rámu schválně. Panel položený přes stránku by ji nejen zakrýval -
+lepivá hlavička, hero a šířky počítané z `100vw` by pořád počítaly s celou
+obrazovkou a rozjely by se. V rámu má web vlastní viewport a vypadá přesně jako
+naostro, jen užší. Rám je ze stejné domény, takže se do něj sahá přímo; žádné
+posílání zpráv sem tam.
+
+Text se v rámu hledá podle obsahu, ne podle atributů - komponenty webu kvůli
+tomu nemusely dostat žádné značky navíc. Dvě věci, které z toho plynou:
+
+- Menu a patička opakují názvy sekcí („Galerie“, „Ceník“), takže se o stejné
+  znění hlásí víc polí. Sporný text připadne tomu, které patří do stejné části
+  stránky - položka menu hlavičce, nadpis sekce obsahu.
+- Co se nenajde vůbec (typicky text, do kterého se před vykreslením doplňuje
+  počet fotek nebo ročník ocenění), se v náhledu nemění a psát se do něj v
+  stránce nedá. V panelu funguje normálně a po uložení se rám načte znovu.
+
+Panel edituje **jazyk, ve kterém je stránka otevřená** - `/?edit` češtinu,
+`/de?edit` němčinu. Ostatních jazyků se zápis nedotkne. Prázdné pole se
+neuloží: normalizace obsahu bere prázdnou hodnotu jako „nevyplněno“ a text by
+se vrátil na vestavěné znění.
+
+Režim se zapíná třemi proměnnými prostředí naráz. Chybí-li kterákoli, celé API
+odpovídá 404 a `?edit` nic neudělá - stejně jako když web čte obsah z repa
+(`CONTENT_SOURCE=fallback` nebo statický export), protože tam by se uložený
+text stejně nikde neprojevil.
+
+| Proměnná | K čemu |
+| --- | --- |
+| `EDIT_PIN` | Přihlášení do panelu, nejméně 6 znaků. |
+| `EDIT_SECRET` | Podpis přihlašovací cookie, nejméně 32 znaků (`openssl rand -hex 32`). Změna odhlásí všechny. |
+| `SANITY_API_WRITE_TOKEN` | Token role Editor, kterým se zapisuje do datasetu. |
+
+Žádná z nich nesmí být `NEXT_PUBLIC_` - do prohlížeče nepatří ani jedna.
+
+Co panel hlídá:
+
+- Pět pokusů o PIN na IP za čtvrt hodiny a třicet celkem, aby střídání adres
+  hádání nezlevnilo.
+- Cesty k polím se z prohlížeče nepřebírají. Klient posílá jen klíč do seznamu,
+  který si server odvodí z obsahu sám, takže se zápis nedostane mimo texty.
+- Před uložením se dokument načte a pošle zpátky s `ifRevisionId`. Souběžná
+  úprava ve Studiu tak skončí hláškou místo tichého přepsání.
+- Editační API běží v souborech `route.node.ts`. Statický export takovou routu
+  neumí, a `pageExtensions` v `web/next.config.ts` ji do něj proto nezahrne.
+
+Panel je jen na texty - včetně názvů a částek v ceníku. Fotky, jejich pořadí,
+kategorie, geometrie výletů a schéma zůstávají ve Studiu na
+[domecek-janov.sanity.studio](https://domecek-janov.sanity.studio).
 
 ### Struktura Studia
 
@@ -181,6 +248,13 @@ NEXT_PUBLIC_SANITY_PROJECT_ID=lli7g5ge
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SITE_URL=https://www.domecekjanov.cz
 ```
+
+> **`NEXT_PUBLIC_SITE_URL` musí být veřejná doména, nikdy adresa nasazení.**
+> Čtou z ní `layout.tsx`, `robots.ts`, `sitemap.ts` i strukturovaná data, takže
+> dosazená preview adresa (`*.sslip.io`) se propíše do `canonical`, `og:url`,
+> hostu v `robots.txt` a do celé sitemapy - vyhledávačům se pak jako kanonická
+> nabízí hostname, který po přepnutí DNS zmizí. Proměnná je build-time, projeví
+> se až dalším buildem.
 
 Build context je kořen repozitáře a Dockerfile je `./Dockerfile`. Sanity Studio lze
 nasadit samostatně příkazem `npm run build:studio` nebo provozovat přes Sanity
