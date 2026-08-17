@@ -2460,11 +2460,13 @@ h3 em {
   width: 15px;
 }
 
+/* Playfair's thin strokes lose against the photo behind the glass; the body
+   sans holds up at this size. */
 .contact-card strong {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.25rem, 2vw, 1.8rem);
-  font-weight: var(--display-weight);
-  letter-spacing: var(--display-tracking);
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.015em;
 }
 
 /* Footer */
@@ -3233,16 +3235,37 @@ h3 em {
     object-position: 55% center;
   }
 
+  /* The desktop veil fades out to the right; on one column that leaves the card
+     sitting on bright sky and grass. Darken evenly instead. */
+  .contact-section__veil {
+    background: linear-gradient(180deg, rgba(11, 48, 25, 0.78), rgba(11, 48, 25, 0.92));
+  }
+
   .contact-layout {
     gap: 44px;
   }
 
+  .contact-layout > div:first-child > p:last-child {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
   .contact-card {
     border-radius: 24px 58px 24px 58px;
+    border-color: rgba(255, 255, 255, 0.32);
+    background: rgba(11, 48, 25, 0.72);
   }
 
   .contact-card a {
     padding: 23px 18px;
+    gap: 9px;
+  }
+
+  .contact-card a > span {
+    font-size: 0.7rem;
+  }
+
+  .contact-card svg {
+    width: 17px;
   }
 
   .contact-card strong {
